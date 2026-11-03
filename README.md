@@ -117,12 +117,13 @@ instances across its nine timelines. This is an initial pose, not full playback.
 
 Matching uses exact scene keys, path components, stems, and the observed
 `<scene>_assets_all_<32 hex>.bundle` convention. It does not use fuzzy substring
-matching. Alternative bundle/dependency sets or incompatible provider options are
-ambiguous, never automatically selected. Identical URL/options sets across
-catalogues are equivalent. Dependency keys are resolved in their own catalogue.
+matching. Alternative bundle/dependency sets or incompatible provider options
+remain marked `ambiguous`, but **every resolved candidate is downloaded and, when
+requested, rendered separately**. No version is silently chosen or discarded.
+Identical URL/options sets across catalogues are equivalent. Dependency keys are resolved in their own catalogue.
 Missing dependencies, cycles and unresolved runtime properties prevent a match
 from being certified. A partial catalogue run is provisional and downloads no
-scene bundles: uniqueness cannot be established with catalogues missing.
+scene bundles until the required catalogue coverage is complete.
 
 HTTP relative paths resolve against the actual catalogue URL; Unity internal ID
 prefixes are expanded. Properties such as `{RemoteRoot}` need verified mappings:
@@ -131,8 +132,8 @@ closed. Unsupported catalogue formats are reported and their downloaded bytes
 retained; only Unity's packed Addressables JSON format is currently implemented.
 The packed JSON decoder has been validated against all 13 supplied live catalogues.
 
-Exit codes: `0` means all selected scenes matched uniquely and requested transfers
-validated (and requested snapshots passed their checks); `1` means
+Exit codes: `0` means all selected scenes have resolved candidates and every
+requested version downloaded/validated (and requested snapshots passed their checks); `1` means
 catalogue/match/download failures, incomplete coverage or an incomplete render;
 `2` means invalid inputs or a fatal setup error. Index-only success certifies no
 bundle transfer or image rendering.
@@ -216,11 +217,44 @@ py gardens_renderer.py --scene AncientGizaShadowOfThePyramid --scene ItalianScen
 py render_scene.py --scene VictorianExteriorRedux1 --bundle samples/victorianexteriorredux1_assets_all_252d23914543848da6dcbc8871217a16.bundle --output output/small_batch
 ```
 
-The Victorian command deliberately uses the uploaded reference bundle. Its normal
-catalogue match remains ambiguous. PyramidSideEgypt also remains ambiguous in the
-normal CLI: its two catalogue-listed versions were downloaded and tested in
-separate diagnostic folders, not silently selected for the archive. The evidence
-JSON records both bundle hashes and the limited scope of the image comparison.
+The standalone Victorian command uses the uploaded reference bundle. The main
+CLI now also supports all of its matched versions directly:
+
+```cmd
+py gardens_renderer.py --scene VictorianExteriorRedux1 --render --output output
+```
+
+For multiple matches, each distinct URL/options set gets a stable output folder:
+
+```text
+output/scenes/VictorianExteriorRedux1/
+  variants.json
+  variant_8249e17279e07891/
+    scene_empty.png
+    scene_complete.png
+    scene_solution.png
+    validation_report.json
+  variant_c8bf2b6de04fdf71/
+    ...
+```
+
+The IDs shown are from the validated Victorian run. Folder IDs depend on verified
+URLs/options, not catalogue enumeration order. Each version has its own images,
+validation status and source mapping in `variants.json` and `scene_matches.json`.
+Equivalent catalogue locations are merged; genuinely different matched versions
+are kept, even when their rendered images are identical. Unique matches retain
+the original `output/scenes/<scene_id>/scene_*.png` paths.
+
+If one version fails or is unsupported, the others still run. The scene reports
+`partial` when some snapshots pass; the command returns a nonzero exit status
+unless every requested version passes. Shared bundles are downloaded once and
+checked against each candidate's provider options independently. Rendering still
+requires explicit `--scene` selections, and unsupported multi-bundle assembly or
+scene types stay incomplete. Earlier files at the scene root are preserved; use
+the latest `variants.json` to locate current outputs.
+
+PyramidSideEgypt's original diagnostic trial likewise tested both versions. The
+evidence JSON records both bundle hashes and the limited image-comparison scope.
 
 Background names accept the observed `bg01` and `bg_01` conventions. Item Manager
 binding is exact after Unicode case-folding plus the existing underscore suffix
