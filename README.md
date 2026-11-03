@@ -55,13 +55,22 @@ output/scenes/AncientGizaRiverfront/
   solution_objects.json
 ```
 
-The scene is **1280 x 758** with **68 identified/visible hidden objects**. The
+The empty and complete scenes are **1280 x 758** with **68 identified/visible hidden objects**.
+The solution adds nonoverlapping side columns with the exact Item Manager names
+and an arrow to each visible object. It keeps the scene at native scale on a wider
+canvas; Giza's annotated solution is **1832 x 1288**. Labels use `beginner`, falling
+back to `gold` only if the beginner label is empty. The report records both canvas
+dimensions and the native scene rectangle.
+ The
 renderer decodes all 448 GAF frames and selects frame 80, the earliest frame in
 which every named scene object reaches its maximum encoded opacity. Mutually exclusive animation
 cells are not combined. Five time capsules are excluded. Both background art
 and foreground occlusion pieces are retained; a second background-named piece
 is not blindly discarded as a duplicate. Solution outlines use each object's
-visible pixels after masking and occlusion. All labels come from Item Manager.
+visible pixels after masking and occlusion. Arrow tips also land on visible
+object pixels; label boxes are checked for overlap and bounds. All labels come
+from Item Manager. `solution_objects.json` records names, visible-pixel anchors,
+pointer endpoints and label boxes.
 
 `--frame 1` selects an exact one-based snapshot instead. `--offline` reuses
 hash-verified bundles, catalogues and Item Manager JSON after an online run.

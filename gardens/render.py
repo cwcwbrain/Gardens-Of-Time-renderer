@@ -11,6 +11,7 @@ from pathlib import Path
 
 from PIL import Image, ImageChops, ImageFilter
 
+from .annotations import annotate_solution, validate_callouts, visible_anchor
 from .download import atomic_json, sha256, validate_bundle
 from .gaf import GAFError, decode
 
@@ -262,7 +263,9 @@ def render_bundle(bundle, item_manager, output, frame=None):
             else:
                 rowmap[oid]['visible_bbox']=list(bbox)
                 rowmap[oid]['visible_pixels']=threshold.histogram()[255]
-                markers.append({'object_id':oid,**items[oid],'bbox':list(bbox),'visible_pixels':threshold.histogram()[255]})
+                anchor=visible_anchor(threshold)
+                markers.append({'object_id':oid,**items[oid],'bbox':list(bbox),'visible_pixels':threshold.histogram()[255],
+                                'anchor':anchor,'anchor_alpha':visible.getpixel(tuple(anchor))})
                 contour=ImageChops.subtract(threshold.filter(ImageFilter.MaxFilter(5)),threshold)
                 glow=ImageChops.lighter(contour.point(lambda v:round(v*.9)),threshold.point(lambda v:round(v*.25)))
                 highlights=ImageChops.lighter(highlights,glow)
@@ -271,6 +274,9 @@ def render_bundle(bundle, item_manager, output, frame=None):
     solution=Image.alpha_composite(complete,yellow)
     if len(markers)!=len(items): issues.append('Solution marker count differs from identified hidden objects')
     if len(items)!=len([k for k in item_manager if not k.startswith('anim_')]): issues.append('Not all Item Manager hidden objects were resolved')
+    highlights_differ = ImageChops.difference(complete,solution).convert('RGB').getbbox() is not None
+    solution,solution_scene_box=annotate_solution(solution,markers)
+    issues.extend(validate_callouts(markers,solution.size,solution_scene_box))
     coverage={}
     for name,image in [('empty',empty),('complete',complete),('solution',solution)]:
         extrema=image.getchannel('A').getextrema();coverage[name]={'alpha_extrema':list(extrema),'bbox':image.getbbox()}
@@ -278,7 +284,7 @@ def render_bundle(bundle, item_manager, output, frame=None):
             issues.append(f'{name} image is unexpectedly blank or uniform')
         if extrema[0]!=255: issues.append(f'{name} stage contains uncovered or translucent pixels')
     if ImageChops.difference(empty,complete).convert('RGB').getbbox() is None: issues.append('Empty and complete images are identical')
-    if ImageChops.difference(complete,solution).convert('RGB').getbbox() is None: issues.append('Complete and solution images are identical')
+    if not highlights_differ: issues.append('Complete and solution images are identical')
     issues=sorted(set(issues))
     valid=not issues
     destination=out if valid else out/'incomplete'
@@ -287,6 +293,7 @@ def render_bundle(bundle, item_manager, output, frame=None):
     for name,image in [('scene_empty.png',empty),('scene_complete.png',complete),('scene_solution.png',solution)]:
         path=destination/name;tmp=path.with_suffix('.tmp');image.save(tmp,format='PNG');tmp.replace(path);files.append(str(path))
     report={'status':'validated_snapshot' if valid else 'incomplete','scene_dimensions':list(size),
+            'solution_dimensions':list(solution.size),'solution_scene_box':solution_scene_box,'named_pointers':len(markers),
             'gaf_version':list(movie.version),'root_timeline':tl.id,'decoded_frames':len(tl.frames),'timeline_frame_count':tl.frame_count,
             'snapshot_frame':frame,'snapshot_policy':'one decoded frame maximizing hidden/named object visibility and encoded opacity; no union of animation cells',
             'bundle_sha256':sha256(bundle),'item_manager_sha256':hashlib.sha256(json.dumps(item_manager,sort_keys=True).encode()).hexdigest(),

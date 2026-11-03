@@ -50,6 +50,13 @@ references/transforms are flagged for review rather than removed by filename.
 The empty image omits identified hidden objects; complete includes them; both
 retain decorative animation cells in the chosen snapshot. Solution contours
 highlight only visible object pixels after masks and foreground occlusion.
+Named callouts are laid out in separate side columns, preserving the original
+scene scale inside the larger solution canvas. Arrow tips select actual visible
+object pixels nearest the visible bounding-box centre, avoiding transparent
+holes. Labels use the exact Item Manager beginner text, or gold when beginner
+is empty. Label boxes are nonoverlapping and bounded. The solution report stores
+scene-local anchors and solution-canvas label/pointer coordinates.
+
 Labels, object IDs, visible bounds, per-object status and provenance hashes are
 written in the output JSON reports.
 

@@ -8,6 +8,7 @@ from pathlib import Path
 import UnityPy
 from PIL import Image, ImageChops
 
+from gardens.annotations import annotate_solution, validate_callouts, visible_anchor
 from gardens.gaf import GAFError, decode
 from gardens.render import parse_items, render_bundle, warp_sprite
 
@@ -92,6 +93,23 @@ class GAFTests(unittest.TestCase):
         self.assertEqual(image.getpixel((7,7))[3],0)
 
 
+class AnnotationTests(unittest.TestCase):
+    def test_anchor_is_not_a_transparent_bbox_centre(self):
+        mask=Image.new('L',(9,9))
+        mask.putpixel((1,1),255);mask.putpixel((7,7),255)
+        anchor=visible_anchor(mask)
+        self.assertEqual(mask.getpixel(tuple(anchor)),255)
+        self.assertNotEqual(anchor,[4,4])
+
+    def test_very_long_labels_wrap_without_renaming_and_do_not_overlap(self):
+        markers=[{'object_id':i,'label':'A Very Long Item Manager Label '*4,'anchor':[4,4],
+                  'anchor_alpha':255,'bbox':[3,3,6,6]} for i in range(6)]
+        image,box=annotate_solution(Image.new('RGBA',(16,16),'white'),markers)
+        self.assertEqual(validate_callouts(markers,image.size,box),[])
+        self.assertTrue(all(len(m['label_lines'])>1 for m in markers))
+        self.assertTrue(all(m['label']=='A Very Long Item Manager Label '*4 for m in markers))
+
+
 class RealRenderTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -118,18 +136,28 @@ class RealRenderTests(unittest.TestCase):
         self.assertEqual(r['duplicate_backgrounds'],0)
         for name in ('scene_empty.png','scene_complete.png','scene_solution.png'):
             with Image.open(self.out/name) as im:
-                self.assertEqual(im.size,(1280,758))
+                self.assertEqual(im.size,tuple(r['solution_dimensions']) if name=='scene_solution.png' else (1280,758))
                 self.assertEqual(im.getchannel('A').getextrema(),(255,255))
 
     def test_empty_removes_objects_solution_marks_visible_targets(self):
         with Image.open(self.out/'scene_empty.png') as a,Image.open(self.out/'scene_complete.png') as b,Image.open(self.out/'scene_solution.png') as c:
             self.assertIsNotNone(ImageChops.difference(a,b).convert('RGB').getbbox())
-            self.assertIsNotNone(ImageChops.difference(b,c).convert('RGB').getbbox())
+            self.assertIsNotNone(ImageChops.difference(b,c.crop(self.report['solution_scene_box'])).convert('RGB').getbbox())
             self.assertEqual(a.getpixel((700,20)),b.getpixel((700,20)))
-            self.assertEqual(b.getpixel((700,20)),c.getpixel((700,20)))
         markers=json.loads((self.out/'solution_objects.json').read_text())
         self.assertEqual(len({m['object_id'] for m in markers}),68)
         self.assertTrue(all(m['visible_pixels']>0 and m['label'] for m in markers))
+
+    def test_named_pointers_match_item_manager_and_have_separate_label_boxes(self):
+        markers=json.loads((self.out/'solution_objects.json').read_text())
+        self.assertEqual(self.report['named_pointers'],68)
+        self.assertEqual(validate_callouts(markers,self.report['solution_dimensions'],self.report['solution_scene_box']),[])
+        for marker in markers:
+            self.assertEqual(marker['label'],self.data[marker['manager_key']]['beginner'])
+            self.assertGreaterEqual(marker['anchor_alpha'],16)
+            self.assertEqual(marker['pointer_tip'],[marker['anchor'][0]+self.report['solution_scene_box'][0],
+                                                   marker['anchor'][1]+self.report['solution_scene_box'][1]])
+        self.assertEqual({m['number'] for m in markers},set(range(1,69)))
 
     def test_explicit_animation_snapshot_and_exclusions(self):
         self.assertEqual(self.report['inactive_at_snapshot'],[154,163])
