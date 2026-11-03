@@ -95,11 +95,14 @@ verified pixel parity with the running game. Incomplete renders go under an
 from earlier runs may still exist.
 
 The renderer currently supports ordinary, single-bundle root timelines with
-sprite transforms, pivots, element scale, color transforms, transparency and
-single-level alpha masks. Unsupported nested timeline rendering, actions,
-filters, custom Unity geometry or unresolved labels are reported as incomplete.
-Victorian's nine timelines decode, but its nested-animation reconstruction is
-not yet certified. FTD/STD/FTO rendering remains unimplemented.
+sprite transforms, pivots, element scale, color transforms, transparency,
+alpha masks and **nested initial poses**. Nested scenes use encoded frame 1
+throughout the tree, composing parent transforms, opacity, masks and child depth.
+A stop action with no target/arguments at the initial frame is accepted because
+it does not change that pose. Elapsed-time playback, other actions, parent color
+overrides, filters, custom Unity geometry or unresolved labels remain incomplete.
+Victorian now passes the snapshot checks with 69 named objects and eight nested
+instances across its nine timelines. This is an initial pose, not full playback. FTD/STD/FTO rendering remains unimplemented.
 
 ## Outputs and status
 
@@ -196,6 +199,29 @@ Cached downloads and generated reports are local outputs, excluded from Git.
 Run the index-only command to reproduce reports on your computer. The code,
 scene CSV, manifest and uploaded sample bundles are included in this repository.
 
-Next: support nested timeline rendering and validate more ordinary scenes, then
-resolve competing bundle versions before batch reconstruction. FTD follows
+The latest small sample also passes for Shadow of the Pyramid (67 objects),
+Italian Scene (75), and both separately tested PyramidSideEgypt variants (49).
+Those two Pyramid variants produce pixel-identical images for the tested pose;
+the default catalogue selection remains ambiguous. See the portable
+[experiment report](docs/validation/ordinary_sample_2026-11-03.json).
+
+Next: broaden scene validation, implement elapsed nested playback where needed,
+and resolve competing bundle versions before batch reconstruction. FTD follows
 ordinary scenes; STD, FTO and Crystal assets remain later work.
+
+## Reproduce the small-sample experiment
+
+```cmd
+py gardens_renderer.py --scene AncientGizaShadowOfThePyramid --scene ItalianSceneRedux1 --render --output output/small_batch
+py render_scene.py --scene VictorianExteriorRedux1 --bundle samples/victorianexteriorredux1_assets_all_252d23914543848da6dcbc8871217a16.bundle --output output/small_batch
+```
+
+The Victorian command deliberately uses the uploaded reference bundle. Its normal
+catalogue match remains ambiguous. PyramidSideEgypt also remains ambiguous in the
+normal CLI: its two catalogue-listed versions were downloaded and tested in
+separate diagnostic folders, not silently selected for the archive. The evidence
+JSON records both bundle hashes and the limited scope of the image comparison.
+
+Background names accept the observed `bg01` and `bg_01` conventions. Item Manager
+binding is exact after Unicode case-folding plus the existing underscore suffix
+rule; a case collision still fails as ambiguous. Original keys/labels are retained.

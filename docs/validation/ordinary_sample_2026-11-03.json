@@ -1,0 +1,73 @@
+{
+  "date": "2026-11-03",
+  "scope": "Small sample of real ordinary-scene bundles; structural/metadata/visibility checks, not independent game pixel parity.",
+  "results": [
+    {
+      "scene_id": "AncientGizaRiverfront",
+      "status": "validated_snapshot",
+      "bundle_sha256": "4e6b6fe0305b562858b6c6db674c72989df3594be8a98c091f0c763a51659a9a",
+      "named_objects": 68,
+      "named_pointers": 68,
+      "nested_instances": 0,
+      "snapshot_frame": 80,
+      "issues": []
+    },
+    {
+      "scene_id": "VictorianExteriorRedux1",
+      "status": "validated_snapshot",
+      "bundle_sha256": "eee1129aca2bfed5775cfae2b3cc9d737d8ba59b649836895a95a1ad627f1096",
+      "named_objects": 69,
+      "named_pointers": 69,
+      "nested_instances": 8,
+      "snapshot_frame": 1,
+      "issues": []
+    },
+    {
+      "scene_id": "AncientGizaShadowOfThePyramid",
+      "status": "validated_snapshot",
+      "bundle_sha256": "4fb44fd9d16c0fba399bf2da194f6881ac04d9a9a9645c5ccdffee47f61d4696",
+      "named_objects": 67,
+      "named_pointers": 67,
+      "nested_instances": 0,
+      "snapshot_frame": 1,
+      "issues": []
+    },
+    {
+      "scene_id": "ItalianSceneRedux1",
+      "status": "validated_snapshot",
+      "bundle_sha256": "3444aa7e13ddad623f20e9009bcede1da3ce52af8ddb6e80e20e98150c841094",
+      "named_objects": 75,
+      "named_pointers": 75,
+      "nested_instances": 4,
+      "snapshot_frame": 1,
+      "issues": []
+    },
+    {
+      "scene_id": "PyramidSideEgypt",
+      "status": "validated_snapshot",
+      "bundle_sha256": "a6009d5ebc6defed805bfc2b737dc3a3e3147583bcbe781ac185e738cfb09360",
+      "named_objects": 49,
+      "named_pointers": 49,
+      "nested_instances": 5,
+      "snapshot_frame": 1,
+      "issues": []
+    },
+    {
+      "scene_id": "PyramidSideEgypt",
+      "status": "validated_snapshot",
+      "bundle_sha256": "b96a8e7f75ebb94f914c25fce7e432601ae315a4d8ebac648aa092064fbc02f5",
+      "named_objects": 49,
+      "named_pointers": 49,
+      "nested_instances": 5,
+      "snapshot_frame": 1,
+      "issues": []
+    }
+  ],
+  "pyramid_variant_snapshot_pixel_equal": {
+    "scene_empty.png": true,
+    "scene_complete.png": true,
+    "scene_solution.png": true
+  },
+  "default_variant_selection": "Unchanged; ambiguous scenes remain unresolved.",
+  "nested_limitations": "Only encoded initial pose; no elapsed-time playback, unknown actions/filters/colors fail incomplete."
+}

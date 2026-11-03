@@ -10,7 +10,9 @@ from PIL import Image, ImageChops
 
 from gardens.annotations import annotate_solution, validate_callouts, visible_anchor
 from gardens.gaf import GAFError, decode
-from gardens.render import parse_items, render_bundle, warp_sprite
+from gardens.render import RenderError, check_snapshot_actions, is_background, parse_items, render_bundle, warp_sprite
+from gardens.nested import NestedPainter, compose
+from gardens.gaf import Movie, Timeline
 
 ROOT=Path(__file__).resolve().parents[1]
 GIZA=next((ROOT/'samples').glob('ancient*.bundle'))
@@ -93,6 +95,64 @@ class GAFTests(unittest.TestCase):
         self.assertEqual(image.getpixel((7,7))[3],0)
 
 
+class NestedTests(unittest.TestCase):
+    def test_transform_composition(self):
+        # Child point (1,2) -> (7,4); parent rotates and translates -> (6,27).
+        matrix=compose((0,1,-1,0,10,20),(2,0,0,3,5,-2))
+        a,b,c,d,x,y=matrix
+        self.assertEqual((a+c*2+x,b+d*2+y),(6,27))
+
+    def make_painter(self):
+        from types import SimpleNamespace
+        def state(oid,matrix,depth=0,alpha=1,mask=None):
+            return {'object_id':oid,'matrix':matrix,'depth':depth,'alpha':alpha,'mask':mask,'effects':[],'color':None}
+        a=Timeline(10,1,(0,0,8,8),(0,0),'')
+        b=Timeline(20,1,(0,0,2,2),(0,0),'')
+        a.objects={1:{'element':1,'type':0},3:{'element':3,'type':0},4:{'element':20,'type':2}}
+        a.masks={3};b.objects={5:{'element':5,'type':0}}
+        a.frames={1:[state(1,(1,0,0,1,0,0),mask=3),state(3,(2,0,0,4,0,0)),state(4,(1,0,0,1,3,0),depth=1,alpha=.5)]}
+        b.frames={1:[state(5,(1,0,0,1,0,0))]}
+        texture=Image.new('RGBA',(8,4))
+        texture.paste((255,0,0,255),(0,0,4,4));texture.paste((255,255,255,255),(4,0,5,1));texture.paste((0,0,255,255),(6,0,8,2))
+        elements={i:{'atlas_id':1,'origin':xy,'size':size,'pivot':(0,0),'scale':1,'scale9':None}
+                  for i,xy,size in [(1,(0,0),(4,4)),(3,(4,0),(1,1)),(5,(6,0),(2,2))]}
+        def scope(tid):
+            tl={10:a,20:b}[tid]
+            return {'timeline':tl,'atlas':{'elements':elements},'textures':{1:('test',texture)},
+                    'metadata':{oid:{'m_AtlasInitialElementID':d['element']} for oid,d in tl.objects.items()}}
+        return NestedPainter(SimpleNamespace(timelines={10:a,20:b}),scope,(8,8)),a,b
+
+    def test_masks_alpha_and_grandchild_transform(self):
+        painter,a,b=self.make_painter()
+        result=painter.paint(10,(1,0,0,1,1,1),.5)
+        self.assertEqual(result.getpixel((1,1)),(255,0,0,128))
+        self.assertEqual(result.getpixel((3,1))[3],0)
+        self.assertEqual(result.getpixel((4,1)),(0,0,255,64))
+        self.assertEqual(result.getpixel((0,0))[3],0)
+        mask=Image.new('L',(8,8),128)
+        result=painter.paint(10,(1,0,0,1,1,1),.5,[mask])
+        self.assertEqual(result.getpixel((1,1))[3],64)
+        self.assertEqual(result.getpixel((4,1))[3],32)
+
+    def test_cycles_and_unsupported_actions_fail(self):
+        painter,a,b=self.make_painter()
+        b.objects[5]={'element':10,'type':2}
+        with self.assertRaisesRegex(RenderError,'cycle'):painter.paint(10)
+        a.actions={1:[{'type':3,'scope':'','params':['2']}]}
+        with self.assertRaisesRegex(RenderError,'Unsupported action'):check_snapshot_actions(a,1)
+        a.actions={1:[{'type':0,'scope':'','params':[]}]}
+        check_snapshot_actions(a,1)
+        with self.assertRaises(RenderError):check_snapshot_actions(a,2)
+
+    def test_case_variants_remain_exact_and_collisions_stay_unresolved(self):
+        items,_,issues=parse_items({'SchoolUniform_scene':{'beginner':'School Uniform'}},{1:'schooluniform'})
+        self.assertEqual(issues,[]);self.assertEqual(items[1]['manager_key'],'SchoolUniform_scene')
+        items,_,issues=parse_items({'HAT_scene':{'beginner':'Hat'}},{1:'hat',2:'Hat'})
+        self.assertFalse(items);self.assertTrue(issues)
+        self.assertTrue(is_background('bg01'));self.assertTrue(is_background('BG_02'))
+        self.assertFalse(is_background('bg_object'))
+
+
 class AnnotationTests(unittest.TestCase):
     def test_anchor_is_not_a_transparent_bbox_centre(self):
         mask=Image.new('L',(9,9))
@@ -168,14 +228,30 @@ class RealRenderTests(unittest.TestCase):
         self.assertEqual(byid[161]['atlas_id'],2)
         self.assertEqual(byid[143]['manager_key'],'banana_anc_giz_riv')
 
-    def test_nested_scene_stays_incomplete(self):
+    def test_nested_initial_pose_is_rendered(self):
         data=json.loads((ROOT/'tests/fixtures/VictorianExteriorRedux1_items.json').read_text())
         out=Path(self.temp.name)/'victorian'
         r=render_bundle(VICTORIAN,data,out)
-        self.assertEqual(r['status'],'incomplete')
-        self.assertTrue(any('Nested timeline' in issue for issue in r['issues']))
-        self.assertFalse((out/'scene_complete.png').exists())
+        self.assertEqual(r['status'],'validated_snapshot',r['issues'])
+        self.assertTrue((out/'scene_complete.png').exists())
         self.assertEqual(len(r['atlases']),2)
+        self.assertEqual(r['named_pointers'],69)
+        self.assertEqual(len(r['nested_snapshot_instances']),8)
+        self.assertEqual({x['timeline_id'] for x in r['nested_snapshot_instances']},{6,13,19,25,28,246,251,18})
+        self.assertTrue(all(x['frame']==1 for x in r['nested_snapshot_instances']))
+        bird=next(x for x in r['nested_snapshot_instances'] if x['timeline_id']==18)
+        self.assertEqual(bird['instance_path'],[103,184])
+        self.assertAlmostEqual(bird['matrix'][4],723.1000061035156)
+
+    def test_nested_failure_is_not_certified(self):
+        from unittest.mock import patch
+        data=json.loads((ROOT/'tests/fixtures/VictorianExteriorRedux1_items.json').read_text())
+        out=Path(self.temp.name)/'victorian_unsupported'
+        with patch('gardens.nested.NestedPainter.paint',side_effect=RenderError('Unsupported nested effect')):
+            r=render_bundle(VICTORIAN,data,out)
+        self.assertEqual(r['status'],'incomplete')
+        self.assertIn('Unsupported nested effect',r['issues'])
+        self.assertFalse((out/'scene_complete.png').exists())
 
     def test_missing_item_does_not_publish_final_images(self):
         data={**self.data,'nonexistent_object_anc_giz_riv':{'beginner':'Unrecoverable'}}

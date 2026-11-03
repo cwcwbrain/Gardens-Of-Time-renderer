@@ -26,24 +26,29 @@ No atlas-content score or black-region heuristic is used.
 
 A timeline not referenced by any type-2 timeline instance is the root. Its matching
 Unity clip provides scale/CSF and its object metadata. The initial implementation
-accepts scale=CSF=pixels-per-unit=1 with no root flip/pivot override. Nested timeline
-rendering, custom sprite geometry, filters, timeline actions, and multi-bundle
-assembly are explicitly unsupported until implemented and tested. Their presence
+accepts scale=CSF=pixels-per-unit=1 with no root flip/pivot override. Nested initial poses are now rendered recursively with composed parent matrices,
+opacity, masks and child depth. Empty atlas tables are allowed for timeline-only
+containers. Serialized child clips must start at frame 1 with unmodified geometry
+and color settings. Nested scenes require root frame 1; elapsed playback is not
+simulated. Only empty-scope, no-argument stop actions at frame 1 are accepted.
+Other actions, custom sprite geometry/colors, filters, and multi-bundle assembly
+remain unsupported. Their presence
 cannot produce a validated result.
 
-Non-animation Item Manager keys must match one named part exactly or via an
-underscore-delimited scene suffix. Ambiguous/unmatched keys and unclassified
+Non-animation Item Manager keys must match one named part exactly after
+case-folding, or via an underscore-delimited scene suffix; case collisions are
+ambiguous. Background names recognize the observed bg01 and bg_01 forms. Ambiguous/unmatched keys and unclassified
 named scene objects are issues. The real Giza metadata contains 68 findable-object
 keys and five anim_ descriptors. timecap instances are excluded as gameplay art.
 Root masks are not painted as visible sprites. Unnamed decorative cells remain
 at their decoded position and depth; they are not invented as findable objects.
 
-For automatic snapshots, maximize identified-object coverage, named-object
+For non-nested automatic snapshots, maximize identified-object coverage, named-object
 visibility, then the number of objects at their own maximum encoded opacity.
 Choose the earliest frame with the best score. This supports intentionally
 translucent art without inventing visibility. Giza selects frame 80. `--frame`
-requests an exact one-based frame instead. The decoder always reads the entire
-file, independently of the chosen snapshot.
+requests an exact one-based frame instead. Nested snapshots instead use the encoded initial frame throughout the tree.
+The decoder always reads the entire file, independently of the chosen snapshot.
 
 Background occlusion pieces are retained in depth order. Identical background
 references/transforms are flagged for review rather than removed by filename.

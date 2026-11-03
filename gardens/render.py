@@ -6,6 +6,7 @@ scene files. No atlas scoring, placement scanning, or fuzzy label matching.
 import hashlib
 import json
 import math
+import re
 from collections import Counter
 from pathlib import Path
 
@@ -30,7 +31,7 @@ def parse_items(data, names):
         # These are animation descriptors, not findable-object names.
         if key.startswith('anim_'):
             animations.append(key); continue
-        matches = [oid for oid, name in names.items() if key == name or key.startswith(name+'_')]
+        matches = [oid for oid, name in names.items() if key.casefold() == name.casefold() or key.casefold().startswith(name.casefold()+'_')]
         if len(matches) != 1:
             issues.append(f'Item {key}: expected one exact named-part prefix, found {len(matches)}'); continue
         oid = matches[0]
@@ -76,7 +77,7 @@ def warp_sprite(tile, element, state, canvas_size):
                           resample=Image.Resampling.BICUBIC, fillcolor=(0,0,0,0))
 
 
-def load_scene(bundle):
+def load_scene(bundle, with_context=False):
     import UnityPy
     validate_bundle(bundle)
     env = UnityPy.load(Path(bundle).read_bytes())
@@ -134,24 +135,99 @@ def load_scene(bundle):
         if isinstance(d,dict) and d.get('m_Clip',{}).get('m_PathID')==root_id and 'm_ID' in d:
             if d['m_ID'] in metadata: raise RenderError('Duplicate Unity object ID within root clip')
             metadata[d['m_ID']] = d
-    return movie, tl, atlas, source_textures, metadata
+    def resolve_scope(tid):
+        if tid==tl.id:
+            return {'timeline':tl,'atlas':atlas,'textures':source_textures,'metadata':metadata,'clip':root}
+        clips=[(pid,t) for pid,t in mono.items() if t.get('m_TimelineID')==tid and t.get('m_GAFAsset',{}).get('m_PathID')==asset_id]
+        if len(clips)!=1: raise RenderError(f'No unique Unity clip for nested timeline {tid}')
+        clip_id,clip=clips[0]; settings=clip.get('m_Settings',{})
+        if (settings.get('m_Scale')!=1 or settings.get('m_CSF')!=1 or settings.get('m_FlipX') or
+                settings.get('m_PixelsPerUnit')!=1 or settings.get('m_PivotOffset')!={'x':0.0,'y':0.0}):
+            raise RenderError(f'Unsupported nested clip geometry for timeline {tid}')
+        if (settings.get('m_AnimationColor')!={'r':1.0,'g':1.0,'b':1.0,'a':1.0} or
+                settings.get('m_AnimationColorOffset')!={'x':0.0,'y':0.0,'z':0.0,'w':0.0}):
+            raise RenderError(f'Custom nested clip color is unsupported for timeline {tid}')
+        if clip.get('m_InternalFrameNumber')!=1:
+            raise RenderError(f'Nested timeline {tid} does not start at encoded frame 1')
+        definitions=[a for a in movie.atlases if a['timeline']==tid and a['scale']==1]
+        if not definitions: definitions=[a for a in movie.atlases if a['timeline'] is None and a['scale']==1]
+        if not definitions and all(d['type']==2 for d in movie.timelines[tid].objects.values()):
+            definitions=[{'elements':{},'sources':{}}]
+        if len(definitions)!=1: raise RenderError(f'No unique nested atlas definition for timeline {tid}')
+        child_atlas=definitions[0];child_textures={}
+        for aid,sources in child_atlas['sources'].items():
+            choices=[x for x in sources if x['csf']==1]
+            if len(choices)!=1: raise RenderError('Ambiguous nested atlas source')
+            name=Path(choices[0]['source']).stem
+            matches=[r for r in resources[0]['m_Data'] if r['m_SearchName']==name]
+            if len(matches)!=1: raise RenderError(f'Missing nested texture resource {name}')
+            pointer=matches[0]['m_SharedTexture']
+            if pointer['m_FileID']!=0 or pointer['m_PathID'] not in textures: raise RenderError(f'Missing nested texture {name}')
+            actual,image=textures[pointer['m_PathID']]
+            if actual!=name: raise RenderError('Nested texture reference/name disagreement')
+            child_textures[aid]=(actual,image)
+        child_metadata={}
+        for tree in mono.values():
+            d=tree.get('m_Data')
+            if isinstance(d,dict) and d.get('m_Clip',{}).get('m_PathID')==clip_id and 'm_ID' in d:
+                if d['m_ID'] in child_metadata: raise RenderError('Duplicate nested Unity object ID')
+                child_metadata[d['m_ID']]=d
+        if set(child_metadata)!=set(movie.timelines[tid].objects): raise RenderError('Nested Unity/GAF object sets differ')
+        return {'timeline':movie.timelines[tid],'atlas':child_atlas,'textures':child_textures,'metadata':child_metadata,'clip':clip}
+    result=(movie,tl,atlas,source_textures,metadata)
+    return (*result,resolve_scope) if with_context else result
+
+
+def is_background(name):
+    return re.fullmatch(r'bg_?\d+',name,re.I) is not None or name.casefold() in ('background','backdrop')
+
+
+def check_snapshot_actions(timeline,frame):
+    for n,actions in timeline.actions.items():
+        if n>frame:continue
+        for action in actions:
+            # Stop affects future playback only, not the first displayed pose.
+            if not (frame==1 and action=={'type':0,'scope':'','params':[]}):
+                raise RenderError(f'Unsupported action in timeline {timeline.id}, frame {n}: {action}')
+
+
+def sprite_for(scope,oid):
+    definition=scope['timeline'].objects[oid];eid=definition['element']
+    if definition['type']!=0: raise RenderError('Expected an atlas sprite')
+    element=scope['atlas']['elements'].get(eid)
+    if element is None: raise RenderError(f'Missing atlas element {eid}')
+    if element['scale9']: raise RenderError('Scale9 geometry is not supported')
+    md=scope['metadata'].get(oid,{})
+    if md.get('m_UseCustomAtlasTextureRect') or md.get('m_AtlasCustomElementID',-1)!=-1:
+        raise RenderError('Custom Unity sprite rectangle/element is unsupported')
+    if md.get('m_Offset',{'x':0,'y':0})!={'x':0.0,'y':0.0} or md.get('m_MeshSizeMultiplier',{'x':1,'y':1})!={'x':1.0,'y':1.0}:
+        raise RenderError('Custom Unity sprite offset/mesh scale is unsupported')
+    if md and md.get('m_AtlasInitialElementID')!=eid: raise RenderError('Unity/GAF atlas element disagreement')
+    name,image=scope['textures'][element['atlas_id']]
+    x,y=element['origin'];w,h=element['size']
+    if any(abs(v-round(v))>1e-5 for v in (x,y,w,h)): raise RenderError('Non-integral atlas crop')
+    x,y,w,h=map(round,(x,y,w,h))
+    if min(x,y)<0 or min(w,h)<=0 or x+w>image.width or y+h>image.height: raise RenderError('Atlas crop outside texture')
+    return image.crop((x,y,x+w,y+h)),element,dict(atlas_id=element['atlas_id'],texture=name,crop=[x,y,w,h],pivot=element['pivot'],element_scale=element['scale'])
+
 
 
 def render_bundle(bundle, item_manager, output, frame=None):
     out = Path(output); out.mkdir(parents=True, exist_ok=True)
-    movie, tl, atlas, textures, metadata = load_scene(bundle)
+    movie, tl, atlas, textures, metadata, resolve_scope = load_scene(bundle, with_context=True)
     stage = movie.stage
     if not stage or not 0 < stage['width'] <= 8192 or not 0 < stage['height'] <= 8192:
         raise RenderError('Missing or unsafe GAF stage dimensions')
     size = stage['width'],stage['height']
     items, animation_keys, issues = parse_items(item_manager, tl.names)
-    if tl.actions: issues.append('Timeline actions are decoded but not interpreted')
     if movie.unsupported: issues.append(f'Unsupported GAF tags: {movie.unsupported}')
     if set(tl.objects)!=set(metadata): issues.append('Unity/GAF root object sets differ')
     for oid,name in tl.names.items():
-        if oid not in items and not name.startswith(('bg_','anim_')) and name != 'timecap':
+        if oid not in items and not (is_background(name) or name.startswith('anim_')) and name != 'timecap':
             issues.append(f'Unclassified named object {name} ({oid})')
     if not items: issues.append('No hidden objects identified')
+    has_nested=any(d['type']==2 for d in tl.objects.values())
+    if frame is None and has_nested: frame=1
     if frame is None:
         # Prefer a coherent frame with the most identified/named objects,
         # then the most objects at their own maximum encoded opacity. A
@@ -171,6 +247,9 @@ def render_bundle(bundle, item_manager, output, frame=None):
                      sum(oid in active for oid in required),
                      sum(oid in active and active[oid]['alpha']>=maximum[oid]-1e-6 for oid in required))
             if score>best: best,frame=score,n
+    try: check_snapshot_actions(tl,frame)
+    except RenderError as exc: issues.append(str(exc))
+    if has_nested and frame!=1: issues.append('Nested snapshots currently require root frame 1; elapsed playback is not simulated')
     state = tl.state_at(frame)
     excluded = [oid for oid,name in tl.names.items() if name=='timecap']
     inactive = sorted(set(tl.objects)-set(state))
@@ -185,24 +264,14 @@ def render_bundle(bundle, item_manager, output, frame=None):
             s = state[oid]
             record.update(depth=s['depth'],matrix=s['matrix'],alpha=s['alpha'],mask=s['mask'])
             try:
-                if definition['type']!=0: raise RenderError('Nested timeline/text rendering is not certified yet')
                 if s['effects']: raise RenderError('GAF filters are not supported yet')
-                eid = definition['element']; element = atlas['elements'].get(eid)
-                if element is None: raise RenderError(f'Missing atlas element {eid}')
-                if element['scale9']: raise RenderError('Scale9 geometry is not supported')
-                md = metadata.get(oid,{})
-                if md.get('m_UseCustomAtlasTextureRect') or md.get('m_AtlasCustomElementID',-1)!=-1:
-                    raise RenderError('Custom Unity sprite rectangle/element is unsupported')
-                if md.get('m_Offset',{'x':0,'y':0})!={'x':0.0,'y':0.0} or md.get('m_MeshSizeMultiplier',{'x':1,'y':1})!={'x':1.0,'y':1.0}:
-                    raise RenderError('Custom Unity sprite offset/mesh scale is unsupported')
-                if md and md.get('m_AtlasInitialElementID')!=eid: raise RenderError('Unity/GAF atlas element disagreement')
-                name, image = textures[element['atlas_id']]
-                x,y = element['origin']; w,h = element['size']
-                if any(abs(v-round(v))>1e-5 for v in (x,y,w,h)): raise RenderError('Non-integral atlas crop')
-                x,y,w,h = map(round,(x,y,w,h))
-                if min(x,y)<0 or min(w,h)<=0 or x+w>image.width or y+h>image.height: raise RenderError('Atlas crop outside texture')
-                tile = image.crop((x,y,x+w,y+h))
-                record.update(atlas_id=element['atlas_id'],texture=name,crop=[x,y,w,h],pivot=element['pivot'],element_scale=element['scale'])
+                if definition['type']==2:
+                    if oid in tl.masks: raise RenderError('Nested timeline used as a mask is unsupported')
+                    record.update(status='rendered_nested',nested_timeline=definition['element'])
+                    drawables.append((oid,s,None,None));rows.append(record);continue
+                if definition['type']!=0: raise RenderError('Text rendering is unsupported')
+                tile,element,fields=sprite_for(resolve_scope(tl.id),oid)
+                record.update(fields)
                 if oid in tl.masks:
                     record.update(kind='mask',status='mask_only')
                 else:
@@ -219,8 +288,16 @@ def render_bundle(bundle, item_manager, output, frame=None):
         if oid in tl.masks:
             if s['mask'] is not None: issues.append(f'Nested masks unsupported for {oid}')
             masks[oid]=warp_sprite(tile,element,s,size).getchannel('A')
+    from .nested import NestedPainter
+    nested=NestedPainter(movie,resolve_scope,size)
     def layer_for(entry):
         oid,s,tile,element=entry
+        if tile is None:
+            mask=masks.get(s['mask']) if s['mask'] is not None else None
+            if s['mask'] is not None and mask is None: raise RenderError(f'Missing parent mask for {oid}')
+            if frame!=1: raise RenderError('Nested playback beyond initial frame is unsupported')
+            if s['color']: raise RenderError('Parent timeline color transforms are unsupported')
+            return nested.paint(tl.objects[oid]['element'],s['matrix'],s['alpha'],[mask] if mask else [],path=(oid,))
         layer=warp_sprite(tile,element,s,size)
         if s['mask'] is not None:
             mask=masks.get(s['mask'])
@@ -232,7 +309,7 @@ def render_bundle(bundle, item_manager, output, frame=None):
     background_signatures=Counter()
     for entry in drawables:
         oid,s,tile,element=entry
-        if tl.names.get(oid,'').startswith('bg_'):
+        if is_background(tl.names.get(oid,'')):
             background_signatures[(tl.objects[oid]['element'],s['matrix'],s['alpha'],s['mask'])]+=1
     duplicate_backgrounds=sum(n-1 for n in background_signatures.values() if n>1)
     if duplicate_backgrounds: issues.append('Repeated identical background placements need review')
@@ -244,7 +321,7 @@ def render_bundle(bundle, item_manager, output, frame=None):
     empty=Image.new('RGBA',size,(r,g,b,a)); complete=Image.new('RGBA',size,(r,g,b,a))
     for entry in ordered:
         try: layer=layer_for(entry)
-        except RenderError as exc:
+        except (RenderError,KeyError) as exc:
             issues.append(str(exc));rowmap[entry[0]]['status']='unsupported';continue
         complete=Image.alpha_composite(complete,layer)
         if entry[0] not in items: empty=Image.alpha_composite(empty,layer)
@@ -253,7 +330,7 @@ def render_bundle(bundle, item_manager, output, frame=None):
     markers=[]
     for entry in reversed(ordered):
         oid=entry[0]
-        if rowmap[oid]['status']!='rendered':continue
+        if rowmap[oid]['status'] not in ('rendered','rendered_nested'):continue
         layer=layer_for(entry); alpha=layer.getchannel('A')
         if oid in items:
             visible=ImageChops.multiply(alpha,transmittance)
@@ -293,9 +370,11 @@ def render_bundle(bundle, item_manager, output, frame=None):
     for name,image in [('scene_empty.png',empty),('scene_complete.png',complete),('scene_solution.png',solution)]:
         path=destination/name;tmp=path.with_suffix('.tmp');image.save(tmp,format='PNG');tmp.replace(path);files.append(str(path))
     report={'status':'validated_snapshot' if valid else 'incomplete','scene_dimensions':list(size),
-            'solution_dimensions':list(solution.size),'solution_scene_box':solution_scene_box,'named_pointers':len(markers),
+            'solution_dimensions':list(solution.size),'solution_scene_box':solution_scene_box,'named_pointers':len(markers),'nested_snapshot_instances':nested.audit,
+            'nested_policy':'Encoded first frame per child; no elapsed-time playback simulation',
             'gaf_version':list(movie.version),'root_timeline':tl.id,'decoded_frames':len(tl.frames),'timeline_frame_count':tl.frame_count,
-            'snapshot_frame':frame,'snapshot_policy':'one decoded frame maximizing hidden/named object visibility and encoded opacity; no union of animation cells',
+            'snapshot_frame':frame,'snapshot_policy':('Encoded initial frame throughout the nested tree' if has_nested else
+                'one decoded frame maximizing hidden/named object visibility and encoded opacity; no union of animation cells'),
             'bundle_sha256':sha256(bundle),'item_manager_sha256':hashlib.sha256(json.dumps(item_manager,sort_keys=True).encode()).hexdigest(),
             'root_objects':len(tl.objects),'identified_hidden_objects':len(items),'solution_markers':len(markers),
             'inactive_at_snapshot':inactive,'excluded_gameplay_objects':excluded,'animation_metadata_keys':animation_keys,
