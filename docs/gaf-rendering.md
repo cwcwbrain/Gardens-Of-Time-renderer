@@ -1,0 +1,61 @@
+# GAF snapshot implementation notes
+
+The renderer consumes embedded GAF bytes directly from the uploaded Unity bundle.
+It does not infer positions by scanning for plausible float sequences. Format
+references consulted (Cocos2d's public GAF reader/runtime):
+
+- https://github.com/cocos2d/cocos2d-html5/blob/develop/external/gaf/Library/GAFTags.js
+- https://github.com/cocos2d/cocos2d-html5/blob/develop/external/gaf/Library/GAFDataReader.js
+- https://github.com/cocos2d/cocos2d-html5/blob/develop/external/gaf/Library/GAFAssetPreload.js
+
+The supplied Unity GAF is CAG version 5.9. Its declared length counts the inflated
+body; the parser also accepts a standalone length including the ten-byte header.
+All fields and tag payloads are bounded and consumed exactly. The decoder handles
+stage, timeline, atlas, sprite/mask definitions, named parts, sequences, frame
+deltas, color transforms and actions. Unsupported tag IDs are retained as issues.
+Unknown filter encodings fail closed. Frame deltas persist until changed; alpha
+zero removes a display-list instance. Inactive alternative animation cells are
+not missing placements and are never combined into one frame.
+
+Atlas tables are scoped to timelines. The texture is selected by its atlas ID,
+source name, shared-resource PPtr and matching Texture2D name. Sprite origins,
+pivots and element scale come from the atlas element; the six-value frame matrix
+then transforms that geometry into stage coordinates. Alpha masks are transformed
+in the same coordinate system. Stage clear color comes from the stage tag.
+No atlas-content score or black-region heuristic is used.
+
+A timeline not referenced by any type-2 timeline instance is the root. Its matching
+Unity clip provides scale/CSF and its object metadata. The initial implementation
+accepts scale=CSF=pixels-per-unit=1 with no root flip/pivot override. Nested timeline
+rendering, custom sprite geometry, filters, timeline actions, and multi-bundle
+assembly are explicitly unsupported until implemented and tested. Their presence
+cannot produce a validated result.
+
+Non-animation Item Manager keys must match one named part exactly or via an
+underscore-delimited scene suffix. Ambiguous/unmatched keys and unclassified
+named scene objects are issues. The real Giza metadata contains 68 findable-object
+keys and five anim_ descriptors. timecap instances are excluded as gameplay art.
+Root masks are not painted as visible sprites. Unnamed decorative cells remain
+at their decoded position and depth; they are not invented as findable objects.
+
+For automatic snapshots, maximize identified-object coverage, named-object
+visibility, then the number of objects at their own maximum encoded opacity.
+Choose the earliest frame with the best score. This supports intentionally
+translucent art without inventing visibility. Giza selects frame 80. `--frame`
+requests an exact one-based frame instead. The decoder always reads the entire
+file, independently of the chosen snapshot.
+
+Background occlusion pieces are retained in depth order. Identical background
+references/transforms are flagged for review rather than removed by filename.
+The empty image omits identified hidden objects; complete includes them; both
+retain decorative animation cells in the chosen snapshot. Solution contours
+highlight only visible object pixels after masks and foreground occlusion.
+Labels, object IDs, visible bounds, per-object status and provenance hashes are
+written in the output JSON reports.
+
+Validation checks missing/ambiguous metadata, unknown features, atlas rectangles,
+affine matrices, stage coverage, blank/uniform images, invisible required objects,
+duplicate backgrounds and solution count. A failed result is written under
+incomplete/, with status incomplete and a nonzero command exit code. The latest
+report lists its current files. These checks validate a recovered static snapshot;
+they do not establish pixel-for-pixel parity with the running game.

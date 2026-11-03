@@ -1,11 +1,9 @@
 #!/usr/bin/env python3
-"""Phase 1: catalogue indexing, exact matching, validated bundle downloads.
-
-This CLI deliberately does not claim to reconstruct images yet.
-"""
+"""Catalogue indexing, bundle downloading, and opt-in ordinary-scene snapshots."""
 import argparse
 import csv
 import json
+import re
 import sys
 import uuid
 from collections import Counter
@@ -35,6 +33,8 @@ def main(argv=None):
     select.add_argument('--all', action='store_true')
     select.add_argument('--scene', action='append', help='Exact scene ID; may be repeated')
     p.add_argument('--output', type=Path, default=ROOT / 'output')
+    p.add_argument('--render', action='store_true', help='Render explicitly selected ordinary scenes after verified download')
+    p.add_argument('--frame', type=int, help='One-based snapshot frame for --render')
     p.add_argument('--index-only', action='store_true', help='Download and index catalogues; do not download bundles')
     p.add_argument('--offline', action='store_true', help='Read verified cached catalogues and bundles only')
     p.add_argument('--refresh-catalogues', action='store_true')
@@ -42,6 +42,10 @@ def main(argv=None):
     p.add_argument('--retries', type=int, default=2)
     p.add_argument('--property', action='append', default=[], metavar='NAME=VALUE', help='Verified Unity runtime property; never guessed')
     args = p.parse_args(argv)
+    if args.render and (args.all or args.index_only):
+        p.error('--render currently requires explicit --scene selections and cannot use --index-only')
+    if args.frame is not None and (not args.render or args.frame < 1):
+        p.error('--frame requires --render and a positive one-based frame number')
     if args.timeout <= 0 or args.retries < 0:
         p.error('timeout must be positive and retries non-negative')
     if args.offline and args.refresh_catalogues:
@@ -106,6 +110,8 @@ def main(argv=None):
     for row in matches:
         row['download_status'] = 'not_requested' if args.index_only else 'not_eligible'
         row['download_errors'] = []
+        row['render_status'] = 'not_eligible' if args.render else 'not_requested'
+        row['render_issues'] = []
         if args.index_only or row['status'] != 'matched':
             continue
         # Only a unique, resolved candidate is eligible. Never choose among variants.
@@ -137,19 +143,40 @@ def main(argv=None):
                 success = False
                 row['download_errors'].append(downloads[url]['error'])
         row['download_status'] = 'verified' if success else 'failed'
+        if args.render and success:
+            try:
+                from gardens.render import render_bundle
+                from render_scene import load_item_manager
+                if not re.fullmatch(r'[A-Za-z0-9_-]+',row['scene_id']):
+                    raise ValueError('Unsafe scene output identifier')
+                if re.search(r'(FTD|STD|FTO)\d*$',row['scene_id'],re.I):
+                    raise ValueError('FTD/STD/FTO rendering is not implemented')
+                bundle_urls = sorted({b['url'] for b in bundles})
+                if len(bundle_urls) != 1:
+                    raise ValueError('Multi-bundle scene assembly is not certified yet')
+                scene = next(s for s in scenes if s.scene_id==row['scene_id'])
+                manager = load_item_manager(scene,out,client,args.offline)
+                report = render_bundle(Path(downloads[bundle_urls[0]]['path']),manager,out/'scenes'/scene.scene_id,args.frame)
+                row['render_status'] = report['status']
+                row['render_issues'] = report['issues']
+            except (ValueError,OSError,DownloadError) as exc:
+                row['render_status'] = 'incomplete'
+                row['render_issues'] = [str(exc)]
+
     atomic_json(out / 'scene_matches.json', matches)
-    write_csv(out / 'scene_report.csv', matches, ['order', 'scene_id', 'thumbnail_url', 'item_manager_url', 'status', 'issues', 'download_status', 'download_errors', 'candidates'])
+    write_csv(out / 'scene_report.csv', matches, ['order', 'scene_id', 'thumbnail_url', 'item_manager_url', 'status', 'issues', 'download_status', 'download_errors', 'render_status', 'render_issues', 'candidates'])
     atomic_json(out / 'download_report.json', list(downloads.values()))
-    summary = {'run_id': run_id, 'status': 'completed', 'phase': 'catalogue-index-and-download-only', 'images_generated': 0,
+    summary = {'run_id': run_id, 'status': 'completed', 'phase': 'download-and-render' if args.render else 'catalogue-index-and-download-only', 'images_generated': 3*sum(r['render_status']=='validated_snapshot' for r in matches),
                'catalogues_expected': len(urls), 'catalogues_indexed': sum(c['status'] == 'indexed' for c in catalogue_reports),
                'complete_catalogue_coverage': complete, 'scenes': len(scenes), 'duplicates_skipped': len(duplicates),
                'matches': dict(Counter(r['status'] for r in matches)), 'downloads': dict(Counter(d['status'] for d in downloads.values())),
-               'limitations': ['No image reconstruction is certified by this stage.',
+               'render_statuses': dict(Counter(r['render_status'] for r in matches)),
+               'limitations': ['Snapshot validation checks structure and metadata; independent game pixel parity is unverified.',
                                'Unity Hash128 is not a file MD5; Unity provider CRC is retained but not yet independently checked.']}
     atomic_json(out / 'summary.json', summary)
     print(json.dumps(summary, indent=2), flush=True)
     # A partial catalogue run cannot establish that a unique match is globally unique.
-    return 0 if complete and all(r['status'] == 'matched' and (args.index_only or r['download_status'] == 'verified') for r in matches) else 1
+    return 0 if complete and all(r['status'] == 'matched' and (args.index_only or r['download_status'] == 'verified') and (not args.render or r['render_status']=='validated_snapshot') for r in matches) else 1
 
 
 if __name__ == '__main__':
