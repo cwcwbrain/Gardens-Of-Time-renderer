@@ -113,6 +113,25 @@ class CatalogueTests(unittest.TestCase):
         _, issues = Index([a,b]).bundle_closure(['a'])
         self.assertTrue(any('cycle' in issue for issue in issues))
 
+    def test_bundle_validation_does_not_give_unitypy_a_disk_handle(self):
+        import UnityPy
+        from unittest.mock import patch
+        with tempfile.TemporaryDirectory() as td:
+            part = Path(td) / 'sample.bundle.part'
+            part.write_bytes(SAMPLE.read_bytes())
+            with patch('UnityPy.load', wraps=UnityPy.load) as load:
+                validate_bundle(part)
+                self.assertIsInstance(load.call_args.args[0], bytes)
+            # Rename and delete immediately, without relying on cyclic GC.
+            renamed = part.with_suffix('.validated')
+            part.replace(renamed)
+            renamed.unlink()
+            part.write_bytes(SAMPLE.read_bytes())
+            with patch('UnityPy.load', side_effect=ValueError('broken bundle')):
+                with self.assertRaisesRegex(DownloadError, 'broken bundle'):
+                    validate_bundle(part)
+            part.unlink()
+
     def test_numeric_unicode_keys(self):
         self.assertEqual(read_object(b'\x04'+struct.pack('<i', -42), 0), -42)
         raw = '日本'.encode('utf-16-le')

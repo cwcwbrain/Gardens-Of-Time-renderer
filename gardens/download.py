@@ -73,7 +73,11 @@ def validate_bundle(path, expected_size=None):
     except ImportError as exc:
         raise DownloadError('Install requirements.txt: UnityPy is required for bundle validation') from exc
     try:
-        env = UnityPy.load(str(path))
+        # UnityPy retains readers in its object graph. Loading by filename can
+        # keep the OS handle alive past validation, preventing os.replace and
+        # temporary-directory cleanup on Windows. Supply owned bytes instead;
+        # read_bytes closes its file even when UnityPy subsequently raises.
+        env = UnityPy.load(path.read_bytes())
         if not env.objects:
             raise DownloadError('No serialized Unity objects in bundle')
         # Loading decompresses blocks; read all object bytes to detect broken extents.
