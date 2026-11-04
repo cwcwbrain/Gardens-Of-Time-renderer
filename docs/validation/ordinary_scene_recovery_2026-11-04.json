@@ -1,0 +1,3259 @@
+{
+  "date": "2026-11-04",
+  "scope": "The 151 ordinary-scene bundle versions that were incomplete in the uploaded progress report; excludes FTD/STD/FTO; not the full 4481-scene catalogue",
+  "identity": {
+    "schema": 1,
+    "code": "0014fa1ec716687e2bc1c11659598acb8ed688bbcfd71a99dd7e4fd44f551a78",
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "platform": "Linux",
+    "packages": {
+      "UnityPy": "1.25.4",
+      "Pillow": "13.0.0"
+    }
+  },
+  "versions_tested": 151,
+  "unique_scenes": 135,
+  "version_statuses": {
+    "incomplete": 54,
+    "passed": 97
+  },
+  "all_versions_pass_scene_count": 87,
+  "some_versions_pass_scene_count": 0,
+  "no_versions_pass_scene_count": 48,
+  "remaining_failure_groups": {
+    "Named objects without verified Item Manager entries": [
+      "VictorianSceneRedone",
+      "ChinaGardenRedux1",
+      "HangingGardensofBabylon",
+      "TowerOfBabel",
+      "ItalyWoodenCarriageInterior",
+      "AncientGreekTemple",
+      "GardenOfHesperides",
+      "victoriantraveltrunk",
+      "AlAzharUniversity",
+      "BattlefrontFrance1812",
+      "DaVinciStudioRedux1",
+      "ChinaRoyalPalaceRedux1",
+      "AuroraBorealis",
+      "ColosseumEmperorsBox",
+      "WildWestTown",
+      "Varanasi",
+      "TajMahal",
+      "GreatTrainRobbery",
+      "SheriffsOffice",
+      "GoldMine",
+      "SydneyHarbor",
+      "Uluru",
+      "GwensBalcony",
+      "AbandonedItalianScene",
+      "WinterPalace",
+      "PirateTavern",
+      "KremlinWall",
+      "PirateCave",
+      "NewYorkCityStreet",
+      "Neuschwanstein",
+      "MaidMariansTower",
+      "DanishBakery",
+      "PrehistoricCave",
+      "SagradaFamilia",
+      "VanityTable",
+      "BenFranklin",
+      "TravelingCircus",
+      "PaintedLadies",
+      "PotolaPalace",
+      "SkiLodgeInterior",
+      "CharlesBridge",
+      "Fondue",
+      "ReversibleDestinyLoft",
+      "HarajukuStreet",
+      "AliBaba40Thieves"
+    ],
+    "Bundle without embedded GAF asset": [
+      "DaVinciStudioRedux1"
+    ],
+    "Required objects placed outside the encoded stage": [
+      "PirateTavern",
+      "FashionShowBackstage"
+    ],
+    "Unresolved Item Manager binding": [
+      "CornerOffice"
+    ],
+    "Required objects without visible pixels": [
+      "TubbatahaReef"
+    ]
+  },
+  "validation_scope": "Structural, metadata, coverage, and visible-object checks. Software box-tap filtering; independent game GPU pixel parity is not certified.",
+  "results": [
+    {
+      "scene": "VictorianSceneRedone",
+      "variant": "6234e0da83eee691",
+      "status": "incomplete",
+      "issues": [
+        "Unclassified named object 142: maracas; no Item Manager label",
+        "Unclassified named object 95: lightbulb; no Item Manager label"
+      ],
+      "order": 5,
+      "original_issues": [
+        "Unclassified named object lightbulb (95)",
+        "Unclassified named object maracas (142)"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/victoriansceneredone_assets_all_1d07d6342811b813b5869ce3ff3154c0.bundle"
+      ],
+      "bundle_sha256": [
+        "94478236229ce61bf7a35ac5550dca905425b0c2de07540836673472df6e470b"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_VictorianSceneRedone.json",
+      "item_manager_sha256": "863216bdc5beb6778d67d82572a6e55810b0c307e81e95812e4a58a11f45d509"
+    },
+    {
+      "scene": "VictorianSceneRedone",
+      "variant": "7a1420d58dd6d1f0",
+      "status": "incomplete",
+      "issues": [
+        "Unclassified named object 142: maracas; no Item Manager label",
+        "Unclassified named object 95: lightbulb; no Item Manager label"
+      ],
+      "order": 5,
+      "original_issues": [
+        "Unclassified named object lightbulb (95)",
+        "Unclassified named object maracas (142)"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/victoriansceneredone_assets_all_a6fc6323fbfe37a2056caf453aaad1dd.bundle"
+      ],
+      "bundle_sha256": [
+        "c6388738aeb7469101e4b49c1780d7e5fc110114b9754fe47c8b2b5f810edc90"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_VictorianSceneRedone.json",
+      "item_manager_sha256": "863216bdc5beb6778d67d82572a6e55810b0c307e81e95812e4a58a11f45d509"
+    },
+    {
+      "scene": "ChinaGardenRedux1",
+      "variant": "2ea3fe135b389b3b",
+      "status": "incomplete",
+      "issues": [
+        "Unclassified named object 113: sharkfin; no Item Manager label"
+      ],
+      "order": 13,
+      "original_issues": [
+        "Unclassified named object sharkfin (113)"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/chinagardenredux1_assets_all_3e4aee79cb03b6f98d37c897e05d62d1.bundle"
+      ],
+      "bundle_sha256": [
+        "7e897e45b7ad2c4f8ce17be78db91f33c067cc7106ca7b278ed2c59f58b9984a"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_ChinaGardenRedux1.json",
+      "item_manager_sha256": "9661543f5506bb5a47a741eca07cd70f48674e16d9195fbfeebe0815dac33043"
+    },
+    {
+      "scene": "HangingGardensofBabylon",
+      "variant": "bc59135aad0fec52",
+      "status": "incomplete",
+      "issues": [
+        "Unclassified named object 101: mallet; no Item Manager label",
+        "Unclassified named object 104: apostrophe; no Item Manager label",
+        "Unclassified named object 105: daisy; no Item Manager label",
+        "Unclassified named object 106: sunflower; no Item Manager label",
+        "Unclassified named object 111: bowlingpin; no Item Manager label",
+        "Unclassified named object 113: rose; no Item Manager label",
+        "Unclassified named object 119: rainbow; no Item Manager label",
+        "Unclassified named object 120: spade; no Item Manager label",
+        "Unclassified named object 122: lazyspring; no Item Manager label",
+        "Unclassified named object 123: handprint; no Item Manager label",
+        "Unclassified named object 126: raspberry; no Item Manager label",
+        "Unclassified named object 134: scissors; no Item Manager label",
+        "Unclassified named object 144: hat; no Item Manager label",
+        "Unclassified named object 145: fish; no Item Manager label",
+        "Unclassified named object 97: apple; no Item Manager label",
+        "Unclassified named object 99: watermelon; no Item Manager label"
+      ],
+      "order": 21,
+      "original_issues": [
+        "No unique Unity clip for nested timeline 6",
+        "Unclassified named object apostrophe (104)",
+        "Unclassified named object apple (97)",
+        "Unclassified named object bowlingpin (111)",
+        "Unclassified named object daisy (105)",
+        "Unclassified named object fish (145)",
+        "Unclassified named object handprint (123)",
+        "Unclassified named object hat (144)",
+        "Unclassified named object lazyspring (122)",
+        "Unclassified named object mallet (101)",
+        "Unclassified named object rainbow (119)",
+        "Unclassified named object raspberry (126)",
+        "Unclassified named object rose (113)",
+        "Unclassified named object scissors (134)",
+        "Unclassified named object spade (120)",
+        "Unclassified named object sunflower (106)",
+        "Unclassified named object watermelon (99)"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/hanginggardensofbabylon_assets_all_a9f13dee608d1d5210e493616b395c84.bundle"
+      ],
+      "bundle_sha256": [
+        "0f9af1d99d247dfff143a5a14bf7c0bdc6a145ea23262da978bb8c2bb36f18ab"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_HangingGardensofBabylon.json",
+      "item_manager_sha256": "457faac118cd423d479753d113fccf5cd4053e2acf6f27ce0467d078aac5e11a"
+    },
+    {
+      "scene": "TowerOfBabel",
+      "variant": "f04b8230296b3eeb",
+      "status": "incomplete",
+      "issues": [
+        "Unclassified named object 112: antler; no Item Manager label",
+        "Unclassified named object 160: cyclist; no Item Manager label"
+      ],
+      "order": 24,
+      "original_issues": [
+        "Unclassified named object antler (112)",
+        "Unclassified named object cyclist (160)"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/towerofbabel_assets_all_fd489adad96a90899d146e45f8ccab40.bundle"
+      ],
+      "bundle_sha256": [
+        "42751364461cf110385801eca69ff8073af2a239ef4711399aee26787e15395f"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_TowerOfBabel.json",
+      "item_manager_sha256": "110dcf3d4ca6e96e82dbfce436bcb3619855a11710911a80402bf6b44d99088c"
+    },
+    {
+      "scene": "ItalyWoodenCarriageInterior",
+      "variant": "082fe53373e0cf05",
+      "status": "incomplete",
+      "issues": [
+        "Unclassified named object 140: fuzzydice; no Item Manager label"
+      ],
+      "order": 26,
+      "original_issues": [
+        "Unclassified named object fuzzydice (140)"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/italywoodencarriageinterior_assets_all_4f99076bd36570cce9ddbf7c750751ec.bundle"
+      ],
+      "bundle_sha256": [
+        "78b3ca2806a7fead26e11f7ac3edf4f003c4fa1414ccca55de46b2085715abfe"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_ItalyWoodenCarriageInterior.json",
+      "item_manager_sha256": "53325ba2db3436dd69e1d0c553a5c740dd37d5fd730dccc084a2d5f0aefa6e69"
+    },
+    {
+      "scene": "AncientGreekTemple",
+      "variant": "e9063e2adb394b83",
+      "status": "incomplete",
+      "issues": [
+        "Unclassified named object 164: firebowl; no Item Manager label"
+      ],
+      "order": 28,
+      "original_issues": [
+        "Unclassified named object firebowl (164)"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ancientgreektemple_assets_all_c6dc1b5f07c98cfed16b2c602238b9df.bundle"
+      ],
+      "bundle_sha256": [
+        "ec40917b953aa1a00ffccfced9815dab4512ebc9818f476ac2925879e40aeaf4"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_AncientGreekTemple.json",
+      "item_manager_sha256": "b37a53007a6c59b5d11c7b8af2351331673ba3cf3679e379f6adb4b5c38a161d"
+    },
+    {
+      "scene": "GardenOfHesperides",
+      "variant": "ba4973f773e1766d",
+      "status": "incomplete",
+      "issues": [
+        "Unclassified named object 82: rabbit; no Item Manager label"
+      ],
+      "order": 30,
+      "original_issues": [
+        "No unique Unity clip for nested timeline 172",
+        "Unclassified named object rabbit (82)"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/gardenofhesperides_assets_all_2d326c26a29722c011949d9c01302912.bundle"
+      ],
+      "bundle_sha256": [
+        "4e02cd23eb831ede320913dcf60d936e73a443b9bec102bc6c305cb48fe08165"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_GardenOfHesperides.json",
+      "item_manager_sha256": "b4b23f548d599948621c771ba32d831b761e5eb7de9d4d964b484faf27b53b04"
+    },
+    {
+      "scene": "victoriantraveltrunk",
+      "variant": "153ce234ecbe155d",
+      "status": "incomplete",
+      "issues": [
+        "Unclassified named object 74: fountainpen; no Item Manager label"
+      ],
+      "order": 31,
+      "original_issues": [
+        "Unclassified named object fountainpen (74)"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/victoriantraveltrunk_assets_all_c5de38fd8e7b8eb901f2aadfdbf193bd.bundle"
+      ],
+      "bundle_sha256": [
+        "d0913b8edffd5c538e80d9d1b0cc40a866397793d641d788ef30e91dec0e3ddc"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_victoriantraveltrunk.json",
+      "item_manager_sha256": "899ce2b21e2d49e0188ff90629153ed6f252899dedb3a396a93d04d8b86594c8"
+    },
+    {
+      "scene": "ClockTowerRedux1",
+      "variant": "74702bf381145f5c",
+      "status": "passed",
+      "issues": [],
+      "order": 34,
+      "original_issues": [
+        "Parent timeline color transforms are unsupported"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/clocktowerredux1_assets_all_38a0845ad310d6c7d7a72f0790e99b80.bundle"
+      ],
+      "bundle_sha256": [
+        "f85276a83e5902c64371674ada85ff9f51f86acab8799a9dab4304050f99aec0"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_ClockTowerRedux1.json",
+      "item_manager_sha256": "32eea2b14de12f2276650922ea6659b4a6ec2d2612f43cd72307c7d5e2ec3d22"
+    },
+    {
+      "scene": "AlAzharUniversity",
+      "variant": "017650e4c9d10890",
+      "status": "incomplete",
+      "issues": [
+        "Unclassified named object 119: camera; no Item Manager label",
+        "Unclassified named object 127: cane; no Item Manager label",
+        "Unclassified named object 79: basket; no Item Manager label"
+      ],
+      "order": 36,
+      "original_issues": [
+        "Unclassified named object basket (79)",
+        "Unclassified named object camera (119)",
+        "Unclassified named object cane (127)"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/alazharuniversity_assets_all_8a24f5e6b7b6846c882312c7d9a383e5.bundle"
+      ],
+      "bundle_sha256": [
+        "958b4d294780b667d1500b0cfaa54d6c16de4f2d1c60df28fce5bdceca014811"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_AlAzharUniversity.json",
+      "item_manager_sha256": "2560939d65c050c089f474c3343dcd9e9027358ee3e8a8d6e9771de509d92216"
+    },
+    {
+      "scene": "GrandeTheater",
+      "variant": "8ee4b2989b5f6ef0",
+      "status": "passed",
+      "issues": [],
+      "order": 42,
+      "original_issues": [
+        "Item animprojectorbeam_gra_the_ini: expected one exact named-part prefix, found 0",
+        "Not all Item Manager hidden objects were resolved"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/grandetheater_assets_all_95a49232b7b9184d896fbdc59d3d6e4f.bundle"
+      ],
+      "bundle_sha256": [
+        "20e679792125abf719a1dfe9c36697824c204965798fa7c55292c502a801cbbc"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_GrandeTheater.json",
+      "item_manager_sha256": "8631393d17b2a08e0748518db1fa3f23f7f2d345a70b180a219e4982f9abc804"
+    },
+    {
+      "scene": "BattlefrontFrance1812",
+      "variant": "f1ea968a2df02f4d",
+      "status": "incomplete",
+      "issues": [
+        "Unclassified named object 116: wheel; no Item Manager label",
+        "Unclassified named object 160: dominoes; no Item Manager label"
+      ],
+      "order": 43,
+      "original_issues": [
+        "Unclassified named object dominoes (160)",
+        "Unclassified named object wheel (116)"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/battlefrontfrance1812_assets_all_e4c3983ea61bd588f20727605a45c60d.bundle"
+      ],
+      "bundle_sha256": [
+        "ef41bb795d974e256c959b54209d31ac9ad685e4d87f53b96c7b19721cbedca6"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_BattlefrontFrance1812.json",
+      "item_manager_sha256": "0f57705bafe4fa09caba74d4a92c0e7dea7f7fa30bd2515387c59a0285825b9d"
+    },
+    {
+      "scene": "DaVinciStudioRedux1",
+      "variant": "09330039963fbd4c",
+      "status": "incomplete",
+      "issues": [
+        "Unclassified named object 137: tablelamp; no Item Manager label"
+      ],
+      "order": 47,
+      "original_issues": [
+        "Unclassified named object tablelamp (137)"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/davincistudioredux1_assets_all_70d53ff96e7f380e9c9326b8f86a4274.bundle"
+      ],
+      "bundle_sha256": [
+        "94f1458842ecbbfa3f9b3d8fabf009e60b24ca94be35e7c1bd82b05e1f1bdc3b"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_DaVinciStudioRedux1.json",
+      "item_manager_sha256": "d93e1a2983c2ece726b95914ad1f439f6c1c6874e73259bddc07cb0bfe4880b1"
+    },
+    {
+      "scene": "DaVinciStudioRedux1",
+      "variant": "0bfa07cd81365ec7",
+      "status": "incomplete",
+      "issues": [
+        "Expected one GAF asset, found 0"
+      ],
+      "order": 47,
+      "original_issues": [
+        "RenderError: Expected one GAF asset, found 0"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/davincistudioredux1_assets_all_aeb56b1e5353ede2b7b3cf90aa670604.bundle"
+      ],
+      "bundle_sha256": [
+        "cccc56dbdc8a7544b6afebc8452eb74fc24cee61904e6603960cba75ad6eb136"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_DaVinciStudioRedux1.json",
+      "item_manager_sha256": "d93e1a2983c2ece726b95914ad1f439f6c1c6874e73259bddc07cb0bfe4880b1"
+    },
+    {
+      "scene": "DaVinciStudioRedux1",
+      "variant": "98e9db7c3aeda027",
+      "status": "incomplete",
+      "issues": [
+        "Unclassified named object 132: tablelamp; no Item Manager label"
+      ],
+      "order": 47,
+      "original_issues": [
+        "Unclassified named object tablelamp (132)"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/davincistudioredux1_assets_all_18843bf3376ebfb51e3e965508e48056.bundle"
+      ],
+      "bundle_sha256": [
+        "d67919297b4996ecedab47fbdd010d63a9387cef9afa9c1964621ee7c4c36f89"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_DaVinciStudioRedux1.json",
+      "item_manager_sha256": "d93e1a2983c2ece726b95914ad1f439f6c1c6874e73259bddc07cb0bfe4880b1"
+    },
+    {
+      "scene": "ChinaRoyalPalaceRedux1",
+      "variant": "bc33cddda236b41e",
+      "status": "incomplete",
+      "issues": [
+        "Unclassified named object 151: umberlla; no Item Manager label"
+      ],
+      "order": 54,
+      "original_issues": [
+        "Unclassified named object umberlla (151)"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/chinaroyalpalaceredux1_assets_all_6e4c03cb480f531931fc2351552ea278.bundle"
+      ],
+      "bundle_sha256": [
+        "0e76053c20c242d887b9d5e3e0ce99c7bbe7e5f90111b6a70898768dfcaae044"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_ChinaRoyalPalaceRedux1.json",
+      "item_manager_sha256": "089fc49dbd99f00916a97313333e0f91cb600d1001dd85abb3dfb13655960863"
+    },
+    {
+      "scene": "AuroraBorealis",
+      "variant": "afb5a2783ca8df2f",
+      "status": "incomplete",
+      "issues": [
+        "Unclassified named object 105: eagle; no Item Manager label",
+        "Unclassified named object 99: squirrel; no Item Manager label"
+      ],
+      "order": 58,
+      "original_issues": [
+        "Unclassified named object eagle (105)",
+        "Unclassified named object squirrel (99)"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/auroraborealis_assets_all_75e7ddaf2b345bbe45bcb342a173e7c2.bundle"
+      ],
+      "bundle_sha256": [
+        "45b939964ac4edf66fa750807f17b6f3cae7eef4f6e481fc1a58486069215e4b"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_AuroraBorealis.json",
+      "item_manager_sha256": "42684eade77f0afe0b0420ab2702909eff0f10b2b72302702038aa9f661a6872"
+    },
+    {
+      "scene": "ColosseumEmperorsBox",
+      "variant": "0b22bdacff61f9a1",
+      "status": "incomplete",
+      "issues": [
+        "Unclassified named object 100: club; no Item Manager label",
+        "Unclassified named object 114: flyingdisc; no Item Manager label",
+        "Unclassified named object 147: teabag; no Item Manager label"
+      ],
+      "order": 59,
+      "original_issues": [
+        "Unclassified named object club (100)",
+        "Unclassified named object flyingdisc (114)",
+        "Unclassified named object teabag (147)"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/colosseumemperorsbox_assets_all_1589606e5fcfb522fb21ed6551e730d8.bundle"
+      ],
+      "bundle_sha256": [
+        "a7c3526baf98c776d1d51ed70a3501bb9c32f67f39b2b0168755c175e5fbe91b"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_ColosseumEmperorsBox.json",
+      "item_manager_sha256": "7c4640af1561843dc6d6b1e35b434755f8909dc97584fc2894300ce324aa35ef"
+    },
+    {
+      "scene": "WildWestTown",
+      "variant": "d5969f55e920bdf0",
+      "status": "incomplete",
+      "issues": [
+        "Unclassified named object 130: rope; no Item Manager label"
+      ],
+      "order": 61,
+      "original_issues": [
+        "Unclassified named object rope (130)"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/wildwesttown_assets_all_b10a9ebaf13eb30df075f357f8784216.bundle"
+      ],
+      "bundle_sha256": [
+        "10c4b44cb4bf6090e6d05e4bd93934e103c97ea4320a9d410ac81a0a8c56ffdf"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_WildWestTown.json",
+      "item_manager_sha256": "aa104f30c296dd09641f724cda918380a4f6a4fed099c88f942819aca9f84f00"
+    },
+    {
+      "scene": "Varanasi",
+      "variant": "79a8f598e42306d1",
+      "status": "incomplete",
+      "issues": [
+        "Unclassified named object 145: lotusleaf; no Item Manager label"
+      ],
+      "order": 63,
+      "original_issues": [
+        "Unclassified named object lotusleaf (145)"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/varanasi_assets_all_3db9c112d30110e47a10a24cc2a2c230.bundle"
+      ],
+      "bundle_sha256": [
+        "146572c736180f86b0d7e31924f3538998a1cc2e52a0be75d7a7548b647daa42"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_Varanasi.json",
+      "item_manager_sha256": "c038937f55d360c74163962b83095f0d22a5703335a80b3614813a9688f79159"
+    },
+    {
+      "scene": "TajMahal",
+      "variant": "78a6ed6eb9d6a1ae",
+      "status": "incomplete",
+      "issues": [
+        "Unclassified named object 125: hat; no Item Manager label"
+      ],
+      "order": 65,
+      "original_issues": [
+        "Unclassified named object hat (125)"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/tajmahal_assets_all_d992654ba15eaffeb9dd26c61ddca90b.bundle"
+      ],
+      "bundle_sha256": [
+        "c22e3e0ccfb00ed3d72f154ab87e43e67ecd352b3b59004ebc21337f0ef08875"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_TajMahal.json",
+      "item_manager_sha256": "099dc751cc802b8dad66ece815eba664d118196e58fe9b30f0a1e6eb3afcbd59"
+    },
+    {
+      "scene": "GreatTrainRobbery",
+      "variant": "69f61747078e64c2",
+      "status": "incomplete",
+      "issues": [
+        "Unclassified named object 67: staticsky; no Item Manager label"
+      ],
+      "order": 69,
+      "original_issues": [
+        "Unclassified named object staticsky (67)"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/greattrainrobbery_assets_all_8b004916eac04d2ff38a554673460361.bundle"
+      ],
+      "bundle_sha256": [
+        "cc75dc9fe955a4842bcaeda2be229a3bf286ddc7d260441b996d9f6e4087bf69"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_GreatTrainRobbery.json",
+      "item_manager_sha256": "54aff91f47b6f23683b1647ef12629ef2a35c42174945341b0c95f1fda6565f9"
+    },
+    {
+      "scene": "SheriffsOffice",
+      "variant": "457b446dcb9dedf8",
+      "status": "incomplete",
+      "issues": [
+        "Unclassified named object 82: tie; no Item Manager label"
+      ],
+      "order": 70,
+      "original_issues": [
+        "Item Anim_lamp1_she_off_ini: expected one exact named-part prefix, found 0",
+        "Item Anim_lamp2_she_off_ini: expected one exact named-part prefix, found 0",
+        "Not all Item Manager hidden objects were resolved",
+        "Unclassified named object bg (66)",
+        "Unclassified named object tie (82)"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/sheriffsoffice_assets_all_94c4a3714f7483e8b2fef9caa65fbbe8.bundle"
+      ],
+      "bundle_sha256": [
+        "1b48168bbbdc06a290deb8c883a3ee2b024098ca573c62a3aee32d8a0e980bbd"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_SheriffsOffice.json",
+      "item_manager_sha256": "75332b774a5b275342f3c2bc82ccb0cc9a19a1c996ddc794cc81f4fe0af82b3f"
+    },
+    {
+      "scene": "GoldMine",
+      "variant": "ca5049caf89b6d31",
+      "status": "incomplete",
+      "issues": [
+        "Unclassified named object 143: animpart; no Item Manager label"
+      ],
+      "order": 72,
+      "original_issues": [
+        "Unclassified named object animpart (143)"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/goldmine_assets_all_efc2c452b92e010e0542bf60e4c2080a.bundle"
+      ],
+      "bundle_sha256": [
+        "0c99968e88e27f0d2ca9254e3715ef8e886941e06ffbcc611e448b6953090419"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_GoldMine.json",
+      "item_manager_sha256": "022566bbf0e66610776d2dafa5df9e3c3f6c60363a562a69d24992ef4693ccae"
+    },
+    {
+      "scene": "SydneyHarbor",
+      "variant": "2455510c732b37c6",
+      "status": "incomplete",
+      "issues": [
+        "Unclassified named object 103: roundtable; no Item Manager label",
+        "Unclassified named object 83: umbrella; no Item Manager label"
+      ],
+      "order": 73,
+      "original_issues": [
+        "Unclassified named object roundtable (103)",
+        "Unclassified named object umbrella (83)",
+        "Unsupported nested effect on object 141"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/sydneyharbor_assets_all_8c348418443c3c3241d1ec4959782cf5.bundle"
+      ],
+      "bundle_sha256": [
+        "9a5eafbba05530ea1546162a08892975e64dd3327a2d553c08be2931d9bcdc78"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_SydneyHarbor.json",
+      "item_manager_sha256": "24f8917ce45ece32531654f8a09b291cbac87b6fc2c80f76112a370a7334850e"
+    },
+    {
+      "scene": "SydneyHarbor",
+      "variant": "fdce2d7c2443a31d",
+      "status": "incomplete",
+      "issues": [
+        "Unclassified named object 103: roundtable; no Item Manager label",
+        "Unclassified named object 83: umbrella; no Item Manager label"
+      ],
+      "order": 73,
+      "original_issues": [
+        "Unclassified named object roundtable (103)",
+        "Unclassified named object umbrella (83)",
+        "Unsupported nested effect on object 141"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/sydneyharbor_assets_all_141c00fa5c9c3405a3e6cf49605c8125.bundle"
+      ],
+      "bundle_sha256": [
+        "454c61c8bd194ce8668ec914cfc534129427aa36f5042b16f83875304552e7f1"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_SydneyHarbor.json",
+      "item_manager_sha256": "24f8917ce45ece32531654f8a09b291cbac87b6fc2c80f76112a370a7334850e"
+    },
+    {
+      "scene": "Uluru",
+      "variant": "04f6aa8ee9cc149d",
+      "status": "incomplete",
+      "issues": [
+        "Unclassified named object 44: echidnas; no Item Manager label",
+        "Unclassified named object 58: chameleon; no Item Manager label",
+        "Unclassified named object 64: turkey; no Item Manager label"
+      ],
+      "order": 77,
+      "original_issues": [
+        "Item Anim_fan_ulu_ru_ini: expected one exact named-part prefix, found 0",
+        "Item Anim_lamp1_ulu_ru_ini: expected one exact named-part prefix, found 0",
+        "Item Anim_lamp2_ulu_ru_ini: expected one exact named-part prefix, found 0",
+        "Not all Item Manager hidden objects were resolved",
+        "Unclassified named object chameleon (58)",
+        "Unclassified named object echidnas (44)",
+        "Unclassified named object turkey (64)"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/uluru_assets_all_6bcd8bd72c6228816ae86908c0c17761.bundle"
+      ],
+      "bundle_sha256": [
+        "2dc35ec89e34150c9b52371078db415fe2f87cc78ba12f8426ad338c739216ae"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_Uluru.json",
+      "item_manager_sha256": "7693880c8e8bb85be99b9b40ad593b6d094662645183dad72cc236aa3aa9a2db"
+    },
+    {
+      "scene": "RoundTable",
+      "variant": "0ea756633558a6c6",
+      "status": "passed",
+      "issues": [],
+      "order": 83,
+      "original_issues": [
+        "No unique Unity clip for nested timeline 272",
+        "No unique Unity clip for nested timeline 273",
+        "No unique Unity clip for nested timeline 274",
+        "No unique Unity clip for nested timeline 275",
+        "No unique Unity clip for nested timeline 276",
+        "No unique Unity clip for nested timeline 328"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/roundtable_assets_all_482ea1fef01bbad8d53bc40ac40e66e6.bundle"
+      ],
+      "bundle_sha256": [
+        "7517ddf230aa209453cecef49e10392e21f937e2ff85799224bbbe081459cdf1"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_RoundTable.json",
+      "item_manager_sha256": "b6e6f5ce3007fbb8d4902bc6af96c9e460b8cfbc72e615ee9205a1d14bf49f48"
+    },
+    {
+      "scene": "GwensBalcony",
+      "variant": "9e3c5e3dc1ed0bb8",
+      "status": "incomplete",
+      "issues": [
+        "Unclassified named object 109: thoughtbubbleclouds; no Item Manager label",
+        "Unclassified named object 110: mountaingoat; no Item Manager label"
+      ],
+      "order": 85,
+      "original_issues": [
+        "No unique Unity clip for nested timeline 158",
+        "Unclassified named object mountaingoat (110)",
+        "Unclassified named object thoughtbubbleclouds (109)"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/gwensbalcony_assets_all_5ac814b66b646c0f94118cc91c52c7b7.bundle"
+      ],
+      "bundle_sha256": [
+        "688fdf63c6a440ab7ed5f677c8d20f5c81b412b95b5b42eb1a452e1eec8b3a0e"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_GwensBalcony.json",
+      "item_manager_sha256": "a15c08e06d9ec8d2e3f31309a2d91ce88d7a6bad37a9c7351ee76adbab4f4223"
+    },
+    {
+      "scene": "AbandonedItalianScene",
+      "variant": "7bb002d70d80058b",
+      "status": "incomplete",
+      "issues": [
+        "Unclassified named object 128: balloon; no Item Manager label",
+        "Unclassified named object 147: icecreamcone; no Item Manager label",
+        "Unclassified named object 152: hotairballon; no Item Manager label",
+        "Unclassified named object 154: partyhat; no Item Manager label",
+        "Unclassified named object 155: pinwheel; no Item Manager label",
+        "Unclassified named object 156: camera; no Item Manager label",
+        "Unclassified named object 157: crescentmoon; no Item Manager label",
+        "Unclassified named object 158: lioness; no Item Manager label",
+        "Unclassified named object 159: bunny; no Item Manager label",
+        "Unclassified named object 160: sunflower; no Item Manager label",
+        "Unclassified named object 161: whitetrillium; no Item Manager label",
+        "Unclassified named object 162: irises; no Item Manager label"
+      ],
+      "order": 89,
+      "original_issues": [
+        "Unclassified named object balloon (128)",
+        "Unclassified named object bunny (159)",
+        "Unclassified named object camera (156)",
+        "Unclassified named object crescentmoon (157)",
+        "Unclassified named object hotairballon (152)",
+        "Unclassified named object icecreamcone (147)",
+        "Unclassified named object irises (162)",
+        "Unclassified named object lioness (158)",
+        "Unclassified named object partyhat (154)",
+        "Unclassified named object pinwheel (155)",
+        "Unclassified named object sunflower (160)",
+        "Unclassified named object whitetrillium (161)"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/abandoneditalianscene_assets_all_75f3d0bce4d797516906790afb79bd56.bundle"
+      ],
+      "bundle_sha256": [
+        "fb781544ba04c02e37af5141f6278a9005a5be4d622218be7e01a3b2debc51cf"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_AbandonedItalianScene.json",
+      "item_manager_sha256": "024e893c8b7444cb8aecefc14fb30b01f1d23a94ea9a342ff7bc90bae88ed207"
+    },
+    {
+      "scene": "WinterPalace",
+      "variant": "9bd0ae2a706a1150",
+      "status": "incomplete",
+      "issues": [
+        "Unclassified named object 103: swing; no Item Manager label",
+        "Unclassified named object 105: mannequin; no Item Manager label",
+        "Unclassified named object 106: stool; no Item Manager label",
+        "Unclassified named object 107: bullwhip; no Item Manager label",
+        "Unclassified named object 110: sickle; no Item Manager label",
+        "Unclassified named object 113: hare; no Item Manager label",
+        "Unclassified named object 116: curtain; no Item Manager label",
+        "Unclassified named object 120: dogscollar; no Item Manager label",
+        "Unclassified named object 121: helicopter; no Item Manager label",
+        "Unclassified named object 125: weddinggown; no Item Manager label",
+        "Unclassified named object 126: doghouse; no Item Manager label",
+        "Unclassified named object 128: directions; no Item Manager label",
+        "Unclassified named object 130: seashell; no Item Manager label",
+        "Unclassified named object 134: spectacles; no Item Manager label",
+        "Unclassified named object 135: antlers; no Item Manager label",
+        "Unclassified named object 138: corkscrew; no Item Manager label",
+        "Unclassified named object 139: mouth; no Item Manager label",
+        "Unclassified named object 140: eyes; no Item Manager label",
+        "Unclassified named object 79: nestingdolls; no Item Manager label",
+        "Unclassified named object 98: magicianhat; no Item Manager label",
+        "Unclassified named object 99: broccoli; no Item Manager label"
+      ],
+      "order": 90,
+      "original_issues": [
+        "Unclassified named object antlers (135)",
+        "Unclassified named object broccoli (99)",
+        "Unclassified named object bullwhip (107)",
+        "Unclassified named object corkscrew (138)",
+        "Unclassified named object curtain (116)",
+        "Unclassified named object directions (128)",
+        "Unclassified named object doghouse (126)",
+        "Unclassified named object dogscollar (120)",
+        "Unclassified named object eyes (140)",
+        "Unclassified named object hare (113)",
+        "Unclassified named object helicopter (121)",
+        "Unclassified named object magicianhat (98)",
+        "Unclassified named object mannequin (105)",
+        "Unclassified named object mouth (139)",
+        "Unclassified named object nestingdolls (79)",
+        "Unclassified named object seashell (130)",
+        "Unclassified named object sickle (110)",
+        "Unclassified named object spectacles (134)",
+        "Unclassified named object stool (106)",
+        "Unclassified named object swing (103)",
+        "Unclassified named object weddinggown (125)"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/winterpalace_assets_all_19d253e6302e48457be6f745671c9a01.bundle"
+      ],
+      "bundle_sha256": [
+        "6ef7a29863cd68d63d0f2609869a11969e6ed86b4c7cedb4afd44dae23318cbe"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_WinterPalace.json",
+      "item_manager_sha256": "4e1811b89ccfe161e63b7cac7599239d6e63b601772db4c84da06a4bf1134e71"
+    },
+    {
+      "scene": "PirateTavern",
+      "variant": "7fa1791f70f14ded",
+      "status": "incomplete",
+      "issues": [
+        "Hidden object 118 lies outside encoded stage: [1422.3499755859375, 391.0, 1518.3499755859375, 479.0]",
+        "Solution marker count differs from identified hidden objects",
+        "Unclassified named object 137: kiwi; no Item Manager label"
+      ],
+      "order": 91,
+      "original_issues": [
+        "Hidden object 118 has no visible pixels",
+        "Solution marker count differs from identified hidden objects",
+        "Unclassified named object kiwi (137)"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/piratetavern_assets_all_3f84f1837a345ac5d8b65ef735070fdc.bundle"
+      ],
+      "bundle_sha256": [
+        "3143146e2afb5bbae08bc364e1645b54d849ab22a4a60a52da3a4eeb86016be5"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_PirateTavern.json",
+      "item_manager_sha256": "48ae0a2c02c946ee34b1eea60988a48899b8a5ad0cee795d8a291d9ede11b125"
+    },
+    {
+      "scene": "KremlinWall",
+      "variant": "280942b6e8af6907",
+      "status": "incomplete",
+      "issues": [
+        "Unclassified named object 112: binoculars; no Item Manager label",
+        "Unclassified named object 113: licenceplate; no Item Manager label",
+        "Unclassified named object 116: pillow; no Item Manager label",
+        "Unclassified named object 118: leatherbag; no Item Manager label",
+        "Unclassified named object 130: starfish; no Item Manager label",
+        "Unclassified named object 84: flashlight; no Item Manager label",
+        "Unclassified named object 89: grapes; no Item Manager label",
+        "Unclassified named object 90: seahorse; no Item Manager label"
+      ],
+      "order": 94,
+      "original_issues": [
+        "Unclassified named object binoculars (112)",
+        "Unclassified named object flashlight (84)",
+        "Unclassified named object grapes (89)",
+        "Unclassified named object leatherbag (118)",
+        "Unclassified named object licenceplate (113)",
+        "Unclassified named object pillow (116)",
+        "Unclassified named object seahorse (90)",
+        "Unclassified named object starfish (130)"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/kremlinwall_assets_all_13e3b2559a8ecc49ec7daa12ef6b14b4.bundle"
+      ],
+      "bundle_sha256": [
+        "410f16b838c642eaafb8375e220c67c7e8c98aed8e6748a2b4e818d344bb2a12"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_KremlinWall.json",
+      "item_manager_sha256": "c62076745951591b277614ffbff05d2dfa6f3a51fdfc0dd10db2b4f0e9258224"
+    },
+    {
+      "scene": "PirateCave",
+      "variant": "52b9cc07e4ce3bff",
+      "status": "incomplete",
+      "issues": [
+        "Unclassified named object 165: shell; no Item Manager label"
+      ],
+      "order": 96,
+      "original_issues": [
+        "Unclassified named object shell (165)",
+        "Unsupported nested effect on object 173"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/piratecave_assets_all_d093cc9ca8d25714b778d8695e81a654.bundle"
+      ],
+      "bundle_sha256": [
+        "20c226ac141b3530766f7683ae43a283f49c6d4b481c231338d3e8310c9c6c74"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_PirateCave.json",
+      "item_manager_sha256": "069e4d2febec262ec4e2ddce77d765933dc60767f1cdabb96cda1bd53df7dac3"
+    },
+    {
+      "scene": "CornerOffice",
+      "variant": "d068b755fdf55430",
+      "status": "incomplete",
+      "issues": [
+        "Item tableclock_cor_off_ini: expected an unambiguous named-part prefix, found 0",
+        "Not all Item Manager hidden objects were resolved"
+      ],
+      "order": 97,
+      "original_issues": [
+        "Item tableclock_cor_off_ini: expected one exact named-part prefix, found 0",
+        "Not all Item Manager hidden objects were resolved"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/corneroffice_assets_all_3c2715f96e4b3ab3282c489702ace9bb.bundle"
+      ],
+      "bundle_sha256": [
+        "0acf41ce678313b93651e0a137a284ae568e05ee72d2b3b157bec83ec60430ea"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_CornerOffice.json",
+      "item_manager_sha256": "05c63b2bf0b43eec6f0232fc51e782c04a7eeb3c850ca4cb3a1087f108ae1c25"
+    },
+    {
+      "scene": "FashionShowBackstage",
+      "variant": "ed903199d5c66d3a",
+      "status": "incomplete",
+      "issues": [
+        "Hidden object 105 lies outside encoded stage: [1340.949951171875, 703.0, 1449.949951171875, 778.0]",
+        "Hidden object 148 lies outside encoded stage: [-120.94999694824219, 174.0, -28.949996948242188, 235.0]",
+        "Solution marker count differs from identified hidden objects"
+      ],
+      "order": 101,
+      "original_issues": [
+        "Hidden object 105 has no visible pixels",
+        "Hidden object 148 has no visible pixels",
+        "Solution marker count differs from identified hidden objects"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/fashionshowbackstage_assets_all_8642516afb6344cbb93a247ef89d4bb0.bundle"
+      ],
+      "bundle_sha256": [
+        "e771c2ee83f8bb53bffd071a555aae41430edf7d9f39fda9fcb4693ed65e2442"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_FashionShowBackstage.json",
+      "item_manager_sha256": "56d95c42f0eefaa692f142a22e3bcdadce8800f5ce7ac510fce96274a5e6cf40"
+    },
+    {
+      "scene": "CentralPark",
+      "variant": "6c0786e14ef3c8e3",
+      "status": "passed",
+      "issues": [],
+      "order": 102,
+      "original_issues": [
+        "No unique Unity clip for nested timeline 368"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/centralpark_assets_all_163b352ea52fb5c2fe6ee15a88ca6811.bundle"
+      ],
+      "bundle_sha256": [
+        "91f3a2376fb2990a467da5d2b69d686a827fa21217d268f3c40760e6733f72e5"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_CentralPark.json",
+      "item_manager_sha256": "d36a277399dd4e6fa4fe20f246a5a90687c73fc5fc3b646f66672e8af13c056d"
+    },
+    {
+      "scene": "NewYorkCityStreet",
+      "variant": "4c2afb3c72caa256",
+      "status": "incomplete",
+      "issues": [
+        "Unclassified named object 173: checkerboard; no Item Manager label"
+      ],
+      "order": 104,
+      "original_issues": [
+        "Unclassified named object checkerboard (173)"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/newyorkcitystreet_assets_all_fd632f647a13549419cac2ce7b7d627a.bundle"
+      ],
+      "bundle_sha256": [
+        "cd04672d70db359bd23c872ff40b3adb78815f480bcd6ab2cbdfd0a52bffba99"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_NewYorkCityStreet.json",
+      "item_manager_sha256": "219852ba8d63426d418fbe19b9a3f9a7c6fa601d3243c1bd62f44656b3499e00"
+    },
+    {
+      "scene": "Neuschwanstein",
+      "variant": "118eda08f4b4c026",
+      "status": "incomplete",
+      "issues": [
+        "Unclassified named object 160: bunnyrabbitlegs; no Item Manager label"
+      ],
+      "order": 111,
+      "original_issues": [
+        "Unclassified named object bunnyrabbitlegs (160)"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/neuschwanstein_assets_all_0497c35de7ffd6cc83e9d1eaeb1bd2a8.bundle"
+      ],
+      "bundle_sha256": [
+        "1965300430d07310c2160cbfb54fd8e8ae5f503b15bcd15ee8c53613a10198eb"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_Neuschwanstein.json",
+      "item_manager_sha256": "602a0d0903584ec3b29a73de11c9df3de25cfca9ecb014ea8cca40169625e036"
+    },
+    {
+      "scene": "TubbatahaReef",
+      "variant": "d076743e135ac96f",
+      "status": "incomplete",
+      "issues": [
+        "Hidden object 169 has no visible pixels",
+        "Solution marker count differs from identified hidden objects"
+      ],
+      "order": 120,
+      "original_issues": [
+        "Hidden object 169 has no visible pixels",
+        "No unique Unity clip for nested timeline 237",
+        "Solution marker count differs from identified hidden objects"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/tubbatahareef_assets_all_67ccc7bb797ebde3318a5016162e07c2.bundle"
+      ],
+      "bundle_sha256": [
+        "162bc24077d827a92c476a948c8313f9f05f86540d91443208501e1a6a7a0a77"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_TubbatahaReef.json",
+      "item_manager_sha256": "91f395b1b18927c93b4af046069686839715c48abe4896ae80169b153e4fae51"
+    },
+    {
+      "scene": "TubbatahaReef",
+      "variant": "de36d2ba2d7dfc71",
+      "status": "incomplete",
+      "issues": [
+        "Hidden object 169 has no visible pixels",
+        "Solution marker count differs from identified hidden objects"
+      ],
+      "order": 120,
+      "original_issues": [
+        "Hidden object 169 has no visible pixels",
+        "No unique Unity clip for nested timeline 237",
+        "Solution marker count differs from identified hidden objects"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/tubbatahareef_assets_all_83aec41bd1bdefdeff24ef8ce60ebfc4.bundle"
+      ],
+      "bundle_sha256": [
+        "1c553fc634223e9681f249d5125630f4a619330e78d8082a5966ba6b930eaaed"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_TubbatahaReef.json",
+      "item_manager_sha256": "91f395b1b18927c93b4af046069686839715c48abe4896ae80169b153e4fae51"
+    },
+    {
+      "scene": "YucatanCenote",
+      "variant": "481f4fabdb24bd14",
+      "status": "passed",
+      "issues": [],
+      "order": 125,
+      "original_issues": [
+        "RenderError: No unique atlas definition for root clip scale"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/yucatancenote_assets_all_9a72fafcdb64265e5f8ffa83e8817969.bundle"
+      ],
+      "bundle_sha256": [
+        "3cac96c332eb8e8e41743e77d09eb6cc4564c90e311bb1c8bf03e30d16e53b3f"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_YucatanCenote.json",
+      "item_manager_sha256": "0c3299ca4ca80d08736e3fadb42e472b5a9db89f04ac4523dec3daf8a473bcec"
+    },
+    {
+      "scene": "FeatheredSerpentTemple",
+      "variant": "ea50d7292c8ab27f",
+      "status": "passed",
+      "issues": [],
+      "order": 126,
+      "original_issues": [
+        "No unique Unity clip for nested timeline 246"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/featheredserpenttemple_assets_all_88c272c102f494d9a1bd0ca6b7d7092f.bundle"
+      ],
+      "bundle_sha256": [
+        "3f47cb6be8e3fe005547413336e61f11c8960b769804a5a2a313505bd87b6e73"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_FeatheredSerpentTemple.json",
+      "item_manager_sha256": "dc827ee6d0d05a6d84a5b951fafaa5949b2717657392c4fefcf498b44241388e"
+    },
+    {
+      "scene": "TaProhm",
+      "variant": "0de395c4e5b637d8",
+      "status": "passed",
+      "issues": [],
+      "order": 136,
+      "original_issues": [
+        "RenderError: No unique atlas definition for root clip scale"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/taprohm_assets_all_390b96cc3e25fa149105708f5dd63780.bundle"
+      ],
+      "bundle_sha256": [
+        "319fde08b29727307573713b179e64edb52662ea632212c8a2d7cd08e0f6e541"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_TaProhm.json",
+      "item_manager_sha256": "c5720feb53daed5abe116e80554a894355ba663c2bf4a0c9995e7fe12a42fca1"
+    },
+    {
+      "scene": "TaProhm",
+      "variant": "5577194cafb9245f",
+      "status": "passed",
+      "issues": [],
+      "order": 136,
+      "original_issues": [
+        "RenderError: No unique atlas definition for root clip scale"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/taprohm_assets_all_609527919c45e9268cbfe8126b24e7f7.bundle"
+      ],
+      "bundle_sha256": [
+        "abdf110a20db900c0da9d41fae5ac144bcb161dc233eca611a2806dd132623ff"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_TaProhm.json",
+      "item_manager_sha256": "c5720feb53daed5abe116e80554a894355ba663c2bf4a0c9995e7fe12a42fca1"
+    },
+    {
+      "scene": "SherwoodForestHideout",
+      "variant": "972c01ee9dd2bffb",
+      "status": "passed",
+      "issues": [],
+      "order": 145,
+      "original_issues": [
+        "Nested parent color transforms are unsupported"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/sherwoodforesthideout_assets_all_a4af3d9f1fb2ef4d06aa717180d06042.bundle"
+      ],
+      "bundle_sha256": [
+        "fe1bd09873d4a602073fe737adb2d98e6625cc1dff0c129ce22593f4355d7546"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_SherwoodForestHideout.json",
+      "item_manager_sha256": "02b1de16b7ae40abd2aa475e164c8c6875465945b63fe66a89fc9065ca5a9e67"
+    },
+    {
+      "scene": "MaidMariansTower",
+      "variant": "95a1bb304fb5a47e",
+      "status": "incomplete",
+      "issues": [
+        "Unclassified named object 164: broach; no Item Manager label"
+      ],
+      "order": 150,
+      "original_issues": [
+        "Unclassified named object broach (164)"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/maidmarianstower_assets_all_68b3cad025bbedc95b3d9bc2b4d03b9b.bundle"
+      ],
+      "bundle_sha256": [
+        "d1a6392ac658ae73d395fdb65d9239fcd006ce2bb1b5bdf6209812b4ee181856"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_MaidMariansTower.json",
+      "item_manager_sha256": "d5216648a124765c3db4a696a4df49c45ced5a3bece15ffb7da45c4eaea2b1db"
+    },
+    {
+      "scene": "MedievalFeast",
+      "variant": "1a422e1056abe701",
+      "status": "passed",
+      "issues": [],
+      "order": 152,
+      "original_issues": [
+        "No unique Unity clip for nested timeline 25",
+        "No unique Unity clip for nested timeline 328"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/medievalfeast_assets_all_4c157ac3b58bafc4cf8d0545b1043d71.bundle"
+      ],
+      "bundle_sha256": [
+        "f8095c320aae27a9b431e877a1cb57d83b90360e221554c5532b001ea6913486"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_MedievalFeast.json",
+      "item_manager_sha256": "9f89d5da83a5f6b0953f7def7545dbc1b22c78d7a49fbf5742e7874efed5d1af"
+    },
+    {
+      "scene": "VictorianTeaParlor",
+      "variant": "d2d18fc3f04c7136",
+      "status": "passed",
+      "issues": [],
+      "order": 153,
+      "original_issues": [
+        "Object 221: GAF filters are not supported yet"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/victorianteaparlor_assets_all_d034f93cd89bea9fd854934171c4cc08.bundle"
+      ],
+      "bundle_sha256": [
+        "44f0e534973530f13073a67f30ace6ffcb7304ad628d0f32881dcc98ae647451"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_VictorianTeaParlor.json",
+      "item_manager_sha256": "32161587a0696a55340583cefbc8daacadd1327a10fe6cba143e6e1aa4470244"
+    },
+    {
+      "scene": "DanishBakery",
+      "variant": "342dbde956364d99",
+      "status": "incomplete",
+      "issues": [
+        "Unclassified named object 97: bg02_1; no Item Manager label"
+      ],
+      "order": 160,
+      "original_issues": [
+        "Unclassified named object bg02_1 (97)"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/danishbakery_assets_all_b1f283fe03b8d7b8fe1749cdc9a331cf.bundle"
+      ],
+      "bundle_sha256": [
+        "2783d312fceda4fdee1a1f50575c39b9120d20c07ec812dd4d60dc1362fcc86a"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_DanishBakery.json",
+      "item_manager_sha256": "635a054cff5dc7a88db919fa456c8d3e8a674033463aefb25c2a414093a8c860"
+    },
+    {
+      "scene": "DragonLake",
+      "variant": "05912787f0d2a5a1",
+      "status": "passed",
+      "issues": [],
+      "order": 167,
+      "original_issues": [
+        "RenderError: No unique atlas definition for root clip scale"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/dragonlake_assets_all_01eb8628ba69e630b082fd14486e4cf0.bundle"
+      ],
+      "bundle_sha256": [
+        "ff66259e144bc12345410c65f2e0c9967737a1d18afc8985cd4c2efa447432b0"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_DragonLake.json",
+      "item_manager_sha256": "5a111f81c7b78b5e73c02b4b841b7beae031fcdd760dfc2d1d9c6b92d120f378"
+    },
+    {
+      "scene": "CopenhagenAmusementPark",
+      "variant": "701bf064c8ab8a24",
+      "status": "passed",
+      "issues": [],
+      "order": 168,
+      "original_issues": [
+        "Object 106: GAF filters are not supported yet"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/copenhagenamusementpark_assets_all_a66b5163eeb7a25a6761f115ad7e6863.bundle"
+      ],
+      "bundle_sha256": [
+        "b040f276cd71e691259b095a66427ff92e68d35a5b8c56ccf7b4dfff74f19308"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_CopenhagenAmusementPark.json",
+      "item_manager_sha256": "f8abfd9b49e11e6371bd4f44428e3ff334a5fcac2f7a6ed86a091f0242ef6540"
+    },
+    {
+      "scene": "VegasCasino",
+      "variant": "2870269bf6b283a0",
+      "status": "passed",
+      "issues": [],
+      "order": 170,
+      "original_issues": [
+        "RenderError: No unique atlas definition for root clip scale"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/vegascasino_assets_all_d864bbed2cae48ee5f070b815d7772b5.bundle"
+      ],
+      "bundle_sha256": [
+        "88097164bc15990c8d12f87cbb69a4e8f93d00a96a84c5eb05378c5db5dfbac1"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_VegasCasino.json",
+      "item_manager_sha256": "d52fb0498de947a656c7b3540fd180e57b758109d816d4d2db1792b622cb193e"
+    },
+    {
+      "scene": "VegasShow",
+      "variant": "d7547959721806aa",
+      "status": "passed",
+      "issues": [],
+      "order": 171,
+      "original_issues": [
+        "No named background placement was found",
+        "No unique Unity clip for nested timeline 27",
+        "No unique Unity clip for nested timeline 59",
+        "No unique Unity clip for nested timeline 8",
+        "Unclassified named object bg_background (92)",
+        "Unclassified named object bg_clock (100)",
+        "Unclassified named object bg_matehigheel (153)",
+        "Unclassified named object bg_mattebunny (148)",
+        "Unclassified named object bg_mattecoffee (163)",
+        "Unclassified named object bg_mattecupcake (166)",
+        "Unclassified named object bg_mattedog (133)",
+        "Unclassified named object bg_mattedragon (175)",
+        "Unclassified named object bg_matteeiffel (103)",
+        "Unclassified named object bg_matteelephant3 (149)",
+        "Unclassified named object bg_matteferris (95)",
+        "Unclassified named object bg_mattefilmoard (138)",
+        "Unclassified named object bg_mattegamblewheel (170)",
+        "Unclassified named object bg_mattegram (145)",
+        "Unclassified named object bg_mattelampshade (151)",
+        "Unclassified named object bg_mattemartini (156)",
+        "Unclassified named object bg_mattemenu (140)",
+        "Unclassified named object bg_mattemermaid (115)",
+        "Unclassified named object bg_mattemic (142)",
+        "Unclassified named object bg_mattepineapple (112)",
+        "Unclassified named object bg_mattepopcorn (165)",
+        "Unclassified named object bg_mattestatue (132)",
+        "Unclassified named object bg_mattewag (157)"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/vegasshow_assets_all_bb65517617fe2433ceb89b1b2b23edb7.bundle"
+      ],
+      "bundle_sha256": [
+        "a577c65cb5dc993e33f2aa64b554508f6b925cc911551f738606c72885a09e3b"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_VegasShow.json",
+      "item_manager_sha256": "30b12a727162aefb031de932fc23291cee664bd1741902eb8cad92b8c8563818"
+    },
+    {
+      "scene": "VegasPool",
+      "variant": "1e91234d1459fe11",
+      "status": "passed",
+      "issues": [],
+      "order": 174,
+      "original_issues": [
+        "No named background placement was found",
+        "Unclassified named object bg_Background (113)",
+        "Unclassified named object bg_backpalm (145)",
+        "Unclassified named object bg_frontpalm (148)",
+        "Unclassified named object bg_hhmask (185)",
+        "Unclassified named object bg_mask_1 (153)",
+        "Unclassified named object bg_mask_2 (179)",
+        "Unclassified named object bg_matteTV (177)",
+        "Unclassified named object bg_matteboat (183)",
+        "Unclassified named object bg_mattecoatrack (134)",
+        "Unclassified named object bg_mattecover (203)",
+        "Unclassified named object bg_mattedog (139)",
+        "Unclassified named object bg_matteduck (197)",
+        "Unclassified named object bg_matteelectricfan (181)",
+        "Unclassified named object bg_mattefan (162)",
+        "Unclassified named object bg_matteflamingo (210)",
+        "Unclassified named object bg_mattefridge (127)",
+        "Unclassified named object bg_matteglasses (199)",
+        "Unclassified named object bg_matteglobe (136)",
+        "Unclassified named object bg_matteguitar (125)",
+        "Unclassified named object bg_mattehotdog (144)",
+        "Unclassified named object bg_mattejukebox (142)",
+        "Unclassified named object bg_matteladder (122)",
+        "Unclassified named object bg_mattelinen (190)",
+        "Unclassified named object bg_mattemotorcycle (147)",
+        "Unclassified named object bg_mattepennants (129)",
+        "Unclassified named object bg_mattepot (169)",
+        "Unclassified named object bg_matteshark (167)",
+        "Unclassified named object bg_mattestatue (115)",
+        "Unclassified named object bg_mattesubmarine (175)",
+        "Unclassified named object bg_mattetelephone (156)",
+        "Unclassified named object bg_mattetent (119)",
+        "Unclassified named object bg_overleaf (151)",
+        "Unclassified named object bg_umbrella (149)"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/vegaspool_assets_all_15014698b460d3ef66f37ff023ee8160.bundle"
+      ],
+      "bundle_sha256": [
+        "ad52d8923a1547a9ed8d6dd86c37438054eb01e0b2725bfe249b1578a7591834"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_VegasPool.json",
+      "item_manager_sha256": "e3986039fc1a0940178432319fdb02648828f540857eb91a880e1a436f2f379d"
+    },
+    {
+      "scene": "VegasStrip",
+      "variant": "ba8eb0a1ffee476d",
+      "status": "passed",
+      "issues": [],
+      "order": 177,
+      "original_issues": [
+        "No named background placement was found",
+        "No unique Unity clip for nested timeline 7",
+        "Unclassified named object bg_airship (87)",
+        "Unclassified named object bg_back (81)",
+        "Unclassified named object bg_balloonmatte (94)",
+        "Unclassified named object bg_crane (92)",
+        "Unclassified named object bg_dog (116)",
+        "Unclassified named object bg_dummymatte (96)",
+        "Unclassified named object bg_golfclubmatte (104)",
+        "Unclassified named object bg_gramophonmatte (154)",
+        "Unclassified named object bg_hammock (134)",
+        "Unclassified named object bg_leaf (127)",
+        "Unclassified named object bg_libertymatte (85)",
+        "Unclassified named object bg_monkeymatte (129)",
+        "Unclassified named object bg_newspaper (111)",
+        "Unclassified named object bg_orangematte (132)",
+        "Unclassified named object bg_postbox (89)",
+        "Unclassified named object bg_rope (125)",
+        "Unclassified named object bg_rucksackmatte (120)",
+        "Unclassified named object bg_suitcase (155)",
+        "Unclassified named object bg_suitcase1 (98)",
+        "Unclassified named object bg_umbrellamatte (118)"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/vegasstrip_assets_all_6691ed7673b5f0d37b02d59131739ede.bundle"
+      ],
+      "bundle_sha256": [
+        "e312b492c839ffc658259aa42ea132e3c5e33bb96aa4b26655dc7eb0678a2b6f"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_VegasStrip.json",
+      "item_manager_sha256": "874a53002f84b01103316d701f29f9b465d4964a39ec058cfb3987a6c989d48c"
+    },
+    {
+      "scene": "VegasHotel",
+      "variant": "b8f61c685a195011",
+      "status": "passed",
+      "issues": [],
+      "order": 179,
+      "original_issues": [
+        "RenderError: No unique atlas definition for root clip scale"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/vegashotel_assets_all_84f43863b80076f2f7a97074ea2794f5.bundle"
+      ],
+      "bundle_sha256": [
+        "a69117fe75f60dd09b4c48d447e869f7f2584f987a4784702e5f8b998b1b07a0"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_VegasHotel.json",
+      "item_manager_sha256": "9d04ba786c0fe7b2abf6a169242df7567643dcc858b41e8d8b9bb7c37bd32454"
+    },
+    {
+      "scene": "VegasHotelBar",
+      "variant": "cff8b4207de41eb8",
+      "status": "passed",
+      "issues": [],
+      "order": 180,
+      "original_issues": [
+        "RenderError: No unique atlas definition for root clip scale"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/vegashotelbar_assets_all_1154f3617cb452abda43ecea750fa0b4.bundle"
+      ],
+      "bundle_sha256": [
+        "07b2e16e8ec65b4c424a60352d28f77d4c40262eaaaff3e8be2e5a0eabd39431"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_VegasHotelBar.json",
+      "item_manager_sha256": "2991d5bb6da6877e433c7feeac14a1380b001762482da8f77ed325dd9d791826"
+    },
+    {
+      "scene": "PrehistoricCave",
+      "variant": "5ceade1a9792163a",
+      "status": "incomplete",
+      "issues": [
+        "Unclassified named object 104: feather; no Item Manager label",
+        "Unclassified named object 112: heart; no Item Manager label",
+        "Unclassified named object 114: grapes; no Item Manager label",
+        "Unclassified named object 121: brush; no Item Manager label",
+        "Unclassified named object 135: broom; no Item Manager label",
+        "Unclassified named object 136: bottle; no Item Manager label",
+        "Unclassified named object 138: bagel; no Item Manager label",
+        "Unclassified named object 139: giraffe; no Item Manager label",
+        "Unclassified named object 143: candle; no Item Manager label",
+        "Unclassified named object 85: snakecaveart; no Item Manager label",
+        "Unclassified named object 92: bowhunter; no Item Manager label",
+        "Unclassified named object 93: deer; no Item Manager label",
+        "Unclassified named object 94: spearhunter; no Item Manager label",
+        "Unclassified named object 99: pipe; no Item Manager label"
+      ],
+      "order": 188,
+      "original_issues": [
+        "Unclassified named object bagel (138)",
+        "Unclassified named object bottle (136)",
+        "Unclassified named object bowhunter (92)",
+        "Unclassified named object broom (135)",
+        "Unclassified named object brush (121)",
+        "Unclassified named object candle (143)",
+        "Unclassified named object deer (93)",
+        "Unclassified named object feather (104)",
+        "Unclassified named object giraffe (139)",
+        "Unclassified named object grapes (114)",
+        "Unclassified named object heart (112)",
+        "Unclassified named object pipe (99)",
+        "Unclassified named object snakecaveart (85)",
+        "Unclassified named object spearhunter (94)"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/prehistoriccave_assets_all_51a11315a6617fdf4bd89848262db37a.bundle"
+      ],
+      "bundle_sha256": [
+        "22da6da8631db360ffe0384424a19c639e437850f87262f0aab7af0761efa9a7"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_PrehistoricCave.json",
+      "item_manager_sha256": "1dbfa7b494f85dbfdb958171eea7f1832afcc3024db9862b5c821103521a6891"
+    },
+    {
+      "scene": "SagradaFamilia",
+      "variant": "56e99370b9152ae3",
+      "status": "incomplete",
+      "issues": [
+        "Unclassified named object 109: footprint; no Item Manager label",
+        "Unclassified named object 132: tortoise; no Item Manager label"
+      ],
+      "order": 204,
+      "original_issues": [
+        "Unclassified named object footprint (109)",
+        "Unclassified named object tortoise (132)"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/sagradafamilia_assets_all_20844c5e50bcb08eb9aae8a29e6d48a0.bundle"
+      ],
+      "bundle_sha256": [
+        "9e57878a74bc27d31d508da3411ed22bd9c604f5ee917095bee082813af8cae0"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_SagradaFamilia.json",
+      "item_manager_sha256": "00b609ce6046a68b4a2ea877a538ff0f33523a4ddfd8420be748968d1f6c72ce"
+    },
+    {
+      "scene": "SouthamptonDock",
+      "variant": "213382523166e444",
+      "status": "passed",
+      "issues": [],
+      "order": 206,
+      "original_issues": [
+        "Unsupported nested effect on object 174"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/southamptondock_assets_all_74f6c1753d605b3d3caff79a457a53ee.bundle"
+      ],
+      "bundle_sha256": [
+        "f4936c6696b2802ecff52772e0190d93badef585966a6306373634eb616d6cf1"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_SouthamptonDock.json",
+      "item_manager_sha256": "4db3765d04a31d10f24a8b4d685ec41fe0a7f11076ef3d6d11ee90edd9806225"
+    },
+    {
+      "scene": "VanityTable",
+      "variant": "9cff36a4290b8e0f",
+      "status": "incomplete",
+      "issues": [
+        "Unclassified named object 157: earring; no Item Manager label"
+      ],
+      "order": 209,
+      "original_issues": [
+        "Unclassified named object earring (157)"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/vanitytable_assets_all_96e5b3af990c3915d8ba2216938a16cc.bundle"
+      ],
+      "bundle_sha256": [
+        "70422f60724b15890868d969b81c756bedd2fedfa2118edca0348fb954327959"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_VanityTable.json",
+      "item_manager_sha256": "67cd4a7f3a767ea69b6c8e2fc922c7851224be62d40ffce3689fa47064a28fb5"
+    },
+    {
+      "scene": "BenFranklin",
+      "variant": "75a06a024ce90e5a",
+      "status": "incomplete",
+      "issues": [
+        "Unclassified named object 95: monkeywrench; no Item Manager label"
+      ],
+      "order": 225,
+      "original_issues": [
+        "Unclassified named object monkeywrench (95)"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/benfranklin_assets_all_ba8bc685f6800469511444e97ac8e1f4.bundle"
+      ],
+      "bundle_sha256": [
+        "64516e91f8a479a830efb29048ad6e15bebab189f1cec111626b8a9cdee40dc0"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_BenFranklin.json",
+      "item_manager_sha256": "7bbdb6a7007749b7ddc0660610e92a1f2d00c9fee9e1acd2d0e2854369876c2e"
+    },
+    {
+      "scene": "LasPozas",
+      "variant": "04b515305dc0cb18",
+      "status": "passed",
+      "issues": [],
+      "order": 228,
+      "original_issues": [
+        "No unique Unity clip for nested timeline 239",
+        "Unsupported nested effect on object 172"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/laspozas_assets_all_9f5da04ed40b6a82da79781205c5590e.bundle"
+      ],
+      "bundle_sha256": [
+        "7fa8430ce1a1dc37e36ab37dfe953f5f4083a1c60b6b19d5555db523e3960025"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_LasPozas.json",
+      "item_manager_sha256": "056e2e09c2abaa80356d77cb4c0df49dbeded202cdca4ec0e179ce19a46e1caf"
+    },
+    {
+      "scene": "LasPozas",
+      "variant": "1369afdd6aa54914",
+      "status": "passed",
+      "issues": [],
+      "order": 228,
+      "original_issues": [
+        "No unique Unity clip for nested timeline 239",
+        "Unsupported nested effect on object 172"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/laspozas_assets_all_f057ef8699afd5f309258f27d2b5a062.bundle"
+      ],
+      "bundle_sha256": [
+        "2dadcf4eca562ed05f195d71ffac406cc12cbff4154b1e9ae24f57bce9f3ea98"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_LasPozas.json",
+      "item_manager_sha256": "056e2e09c2abaa80356d77cb4c0df49dbeded202cdca4ec0e179ce19a46e1caf"
+    },
+    {
+      "scene": "TravelingCircus",
+      "variant": "2f31528044c2d1be",
+      "status": "incomplete",
+      "issues": [
+        "Unclassified named object 143: kite; no Item Manager label",
+        "Unclassified named object 155: animalcircusring; no Item Manager label"
+      ],
+      "order": 231,
+      "original_issues": [
+        "Unclassified named object animalcircusring (155)",
+        "Unclassified named object kite (143)"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/travelingcircus_assets_all_2692b353ffa1b21958ae89270fb4f0ec.bundle"
+      ],
+      "bundle_sha256": [
+        "176de2a8573c342d8bb30924a2fb46ddf25a42931c018fc42b4d8324f1a402ab"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_TravelingCircus.json",
+      "item_manager_sha256": "40cf7872b3e8a310f7df0c678bd9fcba940c7f924ef1582873e00b292b28ab20"
+    },
+    {
+      "scene": "TravelingCircus",
+      "variant": "81a9dec75c7c5c25",
+      "status": "incomplete",
+      "issues": [
+        "Unclassified named object 143: kite; no Item Manager label",
+        "Unclassified named object 155: animalcircusring; no Item Manager label"
+      ],
+      "order": 231,
+      "original_issues": [
+        "Unclassified named object animalcircusring (155)",
+        "Unclassified named object kite (143)"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/travelingcircus_assets_all_834c38c7fd5081e5f7d25b3db8779427.bundle"
+      ],
+      "bundle_sha256": [
+        "1e2957e2559a7f171086ddef3396c9e01c131c3a2e68120c70061aae19c94cc5"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_TravelingCircus.json",
+      "item_manager_sha256": "40cf7872b3e8a310f7df0c678bd9fcba940c7f924ef1582873e00b292b28ab20"
+    },
+    {
+      "scene": "MountFuji",
+      "variant": "51540e5a62d58fea",
+      "status": "passed",
+      "issues": [],
+      "order": 238,
+      "original_issues": [
+        "RenderError: No unique atlas definition for root clip scale"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/mountfuji_assets_all_347f3c0e66b4b13ad73a986bf4899944.bundle"
+      ],
+      "bundle_sha256": [
+        "bdc2834c0aa5f3f1bfa6b347410da7e541d4df4cfcacf807fcc66441e5c218e5"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_MountFuji.json",
+      "item_manager_sha256": "0585b62c197aeaddea9dad55a1212b99f9b9f54a77c1564cc607874bb7bb4007"
+    },
+    {
+      "scene": "InverarayDiningHall",
+      "variant": "c626ba4e81683722",
+      "status": "passed",
+      "issues": [],
+      "order": 241,
+      "original_issues": [
+        "RenderError: No unique atlas definition for root clip scale"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/inveraraydininghall_assets_all_f815b2692903354a6d2f9f9008f71fd4.bundle"
+      ],
+      "bundle_sha256": [
+        "0116ada7d88307e0c87845092225d4770352f348739fa6222181bc8d31e14db3"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_InverarayDiningHall.json",
+      "item_manager_sha256": "bee13ca7acbad0443e8d980b99bba1b317ccdc62bebdad6297a15fa16dbd2b33"
+    },
+    {
+      "scene": "GiethoornVillage",
+      "variant": "953221c07b1205b8",
+      "status": "passed",
+      "issues": [],
+      "order": 244,
+      "original_issues": [
+        "No unique Unity clip for nested timeline 104",
+        "Object 86: GAF filters are not supported yet",
+        "Unclassified named object bg_05_1 (131)"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/giethoornvillage_assets_all_d6f8e04735d03ffa84b8102eade36e37.bundle"
+      ],
+      "bundle_sha256": [
+        "41212f1e4bab45405a6e95e1f826f171ac742a2a4ec5168d6c72a327fab7257b"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_GiethoornVillage.json",
+      "item_manager_sha256": "3ff853c011cdc86ee271b0c24884d709fafd1df6eab9652df4373926b4ab26f4"
+    },
+    {
+      "scene": "ThreeWitches",
+      "variant": "10865bc5d0b03441",
+      "status": "passed",
+      "issues": [],
+      "order": 246,
+      "original_issues": [
+        "No unique Unity clip for nested timeline 252",
+        "Parent timeline color transforms are unsupported"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/threewitches_assets_all_b16e0691c4a2ae3cec7315ac9448500f.bundle"
+      ],
+      "bundle_sha256": [
+        "2f7a826d390cfda9245cb16325a03d445094c4ea6393370dc09ccc853959b85b"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_ThreeWitches.json",
+      "item_manager_sha256": "ed70adf25b69ab4dfd1307a09e162f5670ea4d8c43817648f1402efa07b19c32"
+    },
+    {
+      "scene": "ThreeWitches",
+      "variant": "86014179be27f587",
+      "status": "passed",
+      "issues": [],
+      "order": 246,
+      "original_issues": [
+        "No unique Unity clip for nested timeline 252",
+        "Parent timeline color transforms are unsupported"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/threewitches_assets_all_898c4ae2af88cb4bf512deb3d33bff7f.bundle"
+      ],
+      "bundle_sha256": [
+        "a3907ca338b1675aa6b38b6eebb963d4700a077b98ea438b6a04fa421cb391bd"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_ThreeWitches.json",
+      "item_manager_sha256": "ed70adf25b69ab4dfd1307a09e162f5670ea4d8c43817648f1402efa07b19c32"
+    },
+    {
+      "scene": "RoyalMile",
+      "variant": "08038192682af5c2",
+      "status": "passed",
+      "issues": [],
+      "order": 247,
+      "original_issues": [
+        "Object 107: GAF filters are not supported yet"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/royalmile_assets_all_3bcac81ce895ea75d4e61064c56887dd.bundle"
+      ],
+      "bundle_sha256": [
+        "3d8191129f16d1659391c89cb434fb2a1162bfc4bf90e174481baaaf8eda3105"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_RoyalMile.json",
+      "item_manager_sha256": "823b0e79df4d821ab0561e6b993321436a81c9d8e96a27433d316c943933f51c"
+    },
+    {
+      "scene": "GlamisStaircase",
+      "variant": "d4c2f1bc7a8d327c",
+      "status": "passed",
+      "issues": [],
+      "order": 249,
+      "original_issues": [
+        "RenderError: No unique atlas definition for root clip scale"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/glamisstaircase_assets_all_6319326f75059b848076ebf98ad29eb2.bundle"
+      ],
+      "bundle_sha256": [
+        "9fdcf6b1b76adcdd3f387a4323c9fe5c5b38478992cd42591f9a12e02b996f7b"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_GlamisStaircase.json",
+      "item_manager_sha256": "2886474e2834aa269f92f40774437d9300b946b4e7ae389c75ff99dc7ec03f01"
+    },
+    {
+      "scene": "TigerTemple",
+      "variant": "0bd4fe0469ec4cdd",
+      "status": "passed",
+      "issues": [],
+      "order": 255,
+      "original_issues": [
+        "No unique Unity clip for nested timeline 34"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/tigertemple_assets_all_cecf50a10a066417a11d2e4397ba6d63.bundle"
+      ],
+      "bundle_sha256": [
+        "7e2e8686f4d93ec9653f55afb98fcc59b3a4e131cfe0b47d623e767f5a787cb4"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_TigerTemple.json",
+      "item_manager_sha256": "5448816be215141e177a162ab11a2f618aaae41bec1a108a4e70fdf7122d744d"
+    },
+    {
+      "scene": "TigerTemple",
+      "variant": "2d271e14ecc31ec1",
+      "status": "passed",
+      "issues": [],
+      "order": 255,
+      "original_issues": [
+        "No unique Unity clip for nested timeline 34"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/tigertemple_assets_all_06bcac1a64f717550928173fb6d50fbf.bundle"
+      ],
+      "bundle_sha256": [
+        "6df288e8f7835575e503c45f2c8471f4b7912a3cfe3531044c2786fb1adbed3d"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_TigerTemple.json",
+      "item_manager_sha256": "5448816be215141e177a162ab11a2f618aaae41bec1a108a4e70fdf7122d744d"
+    },
+    {
+      "scene": "DragonParade",
+      "variant": "5a0d2369e95c1c0f",
+      "status": "passed",
+      "issues": [],
+      "order": 257,
+      "original_issues": [
+        "No unique Unity clip for nested timeline 283"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/dragonparade_assets_all_e052b0980a1748bfc521c5123576d07d.bundle"
+      ],
+      "bundle_sha256": [
+        "9abfb8df79c91c4372b197ac70aaa4b8113c55d054fcd33b3703ebac6df81c40"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_DragonParade.json",
+      "item_manager_sha256": "514104194e01a927a5e16eb3d82da3a653e5fd85612eb75997f4940e58f8f6c5"
+    },
+    {
+      "scene": "LanternFestival",
+      "variant": "37f3a953a19570f0",
+      "status": "passed",
+      "issues": [],
+      "order": 258,
+      "original_issues": [
+        "RenderError: No unique atlas definition for root clip scale"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/lanternfestival_assets_all_f9145013fdac2c3f66f875fd5825f051.bundle"
+      ],
+      "bundle_sha256": [
+        "adc7fa83ba4f89a5d589951022ca00c3648d77a675421cf7963bdb2c0a2aafd9"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_LanternFestival.json",
+      "item_manager_sha256": "5383863ad55d4492aee6261c9b28df8aefa8ab2b04e03b7ce4b2c2bd5e335514"
+    },
+    {
+      "scene": "LanternFestival",
+      "variant": "76e8778b06b4db4e",
+      "status": "passed",
+      "issues": [],
+      "order": 258,
+      "original_issues": [
+        "RenderError: No unique atlas definition for root clip scale"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/lanternfestival_assets_all_6f5aa317b1065b558fd430dd467cfea2.bundle"
+      ],
+      "bundle_sha256": [
+        "21ef1cd266396547d532ff3511d798fc2ebc16fd7fb3750548d71a0a946ba447"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_LanternFestival.json",
+      "item_manager_sha256": "5383863ad55d4492aee6261c9b28df8aefa8ab2b04e03b7ce4b2c2bd5e335514"
+    },
+    {
+      "scene": "CrystalGreenhouse",
+      "variant": "9df230e4fdf56787",
+      "status": "passed",
+      "issues": [],
+      "order": 259,
+      "original_issues": [
+        "Nested parent color transforms are unsupported",
+        "No unique Unity clip for nested timeline 255",
+        "Unclassified named object bg_gardenrake (105)"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/crystalgreenhouse_assets_all_87dc848a9d15d365828396615d2f5878.bundle"
+      ],
+      "bundle_sha256": [
+        "6f9012bd288ecb6263dfdee6028d898fe4c9806b57882e13529f5489c4b24d97"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_CrystalGreenhouse.json",
+      "item_manager_sha256": "571e0ee84d991ed91fa1f7b4eb5fd4645a6c69caf156d71b8b651768f9dc5730"
+    },
+    {
+      "scene": "FloatingMarket",
+      "variant": "3b8c0fe27069515f",
+      "status": "passed",
+      "issues": [],
+      "order": 263,
+      "original_issues": [
+        "RenderError: No unique atlas definition for root clip scale"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/floatingmarket_assets_all_7529e5a75ed8b4aea184dde440d0e2af.bundle"
+      ],
+      "bundle_sha256": [
+        "54bf2e8af49d53d35818c30e9394effac31f27c14a832cffa970e292de981f02"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_FloatingMarket.json",
+      "item_manager_sha256": "4585240db0e6e4f725df22181bd21bb1ef7eee62089131781047ffac5a11d2df"
+    },
+    {
+      "scene": "WatPraKeaw",
+      "variant": "426ccde8a0bcb9f2",
+      "status": "passed",
+      "issues": [],
+      "order": 264,
+      "original_issues": [
+        "RenderError: No unique atlas definition for root clip scale"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/watprakeaw_assets_all_42e75078f67c9be9e8dee837b0a1c00e.bundle"
+      ],
+      "bundle_sha256": [
+        "2c66ad6aabd5e203d67dcde61e97d647e9d6f174189dd1cd18052a3bab670cf3"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_WatPraKeaw.json",
+      "item_manager_sha256": "246726fd54566284e58ae20349ec13ec4303fa6dd07797379a2c3c4ce6394723"
+    },
+    {
+      "scene": "LaBoca",
+      "variant": "0ef0e9bbdd117958",
+      "status": "passed",
+      "issues": [],
+      "order": 266,
+      "original_issues": [
+        "No unique Unity clip for nested timeline 90"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/laboca_assets_all_e139a8d9861128e6e44297833a5f54eb.bundle"
+      ],
+      "bundle_sha256": [
+        "a8fa4f544295a5ad396755d203e01fe8624c94cc9cb325e5cedb67bc2adb45f7"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_LaBoca.json",
+      "item_manager_sha256": "972d32f919487a409c2eb42eea18a024cc5b760a494f1ffd8e9d86b46db50a93"
+    },
+    {
+      "scene": "LaBoca",
+      "variant": "12b325f27e338dd4",
+      "status": "passed",
+      "issues": [],
+      "order": 266,
+      "original_issues": [
+        "No unique Unity clip for nested timeline 90"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/laboca_assets_all_edc6a0dc17a4868cf68d0d079751470c.bundle"
+      ],
+      "bundle_sha256": [
+        "e4b0311a6c130b420e81946ce0533cb88c7a18257af57dff948d82e4eb8fb3cd"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_LaBoca.json",
+      "item_manager_sha256": "972d32f919487a409c2eb42eea18a024cc5b760a494f1ffd8e9d86b46db50a93"
+    },
+    {
+      "scene": "LaBocaStore",
+      "variant": "98b03b16eabb8df7",
+      "status": "passed",
+      "issues": [],
+      "order": 268,
+      "original_issues": [
+        "No unique Unity clip for nested timeline 10"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/labocastore_assets_all_5eed9165b269c2b4b90204eb382c0b9a.bundle"
+      ],
+      "bundle_sha256": [
+        "41b4bf6f31e1a4f9408a1ea074d67d588044f5f1a2d6b9f615549c4c2d2a215f"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_LaBocaStore.json",
+      "item_manager_sha256": "7466d35b3c64635cb3b313edef0025dc853c532c010f7a1f35fe222a9a354c84"
+    },
+    {
+      "scene": "LaBocaStore",
+      "variant": "a8b9285a83dc90ea",
+      "status": "passed",
+      "issues": [],
+      "order": 268,
+      "original_issues": [
+        "No unique Unity clip for nested timeline 10"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/labocastore_assets_all_0d3e872062b76f00795d93b19562a65e.bundle"
+      ],
+      "bundle_sha256": [
+        "503b0be350f8d96ba67b3d0c2fb3e6f3686666b82554db2e154395389a009fef"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_LaBocaStore.json",
+      "item_manager_sha256": "7466d35b3c64635cb3b313edef0025dc853c532c010f7a1f35fe222a9a354c84"
+    },
+    {
+      "scene": "EvitaBalcony",
+      "variant": "43a56f0186381b1d",
+      "status": "passed",
+      "issues": [],
+      "order": 274,
+      "original_issues": [
+        "No unique Unity clip for nested timeline 23"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/evitabalcony_assets_all_012a46293920b194ba277d24515d697c.bundle"
+      ],
+      "bundle_sha256": [
+        "ce10504a46c2dc9492e182b60539f40a4ebdad329ddf09c320efe914a2b2c4cd"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_EvitaBalcony.json",
+      "item_manager_sha256": "4b59bcb3f7c5f57dcacff01db316703920774e1f97f8bb15fb6e886872536895"
+    },
+    {
+      "scene": "SalonBlanco",
+      "variant": "4842b72ce1ecdc26",
+      "status": "passed",
+      "issues": [],
+      "order": 276,
+      "original_issues": [
+        "Unclassified named object bg_crystalchandelier (113)"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/salonblanco_assets_all_479fa5af8ea2e454136f89dec98f9f15.bundle"
+      ],
+      "bundle_sha256": [
+        "d9b5fb9b721cd5de32b605646403a370e181121774d02694f971542fc894af22"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_SalonBlanco.json",
+      "item_manager_sha256": "6938fd5684f11b2a73bfcae54cf50ee0460c03c94772f98b8a7385ee9f9c9aac"
+    },
+    {
+      "scene": "AlcatrazIsland",
+      "variant": "df2959e840300aa7",
+      "status": "passed",
+      "issues": [],
+      "order": 285,
+      "original_issues": [
+        "Unclassified named object bg_03_1 (108)"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/alcatrazisland_assets_all_faefe90c23a2136ccd719e628c70d9be.bundle"
+      ],
+      "bundle_sha256": [
+        "ac18d3b1877f8139229787ef1d2e1719e5d6e7a3fb6ff8249259e7cc0360b110"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_AlcatrazIsland.json",
+      "item_manager_sha256": "9ebda75a4340108d8af82cf0a1040eda67c0c6b8020e6d7aef7bada414a4b252"
+    },
+    {
+      "scene": "PaintedLadies",
+      "variant": "ae02ff746db83be8",
+      "status": "incomplete",
+      "issues": [
+        "Unclassified named object 159: footprint; no Item Manager label"
+      ],
+      "order": 288,
+      "original_issues": [
+        "Unclassified named object footprint (159)"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/paintedladies_assets_all_d6ef801ec2df4ae994f412a23b70e960.bundle"
+      ],
+      "bundle_sha256": [
+        "40eb75bda0e7bdf29a88826eaf4567fc43b7dfadf25c5d18f7a05fa274f3674f"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_PaintedLadies.json",
+      "item_manager_sha256": "726969277a2442f4269fdcce5814ae0603f5ea78594191fc5d6a1835e751a6fb"
+    },
+    {
+      "scene": "SandMandala",
+      "variant": "8847b9c599e5977d",
+      "status": "passed",
+      "issues": [],
+      "order": 306,
+      "original_issues": [
+        "Object 195: GAF filters are not supported yet"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/sandmandala_assets_all_053972cfc2f4a02e053779bd90e3b294.bundle"
+      ],
+      "bundle_sha256": [
+        "51e006d0515577f859777257837606f41e4853999c1e739ea74fa92e4d3c995b"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_SandMandala.json",
+      "item_manager_sha256": "8b05c208f8c35bff126ff8f38d15338c1929600c593688584e2d25fa96e19f62"
+    },
+    {
+      "scene": "PotolaPalace",
+      "variant": "3a58e9d63143d143",
+      "status": "incomplete",
+      "issues": [
+        "Unclassified named object 166: antiquecrownfromrelics; no Item Manager label"
+      ],
+      "order": 310,
+      "original_issues": [
+        "Unclassified named object antiquecrownfromrelics (166)",
+        "Unsupported nested effect on object 170"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/potolapalace_assets_all_648dcb600641b64e2cb0e41a8de14239.bundle"
+      ],
+      "bundle_sha256": [
+        "0b30ab37fb1203518602067d68f6c98510526924941b365175b34abe1b184b27"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_PotolaPalace.json",
+      "item_manager_sha256": "1ba14b1b10dcddb0a5f4285dcc44e09720ade7fe8ff753217ddab586e63c2f74"
+    },
+    {
+      "scene": "TibetanMonastary",
+      "variant": "61a70cac4341438b",
+      "status": "passed",
+      "issues": [],
+      "order": 312,
+      "original_issues": [
+        "No unique Unity clip for nested timeline 271"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/tibetanmonastary_assets_all_8e2c0beb355f2706b652aed6e341557f.bundle"
+      ],
+      "bundle_sha256": [
+        "b490b8a909d6c0d406376605773ba5aa4dc53784fb1fe366afe204e65f304d66"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_TibetanMonastary.json",
+      "item_manager_sha256": "64cdde204f839923378ad2c0188cd5666487ff12da2b82943f097186ed21b450"
+    },
+    {
+      "scene": "TibetanMonastary",
+      "variant": "933168a0e2877769",
+      "status": "passed",
+      "issues": [],
+      "order": 312,
+      "original_issues": [
+        "No unique Unity clip for nested timeline 271"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/tibetanmonastary_assets_all_faca2c51df368439226cf8a33154948d.bundle"
+      ],
+      "bundle_sha256": [
+        "72a1482a9ea15c50183260e45074f74942e65a525019722faca3a9f4e89f8531"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_TibetanMonastary.json",
+      "item_manager_sha256": "64cdde204f839923378ad2c0188cd5666487ff12da2b82943f097186ed21b450"
+    },
+    {
+      "scene": "WhistlerVillage",
+      "variant": "ddd7ccba52976ef6",
+      "status": "passed",
+      "issues": [],
+      "order": 313,
+      "original_issues": [
+        "Unclassified named object bg_objectpatch (166)"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/whistlervillage_assets_all_155a08cdcbd9e0438e8dc3f50f9ae43a.bundle"
+      ],
+      "bundle_sha256": [
+        "0189cf22af8e3db3520b0611dab3759957a1d2669d012dd4e9a3470fee54d14b"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_WhistlerVillage.json",
+      "item_manager_sha256": "2f8606771f2390f5639cc8f5feb479362e7fa9f5b98bdac3a3573645782751b1"
+    },
+    {
+      "scene": "SkiLodgeInterior",
+      "variant": "2eb0256f007efcf8",
+      "status": "incomplete",
+      "issues": [
+        "Unclassified named object 174: artplate; no Item Manager label"
+      ],
+      "order": 317,
+      "original_issues": [
+        "No unique Unity clip for nested timeline 102",
+        "Unclassified named object artplate (174)"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/skilodgeinterior_assets_all_aa185196098e5161fc3e3f3fc0c42ece.bundle"
+      ],
+      "bundle_sha256": [
+        "74b38de574f37266aa45f7ee1b7fb2a6fed7598c9c0f730c3d7b1c33331faa11"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_SkiLodgeInterior.json",
+      "item_manager_sha256": "9094576863d2c98a6c3a9d18d442217ba3583d9e7bb6d10251c7948912696709"
+    },
+    {
+      "scene": "MooseFalls",
+      "variant": "de35f052c3d6d51c",
+      "status": "passed",
+      "issues": [],
+      "order": 318,
+      "original_issues": [
+        "Object 102: GAF filters are not supported yet",
+        "Unsupported nested effect on object 184"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/moosefalls_assets_all_9abceb8bc653f07872534864ffdbb707.bundle"
+      ],
+      "bundle_sha256": [
+        "1952cff066645b179fc4345a64e776fb4809045c290e4932d6e47664e3df66c5"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_MooseFalls.json",
+      "item_manager_sha256": "a6dd129727beadc3fc9b4d6ae3d6216e006da2d029cd8992342971a1fcda2c71"
+    },
+    {
+      "scene": "EskimoVillage",
+      "variant": "1eb9dfd9e79984c0",
+      "status": "passed",
+      "issues": [],
+      "order": 319,
+      "original_issues": [
+        "No unique Unity clip for nested timeline 18"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/eskimovillage_assets_all_ede25bd7b6992c0feca66be570123910.bundle"
+      ],
+      "bundle_sha256": [
+        "ca6943e21a33dec026b255c46215604d08c5d0fcba350b4061f423a27453f582"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_EskimoVillage.json",
+      "item_manager_sha256": "6619fba3a71cb4c5d3842e98184d57268eb84c4bad274adb4c5a74c695cbe31a"
+    },
+    {
+      "scene": "StanleyPark",
+      "variant": "36d862150ad58b9e",
+      "status": "passed",
+      "issues": [],
+      "order": 324,
+      "original_issues": [
+        "Unsupported nested effect on object 214"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/stanleypark_assets_all_7b5a556fa331ecda6073024f75e3c4a5.bundle"
+      ],
+      "bundle_sha256": [
+        "1dfb6fc7c45bd14d7f04e303ddc7c1f32290df8c5a5979fa0dbb21d36f0bfb70"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_StanleyPark.json",
+      "item_manager_sha256": "e46762c1fd3ec6196d53fcdd374603a070e436df18e96e39914dae1cc0c3b88d"
+    },
+    {
+      "scene": "BuckinghamFountain",
+      "variant": "ba0e22cd7e51b1e8",
+      "status": "passed",
+      "issues": [],
+      "order": 336,
+      "original_issues": [
+        "Unsupported nested effect on object 147"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/buckinghamfountain_assets_all_b4a86be62d8b4eb4c6ef873b3eb92b3f.bundle"
+      ],
+      "bundle_sha256": [
+        "a97d2db4a6da3b5c5e4e7d59f7d035e75fc83e9664a1b8c01c78e89dc2f8a207"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_BuckinghamFountain.json",
+      "item_manager_sha256": "dbebd0326773b22c52bfd03723f867f2afceee17e60a130bd0989472827d650b"
+    },
+    {
+      "scene": "StoneAgeCaveInterior",
+      "variant": "c055bcc569ee85d5",
+      "status": "passed",
+      "issues": [],
+      "order": 338,
+      "original_issues": [
+        "Object 135: GAF filters are not supported yet",
+        "Object 148: GAF filters are not supported yet"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/stoneagecaveinterior_assets_all_ff431709394d9fd2d816d73c7fb0ea2f.bundle"
+      ],
+      "bundle_sha256": [
+        "ccae46ddca1e2c4028bf669eef092227bdb530508e7e216fa1e74189c07cc8ee"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_StoneAgeCaveInterior.json",
+      "item_manager_sha256": "37ba3b6d3ebdd3cd0d2222b47798a129ed064e9f09d9e6b0d84517c55e20a1bb"
+    },
+    {
+      "scene": "Underwater",
+      "variant": "6ef0cce3dbd8f44a",
+      "status": "passed",
+      "issues": [],
+      "order": 347,
+      "original_issues": [
+        "No unique Unity clip for nested timeline 144",
+        "No unique Unity clip for nested timeline 151",
+        "No unique Unity clip for nested timeline 82"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/underwater_assets_all_e54607b11e8714d63fe0f6f62c89b597.bundle"
+      ],
+      "bundle_sha256": [
+        "66e91dcf1ddad6a6f5c7486066ec559d54a0d674273729cd6e1c20ed46fb3907"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_Underwater.json",
+      "item_manager_sha256": "445c597ab47e3972926701ceb1a857ca5ffb7647bc83a706c82e4c562f1fa464"
+    },
+    {
+      "scene": "PrehistoricFalls",
+      "variant": "5de6e0b76a9af720",
+      "status": "passed",
+      "issues": [],
+      "order": 348,
+      "original_issues": [
+        "Object 177: GAF filters are not supported yet"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/prehistoricfalls_assets_all_c8259b8938636265042f49d5b3457112.bundle"
+      ],
+      "bundle_sha256": [
+        "b00200655a4f52472fbe93180eb7420a3ab47aa4cca0618ce703d82d0851849f"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_PrehistoricFalls.json",
+      "item_manager_sha256": "dfbd07df12fdaa499605f922cc4685e9c64ca9f4fc94e240a6751e8d4e9dbd10"
+    },
+    {
+      "scene": "Lijiang",
+      "variant": "6703f5fc9b33c022",
+      "status": "passed",
+      "issues": [],
+      "order": 354,
+      "original_issues": [
+        "Nested masks unsupported for 559",
+        "Nested masks unsupported for 564",
+        "Nested masks unsupported for 569",
+        "Nested masks unsupported for 574",
+        "Nested masks unsupported for 579",
+        "Nested masks unsupported for 584",
+        "Nested masks unsupported for 589",
+        "Nested masks unsupported for 594",
+        "Nested masks unsupported for 599",
+        "Nested masks unsupported for 604"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/lijiang_assets_all_db153e2e7fb6d7fac26ae9944d073ac9.bundle"
+      ],
+      "bundle_sha256": [
+        "ea6d89ead84f952166c9b65fe5422519df361cc0c1ab7d247f5c8fff8e59e7ba"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_Lijiang.json",
+      "item_manager_sha256": "b611e470d4671f7ace0cd5a2b1e0bcbd6210ccd1826a6edba134bce5f4c28640"
+    },
+    {
+      "scene": "MakeupRoom",
+      "variant": "e0c7f3edf2abfb2c",
+      "status": "passed",
+      "issues": [],
+      "order": 357,
+      "original_issues": [
+        "RenderError: No unique atlas definition for root clip scale"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/makeuproom_assets_all_f4e01c9d0df6ac3f510e3fdf4479163b.bundle"
+      ],
+      "bundle_sha256": [
+        "81180e96cb380fde0bfe224c800552b66ff9429b421f4974cd5c583345c52a05"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_MakeupRoom.json",
+      "item_manager_sha256": "3e22877a80e6fdedceaa7b8de01a082e136c01ce80dbf5bf18511ac2b8e00298"
+    },
+    {
+      "scene": "VictorianPharmacy",
+      "variant": "0d8328adf7f2e829",
+      "status": "passed",
+      "issues": [],
+      "order": 359,
+      "original_issues": [
+        "Object 184: GAF filters are not supported yet",
+        "Object 185: GAF filters are not supported yet",
+        "Object 186: GAF filters are not supported yet"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/victorianpharmacy_assets_all_804772b4654b0e63bb7df9cd92f15201.bundle"
+      ],
+      "bundle_sha256": [
+        "7ba0067952dafada152dd12121bd6ad1115639bf455fc58889479f1e5e1f018e"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_VictorianPharmacy.json",
+      "item_manager_sha256": "8f5e671d4396388ef12276c7396a3120fded788d80274d19041f85559c7ceecc"
+    },
+    {
+      "scene": "WaterVillage",
+      "variant": "517989357445b7a2",
+      "status": "passed",
+      "issues": [],
+      "order": 360,
+      "original_issues": [
+        "Nested masks unsupported for 556",
+        "Nested masks unsupported for 561"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/watervillage_assets_all_24fca2735ddfa8cad0298e0cc8dacc6e.bundle"
+      ],
+      "bundle_sha256": [
+        "80c5fe5175b50b7f7717f4a395465c94c08edb1864295439ebf21dde62489c6a"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_WaterVillage.json",
+      "item_manager_sha256": "486c5987fa2658cb5b5fd8369badf07642e65afaf0ff92802eb0b1f9cfc69284"
+    },
+    {
+      "scene": "CharlesBridge",
+      "variant": "90e7196379208537",
+      "status": "incomplete",
+      "issues": [
+        "Unclassified named object 269: smock01; no Item Manager label",
+        "Unclassified named object 270: smock01; no Item Manager label",
+        "Unclassified named object 271: smock01; no Item Manager label"
+      ],
+      "order": 362,
+      "original_issues": [
+        "Object 231: GAF filters are not supported yet",
+        "Object 269: GAF filters are not supported yet",
+        "Object 270: GAF filters are not supported yet",
+        "Object 271: GAF filters are not supported yet",
+        "Object 272: GAF filters are not supported yet",
+        "Unclassified named object smock01 (269)",
+        "Unclassified named object smock01 (270)",
+        "Unclassified named object smock01 (271)"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/charlesbridge_assets_all_469aa0d52c4029b90c7a5920229e45e0.bundle"
+      ],
+      "bundle_sha256": [
+        "25829dbb7372106f256e7bc3a4aec74b469d93228357d5fc3828e35a83891c9a"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_CharlesBridge.json",
+      "item_manager_sha256": "641d95e81ff757451316da63422721766682f57753fa6be4b475c0a11fde474b"
+    },
+    {
+      "scene": "StrahovMonasteryLibrary",
+      "variant": "f6e9c0c6e3916360",
+      "status": "passed",
+      "issues": [],
+      "order": 369,
+      "original_issues": [
+        "Nested parent color transforms are unsupported"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/strahovmonasterylibrary_assets_all_512a2dcc27c7489a7a766981a7adde92.bundle"
+      ],
+      "bundle_sha256": [
+        "e80f9e5e5f90126e2376b5b961614418b94562e628ce1edb18165b336dd9b03b"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_StrahovMonasteryLibrary.json",
+      "item_manager_sha256": "4762e39ad7aa84784b84c638ff78d98fb910a8c6dfb63cce940ebd0cb08530ff"
+    },
+    {
+      "scene": "PaintedFavelas",
+      "variant": "086b98d23d650c01",
+      "status": "passed",
+      "issues": [],
+      "order": 376,
+      "original_issues": [
+        "Object 221: GAF filters are not supported yet"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/paintedfavelas_assets_all_effd24c59e0d4ad9a274e7ad06ec098d.bundle"
+      ],
+      "bundle_sha256": [
+        "475b8b2835907d950245a02f7ac213ecf9afdfdda49705ebc54c2921b2a8aeaa"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_PaintedFavelas.json",
+      "item_manager_sha256": "06a46339d3b0ac7a9356a345af93e60d316a05c0b14cf62d836683efcfbdf30b"
+    },
+    {
+      "scene": "CostumeWarehouse",
+      "variant": "26f40570fa4cef79",
+      "status": "passed",
+      "issues": [],
+      "order": 378,
+      "original_issues": [
+        "Object 222: GAF filters are not supported yet"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/costumewarehouse_assets_all_6a39ddcc0353a6e12fc9bed958c0306f.bundle"
+      ],
+      "bundle_sha256": [
+        "3b01e58c5b456ece6ae4b62a2fc2ead65a4c3c20a18b0affc9b15ae366ba1895"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_CostumeWarehouse.json",
+      "item_manager_sha256": "775ad1bfb95b7807d5a4557d978822b468115237099c204e5e1d9a80bfe1c848"
+    },
+    {
+      "scene": "ParqueLage",
+      "variant": "dede79716c21ebba",
+      "status": "passed",
+      "issues": [],
+      "order": 380,
+      "original_issues": [
+        "Object 157: GAF filters are not supported yet"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/parquelage_assets_all_c4a0b4a55af3125f24375f81e2683cff.bundle"
+      ],
+      "bundle_sha256": [
+        "41f189497e06cf08973c03470a8b86bc90d89b0dba5dc8f4f6bacd67268274cd"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_ParqueLage.json",
+      "item_manager_sha256": "d623e3e0bde4342aeb31f7695f611d6399967b6e387712d56c2d71a4614607e9"
+    },
+    {
+      "scene": "FishingDock",
+      "variant": "1e9d02ae99a10ffc",
+      "status": "passed",
+      "issues": [],
+      "order": 385,
+      "original_issues": [
+        "Object 144: GAF filters are not supported yet",
+        "Object 220: GAF filters are not supported yet"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/fishingdock_assets_all_77e90c66fb616153135d5706eab84de5.bundle"
+      ],
+      "bundle_sha256": [
+        "70ffe7bc0c47302c3866c9906e53df1b7ebc3827dbea83da111b94e65b3743ce"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_FishingDock.json",
+      "item_manager_sha256": "448617320bd4b221416840193fc12e70f7f51161b8a9959b433e3a1610a8d5d5"
+    },
+    {
+      "scene": "GeneralStore",
+      "variant": "c6f6d0481615cd2f",
+      "status": "passed",
+      "issues": [],
+      "order": 387,
+      "original_issues": [
+        "Object 183: GAF filters are not supported yet"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/generalstore_assets_all_74ef65f5bf6df287a0930723cf4db6d6.bundle"
+      ],
+      "bundle_sha256": [
+        "1a5408e4142a2fc9e06f144a937b651504fc8514dd7137fe5583b4d0f881e74f"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_GeneralStore.json",
+      "item_manager_sha256": "53fe7e09f8e451acdfcde126722bcaa67936c93db34ea0d211392e13106b74fa"
+    },
+    {
+      "scene": "Nantucket",
+      "variant": "3b3b198306d67177",
+      "status": "passed",
+      "issues": [],
+      "order": 390,
+      "original_issues": [
+        "Object 178: GAF filters are not supported yet",
+        "Object 251: GAF filters are not supported yet",
+        "Parent timeline color transforms are unsupported"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/nantucket_assets_all_feb58d18fea591fd6884efdc9b6a906d.bundle"
+      ],
+      "bundle_sha256": [
+        "09f127a8e311ef93ecf813c47c89272e770c73ae3177de2ea721d2f1f09210d6"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_Nantucket.json",
+      "item_manager_sha256": "c89e10a17d26f18f4d73f218c67baeeab196f1c3977142334c4fef55344b56eb"
+    },
+    {
+      "scene": "CapeCodPorch",
+      "variant": "144bd04c7d946113",
+      "status": "passed",
+      "issues": [],
+      "order": 391,
+      "original_issues": [
+        "No unique Unity clip for nested timeline 159",
+        "Object 175: GAF filters are not supported yet",
+        "Object 99: GAF filters are not supported yet"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/capecodporch_assets_all_7a9614f0ca29da2ed8fff41e766d3541.bundle"
+      ],
+      "bundle_sha256": [
+        "805ec1e2c1bfd07e6a890c986a29d5b55887d7bd2d62bd458b9dcbcb7bd11f54"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_CapeCodPorch.json",
+      "item_manager_sha256": "fab6b56a4d106b41cffcd50389cbf82869cf9a0e12dbd7b959208625cc1bf928"
+    },
+    {
+      "scene": "BostonPublicGardens",
+      "variant": "ca9c059dc6c1085e",
+      "status": "passed",
+      "issues": [],
+      "order": 394,
+      "original_issues": [
+        "Object 162: GAF filters are not supported yet"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/bostonpublicgardens_assets_all_4edf3f9348c3e67b08ce58e150215cab.bundle"
+      ],
+      "bundle_sha256": [
+        "f9ab048011cdbeb9dc6284a923f805e609ad743ead4a2aed404a0b5ae9daba76"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_BostonPublicGardens.json",
+      "item_manager_sha256": "9fb6b0d448956c75530a2f151ca81139268cb39291dde2b5d1abd5d0f4cbd82e"
+    },
+    {
+      "scene": "MaineLighthouse",
+      "variant": "52c33ce0d084e3f8",
+      "status": "passed",
+      "issues": [],
+      "order": 396,
+      "original_issues": [
+        "No unique Unity clip for nested timeline 13",
+        "No unique Unity clip for nested timeline 9",
+        "Object 114: GAF filters are not supported yet"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/mainelighthouse_assets_all_fd933c98191ecdc7da8ae6bb735d8336.bundle"
+      ],
+      "bundle_sha256": [
+        "163ffe813be36d62717cab23261726801d85c4e6f7df7b8ba4dbbdb5ac73e4d5"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_MaineLighthouse.json",
+      "item_manager_sha256": "cdf873ce2d19e62276a9f981c151562a78e5879509af0e83ed856ae7aa0c5ab7"
+    },
+    {
+      "scene": "GoatsInTree",
+      "variant": "0cf1a5d1617da472",
+      "status": "passed",
+      "issues": [],
+      "order": 400,
+      "original_issues": [
+        "Object 174: GAF filters are not supported yet"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/goatsintree_assets_all_05a0178e9ddb7a1fe7aa7e49f24d2616.bundle"
+      ],
+      "bundle_sha256": [
+        "4c1e4f3595244c46b49c5c862ce420a4c5b40df939baa9441a647078c0eb5c16"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_GoatsInTree.json",
+      "item_manager_sha256": "3bc6caf4ebf32f7ff4918638fdde1d16fbcbaf784fef2d843a2a854415083539"
+    },
+    {
+      "scene": "TagineCloseup",
+      "variant": "14d755a65386e1d7",
+      "status": "passed",
+      "issues": [],
+      "order": 402,
+      "original_issues": [
+        "Object 125: GAF filters are not supported yet",
+        "Object 172: GAF filters are not supported yet",
+        "Unsupported nested effect on object 186"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/taginecloseup_assets_all_1c61645ddd3f8ce7a943297df709180f.bundle"
+      ],
+      "bundle_sha256": [
+        "96483255dc95d55bb141a619e18ab8960d5ab494bf7d79186fce285542924cc7"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_TagineCloseup.json",
+      "item_manager_sha256": "a7857f8cb123eac05173ff97e54db1eb2b93d0f4621d422cb03ff007f1eee357"
+    },
+    {
+      "scene": "TagineCloseup",
+      "variant": "78c73f9c7bf292e1",
+      "status": "passed",
+      "issues": [],
+      "order": 402,
+      "original_issues": [
+        "Object 125: GAF filters are not supported yet",
+        "Object 172: GAF filters are not supported yet",
+        "Unsupported nested effect on object 186"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/taginecloseup_assets_all_fe55c3c55fcffec6317e9c761413b45f.bundle"
+      ],
+      "bundle_sha256": [
+        "2278fdfde6b51ccff84dcc63e3f9c98c215227b454909ae6156f8757cc1e6036"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_TagineCloseup.json",
+      "item_manager_sha256": "a7857f8cb123eac05173ff97e54db1eb2b93d0f4621d422cb03ff007f1eee357"
+    },
+    {
+      "scene": "CasablancaPlaneFarewell",
+      "variant": "be72597cb86f86df",
+      "status": "passed",
+      "issues": [],
+      "order": 407,
+      "original_issues": [
+        "Unsupported nested effect on object 141"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/casablancaplanefarewell_assets_all_ac2241977acc6a4f3810d813e4d72c8a.bundle"
+      ],
+      "bundle_sha256": [
+        "406b218f0d7b569e2fd2ba8be0d551c175a205444df2f0e8ebcc9164fd0ad855"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_CasablancaPlaneFarewell.json",
+      "item_manager_sha256": "d33fabb8812aeca6bf82487c1c7308ccc12a862f4f30150951ef90d52ecab449"
+    },
+    {
+      "scene": "VictorianArcade",
+      "variant": "61f3c52cc593c52e",
+      "status": "passed",
+      "issues": [],
+      "order": 409,
+      "original_issues": [
+        "Unsupported nested effect on object 213"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/victorianarcade_assets_all_b4f6dd7de258e9831a68fee6139ad6c6.bundle"
+      ],
+      "bundle_sha256": [
+        "4638b9f712fccd5f82d13934f45e781fb8bb6d247e575f2f7aa43d217bc45ff4"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_VictorianArcade.json",
+      "item_manager_sha256": "fbbca22a401f02b4552e15f3f96f6dcb2d823de21d621a678c27a2d9f67905f2"
+    },
+    {
+      "scene": "FortuneTellerTent",
+      "variant": "740c46e8a79e02b1",
+      "status": "passed",
+      "issues": [],
+      "order": 414,
+      "original_issues": [
+        "Unsupported nested effect on object 280"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/fortunetellertent_assets_all_31fe2c083a1197c68064c58e0de837d4.bundle"
+      ],
+      "bundle_sha256": [
+        "3f674ce7bb96fc885d0a4a2ebad2b3d70b94b2cf461b0484db21a49cc5e638bb"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_FortuneTellerTent.json",
+      "item_manager_sha256": "10cfcfe7391f8b0f4394ac3f08acf40a1fac74bd3c1e953dc210e360e732ec24"
+    },
+    {
+      "scene": "VintagePosterCloseUp",
+      "variant": "80b699555d1b6009",
+      "status": "passed",
+      "issues": [],
+      "order": 415,
+      "original_issues": [
+        "Object 88: GAF filters are not supported yet"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/vintagepostercloseup_assets_all_1e362515c9bdc0a993d8b79b8e9df736.bundle"
+      ],
+      "bundle_sha256": [
+        "96e1a02ffebd1d9665d62c893bb00a77d213dcca54796707cbe4926160e71889"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_VintagePosterCloseUp.json",
+      "item_manager_sha256": "0a344e29b972b43c922bc04cc3ed278b11aeeaa7d85492f6fe707a4e7a058d87"
+    },
+    {
+      "scene": "PracticingMagic",
+      "variant": "bcad505f73024d38",
+      "status": "passed",
+      "issues": [],
+      "order": 418,
+      "original_issues": [
+        "Nested parent color transforms are unsupported",
+        "No unique Unity clip for nested timeline 314"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/practicingmagic_assets_all_ce3f14c1dd6fca826325083feee75489.bundle"
+      ],
+      "bundle_sha256": [
+        "ef93284f7c132e47925040c30ce74e74b7e4d1f347b1e37b2b7ad5deef861d16"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_PracticingMagic.json",
+      "item_manager_sha256": "4a76d582429b2ef7a56cec1d18ed354fdca66b7994379728ed9251359448e748"
+    },
+    {
+      "scene": "Fondue",
+      "variant": "d7f23d64ab4758a0",
+      "status": "incomplete",
+      "issues": [
+        "Unclassified named object 119: carrot; no Item Manager label"
+      ],
+      "order": 424,
+      "original_issues": [
+        "Object 109: GAF filters are not supported yet",
+        "Object 182: GAF filters are not supported yet",
+        "Unclassified named object carrot (119)"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/fondue_assets_all_a50cf0f8f96bbc60b0bc197b727bf948.bundle"
+      ],
+      "bundle_sha256": [
+        "f382018165225e39a891761250ac0841058f480291d332cbd61aadcf768206e5"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_Fondue.json",
+      "item_manager_sha256": "f011458352865b68ebfcf151831576030f80eae0e415a1f43156be37be21c3a3"
+    },
+    {
+      "scene": "SwissTrainRide",
+      "variant": "adb607acdab60bd2",
+      "status": "passed",
+      "issues": [],
+      "order": 429,
+      "original_issues": [
+        "Unsupported nested effect on object 202",
+        "Unsupported nested effect on object 204",
+        "Unsupported nested effect on object 207"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/swisstrainride_assets_all_bba937e42087ca2ff40f3a855a415bdc.bundle"
+      ],
+      "bundle_sha256": [
+        "081a4cfad6f6fada8d6f034c8811a4a2f7131754365a07401ac96b7676ef2410"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_SwissTrainRide.json",
+      "item_manager_sha256": "934a8045c2e9be7bc33dc77610fcb733fd5655e80918bc1d5ebc848575b40fc9"
+    },
+    {
+      "scene": "VaultInterior",
+      "variant": "4d69bf15ed18e0db",
+      "status": "passed",
+      "issues": [],
+      "order": 432,
+      "original_issues": [
+        "Object 191: GAF filters are not supported yet",
+        "Object 193: GAF filters are not supported yet"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/vaultinterior_assets_all_1ee18c56e3b784724bafbd5f250623ea.bundle"
+      ],
+      "bundle_sha256": [
+        "cc8a3e1d4fc713ea3a367fb158b2243b9229fa85055d9847f4d7d0a95eef1bb2"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_VaultInterior.json",
+      "item_manager_sha256": "f02fee60566e7d48cc56b4e2848a78c543b5087126a39f23a84fa53b32d20153"
+    },
+    {
+      "scene": "MaskShop",
+      "variant": "e6cff14e0af28c15",
+      "status": "passed",
+      "issues": [],
+      "order": 436,
+      "original_issues": [
+        "Unsupported nested effect on object 329"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/maskshop_assets_all_a3ff21c22aebd0f4ee67c3f19397dc0b.bundle"
+      ],
+      "bundle_sha256": [
+        "93bc580d62639dfe55864644ae7d92c95eca9de3ecc7703f1c1b49e0a1b0634c"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_MaskShop.json",
+      "item_manager_sha256": "77250f9c381510e250e75583ef6078ed843ad6602e4a895dc7bb3e53c808f967"
+    },
+    {
+      "scene": "DaVincisFlyingMachine",
+      "variant": "5cde7c1fee47d15d",
+      "status": "passed",
+      "issues": [],
+      "order": 439,
+      "original_issues": [
+        "No unique Unity clip for nested timeline 58"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/davincisflyingmachine_assets_all_e6fc09b703913f1379a1aec3921cf4e1.bundle"
+      ],
+      "bundle_sha256": [
+        "765df359647c9513cf30935fd7920b566e0b3cf4c31b74470a809efbcca5b8e8"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_DaVincisFlyingMachine.json",
+      "item_manager_sha256": "90e2ac9f23bd89fb7bc9456f9e2135427de3c4c8b7a5f63cd040d15c30378f1e"
+    },
+    {
+      "scene": "RenaissancePortraitPainter",
+      "variant": "06f40248adf9a9ff",
+      "status": "passed",
+      "issues": [],
+      "order": 442,
+      "original_issues": [
+        "Unsupported nested effect on object 178"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/renaissanceportraitpainter_assets_all_815b918c2fc2fa9b1b9a0c7cff6ad2da.bundle"
+      ],
+      "bundle_sha256": [
+        "b5dcf921dbc8c5a3c3aa7f42932a16e99564e78c10535eefb22561692e58d411"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_RenaissancePortraitPainter.json",
+      "item_manager_sha256": "fb47a379552f32521aaa03279ecf906c9b5ea3fd1f2ad15c4bee42e7e537b717"
+    },
+    {
+      "scene": "RooftopBandit",
+      "variant": "a034f6280ab963b3",
+      "status": "passed",
+      "issues": [],
+      "order": 444,
+      "original_issues": [
+        "Unsupported nested effect on object 172"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/rooftopbandit_assets_all_ab3fcf33c782225891cb29b64ce3cfbf.bundle"
+      ],
+      "bundle_sha256": [
+        "8611d8deae766975113aed4b63b38b764bb6c85000433da97dea54bc971d918c"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_RooftopBandit.json",
+      "item_manager_sha256": "8e5a0b2563dd1f3d3672450cad915dc0ebaa392dfb525859832f8b9e5b8da1b4"
+    },
+    {
+      "scene": "OstrichFarm",
+      "variant": "4cfe44a5e521bcf4",
+      "status": "passed",
+      "issues": [],
+      "order": 451,
+      "original_issues": [
+        "Object 184: GAF filters are not supported yet"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ostrichfarm_assets_all_310ec94cd557c320b5dab21949fc1f4d.bundle"
+      ],
+      "bundle_sha256": [
+        "9ca490325e48eb44593e0c9b61581a05dc5f61502992bf0794646ea1d0f69f20"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_OstrichFarm.json",
+      "item_manager_sha256": "02222515b31441d565096a7b9b5487db7b85c2c7b194c3da7597cd5b829106e6"
+    },
+    {
+      "scene": "StJamesBeach",
+      "variant": "39f0ef89d972ab47",
+      "status": "passed",
+      "issues": [],
+      "order": 456,
+      "original_issues": [
+        "Object 154: GAF filters are not supported yet",
+        "Object 196: GAF filters are not supported yet"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/stjamesbeach_assets_all_99f01224ec3eafb69b122e19103e36f9.bundle"
+      ],
+      "bundle_sha256": [
+        "7495f3386a91dfb602efb0bc0c6cf2b28ca5c94581c0324abff21e6cf248a45f"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_StJamesBeach.json",
+      "item_manager_sha256": "cee40e195b2937aacfd13141341d4132dd843cbac32678ce4ba5b69f36eaa292"
+    },
+    {
+      "scene": "PlantationHome",
+      "variant": "0389fc15ccb44ebf",
+      "status": "passed",
+      "issues": [],
+      "order": 458,
+      "original_issues": [
+        "No unique Unity clip for nested timeline 222"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/plantationhome_assets_all_6bba604f122053453c5c01faa9cf7a9c.bundle"
+      ],
+      "bundle_sha256": [
+        "d05eaa536fedd5969e76ff4bdd61995f07f6fc62e99e38baf74db73ba79bd350"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_PlantationHome.json",
+      "item_manager_sha256": "8474874962d2ea3788ff63296a94c0fd2bcd6e61e9bfe160d4c9190a68b8b318"
+    },
+    {
+      "scene": "FrenchQuarterApartments",
+      "variant": "da41b8b892be8b9e",
+      "status": "passed",
+      "issues": [],
+      "order": 462,
+      "original_issues": [
+        "Object 221: GAF filters are not supported yet",
+        "Unsupported nested effect on object 233",
+        "Unsupported nested effect on object 257"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/frenchquarterapartments_assets_all_9d4c53631772ebb86d1349441448f7ba.bundle"
+      ],
+      "bundle_sha256": [
+        "4ec5e3fd9209073891cc7afaf7f6259572ff80277fb9ade559355f0a80675ed2"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_FrenchQuarterApartments.json",
+      "item_manager_sha256": "31ab9a253949c5e79905eaf001d3163226f97d9ddc5462e90637b6c05013f343"
+    },
+    {
+      "scene": "ReversibleDestinyLoft",
+      "variant": "0b4b6bcec8b5f6e5",
+      "status": "incomplete",
+      "issues": [
+        "Unclassified named object 140: inchworm; no Item Manager label"
+      ],
+      "order": 469,
+      "original_issues": [
+        "Unclassified named object inchworm (140)"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/reversibledestinyloft_assets_all_64eb2187da7f977ef7034876e4189484.bundle"
+      ],
+      "bundle_sha256": [
+        "a9e3d87cd7c83007c28a7c15a5501e8fe73c7170f664235c6a1e849d1483bff6"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_ReversibleDestinyLoft.json",
+      "item_manager_sha256": "48a9cb879abd6ca927264dc78908f1a6c1599b671d92f93631d221fd852b4206"
+    },
+    {
+      "scene": "ShibaInuCafe",
+      "variant": "72e0ecac42ead2a0",
+      "status": "passed",
+      "issues": [],
+      "order": 472,
+      "original_issues": [
+        "No unique Unity clip for nested timeline 75"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/shibainucafe_assets_all_c15da6118decb0e8acd6c10b101ab28e.bundle"
+      ],
+      "bundle_sha256": [
+        "3c693f6c68f90cabc287bffb6ab3ed61ddd272706dcc2062b5d80846974c6704"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_ShibaInuCafe.json",
+      "item_manager_sha256": "b968e7c543bb19e74351609f2349d69646577ad04594feec066aad83ab430c6a"
+    },
+    {
+      "scene": "HarajukuStreet",
+      "variant": "fd99fbda9ca148e1",
+      "status": "incomplete",
+      "issues": [
+        "Unclassified named object 171: heartshape; no Item Manager label"
+      ],
+      "order": 474,
+      "original_issues": [
+        "Unclassified named object heartshape (171)"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/harajukustreet_assets_all_c4bda67847b1810d7950f50b8bae62a1.bundle"
+      ],
+      "bundle_sha256": [
+        "a4c09a7d2b91a32d2d8874e166c82213a6835e93e6343d740c5071aede6640d2"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_HarajukuStreet.json",
+      "item_manager_sha256": "255a044861374e560bb81f69bfd34421a6e3aa07ce1587288df28b0d027cdd4b"
+    },
+    {
+      "scene": "SushiBar",
+      "variant": "5ac7eaa4d63d207b",
+      "status": "passed",
+      "issues": [],
+      "order": 475,
+      "original_issues": [
+        "Object 191: GAF filters are not supported yet",
+        "Object 192: GAF filters are not supported yet"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/sushibar_assets_all_7d89cfdf65aa45b2342ee5b96b3a9206.bundle"
+      ],
+      "bundle_sha256": [
+        "1eb888caa0bbca8d6af2ac1743e14d9b9de07cdfb1a17f1942533efbb434502c"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_SushiBar.json",
+      "item_manager_sha256": "7c64d51b7eaa2d82d03a2fdc343f160a90d39b28504c266e0045009264e67725"
+    },
+    {
+      "scene": "DowntownTokyo",
+      "variant": "6a76b0df808aeb4d",
+      "status": "passed",
+      "issues": [],
+      "order": 479,
+      "original_issues": [
+        "Object 83: GAF filters are not supported yet"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/downtowntokyo_assets_all_b1b96857e629e7c4b7777554dc74d20b.bundle"
+      ],
+      "bundle_sha256": [
+        "6ce0e5aebb13eab4cbaa598415184afe6e9bfaf2a670332e12625f88c635c42c"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_DowntownTokyo.json",
+      "item_manager_sha256": "6fe6d2dff318043ab777bbee0a8e53a015795e912aa05f65766f581e680ea331"
+    },
+    {
+      "scene": "SakuraCosplayParade",
+      "variant": "a5146c987adb0fe4",
+      "status": "passed",
+      "issues": [],
+      "order": 480,
+      "original_issues": [
+        "No unique Unity clip for nested timeline 53"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/sakuracosplayparade_assets_all_5289d08a56b56187a95cb760403c63fb.bundle"
+      ],
+      "bundle_sha256": [
+        "5854de9c8f4af965161b9c767d421bfc6c9e03ea73373757f66512e996c245ce"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_SakuraCosplayParade.json",
+      "item_manager_sha256": "0f38d3e721abaa58f5487b08426b6503ed4e30693dbfbdf440ecf538e625e397"
+    },
+    {
+      "scene": "Storytelling",
+      "variant": "9c8e06aee9bd40eb",
+      "status": "passed",
+      "issues": [],
+      "order": 482,
+      "original_issues": [
+        "Object 176: GAF filters are not supported yet",
+        "Object 177: GAF filters are not supported yet"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/storytelling_assets_all_35e0f1d567099fe9256443e486ffa206.bundle"
+      ],
+      "bundle_sha256": [
+        "23802cb483b556bc193b8222bfadc3a23fa16b48348f14a6b37026f7e71a97b6"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_Storytelling.json",
+      "item_manager_sha256": "9d9bf7a60670799dee70534f2bdfffd8bd8dac2c5d03ee45ccc684febd9be45f"
+    },
+    {
+      "scene": "SinbadSailor",
+      "variant": "2bf14db8fb4dcb70",
+      "status": "passed",
+      "issues": [],
+      "order": 484,
+      "original_issues": [
+        "Object 79: GAF filters are not supported yet"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/sinbadsailor_assets_all_b75628bc73771ecac3717535086c38e1.bundle"
+      ],
+      "bundle_sha256": [
+        "f34252ffb15a3bf19169b63c36e822d09d8dfff4dca3613b3b20193f85e55ead"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_SinbadSailor.json",
+      "item_manager_sha256": "6b93695474bdc9868640605ba6080f7315431794979cc8e875f0b3a7081451e7"
+    },
+    {
+      "scene": "AliBaba40Thieves",
+      "variant": "156c235d71acaa97",
+      "status": "incomplete",
+      "issues": [
+        "Unclassified named object 118: Quiver; no Item Manager label"
+      ],
+      "order": 487,
+      "original_issues": [
+        "Unclassified named object Quiver (118)"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/alibaba40thieves_assets_all_db928755cbfc48a6fe0073b4b33d554a.bundle"
+      ],
+      "bundle_sha256": [
+        "b0ff452cc09d281b34300eb2d83a84d8b4d81135d9a501bf417d9ed069bbb6ca"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_AliBaba40Thieves.json",
+      "item_manager_sha256": "77e55a5e56f5f9f35b630bc6676d25900418f26a604b0c866eeeef35f79c6e68"
+    },
+    {
+      "scene": "FoxWolf",
+      "variant": "6edd2b06460b1250",
+      "status": "passed",
+      "issues": [],
+      "order": 492,
+      "original_issues": [
+        "No unique Unity clip for nested timeline 195",
+        "No unique Unity clip for nested timeline 199"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/foxwolf_assets_all_15a007615cfa05ed2987dda9a8c695a1.bundle"
+      ],
+      "bundle_sha256": [
+        "24f56f22d0d71beb2da8fb841525e77217a81d234701e43329e1c7c5a9147744"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_FoxWolf.json",
+      "item_manager_sha256": "8f4897e4318e4589b85654fb0e326f6936fe2ceb5466bda7cceda249db72db87"
+    },
+    {
+      "scene": "WhangaraVillage",
+      "variant": "315812f28ab928b0",
+      "status": "passed",
+      "issues": [],
+      "order": 493,
+      "original_issues": [
+        "Object 95: GAF filters are not supported yet"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/whangaravillage_assets_all_0b6a221173827fd9113e25283d68d303.bundle"
+      ],
+      "bundle_sha256": [
+        "877daea449c6621329cd65b57f0846cb7814f6f9cd30573c4268f220a44c9e7e"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_WhangaraVillage.json",
+      "item_manager_sha256": "f0892cef94d1d6b40a8d7ca27aa917fbdf59fe64026cbc187648116ce28e603a"
+    },
+    {
+      "scene": "LakeTaupo",
+      "variant": "9e30a4bf5c349d61",
+      "status": "passed",
+      "issues": [],
+      "order": 496,
+      "original_issues": [
+        "Object 125: GAF filters are not supported yet",
+        "Object 126: GAF filters are not supported yet",
+        "Object 142: GAF filters are not supported yet"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/laketaupo_assets_all_41347db4d883c6fcf29e9dfcda4ad320.bundle"
+      ],
+      "bundle_sha256": [
+        "c4f50b3bbd8c80b147ecb1b67857fc57f490a4005deccf30ddcaf8f5d2cf4645"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_LakeTaupo.json",
+      "item_manager_sha256": "910792975474f0c1b7e1be644420884e00bc0d30b22316f7e784e17baca1bd8e"
+    },
+    {
+      "scene": "LakeTaupo",
+      "variant": "a3a51b8eda22c7e8",
+      "status": "passed",
+      "issues": [],
+      "order": 496,
+      "original_issues": [
+        "Object 125: GAF filters are not supported yet",
+        "Object 126: GAF filters are not supported yet",
+        "Object 142: GAF filters are not supported yet"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/laketaupo_assets_all_7268c81edd267b67c6798b97bda52f53.bundle"
+      ],
+      "bundle_sha256": [
+        "c53fe02176401ec19eb0ff63ed554e579b4458772580118b434aaee3ce0002e7"
+      ],
+      "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_LakeTaupo.json",
+      "item_manager_sha256": "910792975474f0c1b7e1be644420884e00bc0d30b22316f7e784e17baca1bd8e"
+    }
+  ]
+}

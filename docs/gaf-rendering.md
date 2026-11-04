@@ -31,13 +31,14 @@ opacity, masks and child depth. Empty atlas tables are allowed for timeline-only
 containers. Serialized child clips must start at frame 1 with unmodified geometry
 and color settings. Nested scenes require root frame 1; elapsed playback is not
 simulated. Only empty-scope, no-argument stop actions at frame 1 are accepted.
-Other actions, custom sprite geometry/colors, filters, and multi-bundle assembly
-remain unsupported. Their presence
+Other actions, custom Unity sprite geometry/clip colors, inner/knockout glow,
+drop shadows, and multi-bundle assembly remain unsupported. Their presence
 cannot produce a validated result.
 
-Non-animation Item Manager keys must match one named part exactly after
-case-folding, or via an underscore-delimited scene suffix; case collisions are
-ambiguous. Background names recognize the observed bg01 and bg_01 forms. Ambiguous/unmatched keys and unclassified
+Non-animation Item Manager keys match encoded names exactly after case-folding,
+or via an underscore-delimited scene suffix. Identical encoded names on several
+instances receive the same verified label; distinct case-colliding names remain
+ambiguous. Background names recognize bg, bg01 and the bg_ prefix. Ambiguous/unmatched keys and unclassified
 named scene objects are issues. The real Giza metadata contains 68 findable-object
 keys and five anim_ descriptors. timecap instances are excluded as gameplay art.
 Root masks are not painted as visible sprites. Unnamed decorative cells remain
@@ -71,3 +72,38 @@ duplicate backgrounds and solution count. A failed result is written under
 incomplete/, with status incomplete and a nonzero command exit code. The latest
 report lists its current files. These checks validate a recovered static snapshot;
 they do not establish pixel-for-pixel parity with the running game.
+
+
+## Ordinary-scene recovery update
+
+Atlas v3/tag 15 has separate X/Y scale, a rotation flag and linkage string after
+the optional scale-nine rectangle. Rotated crops are restored before applying
+the encoded pivot and scale. The real Yucatan fixture covers this format.
+
+Repeated serialized child clips can share a timeline scope only when their
+settings, internal frame and object overrides agree. Referenced timelines without
+a serialized clip use the GAF runtime template and shared asset resources; the
+report records this choice. Conflicting serialized instances remain incomplete.
+Parent colour multipliers multiply and offsets add through the nested tree.
+Masks may reference other masks; their alpha intersects recursively and cycles
+fail validation.
+
+The observed colour-matrix, blur and outer-glow filters are supported. Filters
+cascade from parent timelines to child sprites (local effects followed by parent
+effects), alongside the encoded transform and colour cascade. The CPU filter path
+follows the reference Unity compatibility shaders: retain the last spatial and
+Adjust Color records; use 32 bilinear box taps per axis in atlas texels; process
+premultiplied RGB; pad transparent edges and adjust the pivot; apply Adjust Color
+before Tint/object alpha. Glow uses the encoded BGRA colour, strength and opacity.
+Inner/knockout glow and drop shadows stay unsupported. Software sampling is
+reported explicitly and has not been independently compared pixel-for-pixel with
+the game's GPU renderer.
+
+Additional format/filter reference:
+https://github.com/CatalystApps/StarlingGAFPlayer/tree/b738b199245d6ca5e374d04ca2d4f6edd1767990/gaf/src/com/catalystapps/gaf
+
+Named objects missing from Item Manager remain validation blockers; their artwork
+is retained in incomplete previews and no label is invented. Objects outside the
+encoded stage are reported with their unclipped affine bounds. They are not moved
+inside the viewport. Starting a rerender invalidates old final image filenames,
+even if the new input fails before rendering.

@@ -7,7 +7,7 @@ import traceback
 from pathlib import Path
 
 from .download import Downloader,DownloadError,atomic_json,cache_name,read_json,sha256,validate_bundle
-from .scenes import Scene
+from .scenes import Scene,scene_kind
 
 
 def test_job(job):
@@ -37,9 +37,9 @@ def test_job(job):
         manager=load_item_manager(scene,out,client,job['offline'])
         manager_path=out/'item_managers'/cache_name(scene.item_manager_url,'.json');keep(manager_path)
         result['stage']='render'
-        kind=re.search(r'(FTD|STD|FTO)\d*$',scene.scene_id,re.I)
-        if kind:
-            result.update(status='incomplete',issues=[f'{kind[1].upper()} rendering is not implemented; assets and Item Manager checked'])
+        kind=scene_kind(scene.scene_id)
+        if kind!='ordinary':
+            result.update(status='incomplete',issues=[f'{kind} rendering is not implemented; assets and Item Manager checked'])
         elif len(paths)!=1:
             result.update(status='incomplete',issues=['Multi-bundle scene assembly is not certified; assets and Item Manager checked'])
         else:

@@ -125,19 +125,22 @@ def read_tags(r, movie, timeline=None):
             child = Timeline(tid, frames, bounds, pivot, linkage)
             movie.timelines[tid] = child
             read_tags(payload, movie, child)
-        elif tag in (1,8):
+        elif tag in (1,8,15):
             scale = payload.floats(1)[0]; atlases = {}
             for _ in range(payload.u8()):
                 aid = payload.u32()
                 atlases[aid] = [{'source': payload.string(), 'csf': payload.floats(1)[0]} for _ in range(payload.u8())]
             elements = {}
-            for _ in range(payload.count(36 if tag==1 else 37)):
+            for _ in range(payload.count(36 if tag==1 else (44 if tag==15 else 37))):
                 pivot, origin = payload.floats(2), payload.floats(2)
-                es = payload.floats(1)[0]; size_xy = payload.floats(2)
+                es = payload.floats(1)[0] if tag!=15 else None; size_xy = payload.floats(2)
                 aid, eid = payload.unpack('II')
-                grid = payload.floats(4) if tag == 8 and payload.boolean() else None
+                grid = payload.floats(4) if tag in (8,15) and payload.boolean() else None
+                sx,sy = payload.floats(2) if tag==15 else (es,es)
+                rotated = payload.boolean() if tag==15 else False
+                linkage = payload.string() if tag==15 else ''
                 if eid in elements: raise GAFError('Duplicate atlas element')
-                elements[eid] = dict(pivot=pivot, origin=origin, scale=es, size=size_xy, atlas_id=aid, scale9=grid)
+                elements[eid] = dict(pivot=pivot, origin=origin, scale=sx, scale_y=sy, size=size_xy, atlas_id=aid, scale9=grid, rotated=rotated, linkage=linkage)
             movie.atlases.append(dict(timeline=timeline.id if timeline else None, scale=scale, sources=atlases, elements=elements))
         elif tag in (2,3,10,11):
             if timeline is None: raise GAFError('Objects outside timeline')

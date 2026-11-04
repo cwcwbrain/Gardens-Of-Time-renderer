@@ -99,3 +99,9 @@ def variant_id(candidate):
     descriptors=sorted({json.dumps({'url':b['url'] or b['internal_id'],'options':b['options']},sort_keys=True)
                         for b in candidate['bundles']})
     return hashlib.sha256(json.dumps(descriptors).encode()).hexdigest()[:16]
+
+
+def scene_kind(scene_id):
+    """Recognize explicit mode markers, including the observed FTD1Redux suffix."""
+    match=re.search(r'(FTD|STD|FTO)\d*(?:Redux\d*)?$',scene_id,re.I)
+    return match[1].upper() if match else 'ordinary'

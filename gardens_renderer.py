@@ -12,7 +12,7 @@ from urllib.parse import urlsplit
 
 from gardens.catalogue import Index, parse_catalogue
 from gardens.download import Downloader, DownloadError, atomic_json, cache_name, read_json, sha256, validate_bundle
-from gardens.scenes import match_scenes, read_scenes, variant_id as candidate_variant_id
+from gardens.scenes import match_scenes, read_scenes, scene_kind, variant_id as candidate_variant_id
 
 ROOT = Path(__file__).resolve().parent
 
@@ -185,7 +185,7 @@ def main(argv=None):
                     from gardens.render import render_bundle
                     from render_scene import load_item_manager
                     if not re.fullmatch(r'[A-Za-z0-9_-]+',row['scene_id']):raise ValueError('Unsafe scene output identifier')
-                    if re.search(r'(FTD|STD|FTO)\d*$',row['scene_id'],re.I):raise ValueError('FTD/STD/FTO rendering is not implemented')
+                    if scene_kind(row['scene_id'])!='ordinary':raise ValueError('FTD/STD/FTO rendering is not implemented')
                     bundle_urls=sorted({b['url'] for b in bundles})
                     if len(bundle_urls)!=1:raise ValueError('Multi-bundle scene assembly is not certified yet')
                     scene=next(s for s in scenes if s.scene_id==row['scene_id'])

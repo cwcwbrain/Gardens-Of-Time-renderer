@@ -208,8 +208,10 @@ sprite transforms, pivots, element scale, color transforms, transparency,
 alpha masks and **nested initial poses**. Nested scenes use encoded frame 1
 throughout the tree, composing parent transforms, opacity, masks and child depth.
 A stop action with no target/arguments at the initial frame is accepted because
-it does not change that pose. Elapsed-time playback, other actions, parent color
-overrides, filters, custom Unity geometry or unresolved labels remain incomplete.
+it does not change that pose. GAF parent colour transforms and sprite colour-matrix
+filters, box blur and outer glow are supported. Elapsed-time playback, other
+actions, drop shadows, inner/knockout glow, custom Unity
+geometry or unresolved labels remain incomplete. Serialized Unity colour overrides remain unsupported.
 Victorian now passes the snapshot checks with 69 named objects and eight nested
 instances across its nine timelines. This is an initial pose, not full playback. FTD/STD/FTO rendering remains unimplemented.
 
@@ -365,6 +367,43 @@ the latest `variants.json` to locate current outputs.
 PyramidSideEgypt's original diagnostic trial likewise tested both versions. The
 evidence JSON records both bundle hashes and the limited image-comparison scope.
 
-Background names accept the observed `bg01` and `bg_01` conventions. Item Manager
+Background names accept the observed `bg01`, `bg_01`, and `bg_background` conventions. Item Manager
 binding is exact after Unicode case-folding plus the existing underscore suffix
 rule; a case collision still fails as ambiguous. Original keys/labels are retained.
+
+
+The next-build ordinary-scene fixes also decode GAF atlas v3 (tag 15), including
+rotated sprites and separate horizontal/vertical scales, and intersect chained
+masks with cycle detection. Identical serialized child-clip instances may share a
+snapshot only when their settings, frame and object overrides agree. Referenced
+GAF child timelines without serialized Unity clips use the encoded runtime
+resource template; the validation report records this in `scope_source`.
+
+Item Manager animation descriptors accept case variants and the observed
+`animprojectorbeam` form when its base matches a named animation. Findable labels
+still require exact names. Unknown named visuals remain in the previews and in
+`unresolved_named_objects`; they block certification. Failed rerenders remove
+stale final image filenames, keeping previews under `incomplete/`.
+
+Wait until an active Windows run finishes before replacing its code. Then use
+the updated build and run `py -m unittest discover -s tests -v`, followed by
+`py gardens_renderer.py --test-all --retry-failed --output output` to validate
+against the current sources. Renderer changes invalidate previous test proofs,
+so the updated build may retest previously passing scenes too.
+
+
+Spatial filters use the reference Unity compatibility path's 32 uniformly spaced
+bilinear box taps in atlas texels, premultiplied RGB, transparent padding, and
+Adjust Color before Tint/object alpha. This is a CPU snapshot implementation;
+comparison with the game's GPU output remains outside structural validation.
+Filter details are recorded in `filter_backend`. The format/filter reference is
+[StarlingGAFPlayer revision b738b19](https://github.com/CatalystApps/StarlingGAFPlayer/tree/b738b199245d6ca5e374d04ca2d4f6edd1767990/gaf/src/com/catalystapps/gaf).
+
+When several instances have the *identical encoded name*, each gets the verified
+Item Manager label and its own pointer. Distinct spellings that collide after
+case folding remain ambiguous. Off-stage targets record their `encoded_bounds`
+and remain incomplete; the renderer does not reposition them.
+
+The [ordinary-scene regression report](docs/ordinary-scene-recovery.md) records the
+151-version next-build test, its fixed cases, and every remaining scene grouped
+by cause. It is not a claim that the full catalogue has passed.

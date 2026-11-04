@@ -7,7 +7,7 @@ from pathlib import Path
 
 from gardens.download import Downloader, DownloadError, cache_name, read_json, sha256
 from gardens.render import RenderError, render_bundle
-from gardens.scenes import read_scenes
+from gardens.scenes import read_scenes,scene_kind
 
 ROOT=Path(__file__).resolve().parent
 
@@ -44,7 +44,7 @@ def main(argv=None):
     scene=matches[0]
     import re
     if not re.fullmatch(r'[A-Za-z0-9_-]+',scene.scene_id):p.error('Unsafe scene output identifier')
-    if re.search(r'(FTD|STD|FTO)\d*$',scene.scene_id,re.I):p.error('This renderer currently supports ordinary scenes only')
+    if scene_kind(scene.scene_id)!='ordinary':p.error('This renderer currently supports ordinary scenes only')
     data=json.loads(args.item_manager.read_text(encoding='utf-8-sig')) if args.item_manager else load_item_manager(scene,args.output,Downloader(),args.offline)
     result=render_bundle(args.bundle,data,args.output/scene.scene_id,args.frame)
     print(json.dumps(result,indent=2))

@@ -134,6 +134,25 @@ class NestedTests(unittest.TestCase):
         self.assertEqual(result.getpixel((1,1))[3],64)
         self.assertEqual(result.getpixel((4,1))[3],32)
 
+    def test_parent_filters_cascade_to_descendant_sprites(self):
+        painter,a,b=self.make_painter()
+        matrix=(0,0,1,0,0, 0,1,0,0,0, 1,0,0,0,0, 0,0,0,1,0)
+        result=painter.paint(10,effects=({'type':6,'values':matrix},))
+        self.assertEqual(result.getpixel((0,0)),(0,0,255,255))
+        # Grandchild blue becomes red too, with the encoded parent alpha.
+        self.assertEqual(result.getpixel((3,0)),(255,0,0,128))
+
+    def test_chained_masks_intersect_and_cycles_fail(self):
+        painter,a,b=self.make_painter()
+        a.objects[6]={'element':3,'type':0};a.masks.add(6)
+        state=dict(a.frames[1][1],object_id=6,matrix=(1,0,0,4,0,0))
+        a.frames[1].append(state);a.frames[1][1]['mask']=6
+        result=painter.paint(10)
+        self.assertEqual(result.getpixel((0,0))[3],255)
+        self.assertEqual(result.getpixel((1,0))[3],0)
+        state['mask']=3
+        with self.assertRaisesRegex(RenderError,'cycle'):painter.paint(10)
+
     def test_cycles_and_unsupported_actions_fail(self):
         painter,a,b=self.make_painter()
         b.objects[5]={'element':10,'type':2}
@@ -150,7 +169,7 @@ class NestedTests(unittest.TestCase):
         items,_,issues=parse_items({'HAT_scene':{'beginner':'Hat'}},{1:'hat',2:'Hat'})
         self.assertFalse(items);self.assertTrue(issues)
         self.assertTrue(is_background('bg01'));self.assertTrue(is_background('BG_02'))
-        self.assertFalse(is_background('bg_object'))
+        self.assertTrue(is_background('bg_background'));self.assertFalse(is_background('bag_object'))
 
 
 class AnnotationTests(unittest.TestCase):
@@ -252,6 +271,16 @@ class RealRenderTests(unittest.TestCase):
         self.assertEqual(r['status'],'incomplete')
         self.assertIn('Unsupported nested effect',r['issues'])
         self.assertFalse((out/'scene_complete.png').exists())
+
+    def test_unknown_named_visual_remains_a_blocker(self):
+        data=dict(self.data);data.pop('banana_anc_giz_riv')
+        out=Path(self.temp.name)/'unknown'
+        out.mkdir();(out/'scene_complete.png').write_bytes(b'old output')
+        r=render_bundle(GIZA,data,out)
+        self.assertEqual(r['status'],'incomplete')
+        self.assertTrue(any('banana' in issue and 'Unclassified' in issue for issue in r['issues']))
+        self.assertFalse((out/'scene_complete.png').exists())
+        self.assertTrue((out/'incomplete/scene_complete.png').exists())
 
     def test_missing_item_does_not_publish_final_images(self):
         data={**self.data,'nonexistent_object_anc_giz_riv':{'beginner':'Unrecoverable'}}
