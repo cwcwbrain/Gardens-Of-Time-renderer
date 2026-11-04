@@ -28,6 +28,7 @@ def write_csv(path, rows, fields):
 def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--catalogues', type=Path, default=ROOT / 'catalogues.json')
+    p.add_argument('--remote-config', help='Override the game loading-config URL for production HO catalogue discovery')
     p.add_argument('--scenes', type=Path, default=ROOT / 'data/Sheet2_chronology_fixed.csv')
     select = p.add_mutually_exclusive_group(required=True)
     select.add_argument('--all', action='store_true')
@@ -76,12 +77,17 @@ def main(argv=None):
             p.error('Unknown scene IDs: ' + ', '.join(sorted(requested - known)))
         scenes = [s for s in scenes if s.scene_id.casefold() in requested]
     manifest = json.loads(args.catalogues.read_text(encoding='utf-8-sig'))
-    urls = manifest.get('catalogues')
+    from gardens.discovery import catalogue_sources
+    client = Downloader(args.timeout,args.retries)
+    discovery = catalogue_sources(manifest,out,client,args.offline,args.remote_config)
+    atomic_json(out/'catalogue_discovery.json',discovery)
+    if discovery.get('warning'):print('Catalogue discovery fallback: '+discovery['warning'],flush=True)
+    print('Catalogue source: '+discovery['source'],flush=True)
+    urls = discovery['catalogues']
     if not isinstance(urls, list) or not urls or not all(isinstance(u, str) and urlsplit(u).scheme == 'https' and urlsplit(u).netloc for u in urls):
         p.error('catalogues.json must contain a nonempty catalogues list of explicit HTTPS URLs')
     if len(set(urls)) != len(urls):
         p.error('Duplicate catalogue URLs in manifest')
-    client = Downloader(args.timeout, args.retries)
     run_id = uuid.uuid4().hex
     atomic_json(out / 'summary.json', {'run_id': run_id, 'status': 'in_progress'})
     if not batch_mode: atomic_json(out / 'download_report.json', [])

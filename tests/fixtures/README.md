@@ -10,3 +10,10 @@ VictorianExteriorRedux1_items.json likewise preserves its CSV-listed endpoint:
 https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_VictorianExteriorRedux1.json
 It is used to ensure nested animations remain incomplete rather than being
 silently omitted while the scene is reported as successful.
+
+
+GOT_RemoteConfig_HO.json preserves the hidden-object portion of the public loading
+configuration fetched on 2026-11-04 from:
+https://prod-cdn-assets.gardensoftime-cloud.net/unity6/webgl/StreamingAssets/GOT_RemoteConfig.json
+Tests use its actual production/QA/dev fields to ensure only production HO URLs
+are discovered, including the updated catalogue 13 filename.

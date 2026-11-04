@@ -29,8 +29,39 @@ On Linux/macOS, use `python3` instead of `py` and `source .venv/bin/activate`.
 The core indexer/downloader uses the standard library. UnityPy validates bundles;
 Pillow and UnityPy also support the preserved experimental extraction scripts.
 
-`catalogues.json` contains exactly the 13 URLs supplied by the user. There is no
-filename guessing. `data/Sheet2_chronology_fixed.csv` is an unchanged copy of the
+`catalogues.json` retains the 13 user-supplied URLs as a frozen fallback and now
+points to the game's official loading configuration for automatic discovery:
+
+```text
+https://prod-cdn-assets.gardensoftime-cloud.net/unity6/webgl/StreamingAssets/GOT_RemoteConfig.json
+```
+
+Each online invocation snapshots that JSON and reads `assetCatalogInfo`, selecting
+`HO Scenes <number>` entries and joining their explicit `URLInfo_Prod.URL` and
+`URLInfo_Prod.catalogName` fields. It does not guess filenames or require exactly
+13 groups, so a future explicitly listed HO group can be discovered. Main-game,
+ISO/garden and QA/dev/preproduction catalogues are not downloaded by this scene
+workflow. The selected production projects and excluded project names are listed
+in `output/catalogue_discovery.json`.
+
+Raw config snapshots and their hashes are retained under `output/remote_config/`.
+The catalogue list is frozen for the invocation: a config update cannot alter an
+ongoing run halfway through. Offline mode uses an integrity-checked config
+snapshot. If discovery fails, the last verified snapshot is used; if unavailable,
+the explicit manifest list is used. Every fallback records a warning and its
+source; it is not presented as a freshly fetched configuration. A failed refresh
+cannot destroy the previous validated config. Explicit custom manifests without
+a `remote_config` field keep their original no-discovery behaviour. Use
+`--remote-config https://.../config.json` to override the config endpoint.
+
+The live config was checked on 2026-11-04: it lists 13 production HO catalogues,
+including `catalog_13_p_2026.11.02.10.44.21.json`, which is newer than the original
+fallback entry. All 13 discovered catalogues downloaded and parsed successfully;
+the corrected CSV still matched 4,276 scenes uniquely and 205 with alternatives.
+Do not replace program files while an existing all-scene run is active. Install
+updates after it finishes; program changes can invalidate test checkpoints.
+
+There is no catalogue filename guessing. `data/Sheet2_chronology_fixed.csv` is an unchanged copy of the
 upload: **4,481 headerless unique rows**, starting with AncientGizaRiverfront.
 The reader also accepts a header whose first column is `scene_id`, `scene`, or
 `scene_identifier`. Repeated IDs are skipped after their first occurrence and

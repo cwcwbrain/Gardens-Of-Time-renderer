@@ -1,0 +1,368 @@
+{
+  "assetCatalogInfo": [
+    {
+      "catalogProjectName": "HO Scenes 01",
+      "URLInfo_Dev": {
+        "catalogHashKey": "",
+        "catalogName": "catalog_1_2021.07.15.11.29.48.json",
+        "URL": "https://qa-cdn-assets.gardensoftime-cloud.net/ho/"
+      },
+      "URLInfo_Prod": {
+        "catalogHashKey": "",
+        "catalogName": "catalog_p_1_2021.07.15.11.29.48.json",
+        "URL": "https://prod-cdn-assets.gardensoftime-cloud.net/ho/"
+      },
+      "URLInfo_PreProd": {
+        "catalogHashKey": "",
+        "catalogName": "catalog_pp_1_2021.07.15.11.29.48.json",
+        "URL": "https://inactive-prod-cdn-assets.gardensoftime-cloud.net/ho/"
+      },
+      "URLInfo_Qatwo": {
+        "catalogHashKey": "",
+        "catalogName": "catalog_d_1_2021.07.15.11.29.48.json",
+        "URL": "https://dev-cdn-assets.gardensoftime-cloud.net/ho/"
+      },
+      "canCacheLocally": false,
+      "fueLabels": [],
+      "mandatoryLabels": [],
+      "slientLabels": [],
+      "isCacheReady_localVar": false
+    },
+    {
+      "catalogProjectName": "HO Scenes 02",
+      "URLInfo_Dev": {
+        "catalogHashKey": "",
+        "catalogName": "catalog_2.json",
+        "URL": "https://qa-cdn-assets.gardensoftime-cloud.net/ho/"
+      },
+      "URLInfo_Prod": {
+        "catalogHashKey": "",
+        "catalogName": "catalog_p_2.json",
+        "URL": "https://prod-cdn-assets.gardensoftime-cloud.net/ho/"
+      },
+      "URLInfo_PreProd": {
+        "catalogHashKey": "",
+        "catalogName": "catalog_pp_2.json",
+        "URL": "https://inactive-prod-cdn-assets.gardensoftime-cloud.net/ho/"
+      },
+      "URLInfo_Qatwo": {
+        "catalogHashKey": "",
+        "catalogName": "catalog_d_2.json",
+        "URL": "https://dev-cdn-assets.gardensoftime-cloud.net/ho/"
+      },
+      "canCacheLocally": false,
+      "fueLabels": [],
+      "mandatoryLabels": [],
+      "slientLabels": [],
+      "isCacheReady_localVar": false
+    },
+    {
+      "catalogProjectName": "HO Scenes 03",
+      "URLInfo_Dev": {
+        "catalogHashKey": "",
+        "catalogName": "catalog_3.json",
+        "URL": "https://qa-cdn-assets.gardensoftime-cloud.net/ho/"
+      },
+      "URLInfo_Prod": {
+        "catalogHashKey": "",
+        "catalogName": "catalog_p_3.json",
+        "URL": "https://prod-cdn-assets.gardensoftime-cloud.net/ho/"
+      },
+      "URLInfo_PreProd": {
+        "catalogHashKey": "",
+        "catalogName": "catalog_pp_3.json",
+        "URL": "https://inactive-prod-cdn-assets.gardensoftime-cloud.net/ho/"
+      },
+      "URLInfo_Qatwo": {
+        "catalogHashKey": "",
+        "catalogName": "catalog_d_3.json",
+        "URL": "https://dev-cdn-assets.gardensoftime-cloud.net/ho/"
+      },
+      "canCacheLocally": false,
+      "fueLabels": [],
+      "mandatoryLabels": [],
+      "slientLabels": [],
+      "isCacheReady_localVar": false
+    },
+    {
+      "catalogProjectName": "HO Scenes 04",
+      "URLInfo_Dev": {
+        "catalogHashKey": "",
+        "catalogName": "catalog_4_2021.04.02.08.47.37.json",
+        "URL": "https://qa-cdn-assets.gardensoftime-cloud.net/ho/"
+      },
+      "URLInfo_Prod": {
+        "catalogHashKey": "",
+        "catalogName": "catalog_p_4_2021.04.02.08.47.37.json",
+        "URL": "https://prod-cdn-assets.gardensoftime-cloud.net/ho/"
+      },
+      "URLInfo_PreProd": {
+        "catalogHashKey": "",
+        "catalogName": "catalog_pp_4_2021.04.02.08.47.37.json",
+        "URL": "https://inactive-prod-cdn-assets.gardensoftime-cloud.net/ho/"
+      },
+      "URLInfo_Qatwo": {
+        "catalogHashKey": "",
+        "catalogName": "catalog_d_4_2021.04.02.08.47.37.json",
+        "URL": "https://dev-cdn-assets.gardensoftime-cloud.net/ho/"
+      },
+      "canCacheLocally": false,
+      "fueLabels": [],
+      "mandatoryLabels": [],
+      "slientLabels": [],
+      "isCacheReady_localVar": false
+    },
+    {
+      "catalogProjectName": "HO Scenes 05",
+      "URLInfo_Dev": {
+        "catalogHashKey": "",
+        "catalogName": "catalog_5_2021.05.05.09.14.54.json",
+        "URL": "https://qa-cdn-assets.gardensoftime-cloud.net/ho/"
+      },
+      "URLInfo_Prod": {
+        "catalogHashKey": "",
+        "catalogName": "catalog_p_5_2021.05.05.09.14.54.json",
+        "URL": "https://prod-cdn-assets.gardensoftime-cloud.net/ho/"
+      },
+      "URLInfo_PreProd": {
+        "catalogHashKey": "",
+        "catalogName": "catalog_pp_5_2021.05.05.09.14.54.json",
+        "URL": "https://inactive-prod-cdn-assets.gardensoftime-cloud.net/ho/"
+      },
+      "URLInfo_Qatwo": {
+        "catalogHashKey": "",
+        "catalogName": "catalog_d_5_2021.05.05.09.14.54.json",
+        "URL": "https://dev-cdn-assets.gardensoftime-cloud.net/ho/"
+      },
+      "canCacheLocally": false,
+      "fueLabels": [],
+      "mandatoryLabels": [],
+      "slientLabels": [],
+      "isCacheReady_localVar": false
+    },
+    {
+      "catalogProjectName": "HO Scenes 06",
+      "URLInfo_Dev": {
+        "catalogHashKey": "",
+        "catalogName": "catalog_6.json",
+        "URL": "https://qa-cdn-assets.gardensoftime-cloud.net/ho/"
+      },
+      "URLInfo_Prod": {
+        "catalogHashKey": "",
+        "catalogName": "catalog_p_6.json",
+        "URL": "https://prod-cdn-assets.gardensoftime-cloud.net/ho/"
+      },
+      "URLInfo_PreProd": {
+        "catalogHashKey": "",
+        "catalogName": "catalog_pp_6.json",
+        "URL": "https://inactive-prod-cdn-assets.gardensoftime-cloud.net/ho/"
+      },
+      "URLInfo_Qatwo": {
+        "catalogHashKey": "",
+        "catalogName": "catalog_d_6.json",
+        "URL": "https://dev-cdn-assets.gardensoftime-cloud.net/ho/"
+      },
+      "canCacheLocally": false,
+      "fueLabels": [],
+      "mandatoryLabels": [],
+      "slientLabels": [],
+      "isCacheReady_localVar": false
+    },
+    {
+      "catalogProjectName": "HO Scenes 07",
+      "URLInfo_Dev": {
+        "catalogHashKey": "",
+        "catalogName": "catalog_7.json",
+        "URL": "https://qa-cdn-assets.gardensoftime-cloud.net/ho/"
+      },
+      "URLInfo_Prod": {
+        "catalogHashKey": "",
+        "catalogName": "catalog_p_7.json",
+        "URL": "https://prod-cdn-assets.gardensoftime-cloud.net/ho/"
+      },
+      "URLInfo_PreProd": {
+        "catalogHashKey": "",
+        "catalogName": "catalog_pp_7.json",
+        "URL": "https://inactive-prod-cdn-assets.gardensoftime-cloud.net/ho/"
+      },
+      "URLInfo_Qatwo": {
+        "catalogHashKey": "",
+        "catalogName": "catalog_d_7.json",
+        "URL": "https://dev-cdn-assets.gardensoftime-cloud.net/ho/"
+      },
+      "canCacheLocally": false,
+      "fueLabels": [],
+      "mandatoryLabels": [],
+      "slientLabels": [],
+      "isCacheReady_localVar": false
+    },
+    {
+      "catalogProjectName": "HO Scenes 08",
+      "URLInfo_Dev": {
+        "catalogHashKey": "",
+        "catalogName": "catalog_8.json",
+        "URL": "https://qa-cdn-assets.gardensoftime-cloud.net/ho/"
+      },
+      "URLInfo_Prod": {
+        "catalogHashKey": "",
+        "catalogName": "catalog_p_8.json",
+        "URL": "https://prod-cdn-assets.gardensoftime-cloud.net/ho/"
+      },
+      "URLInfo_PreProd": {
+        "catalogHashKey": "",
+        "catalogName": "catalog_pp_8.json",
+        "URL": "https://inactive-prod-cdn-assets.gardensoftime-cloud.net/ho/"
+      },
+      "URLInfo_Qatwo": {
+        "catalogHashKey": "",
+        "catalogName": "catalog_d_8.json",
+        "URL": "https://dev-cdn-assets.gardensoftime-cloud.net/ho/"
+      },
+      "canCacheLocally": false,
+      "fueLabels": [],
+      "mandatoryLabels": [],
+      "slientLabels": [],
+      "isCacheReady_localVar": false
+    },
+    {
+      "catalogProjectName": "HO Scenes 09",
+      "URLInfo_Dev": {
+        "catalogHashKey": "",
+        "catalogName": "catalog_9_2021.12.06.12.52.19.json",
+        "URL": "https://qa-cdn-assets.gardensoftime-cloud.net/ho/"
+      },
+      "URLInfo_Prod": {
+        "catalogHashKey": "",
+        "catalogName": "catalog_p_9_2021.12.06.12.52.19.json",
+        "URL": "https://prod-cdn-assets.gardensoftime-cloud.net/ho/"
+      },
+      "URLInfo_PreProd": {
+        "catalogHashKey": "",
+        "catalogName": "catalog_pp_9_2021.12.06.12.52.19.json",
+        "URL": "https://inactive-prod-cdn-assets.gardensoftime-cloud.net/ho/"
+      },
+      "URLInfo_Qatwo": {
+        "catalogHashKey": "",
+        "catalogName": "catalog_d_9_2021.12.06.12.52.19.json",
+        "URL": "https://dev-cdn-assets.gardensoftime-cloud.net/ho/"
+      },
+      "canCacheLocally": false,
+      "fueLabels": [],
+      "mandatoryLabels": [],
+      "slientLabels": [],
+      "isCacheReady_localVar": false
+    },
+    {
+      "catalogProjectName": "HO Scenes 10",
+      "URLInfo_Dev": {
+        "catalogHashKey": "",
+        "catalogName": "catalog_10_2021.03.16.13.11.00.json",
+        "URL": "https://qa-cdn-assets.gardensoftime-cloud.net/ho/"
+      },
+      "URLInfo_Prod": {
+        "catalogHashKey": "",
+        "catalogName": "catalog_p_10_2021.03.16.13.11.00.json",
+        "URL": "https://prod-cdn-assets.gardensoftime-cloud.net/ho/"
+      },
+      "URLInfo_PreProd": {
+        "catalogHashKey": "",
+        "catalogName": "catalog_pp_10_2021.03.16.13.11.00.json",
+        "URL": "https://inactive-prod-cdn-assets.gardensoftime-cloud.net/ho/"
+      },
+      "URLInfo_Qatwo": {
+        "catalogHashKey": "",
+        "catalogName": "catalog_d_10_2021.03.16.13.11.00.json",
+        "URL": "https://dev-cdn-assets.gardensoftime-cloud.net/ho/"
+      },
+      "canCacheLocally": false,
+      "fueLabels": [],
+      "mandatoryLabels": [],
+      "slientLabels": [],
+      "isCacheReady_localVar": false
+    },
+    {
+      "catalogProjectName": "HO Scenes 11",
+      "URLInfo_Dev": {
+        "catalogHashKey": "",
+        "catalogName": "catalog_11_2021.03.29.11.26.58.json",
+        "URL": "https://qa-cdn-assets.gardensoftime-cloud.net/ho/"
+      },
+      "URLInfo_Prod": {
+        "catalogHashKey": "",
+        "catalogName": "catalog_p_11_2021.03.29.11.26.58.json",
+        "URL": "https://prod-cdn-assets.gardensoftime-cloud.net/ho/"
+      },
+      "URLInfo_PreProd": {
+        "catalogHashKey": "",
+        "catalogName": "catalog_pp_11_2021.03.29.11.26.58.json",
+        "URL": "https://inactive-prod-cdn-assets.gardensoftime-cloud.net/ho/"
+      },
+      "URLInfo_Qatwo": {
+        "catalogHashKey": "",
+        "catalogName": "catalog_d_11_2021.03.29.11.26.58.json",
+        "URL": "https://dev-cdn-assets.gardensoftime-cloud.net/ho/"
+      },
+      "canCacheLocally": false,
+      "fueLabels": [],
+      "mandatoryLabels": [],
+      "slientLabels": [],
+      "isCacheReady_localVar": false
+    },
+    {
+      "catalogProjectName": "HO Scenes 12",
+      "URLInfo_Dev": {
+        "catalogHashKey": "",
+        "catalogName": "catalog_12_2023.07.31.09.26.09.json",
+        "URL": "https://qa-cdn-assets.gardensoftime-cloud.net/ho/"
+      },
+      "URLInfo_Prod": {
+        "catalogHashKey": "",
+        "catalogName": "catalog_p_12_2023.07.31.09.26.09.json",
+        "URL": "https://prod-cdn-assets.gardensoftime-cloud.net/ho/"
+      },
+      "URLInfo_PreProd": {
+        "catalogHashKey": "",
+        "catalogName": "catalog_pp_12_2023.07.31.09.26.09.json",
+        "URL": "https://inactive-prod-cdn-assets.gardensoftime-cloud.net/ho/"
+      },
+      "URLInfo_Qatwo": {
+        "catalogHashKey": "",
+        "catalogName": "catalog_d_12_2023.07.31.09.26.09.json",
+        "URL": "https://dev-cdn-assets.gardensoftime-cloud.net/ho/"
+      },
+      "canCacheLocally": false,
+      "fueLabels": [],
+      "mandatoryLabels": [],
+      "slientLabels": [],
+      "isCacheReady_localVar": false
+    },
+    {
+      "catalogProjectName": "HO Scenes 13",
+      "URLInfo_Dev": {
+        "catalogHashKey": "",
+        "catalogName": "catalog_13_2026.11.02.10.44.21.json",
+        "URL": "https://qa-cdn-assets.gardensoftime-cloud.net/ho/"
+      },
+      "URLInfo_Prod": {
+        "catalogHashKey": "",
+        "catalogName": "catalog_13_p_2026.11.02.10.44.21.json",
+        "URL": "https://prod-cdn-assets.gardensoftime-cloud.net/ho/"
+      },
+      "URLInfo_PreProd": {
+        "catalogHashKey": "",
+        "catalogName": "catalog_13_pp_2026.11.02.10.44.21.json",
+        "URL": "https://inactive-prod-cdn-assets.gardensoftime-cloud.net/ho/"
+      },
+      "URLInfo_Qatwo": {
+        "catalogHashKey": "",
+        "catalogName": "catalog_13_d_2026.11.02.10.44.21.json",
+        "URL": "https://dev-cdn-assets.gardensoftime-cloud.net/ho/"
+      },
+      "canCacheLocally": false,
+      "fueLabels": [],
+      "mandatoryLabels": [],
+      "slientLabels": [],
+      "isCacheReady_localVar": false
+    }
+  ]
+}
