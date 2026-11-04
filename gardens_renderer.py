@@ -34,6 +34,7 @@ def main(argv=None):
     select.add_argument('--all', action='store_true')
     select.add_argument('--test-all', action='store_true', help='Test every scene/version with isolated workers and resumable reports')
     select.add_argument('--retry-incomplete', action='store_true', help='Retry only incomplete versions from the existing output checkpoint; preserve all other results')
+    select.add_argument('--update', action='store_true', help='Discover new chapters/versions and retry incomplete ones while preserving prior passing outputs')
     select.add_argument('--scene', action='append', help='Exact scene ID; may be repeated')
     p.add_argument('--output', type=Path, default=ROOT / 'output')
     p.add_argument('--render', action='store_true', help='Render selected ordinary scenes; --all uses the resumable isolated test runner')
@@ -49,8 +50,8 @@ def main(argv=None):
     p.add_argument('--retries', type=int, default=2)
     p.add_argument('--property', action='append', default=[], metavar='NAME=VALUE', help='Verified Unity runtime property; never guessed')
     args = p.parse_args(argv)
-    if args.test_all or args.retry_incomplete: args.render=True
-    batch_mode=args.test_all or args.retry_incomplete or (args.all and args.render)
+    if args.test_all or args.retry_incomplete or args.update: args.render=True
+    batch_mode=args.test_all or args.retry_incomplete or args.update or (args.all and args.render)
     if args.render and args.index_only: p.error('--render/--test-all cannot use --index-only')
     if not batch_mode and (args.plan_only or args.retry_failed or args.test_limit is not None or args.test_timeout!=300):
         p.error('Test options require --test-all or --all --render')
@@ -67,6 +68,10 @@ def main(argv=None):
             p.error('--retry-incomplete uses the saved roster; do not combine it with --retry-failed or catalogue overrides')
         from gardens.batch import retry_incomplete
         return retry_incomplete(args)
+    if args.update:
+        if args.retry_failed:p.error('--update preserves previous failed results; do not combine it with --retry-failed')
+        if not (args.output.resolve()/'batch/tests.sqlite3').is_file():
+            p.error('--update requires the same --output folder and batch/tests.sqlite3 from the previous run')
     properties = {}
     for item in args.property:
         key, sep, value = item.partition('=')
@@ -112,7 +117,7 @@ def main(argv=None):
                 validate(dest)
                 result = {'status': 'cached', 'sha256': sha256(dest)}
             else:
-                result = client.fetch(url, dest, validate, args.refresh_catalogues)
+                result = client.fetch(url, dest, validate, args.refresh_catalogues or args.update)
             parsed, info = parse_catalogue(dest.read_bytes(), url, properties)
             locations.extend(parsed)
             report.update(status='indexed', transfer=result['status'], sha256=result['sha256'], **info)
@@ -126,7 +131,31 @@ def main(argv=None):
     atomic_json(out / 'bundle_index.json', [loc.to_dict() for loc in locations if loc.is_bundle])
     # Persist asset keys and dependency relationships too; bundle-only index is insufficient.
     atomic_json(out / 'location_index.json', [loc.to_dict() for loc in locations])
+    if args.update and complete:
+        from gardens.chapters import discover_chapters
+        scenes,chapter_report=discover_chapters(scenes,index,out,client,discovery.get('config_path'),args.offline)
+    elif args.update:
+        chapter_report={'status':'unavailable','issues':['Catalogue coverage is incomplete; no new chapters or versions enrolled'],'unverified_scenes':[]}
     matches = match_scenes(scenes, index, complete)
+    if args.update:
+        from gardens.incremental import enroll_updates
+        from gardens.batch import retry_incomplete
+        # Missing metadata can reserve a chronological position but must never
+        # become an eligible scene worker or a successful reconstruction.
+        unverified={entry['scene_id']:entry for entry in chapter_report.get('unverified_scenes',[])}
+        for row in matches:
+            if row['scene_id'] in unverified:
+                row['issues'].extend(unverified[row['scene_id']].get('issues',['Item Manager metadata is not verified']))
+                row['status']='unresolved'
+        atomic_json(out/'chapter_discovery.json',chapter_report)
+        atomic_json(out/'update_scene_matches.json',matches)
+        enrollment=enroll_updates(out,scenes,matches,complete=complete)
+        update={**enrollment,'chapter_discovery':chapter_report,'catalogue_source':discovery['source']}
+        atomic_json(out/'update_discovery.json',update)
+        code=retry_incomplete(args,update_metadata=update)
+        discovery_ok=(complete and chapter_report.get('status')!='unavailable'
+                      and not chapter_report.get('unverified_scenes') and not enrollment.get('blocked_update_variants'))
+        return code if args.plan_only or discovery_ok else (code or 1)
     atomic_json(out / 'duplicate_scenes.json', duplicates)
     if batch_mode:
         from gardens.batch import run_batch

@@ -1,0 +1,269 @@
+{
+  "date": "2026-11-04",
+  "scope": "Live Chapter 748 discovery and reconstruction smoke test; not a fresh full-catalogue reconstruction.",
+  "identity": {
+    "schema": 1,
+    "code": "1647c21d71370bcc2d683c698a6b0032e503301ab8a334b3719ba16f582e6b7e",
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "platform": "Linux",
+    "packages": {
+      "UnityPy": "1.25.4",
+      "Pillow": "13.0.0"
+    }
+  },
+  "catalogue_endpoint": "https://prod-cdn-assets.gardensoftime-cloud.net/unity6/webgl/StreamingAssets/GOT_RemoteConfig.json",
+  "new_chapter": 748,
+  "ordered_scenes": [
+    {
+      "order": 4482,
+      "scene_id": "ch748CourageandRemembranceVeteransBreakfastDiner",
+      "variant_id": "335e8193323527ab",
+      "status": "passed",
+      "issues": [],
+      "hidden_objects": 60,
+      "named_pointers": 60,
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch748courageandremembranceveteransbreakfastdiner_assets_all_3a7573d0768940efca69ff3efac0ca7c.bundle"
+      ],
+      "png_sha256": {
+        "scene_empty.png": "b59fd768074cb18a711db8752ceee1fd4dcc1a867d3bef7d7f6b061705cf576e",
+        "scene_complete.png": "f878250981050b180ea148179bc10454dcac1a8039983c45984c6edc83f7e4ce",
+        "scene_solution.png": "93be42bca766e7b98046c10f079c413c771c17875f75a1dfa930e8b9fb671940"
+      }
+    },
+    {
+      "order": 4483,
+      "scene_id": "ch748CourageandRemembranceVeteransDayCeremonySTD",
+      "variant_id": "1223747a971788a9",
+      "status": "incomplete",
+      "issues": [
+        "STD rendering is not implemented; assets and Item Manager checked"
+      ],
+      "hidden_objects": null,
+      "named_pointers": null,
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch748courageandremembranceveteransdayceremonystd_assets_all_a3edb0ba476232b0cdead6b47674c078.bundle"
+      ],
+      "png_sha256": {}
+    },
+    {
+      "order": 4484,
+      "scene_id": "ch748CourageandRemembranceComradesAtTheCounterFTD1",
+      "variant_id": "77009241b4073eec",
+      "status": "incomplete",
+      "issues": [
+        "FTD rendering is not implemented; assets and Item Manager checked"
+      ],
+      "hidden_objects": null,
+      "named_pointers": null,
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch748courageandremembrancecomradesatthecounterftd1_assets_all_e8ea15a4e2601da9cc7678d929be111a.bundle"
+      ],
+      "png_sha256": {}
+    },
+    {
+      "order": 4485,
+      "scene_id": "ch748CourageandRemembranceVeteransClassicCarDrive",
+      "variant_id": "66112f82bebbd0f0",
+      "status": "passed",
+      "issues": [],
+      "hidden_objects": 60,
+      "named_pointers": 60,
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch748courageandremembranceveteransclassiccardrive_assets_all_22608ea201a513292046726793c71f01.bundle"
+      ],
+      "png_sha256": {
+        "scene_empty.png": "bdf7c697b4273889f041d9785103a6a8021e35753557c4eafb7d1226f52493f2",
+        "scene_complete.png": "922b6cc50da6d5081861d82c5b60e568201f6a94a809e9730eb67bc0689b802d",
+        "scene_solution.png": "cf57707a51ba28625f6a83d88a4ba1ecc9de6e380e588ed749a521a11ebad79c"
+      }
+    },
+    {
+      "order": 4486,
+      "scene_id": "ch748CourageandRemembranceVeteransMuseumFTO",
+      "variant_id": "8fc938e7b4e4a1e9",
+      "status": "incomplete",
+      "issues": [
+        "FTO rendering is not implemented; assets and Item Manager checked"
+      ],
+      "hidden_objects": null,
+      "named_pointers": null,
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch748courageandremembranceveteransmuseumfto_assets_all_640d7b4edce88424fb68fb13797aa907.bundle"
+      ],
+      "png_sha256": {}
+    },
+    {
+      "order": 4487,
+      "scene_id": "ch748CourageandRemembranceMainStreetSalute",
+      "variant_id": "0927d0acb929fbbd",
+      "status": "passed",
+      "issues": [],
+      "hidden_objects": 59,
+      "named_pointers": 59,
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch748courageandremembrancemainstreetsalute_assets_all_82a92d9bbb00b0f84265d0d297241ca8.bundle"
+      ],
+      "png_sha256": {
+        "scene_empty.png": "0a87d45e94f40ee76b916029f5da2486554905bfe8cf0c1cf8d5470298783b7e",
+        "scene_complete.png": "0c5345fe3bf98915134594d6221271b2434848de61e980c6e247367eae165b22",
+        "scene_solution.png": "56d8360a7385cd6fe59e1fd887d7b58887b027e83d24ae70679c73e59fb1e320"
+      }
+    }
+  ],
+  "existing_planned_rows_preserved": 4689,
+  "passed_pngs_preserved_across_repeat_update": 9,
+  "passed_checkpoint_rows_preserved_across_code_change": 3,
+  "repeat_enrollment": {
+    "added_scenes": 0,
+    "added_variants": 0,
+    "discovery_complete": true,
+    "ignored_inactive": 0,
+    "discovered_blocked": 0,
+    "retired_placeholders": 0,
+    "blocked_update_variants": 0,
+    "chapter_discovery": {
+      "status": "available",
+      "errors": [],
+      "added_scenes": [
+        {
+          "scene_id": "ch748CourageandRemembranceVeteransBreakfastDiner",
+          "chapter": 748,
+          "mission_id": "9714",
+          "position": 1,
+          "source_scene_id": "2887953"
+        },
+        {
+          "scene_id": "ch748CourageandRemembranceVeteransDayCeremonySTD",
+          "chapter": 748,
+          "mission_id": "9715",
+          "position": 2,
+          "source_scene_id": "2887955"
+        },
+        {
+          "scene_id": "ch748CourageandRemembranceComradesAtTheCounterFTD1",
+          "chapter": 748,
+          "mission_id": "9716",
+          "position": 3,
+          "source_scene_id": "2887957"
+        },
+        {
+          "scene_id": "ch748CourageandRemembranceVeteransClassicCarDrive",
+          "chapter": 748,
+          "mission_id": "9717",
+          "position": 4,
+          "source_scene_id": "2887959"
+        },
+        {
+          "scene_id": "ch748CourageandRemembranceVeteransMuseumFTO",
+          "chapter": 748,
+          "mission_id": "9718",
+          "position": 5,
+          "source_scene_id": "2887961"
+        },
+        {
+          "scene_id": "ch748CourageandRemembranceMainStreetSalute",
+          "chapter": 748,
+          "mission_id": "9719",
+          "position": 6,
+          "source_scene_id": "2887963"
+        }
+      ],
+      "new_chapters": [
+        748
+      ],
+      "unverified_scenes": [],
+      "missing_assets": [],
+      "verified_item_managers": [
+        {
+          "scene_id": "ch748CourageandRemembranceVeteransBreakfastDiner",
+          "url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_ch748CourageandRemembranceVeteransBreakfastDiner.json",
+          "sha256": "96b788aba27b1a706d40029ca59af5826dce168161b786c039481062631183f9",
+          "provenance": "CSV-derived path convention, verified HTTP/cache content and object label JSON"
+        },
+        {
+          "scene_id": "ch748CourageandRemembranceVeteransDayCeremonySTD",
+          "url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_ch748CourageandRemembranceVeteransDayCeremonySTD.json",
+          "sha256": "73ac22d16d9895f4bdf2ae09a7d234ac2395dcc23059da2b1092a3b876ac5fd4",
+          "provenance": "CSV-derived path convention, verified HTTP/cache content and object label JSON"
+        },
+        {
+          "scene_id": "ch748CourageandRemembranceComradesAtTheCounterFTD1",
+          "url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_ch748CourageandRemembranceComradesAtTheCounterFTD1.json",
+          "sha256": "27f5fc3d99725d3e24bbd335dbd10f8b9d8f9a58c4a46e22f0bacbefd2fab86d",
+          "provenance": "CSV-derived path convention, verified HTTP/cache content and object label JSON"
+        },
+        {
+          "scene_id": "ch748CourageandRemembranceVeteransClassicCarDrive",
+          "url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_ch748CourageandRemembranceVeteransClassicCarDrive.json",
+          "sha256": "00603b9aad49138ae906abc0ed8ebdcf1b3d3225a34026ccc0a24a3f347a0e81",
+          "provenance": "CSV-derived path convention, verified HTTP/cache content and object label JSON"
+        },
+        {
+          "scene_id": "ch748CourageandRemembranceVeteransMuseumFTO",
+          "url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_ch748CourageandRemembranceVeteransMuseumFTO.json",
+          "sha256": "4df887094dabd2ca2e705c503ecd65a0ec931ad0e18c28eea5160367a236c245",
+          "provenance": "CSV-derived path convention, verified HTTP/cache content and object label JSON"
+        },
+        {
+          "scene_id": "ch748CourageandRemembranceMainStreetSalute",
+          "url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_ch748CourageandRemembranceMainStreetSalute.json",
+          "sha256": "7c5301c9f108b562ccad51cf8aa6d06c301d65a30c8d44c820646e34b3ad3c75",
+          "provenance": "CSV-derived path convention, verified HTTP/cache content and object label JSON"
+        }
+      ],
+      "omitted_runtime_script_bundles": [
+        {
+          "location_id": "https://prod-cdn-assets.gardensoftime-cloud.net/unity6/webgl/ServerData/prod/WebGL/6000.4.1f1/mainproject_2/catalog_2026.11.04.08.45.38.json#1",
+          "internal_id": "{UnityEngine.AddressableAssets.Addressables.RuntimePath}/WebGL/6000.4.1f1/e651d7f61f73cc0de06dd9b8244de2d9_monoscripts_540778fbe587d0127d85bcfe71598e21.bundle",
+          "reason": "Metadata-only Group00 value decoding uses the embedded type tree and executes no Unity scripts"
+        }
+      ],
+      "base_max_chapter": 747,
+      "skipped_duplicates": [],
+      "manager_candidates": {
+        "ch748CourageandRemembranceVeteransBreakfastDiner": [
+          "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_ch748CourageandRemembranceVeteransBreakfastDiner.json"
+        ],
+        "ch748CourageandRemembranceVeteransDayCeremonySTD": [
+          "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_ch748CourageandRemembranceVeteransDayCeremonySTD.json"
+        ],
+        "ch748CourageandRemembranceComradesAtTheCounterFTD1": [
+          "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_ch748CourageandRemembranceComradesAtTheCounterFTD1.json",
+          "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_ch748CourageandRemembranceComradesAtTheCounter.json"
+        ],
+        "ch748CourageandRemembranceVeteransClassicCarDrive": [
+          "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_ch748CourageandRemembranceVeteransClassicCarDrive.json"
+        ],
+        "ch748CourageandRemembranceVeteransMuseumFTO": [
+          "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_ch748CourageandRemembranceVeteransMuseumFTO.json"
+        ],
+        "ch748CourageandRemembranceMainStreetSalute": [
+          "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_ch748CourageandRemembranceMainStreetSalute.json"
+        ]
+      },
+      "source_catalogue": "https://prod-cdn-assets.gardensoftime-cloud.net/unity6/webgl/ServerData/prod/WebGL/6000.4.1f1/mainproject_2/catalog_2026.11.04.08.45.38.json",
+      "metadata_source": "verified_cache",
+      "source_catalogue_sha256": "5e5e9fd6d15e7072c165c3d5688d990df6713c6b16dc96dc630214c62a65d7be",
+      "source_config_sha256": "5b517a92212d050acc95f20b353ae3eb092b245891667418ac94d93d7fb810a2",
+      "source_asset": "Assets/Data/GameData/StaticData/Prod/Group00_VO_SO.asset",
+      "source_bundles": [
+        {
+          "url": "https://prod-cdn-assets.gardensoftime-cloud.net/unity6/webgl/ServerData/prod/WebGL/6000.4.1f1/mainproject_2/data/staticdata/staticdata_prod_assets_all_32372eea4a67d034f691b7cfb7320ab3.bundle",
+          "sha256": "b5610d2540431637057ddc7043ad37430185a96119c00eec6ae0413de86539d6"
+        }
+      ]
+    },
+    "catalogue_source": "cached_remote_config"
+  },
+  "report_query_before_index_seconds": 18.106,
+  "report_query_after_index_seconds": 0.009,
+  "report_query_plan": [
+    [
+      6,
+      0,
+      54,
+      "SEARCH jobs USING COVERING INDEX active_scene_status (active=? AND scene_id=?)"
+    ]
+  ]
+}

@@ -36,13 +36,14 @@ points to the game's official loading configuration for automatic discovery:
 https://prod-cdn-assets.gardensoftime-cloud.net/unity6/webgl/StreamingAssets/GOT_RemoteConfig.json
 ```
 
-Each online invocation snapshots that JSON and reads `assetCatalogInfo`, selecting
+Each online catalogue scan snapshots that JSON and reads `assetCatalogInfo`, selecting
 `HO Scenes <number>` entries and joining their explicit `URLInfo_Prod.URL` and
 `URLInfo_Prod.catalogName` fields. It does not guess filenames or require exactly
 13 groups, so a future explicitly listed HO group can be discovered. Main-game,
-ISO/garden and QA/dev/preproduction catalogues are not downloaded by this scene
-workflow. The selected production projects and excluded project names are listed
-in `output/catalogue_discovery.json`.
+ISO/garden and QA/dev/preproduction art catalogues are excluded. The `--update`
+mode additionally reads the production MainProject catalogue for chapter metadata.
+The selected production projects and excluded project names are listed in
+`output/catalogue_discovery.json`.
 
 Raw config snapshots and their hashes are retained under `output/remote_config/`.
 The catalogue list is frozen for the invocation: a config update cannot alter an
@@ -151,6 +152,44 @@ incomplete scenes. Interrupted or unattempted retries retain their incomplete
 checkpoints; repeat the command to retry them. Run one command at a time against
 the output folder. Unlike `--retry-incomplete`, the full `--test-all` mode still
 invalidates old passing checkpoints when the renderer changes.
+
+**Retry incomplete scenes and add newly published chapters/versions:**
+
+```cmd
+py gardens_renderer.py --update --output output
+```
+
+After the current run finishes and you install the updated code, this command
+refreshes the official remote configuration and production HO catalogues. It
+also reads the production `Group00_VO_SO` static-data asset, using its explicit
+chapter → ordered mission → scene references to append chapters beyond the
+corrected CSV. The CSV and all previously saved scene orders stay unchanged.
+Item Manager URLs follow the convention demonstrated in that CSV and must return
+verified label JSON before a new scene becomes eligible. No labels are invented.
+
+Only saved incomplete versions and newly discovered eligible versions run.
+Previously passed images, validation fingerprints and checkpoint rows are
+preserved. Other previously saved statuses are left alone. Missing new assets or
+metadata reserve a blocked chronological slot; later updates can activate that
+slot once verified resources appear. A new version of an existing scene is saved
+under `scenes/_new_versions/<scene_id>/variant_<id>/`, keeping its previous files
+in place. New scene IDs use their own normal scene output folders.
+
+The check happens at the start of each invocation; an ongoing run does not add
+chapters halfway through. Repeating the command discovers later chapters without
+duplicating earlier variants. `--plan-only` registers/exports the update plan
+without rendering, and `--test-limit` limits the selected scenes. Keep the same
+output folder and its `batch/tests.sqlite3` file. The command does not launch a
+full test roster or invalidate passing scenes because the renderer changed.
+
+`chapter_discovery.json`, `update_scene_matches.json` and `update_discovery.json`
+record source hashes, chapter/mission provenance, verified URLs and unavailable
+resources. New blocked resources or failed reconstruction produce a nonzero exit
+status. Automatic discovery does not guarantee every new scene can render;
+unsupported scene modes and missing data remain explicit. Incomplete catalogue
+coverage makes no new enrollments, while saved incomplete variants can still be
+retried. The update reads MainProject's chapter metadata only, rather than
+rebuilding the playable game.
 
 To process a few pending scenes per invocation, including every matched version
 of each selected scene:
@@ -433,3 +472,7 @@ and remain incomplete; the renderer does not reposition them.
 The [ordinary-scene regression report](docs/ordinary-scene-recovery.md) records the
 151-version next-build test, its fixed cases, and every remaining scene grouped
 by cause. It is not a claim that the full catalogue has passed.
+
+The [live Chapter 748 update check](docs/incremental-updates.md) records discovery,
+three ordinary-scene reconstructions, and preservation of passing outputs on a
+repeated update.

@@ -24,3 +24,10 @@ bundle variant in the user's chapter 82 report, downloaded on 2026-11-04.
 It tests atlas-v3/tag-15 decoding against real data: 76 root atlas elements,
 including rotated entries, and separate nested atlas scopes. It contains no
 texture pixels and is used offline.
+
+
+chapter747_748.json contains the actual production chapter/mission/scene records
+for chapters 747 and 748 from the MainProject Group00_VO_SO asset, read on
+2026-11-04. Its source catalogue URL, bundle URL and SHA-256 are stored in the
+fixture. The tests verify authoritative mission order, replay deduplication,
+metadata validation and preservation of the corrected CSV rows.

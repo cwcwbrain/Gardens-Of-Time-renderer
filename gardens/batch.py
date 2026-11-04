@@ -57,6 +57,7 @@ class Ledger:
         self.db.execute('CREATE TABLE IF NOT EXISTS scenes (id TEXT PRIMARY KEY, ordinal INTEGER, match_status TEXT, issues TEXT, active INTEGER)')
         self.db.execute('CREATE TABLE IF NOT EXISTS jobs (scene_id TEXT, variant_id TEXT, ordinal INTEGER, fingerprint TEXT, status TEXT, definition TEXT, result TEXT, active INTEGER, PRIMARY KEY(scene_id,variant_id))')
         self.db.execute('CREATE INDEX IF NOT EXISTS active_job_status ON jobs(active,status,ordinal,variant_id)')
+        self.db.execute('CREATE INDEX IF NOT EXISTS active_scene_status ON jobs(active,scene_id,status)')
         self.db.commit()
 
     def close(self):self.db.close()
@@ -179,7 +180,7 @@ def execute_job(job,job_path,result_path,log_path,timeout):
     return result
 
 
-def retry_incomplete(args,runner=None):
+def retry_incomplete(args,runner=None,update_metadata=None):
     """Retry the saved incomplete variants without preparing a new roster.
 
     Unattempted/in-flight jobs keep their old incomplete checkpoint until a new
@@ -202,6 +203,8 @@ def retry_incomplete(args,runner=None):
                'preserved_passed_variants':sum(row['status']=='passed' for row in rows),
                'attempted_variants':0,'remaining_selected_variants':len(selected),
                'renderer_identity':identity}
+        if update_metadata is not None:
+            retry.update(retry_scope='incomplete_and_new',update_discovery=update_metadata)
         # Preflight the whole selection before workers or report writes. A saved
         # destination must not redirect a retry over a preserved scene/version.
         preserved=set()
@@ -224,7 +227,8 @@ def retry_incomplete(args,runner=None):
             if args.frame is not None:definition['frame']=args.frame
             fp=fingerprint({'identity':identity,'definition':definition,'test_timeout':args.test_timeout})
             definition['fingerprint']=fp;jobs.append((row,definition))
-        print(f"Retrying only {len(selected)} saved incomplete variants; preserving {retry['preserved_passed_variants']} passed variants and all other results.",flush=True)
+        label='incomplete/new' if update_metadata is not None else 'saved incomplete'
+        print(f"Retrying only {len(selected)} {label} variants; preserving {retry['preserved_passed_variants']} passed variants and all other results.",flush=True)
         ledger.export(out,run_id,'planned' if args.plan_only else 'in_progress',retry)
         outcomes=[];active_scene=None;started_scenes=0
         try:

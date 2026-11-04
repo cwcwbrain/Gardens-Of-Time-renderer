@@ -1,0 +1,290 @@
+{
+  "source_catalogue": "https://prod-cdn-assets.gardensoftime-cloud.net/unity6/webgl/ServerData/prod/WebGL/6000.4.1f1/mainproject_2/catalog_2026.11.04.08.45.38.json",
+  "source_bundle": "https://prod-cdn-assets.gardensoftime-cloud.net/unity6/webgl/ServerData/prod/WebGL/6000.4.1f1/mainproject_2/data/staticdata/staticdata_prod_assets_all_32372eea4a67d034f691b7cfb7320ab3.bundle",
+  "source_bundle_sha256": "b5610d2540431637057ddc7043ad37430185a96119c00eec6ae0413de86539d6",
+  "m_Name": "Group00_VO_SO",
+  "storyVOs": [
+    {
+      "stid": "792301",
+      "name": "chapter_747",
+      "disposition": "1",
+      "mission_ids": "9707,9708,9709,9710,9711,9712",
+      "display_order": "750"
+    },
+    {
+      "stid": "792303",
+      "name": "chapter_748",
+      "disposition": "1",
+      "mission_ids": "9714,9715,9716,9717,9718,9719",
+      "display_order": "751"
+    }
+  ],
+  "missionVOs": [
+    {
+      "mid": "9707",
+      "name": "ch747_illumination_of_the_heart_festive_market",
+      "parent_stid": "792301",
+      "bgmusic": "default",
+      "premium_item_id": "",
+      "energy_cost": "10",
+      "unlock_cost": "67",
+      "sort_order": "1",
+      "reward_base_score": "84000",
+      "hidden_items_limit": "12",
+      "reputation": "991900000",
+      "activation_date": "0",
+      "default_mode": "1",
+      "crystal_cost": "0",
+      "scene_id": "2887941"
+    },
+    {
+      "mid": "9708",
+      "name": "ch700_court_of_golden_leaves__lanterns_of_lost_chapters_std",
+      "parent_stid": "792301",
+      "bgmusic": "default",
+      "premium_item_id": "",
+      "energy_cost": "10",
+      "unlock_cost": "67",
+      "sort_order": "2",
+      "reward_base_score": "84000",
+      "hidden_items_limit": "12",
+      "reputation": "992200000",
+      "activation_date": "0",
+      "default_mode": "8",
+      "crystal_cost": "0",
+      "scene_id": "2887943"
+    },
+    {
+      "mid": "9709",
+      "name": "ch720_choice_that_shapes_time__lanterns_over_the_yangtze_ftd",
+      "parent_stid": "792301",
+      "bgmusic": "default",
+      "premium_item_id": "",
+      "energy_cost": "10",
+      "unlock_cost": "67",
+      "sort_order": "3",
+      "reward_base_score": "84000",
+      "hidden_items_limit": "6",
+      "reputation": "992500000",
+      "activation_date": "0",
+      "default_mode": "4",
+      "crystal_cost": "0",
+      "scene_id": "2887945"
+    },
+    {
+      "mid": "9710",
+      "name": "ch747_illumination_of_the_heart_courtyard_rangoli_art",
+      "parent_stid": "792301",
+      "bgmusic": "default",
+      "premium_item_id": "",
+      "energy_cost": "10",
+      "unlock_cost": "67",
+      "sort_order": "4",
+      "reward_base_score": "84000",
+      "hidden_items_limit": "12",
+      "reputation": "992800000",
+      "activation_date": "0",
+      "default_mode": "1",
+      "crystal_cost": "0",
+      "scene_id": "2887947"
+    },
+    {
+      "mid": "9711",
+      "name": "ch277_mysore__mysore_palace_grounds_fto",
+      "parent_stid": "792301",
+      "bgmusic": "default",
+      "premium_item_id": "",
+      "energy_cost": "10",
+      "unlock_cost": "67",
+      "sort_order": "5",
+      "reward_base_score": "84000",
+      "hidden_items_limit": "12",
+      "reputation": "993100000",
+      "activation_date": "0",
+      "default_mode": "14",
+      "crystal_cost": "0",
+      "scene_id": "2887949"
+    },
+    {
+      "mid": "9712",
+      "name": "ch747_illumination_of_the_heart_festival_of_lights_celebration",
+      "parent_stid": "792301",
+      "bgmusic": "default",
+      "premium_item_id": "13451949",
+      "energy_cost": "10",
+      "unlock_cost": "67",
+      "sort_order": "6",
+      "reward_base_score": "84000",
+      "hidden_items_limit": "12",
+      "reputation": "0",
+      "activation_date": "0",
+      "default_mode": "1",
+      "crystal_cost": "0",
+      "scene_id": "2887951"
+    },
+    {
+      "mid": "9714",
+      "name": "ch748_courage_and_remembrance_veterans_breakfast_diner",
+      "parent_stid": "792303",
+      "bgmusic": "default",
+      "premium_item_id": "",
+      "energy_cost": "10",
+      "unlock_cost": "67",
+      "sort_order": "1",
+      "reward_base_score": "84000",
+      "hidden_items_limit": "12",
+      "reputation": "993400000",
+      "activation_date": "0",
+      "default_mode": "1",
+      "crystal_cost": "0",
+      "scene_id": "2887953"
+    },
+    {
+      "mid": "9715",
+      "name": "ch437_veterans_day_traditions__veterans_day_ceremony_std",
+      "parent_stid": "792303",
+      "bgmusic": "default",
+      "premium_item_id": "",
+      "energy_cost": "10",
+      "unlock_cost": "67",
+      "sort_order": "2",
+      "reward_base_score": "84000",
+      "hidden_items_limit": "12",
+      "reputation": "993700000",
+      "activation_date": "0",
+      "default_mode": "8",
+      "crystal_cost": "0",
+      "scene_id": "2887955"
+    },
+    {
+      "mid": "9716",
+      "name": "ch592_the_missing_corsair_stone__comrades_at_the_counter_ftd",
+      "parent_stid": "792303",
+      "bgmusic": "default",
+      "premium_item_id": "",
+      "energy_cost": "10",
+      "unlock_cost": "67",
+      "sort_order": "3",
+      "reward_base_score": "84000",
+      "hidden_items_limit": "6",
+      "reputation": "994000000",
+      "activation_date": "0",
+      "default_mode": "4",
+      "crystal_cost": "0",
+      "scene_id": "2887957"
+    },
+    {
+      "mid": "9717",
+      "name": "ch748_courage_and_remembrance_veterans_classic_car_drive",
+      "parent_stid": "792303",
+      "bgmusic": "default",
+      "premium_item_id": "",
+      "energy_cost": "10",
+      "unlock_cost": "67",
+      "sort_order": "4",
+      "reward_base_score": "84000",
+      "hidden_items_limit": "12",
+      "reputation": "994300000",
+      "activation_date": "0",
+      "default_mode": "1",
+      "crystal_cost": "0",
+      "scene_id": "2887959"
+    },
+    {
+      "mid": "9718",
+      "name": "ch437_veterans_day_traditions__veterans_museum_fto",
+      "parent_stid": "792303",
+      "bgmusic": "default",
+      "premium_item_id": "",
+      "energy_cost": "10",
+      "unlock_cost": "67",
+      "sort_order": "5",
+      "reward_base_score": "84000",
+      "hidden_items_limit": "12",
+      "reputation": "994600000",
+      "activation_date": "0",
+      "default_mode": "14",
+      "crystal_cost": "0",
+      "scene_id": "2887961"
+    },
+    {
+      "mid": "9719",
+      "name": "ch748_courage_and_remembrance_main_street_salute",
+      "parent_stid": "792303",
+      "bgmusic": "default",
+      "premium_item_id": "13451991",
+      "energy_cost": "10",
+      "unlock_cost": "67",
+      "sort_order": "6",
+      "reward_base_score": "84000",
+      "hidden_items_limit": "12",
+      "reputation": "0",
+      "activation_date": "0",
+      "default_mode": "1",
+      "crystal_cost": "0",
+      "scene_id": "2887963"
+    }
+  ],
+  "sceneVOs": [
+    {
+      "sid": "2887941",
+      "name": "ch747IlluminationoftheHeartFestiveMarket",
+      "gameplay_mode": "1"
+    },
+    {
+      "sid": "2887943",
+      "name": "ch747IlluminationoftheHeartLanternsofLostChaptersSTD",
+      "gameplay_mode": "8"
+    },
+    {
+      "sid": "2887945",
+      "name": "ch747IlluminationoftheHeartLanternsOvertheYangtzeFTD1",
+      "gameplay_mode": "4"
+    },
+    {
+      "sid": "2887947",
+      "name": "ch747IlluminationoftheHeartCourtyardRangoliArt",
+      "gameplay_mode": "1"
+    },
+    {
+      "sid": "2887949",
+      "name": "ch747IlluminationoftheHeartMysorePalaceGroundsFTO",
+      "gameplay_mode": "14"
+    },
+    {
+      "sid": "2887951",
+      "name": "ch747IlluminationoftheHeartFestivalofLightsCelebration",
+      "gameplay_mode": "1"
+    },
+    {
+      "sid": "2887953",
+      "name": "ch748CourageandRemembranceVeteransBreakfastDiner",
+      "gameplay_mode": "1"
+    },
+    {
+      "sid": "2887955",
+      "name": "ch748CourageandRemembranceVeteransDayCeremonySTD",
+      "gameplay_mode": "8"
+    },
+    {
+      "sid": "2887957",
+      "name": "ch748CourageandRemembranceComradesAtTheCounterFTD1",
+      "gameplay_mode": "4"
+    },
+    {
+      "sid": "2887959",
+      "name": "ch748CourageandRemembranceVeteransClassicCarDrive",
+      "gameplay_mode": "1"
+    },
+    {
+      "sid": "2887961",
+      "name": "ch748CourageandRemembranceVeteransMuseumFTO",
+      "gameplay_mode": "14"
+    },
+    {
+      "sid": "2887963",
+      "name": "ch748CourageandRemembranceMainStreetSalute",
+      "gameplay_mode": "1"
+    }
+  ]
+}
