@@ -124,6 +124,34 @@ after fixing inputs or access:
 py gardens_renderer.py --test-all --retry-failed --output output
 ```
 
+**Retry only incomplete versions after updating the renderer:**
+
+```cmd
+py gardens_renderer.py --retry-incomplete --output output
+```
+
+Use the **same output folder** as the finished run and keep its
+`batch/tests.sqlite3` file. This mode selects only saved active variants with
+status `incomplete`. Passed variants, including passed siblings in a partial
+scene, keep their images and checkpoint rows unchanged even after a code update.
+Failed, blocked, pending and running variants are also left alone. It uses the
+saved bundle URLs and destinations, without rereading the spreadsheet or
+discovering catalogues. A missing checkpoint stops the command; it never falls
+back to a full run.
+
+Aggregate CSV/JSON reports refresh. `test_report.csv` records each variant's
+original or updated `validation_fingerprint` and whether it was selected for
+this retry. The summary records the selection and preserved-pass counts. Retained
+passes remain results from their original build, not new validation by the
+updated renderer. The command exits successfully when all selected retries pass
+(or none need retrying), even if unrelated variants still have other statuses.
+
+Use `--plan-only` to preview the selection, or `--test-limit 4` to retry up to four
+incomplete scenes. Interrupted or unattempted retries retain their incomplete
+checkpoints; repeat the command to retry them. Run one command at a time against
+the output folder. Unlike `--retry-incomplete`, the full `--test-all` mode still
+invalidates old passing checkpoints when the renderer changes.
+
 To process a few pending scenes per invocation, including every matched version
 of each selected scene:
 
@@ -385,11 +413,9 @@ still require exact names. Unknown named visuals remain in the previews and in
 `unresolved_named_objects`; they block certification. Failed rerenders remove
 stale final image filenames, keeping previews under `incomplete/`.
 
-Wait until an active Windows run finishes before replacing its code. Then use
-the updated build and run `py -m unittest discover -s tests -v`, followed by
-`py gardens_renderer.py --test-all --retry-failed --output output` to validate
-against the current sources. Renderer changes invalidate previous test proofs,
-so the updated build may retest previously passing scenes too.
+Wait until an active Windows run finishes before replacing its code. After
+updating, use `py gardens_renderer.py --retry-incomplete --output output` to
+change only its incomplete variants while preserving other scene results.
 
 
 Spatial filters use the reference Unity compatibility path's 32 uniformly spaced

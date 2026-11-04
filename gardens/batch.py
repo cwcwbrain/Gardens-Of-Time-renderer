@@ -104,7 +104,7 @@ class Ledger:
     def counts(self):
         return {row['status']:row['n'] for row in self.db.execute('SELECT status,count(*) n FROM jobs WHERE active=1 GROUP BY status')}
 
-    def export(self,out,run_id,state):
+    def export(self,out,run_id,state,retry=None):
         out=Path(out);counts=self.counts();scene_counts={};report_warnings=[]
         def publish_csv(name):
             try:(out/(name+'.tmp')).replace(out/name)
@@ -112,7 +112,7 @@ class Ledger:
                 message=f'{name} is locked; close it to refresh. SQLite checkpoint and {name}.tmp are current.'
                 report_warnings.append(message);print(message,flush=True)
         with (out/'test_report.csv.tmp').open('w',encoding='utf-8-sig',newline='') as f:
-            fields=['order','scene_id','variant_id','status','stage','issues','hidden_objects','named_pointers','bundle_count','bundle_urls','output','log','elapsed_seconds']
+            fields=['order','scene_id','variant_id','status','stage','issues','hidden_objects','named_pointers','bundle_count','bundle_urls','output','log','elapsed_seconds','validation_fingerprint','selected_for_retry']
             writer=csv.DictWriter(f,fieldnames=fields);writer.writeheader()
             for job in self.db.execute('SELECT * FROM jobs WHERE active=1 ORDER BY ordinal,variant_id'):
                 result=json.loads(job['result']);definition=json.loads(job['definition'])
@@ -122,7 +122,9 @@ class Ledger:
                                  'bundle_count':result.get('bundle_count',''),
                                  'bundle_urls':json.dumps([b['url'] for b in (definition.get('candidate') or {}).get('bundles',[])],ensure_ascii=False),
                                  'output':definition['destination'],
-                                 'log':result.get('log',''),'elapsed_seconds':result.get('elapsed_seconds','')})
+                                 'log':result.get('log',''),'elapsed_seconds':result.get('elapsed_seconds',''),
+                                 'validation_fingerprint':job['fingerprint'],
+                                 'selected_for_retry':(job['scene_id'],job['variant_id']) in retry['keys'] if retry else ''})
         publish_csv('test_report.csv')
         with (out/'scene_test_report.csv.tmp').open('w',encoding='utf-8-sig',newline='') as f:
             writer=csv.DictWriter(f,fieldnames=['order','scene_id','match_status','status','variants','passed','incomplete','failed','blocked','pending','running'])
@@ -148,6 +150,9 @@ class Ledger:
                  'report_warnings':report_warnings,
                  'limitations':['Passed means structural/metadata/visibility snapshot checks; game pixel parity is unverified.',
                                 'Unsupported FTD/STD/FTO and geometry/effects remain explicitly incomplete.']}
+        if retry:
+            summary.update({k:v for k,v in retry.items() if k!='keys'})
+            summary['limitations'].append('Incomplete-only retry preserves all other results and their original validation fingerprints; prior passes are not revalidated by this build.')
         atomic_json(out/'all_scene_test_summary.json',summary);atomic_json(out/'summary.json',summary)
         return summary
 
@@ -172,6 +177,83 @@ def execute_job(job,job_path,result_path,log_path,timeout):
         result={'status':'failed','issues':[f'Cannot start worker: {exc}'],'files':[]}
     result.update(log=str(log_path),elapsed_seconds=round(time.monotonic()-started,3))
     return result
+
+
+def retry_incomplete(args,runner=None):
+    """Retry the saved incomplete variants without preparing a new roster.
+
+    Unattempted/in-flight jobs keep their old incomplete checkpoint until a new
+    outcome is committed. A limit, interrupt or abrupt shutdown can therefore
+    resume with the same command, without enrolling unrelated pending jobs.
+    """
+    out=Path(args.output).resolve();work=out/'batch';checkpoint=work/'tests.sqlite3'
+    if not checkpoint.is_file():
+        raise ValueError(f'No existing test checkpoint at {checkpoint}. Use the same --output folder as the finished run; no scenes were changed.')
+    ledger=Ledger(checkpoint);runner=runner or execute_job;run_id=uuid.uuid4().hex
+    try:
+        rows=list(ledger.db.execute('SELECT * FROM jobs WHERE active=1 ORDER BY ordinal,variant_id'))
+        selected=[row for row in rows if row['status']=='incomplete']
+        keys={(row['scene_id'],row['variant_id']) for row in selected}
+        identity=code_identity()
+        if selected and not args.plan_only and any(v is None for v in identity['packages'].values()):
+            raise ValueError('Install requirements.txt before running scene workers')
+        retry={'keys':keys,'retry_scope':'incomplete_only','selected_variants':len(selected),
+               'preserved_variants':len(rows)-len(selected),
+               'preserved_passed_variants':sum(row['status']=='passed' for row in rows),
+               'attempted_variants':0,'remaining_selected_variants':len(selected),
+               'renderer_identity':identity}
+        # Preflight the whole selection before workers or report writes. A saved
+        # destination must not redirect a retry over a preserved scene/version.
+        preserved=set()
+        for row in ledger.db.execute('SELECT * FROM jobs'):
+            if (row['scene_id'],row['variant_id']) in keys:continue
+            result=json.loads(row['result'])
+            preserved.update(Path(file).resolve() for file in result.get('files',[]))
+            if row['status']=='passed':
+                preserved.add(Path(json.loads(row['definition'])['destination']).resolve())
+        preserved_ancestors={parent for path in preserved for parent in path.parents}
+        jobs=[];scene_root=out/'scenes'
+        for row in selected:
+            definition=json.loads(row['definition']);definition.pop('fingerprint',None)
+            destination=Path(definition['destination']).resolve()
+            if destination==scene_root or not destination.is_relative_to(scene_root):
+                raise ValueError(f"Saved destination for {row['scene_id']} is outside {scene_root}; no scenes were changed")
+            if destination in preserved_ancestors or any(parent in preserved for parent in (destination,*destination.parents)):
+                raise ValueError(f"Saved destination for {row['scene_id']} overlaps preserved outputs; no scenes were changed")
+            definition.update(output=str(out),offline=args.offline,timeout=args.timeout,retries=args.retries)
+            if args.frame is not None:definition['frame']=args.frame
+            fp=fingerprint({'identity':identity,'definition':definition,'test_timeout':args.test_timeout})
+            definition['fingerprint']=fp;jobs.append((row,definition))
+        print(f"Retrying only {len(selected)} saved incomplete variants; preserving {retry['preserved_passed_variants']} passed variants and all other results.",flush=True)
+        ledger.export(out,run_id,'planned' if args.plan_only else 'in_progress',retry)
+        outcomes=[];active_scene=None;started_scenes=0
+        try:
+            if not args.plan_only:
+                for row,definition in jobs:
+                    if row['scene_id']!=active_scene:
+                        if args.test_limit is not None and started_scenes>=args.test_limit:break
+                        active_scene=row['scene_id'];started_scenes+=1
+                    key=hashlib.sha256((row['scene_id']+'\0'+row['variant_id']).encode()).hexdigest()[:24]
+                    print(f"Retry incomplete scene {row['ordinal']} {row['scene_id']} variant {row['variant_id']}",flush=True)
+                    result=runner(definition,work/(key+'.job.json'),work/(key+'.result.json'),work/(key+'.log'),args.test_timeout)
+                    # Only this selected row changes; every preserved row keeps
+                    # its original fingerprint, definition and result verbatim.
+                    ledger.db.execute('UPDATE jobs SET fingerprint=?,definition=?,status=?,result=? WHERE scene_id=? AND variant_id=?',
+                                      (definition['fingerprint'],json.dumps(definition),result['status'],json.dumps(result),row['scene_id'],row['variant_id']))
+                    ledger.db.commit();outcomes.append(result['status'])
+                    retry['attempted_variants']=len(outcomes);retry['remaining_selected_variants']=len(selected)-len(outcomes)
+                    print(f"  {result['status']}: {'; '.join(result.get('issues',[])) or 'snapshot checks passed'}",flush=True)
+                    if len(outcomes)%10==0:ledger.export(out,run_id,'in_progress',retry)
+            state='planned' if args.plan_only else ('paused' if retry['remaining_selected_variants'] else 'completed')
+            summary=ledger.export(out,run_id,state,retry)
+            print(json.dumps(summary,indent=2),flush=True)
+            if args.plan_only:return 0
+            return 0 if not retry['remaining_selected_variants'] and all(status=='passed' for status in outcomes) else 1
+        except KeyboardInterrupt:
+            ledger.export(out,run_id,'interrupted',retry)
+            print('Interrupted. Untested variants retain their incomplete checkpoints; repeat --retry-incomplete to retry them.',flush=True)
+            return 130
+    finally:ledger.close()
 
 
 def run_batch(scenes,matches,args,runner=None):

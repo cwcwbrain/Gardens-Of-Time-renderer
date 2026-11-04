@@ -44,7 +44,13 @@ After an existing Windows test run has finished, update the repository and run:
 
 ```cmd
 py -m unittest discover -s tests -v
-py gardens_renderer.py --test-all --retry-failed --output output
+py gardens_renderer.py --retry-incomplete --output output
 ```
 
-Renderer changes invalidate earlier checkpoint proofs. The updated build can therefore retest previously passing scenes. Keep the current run on its original code until it finishes.
+Use the same output folder and keep `batch/tests.sqlite3`. Incomplete-only retry
+uses that saved roster, without catalogue discovery. It retries only incomplete
+versions and preserves passed versions and every other status, even after a
+renderer update. Aggregate reports refresh; retained passes keep their original
+validation provenance. Full `--test-all` runs still invalidate earlier proofs
+when the renderer changes. Keep the current run on its original code until it
+finishes.

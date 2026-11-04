@@ -33,13 +33,14 @@ def main(argv=None):
     select = p.add_mutually_exclusive_group(required=True)
     select.add_argument('--all', action='store_true')
     select.add_argument('--test-all', action='store_true', help='Test every scene/version with isolated workers and resumable reports')
+    select.add_argument('--retry-incomplete', action='store_true', help='Retry only incomplete versions from the existing output checkpoint; preserve all other results')
     select.add_argument('--scene', action='append', help='Exact scene ID; may be repeated')
     p.add_argument('--output', type=Path, default=ROOT / 'output')
     p.add_argument('--render', action='store_true', help='Render selected ordinary scenes; --all uses the resumable isolated test runner')
     p.add_argument('--test-timeout', type=float, default=300, help='Maximum seconds per variant test worker (default 300)')
-    p.add_argument('--test-limit', type=int, help='Process at most this many pending scenes per test invocation')
+    p.add_argument('--test-limit', type=int, help='Process at most this many selected scenes per test invocation')
     p.add_argument('--retry-failed', action='store_true', help='Retry non-passing checkpoints in test mode')
-    p.add_argument('--plan-only', action='store_true', help='Create the full test roster without starting workers')
+    p.add_argument('--plan-only', action='store_true', help='Export the test or retry plan without starting workers')
     p.add_argument('--frame', type=int, help='One-based snapshot frame for --render')
     p.add_argument('--index-only', action='store_true', help='Download and index catalogues; do not download bundles')
     p.add_argument('--offline', action='store_true', help='Read verified cached catalogues and bundles only')
@@ -48,8 +49,8 @@ def main(argv=None):
     p.add_argument('--retries', type=int, default=2)
     p.add_argument('--property', action='append', default=[], metavar='NAME=VALUE', help='Verified Unity runtime property; never guessed')
     args = p.parse_args(argv)
-    if args.test_all: args.render=True
-    batch_mode=args.test_all or (args.all and args.render)
+    if args.test_all or args.retry_incomplete: args.render=True
+    batch_mode=args.test_all or args.retry_incomplete or (args.all and args.render)
     if args.render and args.index_only: p.error('--render/--test-all cannot use --index-only')
     if not batch_mode and (args.plan_only or args.retry_failed or args.test_limit is not None or args.test_timeout!=300):
         p.error('Test options require --test-all or --all --render')
@@ -61,6 +62,11 @@ def main(argv=None):
         p.error('timeout must be positive and retries non-negative')
     if args.offline and args.refresh_catalogues:
         p.error('--offline cannot refresh catalogues')
+    if args.retry_incomplete:
+        if args.retry_failed or args.refresh_catalogues or args.remote_config or args.property:
+            p.error('--retry-incomplete uses the saved roster; do not combine it with --retry-failed or catalogue overrides')
+        from gardens.batch import retry_incomplete
+        return retry_incomplete(args)
     properties = {}
     for item in args.property:
         key, sep, value = item.partition('=')
