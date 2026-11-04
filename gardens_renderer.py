@@ -2,7 +2,6 @@
 """Catalogue indexing, bundle downloading, and opt-in ordinary-scene snapshots."""
 import argparse
 import csv
-import hashlib
 import json
 import re
 import sys
@@ -13,7 +12,7 @@ from urllib.parse import urlsplit
 
 from gardens.catalogue import Index, parse_catalogue
 from gardens.download import Downloader, DownloadError, atomic_json, cache_name, read_json, sha256, validate_bundle
-from gardens.scenes import match_scenes, read_scenes
+from gardens.scenes import match_scenes, read_scenes, variant_id as candidate_variant_id
 
 ROOT = Path(__file__).resolve().parent
 
@@ -32,9 +31,14 @@ def main(argv=None):
     p.add_argument('--scenes', type=Path, default=ROOT / 'data/Sheet2_chronology_fixed.csv')
     select = p.add_mutually_exclusive_group(required=True)
     select.add_argument('--all', action='store_true')
+    select.add_argument('--test-all', action='store_true', help='Test every scene/version with isolated workers and resumable reports')
     select.add_argument('--scene', action='append', help='Exact scene ID; may be repeated')
     p.add_argument('--output', type=Path, default=ROOT / 'output')
-    p.add_argument('--render', action='store_true', help='Render explicitly selected ordinary scenes after verified download')
+    p.add_argument('--render', action='store_true', help='Render selected ordinary scenes; --all uses the resumable isolated test runner')
+    p.add_argument('--test-timeout', type=float, default=300, help='Maximum seconds per variant test worker (default 300)')
+    p.add_argument('--test-limit', type=int, help='Process at most this many pending scenes per test invocation')
+    p.add_argument('--retry-failed', action='store_true', help='Retry non-passing checkpoints in test mode')
+    p.add_argument('--plan-only', action='store_true', help='Create the full test roster without starting workers')
     p.add_argument('--frame', type=int, help='One-based snapshot frame for --render')
     p.add_argument('--index-only', action='store_true', help='Download and index catalogues; do not download bundles')
     p.add_argument('--offline', action='store_true', help='Read verified cached catalogues and bundles only')
@@ -43,8 +47,13 @@ def main(argv=None):
     p.add_argument('--retries', type=int, default=2)
     p.add_argument('--property', action='append', default=[], metavar='NAME=VALUE', help='Verified Unity runtime property; never guessed')
     args = p.parse_args(argv)
-    if args.render and (args.all or args.index_only):
-        p.error('--render currently requires explicit --scene selections and cannot use --index-only')
+    if args.test_all: args.render=True
+    batch_mode=args.test_all or (args.all and args.render)
+    if args.render and args.index_only: p.error('--render/--test-all cannot use --index-only')
+    if not batch_mode and (args.plan_only or args.retry_failed or args.test_limit is not None or args.test_timeout!=300):
+        p.error('Test options require --test-all or --all --render')
+    if args.test_timeout<=0 or (args.test_limit is not None and args.test_limit<=0):
+        p.error('Test timeout and scene limit must be positive')
     if args.frame is not None and (not args.render or args.frame < 1):
         p.error('--frame requires --render and a positive one-based frame number')
     if args.timeout <= 0 or args.retries < 0:
@@ -75,7 +84,7 @@ def main(argv=None):
     client = Downloader(args.timeout, args.retries)
     run_id = uuid.uuid4().hex
     atomic_json(out / 'summary.json', {'run_id': run_id, 'status': 'in_progress'})
-    atomic_json(out / 'download_report.json', [])
+    if not batch_mode: atomic_json(out / 'download_report.json', [])
     locations, catalogue_reports = [], []
     for number, url in enumerate(urls, 1):
         dest = out / 'catalogues' / cache_name(url, '.json')
@@ -107,6 +116,10 @@ def main(argv=None):
     atomic_json(out / 'location_index.json', [loc.to_dict() for loc in locations])
     matches = match_scenes(scenes, index, complete)
     atomic_json(out / 'duplicate_scenes.json', duplicates)
+    if batch_mode:
+        from gardens.batch import run_batch
+        atomic_json(out/'scene_matches.json',matches)
+        return run_batch(scenes,matches,args)
     downloads = {}
     for row in matches:
         row['download_status'] = 'not_requested' if args.index_only else 'not_eligible'
@@ -119,9 +132,7 @@ def main(argv=None):
         for candidate in row['candidates']:
             # Hash the full URL/options set, not enumeration order or a scene name.
             # Equivalent locations from multiple catalogues share a variant.
-            descriptors = sorted({json.dumps({'url':b['url'] or b['internal_id'],'options':b['options']},sort_keys=True)
-                                  for b in candidate['bundles']})
-            variant_id = hashlib.sha256(json.dumps(descriptors).encode()).hexdigest()[:16]
+            variant_id = candidate_variant_id(candidate)
             scene_folder = out/'scenes'/row['scene_id']
             destination = scene_folder/('variant_'+variant_id) if len(row['candidates'])>1 else scene_folder
             variant = {'variant_id':variant_id,'roots':candidate['roots'],

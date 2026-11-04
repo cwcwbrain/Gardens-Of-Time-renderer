@@ -1,5 +1,6 @@
 """Chronology-preserving scene input and conservative catalogue matching."""
 import csv
+import hashlib
 import json
 import re
 from dataclasses import asdict, dataclass
@@ -91,3 +92,10 @@ def match_scenes(scenes, index, complete_catalogues):
                                         'bundles': [b.to_dict() for b in c['bundles'].values()],
                                         'issues': sorted(set(c['issues']))} for c in candidates.values()]})
     return results
+
+
+def variant_id(candidate):
+    """Stable identity shared by interactive rendering and all-scene tests."""
+    descriptors=sorted({json.dumps({'url':b['url'] or b['internal_id'],'options':b['options']},sort_keys=True)
+                        for b in candidate['bundles']})
+    return hashlib.sha256(json.dumps(descriptors).encode()).hexdigest()[:16]

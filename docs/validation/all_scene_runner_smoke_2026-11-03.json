@@ -1,0 +1,64 @@
+{
+  "date": "2026-11-03",
+  "scope": "Full roster plus limited runtime smoke check; not full-corpus runtime completion",
+  "scenes": 4481,
+  "variants": 4689,
+  "scene_results": {
+    "passed": 3,
+    "incomplete": 1,
+    "pending": 4477
+  },
+  "variant_results": {
+    "incomplete": 1,
+    "passed": 4,
+    "pending": 4684
+  },
+  "coverage_complete": false,
+  "results": [
+    {
+      "order": "1",
+      "scene_id": "AncientGizaRiverfront",
+      "variant_id": "6cd4e8b4138ae155",
+      "status": "passed",
+      "hidden_objects": "68",
+      "named_pointers": "68",
+      "issues": "[]"
+    },
+    {
+      "order": "2",
+      "scene_id": "VictorianExteriorRedux1",
+      "variant_id": "8249e17279e07891",
+      "status": "passed",
+      "hidden_objects": "69",
+      "named_pointers": "69",
+      "issues": "[]"
+    },
+    {
+      "order": "2",
+      "scene_id": "VictorianExteriorRedux1",
+      "variant_id": "c8bf2b6de04fdf71",
+      "status": "passed",
+      "hidden_objects": "69",
+      "named_pointers": "69",
+      "issues": "[]"
+    },
+    {
+      "order": "3",
+      "scene_id": "AncientGizaShadowOfThePyramid",
+      "variant_id": "578fb124f8bf479f",
+      "status": "passed",
+      "hidden_objects": "67",
+      "named_pointers": "67",
+      "issues": "[]"
+    },
+    {
+      "order": "4",
+      "scene_id": "EgyptTombInteriorFTD1",
+      "variant_id": "edaeeb07fa4cf806",
+      "status": "incomplete",
+      "hidden_objects": "",
+      "named_pointers": "",
+      "issues": "[\"FTD rendering is not implemented; assets and Item Manager checked\"]"
+    }
+  ]
+}

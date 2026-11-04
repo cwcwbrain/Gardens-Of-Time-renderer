@@ -37,6 +37,84 @@ The reader also accepts a header whose first column is `scene_id`, `scene`, or
 recorded without changing original rows. No chapter boundaries are invented;
 `--chapter` needs authoritative chapter metadata before it can be implemented.
 
+## Test every scene (Windows)
+
+```cmd
+py gardens_renderer.py --test-all --output output
+```
+
+`--all --render` is an equivalent entry point. The runner creates a complete roster
+before starting work, preserving chronological order and all distinct versions.
+The current CSV/catalogues produce **4,481 scenes and 4,689 variant tests**.
+Existing verified downloads are reused. Each variant runs sequentially in a
+separate Python process so crashes, unsupported data, and memory retained by
+UnityPy do not stop the next scene. The default per-variant timeout is 300 seconds;
+use `--test-timeout 600` to increase it.
+
+Every variant gets a result:
+
+- `passed`: bundle, Item Manager, reconstruction, visible-object and named-pointer
+  checks passed; three current images and their metadata were verified.
+- `incomplete`: assets were checked but the renderer lacks a required feature,
+  scene type, or reliable object placement/identification.
+- `failed`: download, worker crash, timeout, or another runtime failure.
+- `blocked`: catalogue coverage or dependencies are unresolved; no render pass is
+  inferred. Unsupported FTD/STD/FTO scenes are included in the roster and have
+  their bundles and Item Manager checked, then are reported incomplete.
+- `pending` / `running`: not finished. A scene with only some passing versions is
+  `partial`; all of its versions remain visible in the per-variant report.
+
+Reports are in the selected output folder:
+
+- **`scene_test_report.csv`**: one row per unique scene, including pending/blocked
+  scenes, match status, per-outcome version counts, and overall scene status.
+- **`test_report.csv`**: one row per variant with reasons, source bundle URLs,
+  image folder, object/pointer counts, worker log and elapsed time.
+- **`all_scene_test_summary.json`** (also `summary.json`): totals, remaining work,
+  `coverage_complete` and `all_passed`. Coverage completion is not the same as all
+  scenes passing. Snapshot passes do not establish independent game pixel parity.
+- **`batch/tests.sqlite3`**: durable checkpoints committed after every variant.
+  Worker job/result JSON and logs are saved beside it.
+
+CSV/summary reports refresh every ten results and at completion, pause, or Ctrl+C.
+If Excel locks a CSV on Windows, testing continues; close the file to let the next
+refresh replace it. The latest temporary CSV and SQLite checkpoints are retained.
+Run only one test command against an output folder at a time.
+
+**Resume:** press Ctrl+C to stop, then repeat the same command and output directory.
+An interrupted worker is retried. Finished pass checkpoints are reused only when
+the code/runtime/settings fingerprint and hashes of input assets, all three PNGs,
+and validation/label metadata still match. Code/runtime/settings changes invalidate affected checkpoints. Changed asset,
+image or metadata files invalidate passing checkpoints. Failed/incomplete results
+are retained until code/runtime/settings change or you explicitly retry them
+after fixing inputs or access:
+
+```cmd
+py gardens_renderer.py --test-all --retry-failed --output output
+```
+
+To process a few pending scenes per invocation, including every matched version
+of each selected scene:
+
+```cmd
+py gardens_renderer.py --test-all --test-limit 4 --output output
+```
+
+Repeat to advance to the next pending scenes, or omit the limit to finish the
+roster. `--plan-only` builds/exports the full roster without running workers;
+`--offline` requires already verified cached catalogues, bundles and Item Manager.
+
+A full run can take hours and use many GB for assets and PNGs. The indexed bundle
+sizes alone total about 3.2 GB; rendered images require additional space. Exit `0`
+means every test passed (or planning succeeded with `--plan-only`); `1` means
+pending, blocked, incomplete or failed tests remain; Ctrl+C returns `130` with
+checkpoints saved. Setup/input errors return `2`.
+
+Development validation covered the full roster and a real four-scene/five-version
+smoke run: four variant snapshots passed and the FTD variant was correctly
+incomplete. The entire corpus has **not** been runtime-tested here. See the
+[smoke report](docs/validation/all_scene_runner_smoke_2026-11-03.json).
+
 ## Render the Giza scene (Windows)
 
 ```cmd
@@ -61,8 +139,8 @@ and an arrow to each visible object. It keeps the scene at native scale on a wid
 canvas; Giza's annotated solution is **1832 x 1288**. Labels use `beginner`, falling
 back to `gold` only if the beginner label is empty. The report records both canvas
 dimensions and the native scene rectangle.
- The
-renderer decodes all 448 GAF frames and selects frame 80, the earliest frame in
+
+The renderer decodes all 448 GAF frames and selects frame 80, the earliest frame in
 which every named scene object reaches its maximum encoded opacity. Mutually exclusive animation
 cells are not combined. Five time capsules are excluded. Both background art
 and foreground occlusion pieces are retained; a second background-named piece
@@ -74,8 +152,8 @@ pointer endpoints and label boxes.
 
 `--frame 1` selects an exact one-based snapshot instead. `--offline` reuses
 hash-verified bundles, catalogues and Item Manager JSON after an online run.
-Render explicit `--scene` selections only: `--all --render` is deliberately
-unavailable until more scene types pass validation.
+Use `--test-all` (or `--all --render`) for isolated, resumable tests across every
+scene and version. Unsupported results remain explicitly incomplete.
 
 To render an explicitly chosen uploaded bundle without indexing catalogues:
 
@@ -249,8 +327,8 @@ If one version fails or is unsupported, the others still run. The scene reports
 `partial` when some snapshots pass; the command returns a nonzero exit status
 unless every requested version passes. Shared bundles are downloaded once and
 checked against each candidate's provider options independently. Rendering still
-requires explicit `--scene` selections, and unsupported multi-bundle assembly or
-scene types stay incomplete. Earlier files at the scene root are preserved; use
+can use explicit `--scene` selections or the all-scenes test mode below.
+Unsupported multi-bundle assembly or scene types stay incomplete. Earlier files at the scene root are preserved; use
 the latest `variants.json` to locate current outputs.
 
 PyramidSideEgypt's original diagnostic trial likewise tested both versions. The
