@@ -4,6 +4,7 @@ import argparse
 import csv
 import json
 import re
+import sqlite3
 import sys
 import uuid
 from collections import Counter
@@ -12,7 +13,7 @@ from urllib.parse import urlsplit
 
 from gardens.catalogue import Index, parse_catalogue
 from gardens.download import Downloader, DownloadError, atomic_json, cache_name, read_json, sha256, validate_bundle
-from gardens.scenes import match_scenes, read_scenes, scene_kind, variant_id as candidate_variant_id
+from gardens.scenes import Scene, match_scenes, read_scenes, scene_kind, variant_id as candidate_variant_id
 
 ROOT = Path(__file__).resolve().parent
 
@@ -25,6 +26,28 @@ def write_csv(path, rows, fields):
             writer.writerow({key: json.dumps(row[key], ensure_ascii=False) if isinstance(row.get(key), (list, dict)) else row.get(key, '') for key in fields})
 
 
+def name_scene_exports(args,client,discovery,scenes):
+    """Export readable copies without changing original paths or checkpoints."""
+    from gardens.names import load_official_names
+    from gardens.named_export import export_named
+    out=args.output.resolve();checkpoint=out/'batch/tests.sqlite3'
+    merged={scene.scene_id.casefold():scene for scene in scenes}
+    with sqlite3.connect(checkpoint.as_uri()+'?mode=ro',uri=True) as db:
+        db.row_factory=sqlite3.Row
+        for row in db.execute('SELECT * FROM jobs WHERE active=1 ORDER BY ordinal,variant_id'):
+            data=json.loads(row['definition'])['scene']
+            merged[row['scene_id'].casefold()]=Scene(row['ordinal'],row['scene_id'],data.get('thumbnail_url',''),
+                                                    data.get('item_manager_url',''),data.get('original_row',[]))
+    names=load_official_names(out,client,discovery.get('config_path'),sorted(merged.values(),key=lambda s:s.order),args.offline)
+    atomic_json(out/'scene_names.json',names)
+    exported=export_named(out,names.get('mappings',{}),provenance=names.get('provenance',{}),destination=args.named_output)
+    report={'names_status':names['status'],'mapping_summary':names.get('summary',{}),
+            'source_issues':names.get('source_issues',[]),'export':exported}
+    atomic_json(out/'naming_report.json',report)
+    print('Official-name export: '+json.dumps({'status':exported['status'],**exported.get('summary',{})}),flush=True)
+    return 0 if names['status']!='unavailable' and exported['status']=='completed' else 1
+
+
 def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--catalogues', type=Path, default=ROOT / 'catalogues.json')
@@ -35,8 +58,10 @@ def main(argv=None):
     select.add_argument('--test-all', action='store_true', help='Test every scene/version with isolated workers and resumable reports')
     select.add_argument('--retry-incomplete', action='store_true', help='Retry only incomplete versions from the existing output checkpoint; preserve all other results')
     select.add_argument('--update', action='store_true', help='Discover new chapters/versions and retry incomplete ones while preserving prior passing outputs')
+    select.add_argument('--export-named', action='store_true', help='Export passing images with official chapter-list names, without rendering scenes')
     select.add_argument('--scene', action='append', help='Exact scene ID; may be repeated')
     p.add_argument('--output', type=Path, default=ROOT / 'output')
+    p.add_argument('--named-output', type=Path, help='Destination for official-name copies (default: output/named_scenes); used by --update or --export-named')
     p.add_argument('--render', action='store_true', help='Render selected ordinary scenes; --all uses the resumable isolated test runner')
     p.add_argument('--test-timeout', type=float, default=300, help='Maximum seconds per variant test worker (default 300)')
     p.add_argument('--test-limit', type=int, help='Process at most this many selected scenes per test invocation')
@@ -50,6 +75,10 @@ def main(argv=None):
     p.add_argument('--retries', type=int, default=2)
     p.add_argument('--property', action='append', default=[], metavar='NAME=VALUE', help='Verified Unity runtime property; never guessed')
     args = p.parse_args(argv)
+    if args.named_output is not None and not (args.update or args.export_named):
+        p.error('--named-output requires --update or --export-named')
+    if args.export_named and (args.render or args.index_only):
+        p.error('--export-named copies validated images; do not combine it with --render or --index-only')
     if args.test_all or args.retry_incomplete or args.update: args.render=True
     batch_mode=args.test_all or args.retry_incomplete or args.update or (args.all and args.render)
     if args.render and args.index_only: p.error('--render/--test-all cannot use --index-only')
@@ -68,10 +97,10 @@ def main(argv=None):
             p.error('--retry-incomplete uses the saved roster; do not combine it with --retry-failed or catalogue overrides')
         from gardens.batch import retry_incomplete
         return retry_incomplete(args)
-    if args.update:
+    if args.update or args.export_named:
         if args.retry_failed:p.error('--update preserves previous failed results; do not combine it with --retry-failed')
         if not (args.output.resolve()/'batch/tests.sqlite3').is_file():
-            p.error('--update requires the same --output folder and batch/tests.sqlite3 from the previous run')
+            p.error('--update/--export-named requires the same --output folder and batch/tests.sqlite3 from the previous run')
     properties = {}
     for item in args.property:
         key, sep, value = item.partition('=')
@@ -94,6 +123,8 @@ def main(argv=None):
     atomic_json(out/'catalogue_discovery.json',discovery)
     if discovery.get('warning'):print('Catalogue discovery fallback: '+discovery['warning'],flush=True)
     print('Catalogue source: '+discovery['source'],flush=True)
+    if args.export_named:
+        return name_scene_exports(args,client,discovery,scenes)
     urls = discovery['catalogues']
     if not isinstance(urls, list) or not urls or not all(isinstance(u, str) and urlsplit(u).scheme == 'https' and urlsplit(u).netloc for u in urls):
         p.error('catalogues.json must contain a nonempty catalogues list of explicit HTTPS URLs')
@@ -153,6 +184,9 @@ def main(argv=None):
         update={**enrollment,'chapter_discovery':chapter_report,'catalogue_source':discovery['source']}
         atomic_json(out/'update_discovery.json',update)
         code=retry_incomplete(args,update_metadata=update)
+        if not args.plan_only and code!=130:
+            naming_code=name_scene_exports(args,client,discovery,scenes)
+            if not code:code=naming_code
         discovery_ok=(complete and chapter_report.get('status')!='unavailable'
                       and not chapter_report.get('unverified_scenes') and not enrollment.get('blocked_update_variants'))
         return code if args.plan_only or discovery_ok else (code or 1)

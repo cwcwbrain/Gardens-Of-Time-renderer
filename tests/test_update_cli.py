@@ -93,7 +93,7 @@ class UpdateCLITests(unittest.TestCase):
         self.worker_calls.append(job)
         return {'status':'passed','issues':[],**self.images(Path(job['destination']),'blue')}
 
-    def invoke(self,*,client=None,report=None,enrollment=None,real_batch=False,extra=()):
+    def invoke(self,*,client=None,report=None,enrollment=None,real_batch=False,extra=(),retry_return=0,naming_return=0):
         client=client or CatalogueClient();report=self.chapter_report if report is None else report
         discovery={'source':'live_remote_config','catalogues':self.urls,'config_path':str(self.root/'verified-config.json')}
         chapter_module=types.ModuleType('gardens.chapters')
@@ -107,6 +107,7 @@ class UpdateCLITests(unittest.TestCase):
             stack.enter_context(patch('gardens_renderer.parse_catalogue',return_value=([],{'format':'test'})))
             stack.enter_context(patch('gardens_renderer.Index',return_value=SimpleNamespace(locations={})))
             matching=stack.enter_context(patch('gardens_renderer.match_scenes',return_value=matches))
+            naming=stack.enter_context(patch('gardens_renderer.name_scene_exports',return_value=naming_return,create=True))
             prepare=stack.enter_context(patch.object(batch.Ledger,'prepare',side_effect=AssertionError('must not reset the saved roster')))
             if real_batch:
                 enroll=stack.enter_context(patch('gardens.incremental.enroll_updates',wraps=incremental.enroll_updates))
@@ -116,11 +117,11 @@ class UpdateCLITests(unittest.TestCase):
             else:
                 enrolled={'added_scenes':1,'added_variants':2,'discovery_complete':True} if enrollment is None else enrollment
                 enroll=stack.enter_context(patch('gardens.incremental.enroll_updates',return_value=enrolled))
-                retry=stack.enter_context(patch('gardens.batch.retry_incomplete',return_value=0))
+                retry=stack.enter_context(patch('gardens.batch.retry_incomplete',return_value=retry_return))
             with contextlib.redirect_stdout(io.StringIO()):
                 code=gardens_renderer.main(['--update','--output',str(self.out),'--catalogues',str(self.manifest),*extra])
         return code,SimpleNamespace(client=client,source=source,chapters=chapter_module.discover_chapters,
-                                    matching=matching,enroll=enroll,retry=retry,prepare=prepare,matches=matches)
+                                    matching=matching,enroll=enroll,retry=retry,naming=naming,prepare=prepare,matches=matches)
 
     def test_missing_checkpoint_fails_before_discovery_and_creates_no_output(self):
         target=self.root/'missing-run'

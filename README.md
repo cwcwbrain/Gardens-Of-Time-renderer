@@ -191,6 +191,45 @@ coverage makes no new enrollments, while saved incomplete variants can still be
 retried. The update reads MainProject's chapter metadata only, rather than
 rebuilding the playable game.
 
+**Official filenames are included in `--update`.** After retrying incomplete
+scenes and adding new ones, it exports every active passed version into
+`output/named_scenes` using the official English chapter-list title. For example:
+
+```text
+Giza Riverfront - Empty.png
+Giza Riverfront - Complete.png
+Giza Riverfront - Solution.png
+```
+
+The named files are independent copies. Original PNG paths, validation reports
+and SQLite checkpoint rows stay intact, so future updates can still reuse them.
+Chapter/scene order and stable version folders distinguish repeated titles and
+multiple bundle matches. Windows-invalid characters are escaped; deep paths can
+shorten folder labels or long filenames while the exact official title remains
+in the index. A shorter `--named-output` location keeps more folder text visible.
+
+To name already passing images without reconstructing or indexing scene bundles:
+
+```cmd
+py gardens_renderer.py --export-named --output output
+```
+
+An alternative destination can be specified with
+`--named-output "Gardens of Time Scenes"`. Both export commands require the
+existing output folder and its `batch/tests.sqlite3`. Strict `--retry-incomplete`
+keeps its saved-roster-only behavior and does not create named exports.
+
+`scene_names.json` records verified title mappings and source hashes;
+`naming_report.json` records the export outcome. Inside the named folder,
+`named_scene_index.csv` links readable filenames to IDs/versions and original
+hashes, and `named_export_manifest.json` tracks owned copies. Only passed PNGs
+with matching proof hashes are copied. Missing names, corrupt source images and
+edited/untracked conflicting copies are reported rather than overwritten.
+Repeating the export reuses identical copies without changing their PNG times.
+Naming failure does not undo reconstruction; it produces a nonzero command exit
+status and an explicit report. No naming pass runs for `--plan-only` or an
+interrupted update. Offline mode requires verified cached naming resources.
+
 To process a few pending scenes per invocation, including every matched version
 of each selected scene:
 

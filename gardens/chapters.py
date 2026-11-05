@@ -179,7 +179,7 @@ def _main_catalogue(config_path):
     return urljoin(base.rstrip('/') + '/', filename)
 
 
-def _read_tree(paths):
+def _read_tree(paths,asset_path=ASSET_PATH):
     import UnityPy
     trees = []
     for path in paths:
@@ -187,13 +187,13 @@ def _read_tree(paths):
             env = UnityPy.load(path.read_bytes())
             # UnityPy ContainerHelper supports membership/subscript access but
             # does not implement dict.get(). Use its public mapping operations.
-            if ASSET_PATH in env.container:
-                pointer = env.container[ASSET_PATH]
+            if asset_path in env.container:
+                pointer = env.container[asset_path]
                 trees.append(pointer.read_typetree())
         except Exception as exc:
-            raise ValueError(f'Cannot read production chapter metadata asset: {exc}') from exc
-    if len(trees) != 1 or trees[0].get('m_Name') != 'Group00_VO_SO':
-        raise ValueError('No unique production Group00 chapter metadata asset')
+            raise ValueError(f'Cannot read production metadata asset: {exc}') from exc
+    if len(trees) != 1 or trees[0].get('m_Name') != PurePosixPath(asset_path).stem:
+        raise ValueError(f'No unique production metadata asset {asset_path}')
     return trees[0]
 
 
@@ -207,6 +207,47 @@ def _validate_manager(path):
         raise ValueError('Item Manager contains no verified object labels')
 
 
+def load_metadata_asset(out,client,config_path,asset_key,asset_path,offline=False,refresh_catalogue=True):
+    """Load one exact production value asset without executing Unity scripts."""
+    base=Path(out)
+    catalogue_url = _main_catalogue(config_path)
+    catalogue_path = base/'chapter_metadata/catalogues'/cache_name(catalogue_url, '.json')
+    catalogue_path.parent.mkdir(parents=True, exist_ok=True)
+    _fetch(catalogue_url, catalogue_path, client,
+           lambda p: parse_catalogue(p.read_bytes(), catalogue_url, {}), offline, refresh=refresh_catalogue)
+    locations, _ = parse_catalogue(catalogue_path.read_bytes(), catalogue_url, {})
+    roots = [loc for loc in locations if loc.primary_key == asset_key and loc.internal_id == asset_path]
+    if len(roots) != 1:
+        raise ValueError(f'No unique explicit production metadata catalogue asset {asset_key}')
+    local_scripts = {loc.id: loc for loc in locations if _local_monoscripts(loc)}
+    # Clear the known local script's own URL issue before computing closure,
+    # rather than subtracting a deduplicated error string: an unrelated
+    # unresolved bundle may have the identical runtime-property message.
+    value_locations = [replace(loc, url_error='') if loc.id in local_scripts else loc for loc in locations]
+    bundles, issues = Index(value_locations).bundle_closure([roots[0].id])
+    omitted = [local_scripts[b.id] for b in bundles if b.id in local_scripts]
+    bundles = [b for b in bundles if b.id not in local_scripts]
+    omitted_report = [
+        {'location_id': b.id, 'internal_id': b.internal_id,
+         'reason': 'Metadata value decoding uses the embedded type tree and executes no Unity scripts'}
+        for b in omitted]
+    if issues or not bundles or any(not b.url for b in bundles):
+        raise ValueError('Unresolved production chapter metadata bundles: ' + '; '.join(issues))
+    paths = []
+    for bundle in bundles:
+        path = base/'chapter_metadata/bundles'/cache_name(bundle.url, '.bundle')
+        path.parent.mkdir(parents=True, exist_ok=True)
+        size = bundle.options.get('m_BundleSize') or bundle.options.get('BundleSize')
+        _fetch(bundle.url, path, client, lambda p: validate_bundle(p, int(size) if size else None), offline)
+        paths.append(path)
+    tree = _read_tree(paths) if asset_path==ASSET_PATH else _read_tree(paths,asset_path)
+    provenance={'source_catalogue':catalogue_url,'metadata_source':'verified_cache' if offline else 'live_main_catalogue',
+                'source_catalogue_sha256':sha256(catalogue_path),'source_config_sha256':sha256(config_path),
+                'source_asset':asset_path,'source_bundles':[{'url':b.url,'sha256':sha256(p)} for b,p in zip(bundles,paths)],
+                'omitted_runtime_script_bundles':omitted_report}
+    return tree,provenance
+
+
 def discover_chapters(scenes, index, out, client, config_path, offline=False):
     """Read exact production metadata and verify new scene Manager resources.
 
@@ -218,42 +259,9 @@ def discover_chapters(scenes, index, out, client, config_path, offline=False):
               'unverified_scenes': [], 'missing_assets': [], 'verified_item_managers': []}
     base = Path(out)
     try:
-        catalogue_url = _main_catalogue(config_path)
-        catalogue_path = base/'chapter_metadata/catalogues'/cache_name(catalogue_url, '.json')
-        catalogue_path.parent.mkdir(parents=True, exist_ok=True)
-        _fetch(catalogue_url, catalogue_path, client,
-               lambda p: parse_catalogue(p.read_bytes(), catalogue_url, {}), offline, refresh=True)
-        locations, _ = parse_catalogue(catalogue_path.read_bytes(), catalogue_url, {})
-        roots = [loc for loc in locations if loc.primary_key == ASSET_KEY and loc.internal_id == ASSET_PATH]
-        if len(roots) != 1:
-            raise ValueError('No unique explicit production Group00 catalogue asset')
-        local_scripts = {loc.id: loc for loc in locations if _local_monoscripts(loc)}
-        # Clear the known local script's own URL issue before computing closure,
-        # rather than subtracting a deduplicated error string: an unrelated
-        # unresolved bundle may have the identical runtime-property message.
-        value_locations = [replace(loc, url_error='') if loc.id in local_scripts else loc for loc in locations]
-        bundles, issues = Index(value_locations).bundle_closure([roots[0].id])
-        omitted = [local_scripts[b.id] for b in bundles if b.id in local_scripts]
-        bundles = [b for b in bundles if b.id not in local_scripts]
-        report['omitted_runtime_script_bundles'] = [
-            {'location_id': b.id, 'internal_id': b.internal_id,
-             'reason': 'Metadata-only Group00 value decoding uses the embedded type tree and executes no Unity scripts'}
-            for b in omitted]
-        if issues or not bundles or any(not b.url for b in bundles):
-            raise ValueError('Unresolved production chapter metadata bundles: ' + '; '.join(issues))
-        paths = []
-        for bundle in bundles:
-            path = base/'chapter_metadata/bundles'/cache_name(bundle.url, '.bundle')
-            path.parent.mkdir(parents=True, exist_ok=True)
-            size = bundle.options.get('m_BundleSize') or bundle.options.get('BundleSize')
-            _fetch(bundle.url, path, client, lambda p: validate_bundle(p, int(size) if size else None), offline)
-            paths.append(path)
-        tree = _read_tree(paths)
+        tree,provenance=load_metadata_asset(out,client,config_path,ASSET_KEY,ASSET_PATH,offline)
         extended, parsed = append_chapters(scenes, tree)
-        report.update(parsed, status='available', source_catalogue=catalogue_url,
-                      metadata_source='verified_cache' if offline else 'live_main_catalogue',
-                      source_catalogue_sha256=sha256(catalogue_path), source_config_sha256=sha256(config_path),
-                      source_asset=ASSET_PATH, source_bundles=[{'url': b.url, 'sha256': sha256(p)} for b, p in zip(bundles, paths)])
+        report.update(parsed,**provenance,status='available')
         added = {entry['scene_id'] for entry in report['added_scenes']}
         eligible = {row['scene_id']: row for row in match_scenes([s for s in extended if s.scene_id in added], index, True)}
         result = []
