@@ -60,6 +60,23 @@ class ChapterTests(unittest.TestCase):
         self.assertEqual(extended[6].thumbnail_url, '')
         self.assertEqual(report['status'], 'metadata_only')
 
+    def test_shuffled_membership_list_uses_authoritative_mission_sort_order(self):
+        self.tree['storyVOs'][1]['mission_ids'] = ','.join(reversed(self.tree['storyVOs'][1]['mission_ids'].split(',')))
+        extended, report = append_chapters(self.scenes, self.tree)
+        self.assertEqual([scene.scene_id for scene in extended[6:]], self.future)
+        self.assertEqual([entry['mission_id'] for entry in report['added_scenes']], ['9714','9715','9716','9717','9718','9719'])
+        self.assertEqual([entry['position'] for entry in report['added_scenes']], [1,2,3,4,5,6])
+
+    def test_missing_non_numeric_and_gapped_sort_orders_fail_closed(self):
+        for value in (None, 'one', '7'):
+            tree = copy.deepcopy(self.tree)
+            if value is None:
+                tree['missionVOs'][-1].pop('sort_order')
+            else:
+                tree['missionVOs'][-1]['sort_order'] = value
+            with self.subTest(value=value), self.assertRaises(ValueError):
+                append_chapters(self.scenes, tree)
+
     def test_replay_names_are_deduplicated_without_reordering_csv(self):
         # A future chapter can replay a scene from an earlier mission.
         self.tree['missionVOs'][6]['scene_id'] = self.tree['sceneVOs'][0]['sid']

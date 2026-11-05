@@ -19,8 +19,9 @@ and omitted because decoding the embedded value type tree executes no game code;
 other unresolved dependencies still block chapter discovery.
 
 The metadata joins `storyVOs.mission_ids` to `missionVOs.mid`, then `scene_id` to
-`sceneVOs.sid`. Chapter numbers and ordered mission references supply chronology;
-catalogue enumeration does not. Future chapter-number gaps or malformed references
+`sceneVOs.sid`. Chapter numbers and numeric `missionVOs.sort_order` supply chronology;
+`mission_ids` determines membership, and its list position is not assumed to be
+the display order. Catalogue enumeration does not. Future chapter-number gaps or malformed references
 block unverified appends. Original CSV rows and saved scene ordinals stay intact.
 Replayed scene IDs are deduplicated. A newly published variant of an existing ID
 uses `scenes/_new_versions/<id>/variant_<variant>/` so its original folder stays in

@@ -108,12 +108,21 @@ def append_chapters(scenes, tree):
         ids = raw.split(',')
         if any(not mid or mid.strip() != mid for mid in ids) or len(set(ids)) != len(ids):
             raise ValueError(f'Chapter {number} has invalid or duplicate mission references')
-        for position, mid in enumerate(ids, 1):
+        ordered = []
+        for mid in ids:
             mission = missions.get(mid)
             if not mission or mission.get('parent_stid') != story['stid']:
                 raise ValueError(f'Chapter {number} has missing or mismatched mission {mid}')
-            if 'sort_order' in mission and str(position) != str(mission['sort_order']):
-                raise ValueError(f'Chapter {number} mission {mid} order disagrees with mission_ids')
+            raw_order = str(mission.get('sort_order', ''))
+            if re.fullmatch(r'[1-9]\d*', raw_order) is None:
+                raise ValueError(f'Chapter {number} mission {mid} has no valid numeric sort_order')
+            ordered.append((int(raw_order), mid, mission))
+        ordered.sort(key=lambda row: row[0])
+        if [entry[0] for entry in ordered] != list(range(1, len(ordered) + 1)):
+            raise ValueError(f'Chapter {number} has duplicate or noncontiguous mission sort_order values')
+        # mission_ids establishes membership; sort_order establishes displayed
+        # order. Older production chapters demonstrably store shuffled ID lists.
+        for position, mid, mission in ordered:
             source = scene_rows.get(mission.get('scene_id'))
             name = source.get('name') if source else None
             if not isinstance(name, str) or not re.fullmatch(r'[A-Za-z0-9_-]+', name):
