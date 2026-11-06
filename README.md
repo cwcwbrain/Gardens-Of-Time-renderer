@@ -286,6 +286,38 @@ Naming failure does not undo reconstruction; it produces a nonzero command exit
 status and an explicit report. No naming pass runs for `--plan-only` or an
 interrupted update. Offline mode requires verified cached naming resources.
 
+**Remove obsolete incomplete previews from scenes that now pass:**
+
+Run this after the renderer finishes, or stop it with Ctrl+C and wait for the
+command prompt. First preview the exact eligible files:
+
+```cmd
+py clean_incomplete.py --output output
+```
+
+To delete the eligible previews:
+
+```cmd
+py clean_incomplete.py --output output --delete
+```
+
+The script uses the saved checkpoint, checks that each selected version is
+passed, and verifies its three finished PNGs and three validation/label JSON
+files against their recorded hashes. It removes only `scene_empty.png`,
+`scene_complete.png`, `scene_solution.png` and their matching `.tmp` filenames
+directly inside that version's `incomplete` folder. The finished files, named
+exports, bundles, Item Managers and checkpoint rows stay intact. Incomplete or
+failed sibling versions and unknown files/subfolders are preserved. Only empty
+preview folders are removed; there is no recursive folder deletion.
+
+`output/cleanup_incomplete_report.json` records the exact planned/deleted paths,
+file bytes, skipped versions and retained files. Changed or missing passed proof
+prevents deletion. A changed checkpoint aborts remaining cleanup; an interrupted
+cleanup can repeat the same command. Reported bytes are file lengths, not a
+measurement of free disk space. Relocate a moved output successfully before
+using this script. No renderer processes should run against the same output
+while cleaning.
+
 **Move the existing run to another computer without losing completed scenes:**
 
 1. Stop the laptop command with Ctrl+C and wait for the checkpoint-saved message

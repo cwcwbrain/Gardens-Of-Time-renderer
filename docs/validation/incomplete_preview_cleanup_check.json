@@ -1,0 +1,39 @@
+{
+  "scope": "Cleanup of deliberately seeded obsolete previews beside four real verified scene versions; original artifacts retained.",
+  "preview_images_seeded": 12,
+  "dry_run_summary": {
+    "passed_variants": 4,
+    "eligible_variants": 4,
+    "candidate_files": 12,
+    "candidate_bytes": 15072980,
+    "deleted_files": 0,
+    "deleted_bytes": 0,
+    "skipped_variants": 0,
+    "retained_files": 0
+  },
+  "delete_summary": {
+    "passed_variants": 4,
+    "eligible_variants": 4,
+    "candidate_files": 12,
+    "candidate_bytes": 15072980,
+    "deleted_files": 12,
+    "deleted_bytes": 15072980,
+    "skipped_variants": 0,
+    "retained_files": 0
+  },
+  "repeat_summary": {
+    "passed_variants": 4,
+    "eligible_variants": 0,
+    "candidate_files": 0,
+    "candidate_bytes": 0,
+    "deleted_files": 0,
+    "deleted_bytes": 0,
+    "skipped_variants": 0,
+    "retained_files": 0
+  },
+  "checkpoint_jobs_preserved": 4695,
+  "original_files_sha256_and_mtime_preserved": 180,
+  "limitations": [
+    "Synthetic stale previews use copies of real rendered PNGs; the user desktop was not accessed or cleaned."
+  ]
+}
