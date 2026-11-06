@@ -230,6 +230,49 @@ Naming failure does not undo reconstruction; it produces a nonzero command exit
 status and an explicit report. No naming pass runs for `--plan-only` or an
 interrupted update. Offline mode requires verified cached naming resources.
 
+**Move the existing run to another computer without losing completed scenes:**
+
+1. Stop the laptop command with Ctrl+C and wait for the checkpoint-saved message
+   and command prompt. Never copy a live SQLite checkpoint while workers run.
+2. Copy the entire project folder, including **all of `output`**, to an external
+   drive or directly to the desktop. Include the whole `output/batch` directory
+   and any `tests.sqlite3-wal`/`tests.sqlite3-shm` files present. Avoid making a ZIP
+   on a nearly full laptop; copy directly. Keep the laptop copy for now.
+3. On the desktop, install Python and put the latest program files into the copied
+   project, keeping its output folder. Reinstall requirements there rather than
+   reusing a laptop virtual environment. A short folder on a drive with plenty of
+   space, such as `D:\Gardens`, also helps Windows filename limits.
+4. Open Command Prompt in that project folder and run:
+
+```cmd
+py -m pip install -r requirements.txt
+py gardens_renderer.py --relocate-output --output output
+py gardens_renderer.py --update --include-pending --output output
+```
+
+Relocation detects the laptop's saved root automatically. It verifies the copied
+artifact hashes for all passed results, checks SQLite integrity, creates a
+self-contained checkpoint backup inside the **desktop copy**, then rebases saved
+operational paths in one transaction. Original images/JSON artifacts and their
+hashes stay unchanged. No old laptop paths are opened or written. Windows drive,
+UNC and POSIX paths are recognized. `--plan-only` verifies/previews relocation
+without changing checkpoint rows or creating a backup.
+
+`--include-pending` explicitly adds saved pending/running jobs to the usual
+incomplete/new update selection. Passed images stay skipped even when computer,
+Python version, paths or code differ. Failed/blocked jobs retain their existing
+status. Without this flag, `--update` intentionally leaves previously pending
+work alone. Do not use a full `--test-all` as the transfer resume command: that
+mode invalidates older proofs when runtime/code/settings change.
+
+A relocation mismatch stops before any checkpoint-path changes; recopy a missing
+or damaged file and retry. Keep the laptop copy until relocation verification and
+resumption succeed on the desktop. The latest report and unique pre-relocation
+SQLite backup are under `output/batch`. Historical absolute strings inside
+hash-protected JSON artifacts are retained; refreshed reports/exports use the
+rebased ledger. External named-export folders must be copied separately or
+regenerated. Allow additional desktop space for named image copies.
+
 To process a few pending scenes per invocation, including every matched version
 of each selected scene:
 

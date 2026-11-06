@@ -153,7 +153,7 @@ class Ledger:
                                 'Unsupported FTD/STD/FTO and geometry/effects remain explicitly incomplete.']}
         if retry:
             summary.update({k:v for k,v in retry.items() if k!='keys'})
-            summary['limitations'].append('Incomplete-only retry preserves all other results and their original validation fingerprints; prior passes are not revalidated by this build.')
+            summary['limitations'].append('Selective retry preserves all unselected results and their original validation fingerprints; prior passes are not revalidated by this build.')
         atomic_json(out/'all_scene_test_summary.json',summary);atomic_json(out/'summary.json',summary)
         return summary
 
@@ -181,11 +181,11 @@ def execute_job(job,job_path,result_path,log_path,timeout):
 
 
 def retry_incomplete(args,runner=None,update_metadata=None):
-    """Retry the saved incomplete variants without preparing a new roster.
+    """Retry incomplete and optionally unfinished saved variants, without resets.
 
-    Unattempted/in-flight jobs keep their old incomplete checkpoint until a new
+    Unattempted/in-flight jobs keep their original checkpoint until a new
     outcome is committed. A limit, interrupt or abrupt shutdown can therefore
-    resume with the same command, without enrolling unrelated pending jobs.
+    resume with the same command. Pending/running jobs require explicit opt-in.
     """
     out=Path(args.output).resolve();work=out/'batch';checkpoint=work/'tests.sqlite3'
     if not checkpoint.is_file():
@@ -193,18 +193,24 @@ def retry_incomplete(args,runner=None,update_metadata=None):
     ledger=Ledger(checkpoint);runner=runner or execute_job;run_id=uuid.uuid4().hex
     try:
         rows=list(ledger.db.execute('SELECT * FROM jobs WHERE active=1 ORDER BY ordinal,variant_id'))
-        selected=[row for row in rows if row['status']=='incomplete']
+        include_pending=getattr(args,'include_pending',False)
+        selected_states={'incomplete','pending','running'} if include_pending else {'incomplete'}
+        selected=[row for row in rows if row['status'] in selected_states]
         keys={(row['scene_id'],row['variant_id']) for row in selected}
         identity=code_identity()
         if selected and not args.plan_only and any(v is None for v in identity['packages'].values()):
             raise ValueError('Install requirements.txt before running scene workers')
-        retry={'keys':keys,'retry_scope':'incomplete_only','selected_variants':len(selected),
+        selected_statuses={status:sum(row['status']==status for row in selected)
+                           for status in ('incomplete','pending','running') if any(row['status']==status for row in selected)}
+        retry={'keys':keys,'retry_scope':'incomplete_and_pending' if include_pending else 'incomplete_only',
+               'selected_variants':len(selected),'selected_statuses':selected_statuses,
                'preserved_variants':len(rows)-len(selected),
                'preserved_passed_variants':sum(row['status']=='passed' for row in rows),
                'attempted_variants':0,'remaining_selected_variants':len(selected),
                'renderer_identity':identity}
         if update_metadata is not None:
-            retry.update(retry_scope='incomplete_and_new',update_discovery=update_metadata)
+            retry.update(retry_scope='incomplete_pending_and_new' if include_pending else 'incomplete_and_new',
+                         update_discovery=update_metadata)
         # Preflight the whole selection before workers or report writes. A saved
         # destination must not redirect a retry over a preserved scene/version.
         preserved=set()
@@ -227,7 +233,8 @@ def retry_incomplete(args,runner=None,update_metadata=None):
             if args.frame is not None:definition['frame']=args.frame
             fp=fingerprint({'identity':identity,'definition':definition,'test_timeout':args.test_timeout})
             definition['fingerprint']=fp;jobs.append((row,definition))
-        label='incomplete/new' if update_metadata is not None else 'saved incomplete'
+        label='incomplete/pending/running' if include_pending else 'saved incomplete'
+        if update_metadata is not None:label+='/new'
         print(f"Retrying only {len(selected)} {label} variants; preserving {retry['preserved_passed_variants']} passed variants and all other results.",flush=True)
         ledger.export(out,run_id,'planned' if args.plan_only else 'in_progress',retry)
         outcomes=[];active_scene=None;started_scenes=0
@@ -238,7 +245,7 @@ def retry_incomplete(args,runner=None,update_metadata=None):
                         if args.test_limit is not None and started_scenes>=args.test_limit:break
                         active_scene=row['scene_id'];started_scenes+=1
                     key=hashlib.sha256((row['scene_id']+'\0'+row['variant_id']).encode()).hexdigest()[:24]
-                    print(f"Retry incomplete scene {row['ordinal']} {row['scene_id']} variant {row['variant_id']}",flush=True)
+                    print(f"Process saved {row['status']} scene {row['ordinal']} {row['scene_id']} variant {row['variant_id']}",flush=True)
                     result=runner(definition,work/(key+'.job.json'),work/(key+'.result.json'),work/(key+'.log'),args.test_timeout)
                     # Only this selected row changes; every preserved row keeps
                     # its original fingerprint, definition and result verbatim.
@@ -255,7 +262,8 @@ def retry_incomplete(args,runner=None,update_metadata=None):
             return 0 if not retry['remaining_selected_variants'] and all(status=='passed' for status in outcomes) else 1
         except KeyboardInterrupt:
             ledger.export(out,run_id,'interrupted',retry)
-            print('Interrupted. Untested variants retain their incomplete checkpoints; repeat --retry-incomplete to retry them.',flush=True)
+            resume='--update --include-pending' if include_pending else ('--update' if update_metadata is not None else '--retry-incomplete')
+            print(f'Interrupted. Untested variants retain their original checkpoints; repeat {resume} to resume them.',flush=True)
             return 130
     finally:ledger.close()
 

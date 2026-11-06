@@ -1,0 +1,56 @@
+{
+  "scope": "Actual copied-output relocation and one-scene offline unfinished-work resume. Baseline contains 4,695 planned/tested rows, not 4,695 passing scenes.",
+  "identity": {
+    "schema": 1,
+    "code": "6a29773f13f2cac53d8ec0c7c2664af1eb50f62102f932702cc98f1ec5c59d3b",
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "platform": "Linux",
+    "packages": {
+      "UnityPy": "1.25.4",
+      "Pillow": "13.0.0"
+    }
+  },
+  "relocation": {
+    "status": "relocated",
+    "new_root": "/workspace/Gardens-Of-Time-renderer/output/desktop_move_validation",
+    "source_roots": [
+      "/workspace/Gardens-Of-Time-renderer/output/update_validation"
+    ],
+    "changed_jobs": 4695,
+    "jobs": 4695,
+    "passed_results": 3,
+    "verified_files": 24,
+    "verified_bytes": 12773775,
+    "backup_path": "/workspace/Gardens-Of-Time-renderer/output/desktop_move_validation/batch/tests.pre-relocation-45445d0e424f4ef1b42006020a512626.sqlite3",
+    "historical_fingerprints_preserved": true,
+    "passed_results_recertified": false,
+    "limitations": [
+      "Relocation verifies copied artifact integrity and rebases operational checkpoint paths; it does not recertify scene reconstruction.",
+      "Absolute paths inside copied JSON artifacts remain historical provenance so their original hashes and bytes stay unchanged."
+    ]
+  },
+  "old_source_job_rows_unchanged": 4695,
+  "copied_passed_artifacts_verified_unchanged": 24,
+  "self_contained_backup_matches_original_checkpoint": true,
+  "old_passed_rows_preserved_during_resume": 3,
+  "old_passed_pngs_preserved_during_resume": 9,
+  "resumed_scene": {
+    "scene_id": "AncientGizaRiverfront",
+    "prior_status": "pending",
+    "status": "passed",
+    "named_pointers": 68,
+    "all_png_paths_under_new_output": true
+  },
+  "resume_scope": "incomplete_pending_and_new",
+  "naming_summary": {
+    "passed_variants": 4,
+    "exported_variants": 4,
+    "reused_variants": 3,
+    "skipped_variants": 0,
+    "written_pngs": 3
+  },
+  "limitations": [
+    "This is a moved POSIX-folder integration check; foreign Windows drive and UNC path rebasing are separately tested in unit fixtures.",
+    "Historical fingerprints and hash-protected JSON artifact contents are preserved, not recertified under the desktop runtime."
+  ]
+}

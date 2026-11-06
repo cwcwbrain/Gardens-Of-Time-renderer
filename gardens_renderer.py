@@ -59,6 +59,7 @@ def main(argv=None):
     select.add_argument('--retry-incomplete', action='store_true', help='Retry only incomplete versions from the existing output checkpoint; preserve all other results')
     select.add_argument('--update', action='store_true', help='Discover new chapters/versions and retry incomplete ones while preserving prior passing outputs')
     select.add_argument('--export-named', action='store_true', help='Export passing images with official chapter-list names, without rendering scenes')
+    select.add_argument('--relocate-output', action='store_true', help='Rebase a copied output checkpoint to this folder after moving computers; verify existing artifacts first')
     select.add_argument('--scene', action='append', help='Exact scene ID; may be repeated')
     p.add_argument('--output', type=Path, default=ROOT / 'output')
     p.add_argument('--named-output', type=Path, help='Destination for official-name copies (default: output/named_scenes); used by --update or --export-named')
@@ -66,6 +67,7 @@ def main(argv=None):
     p.add_argument('--test-timeout', type=float, default=300, help='Maximum seconds per variant test worker (default 300)')
     p.add_argument('--test-limit', type=int, help='Process at most this many selected scenes per test invocation')
     p.add_argument('--retry-failed', action='store_true', help='Retry non-passing checkpoints in test mode')
+    p.add_argument('--include-pending', action='store_true', help='With --update, also resume saved pending/running jobs after an interrupted run or move')
     p.add_argument('--plan-only', action='store_true', help='Export the test or retry plan without starting workers')
     p.add_argument('--frame', type=int, help='One-based snapshot frame for --render')
     p.add_argument('--index-only', action='store_true', help='Download and index catalogues; do not download bundles')
@@ -75,6 +77,15 @@ def main(argv=None):
     p.add_argument('--retries', type=int, default=2)
     p.add_argument('--property', action='append', default=[], metavar='NAME=VALUE', help='Verified Unity runtime property; never guessed')
     args = p.parse_args(argv)
+    if args.include_pending and not args.update:
+        p.error('--include-pending requires --update')
+    if args.relocate_output:
+        if args.render or args.index_only or args.retry_failed or args.named_output or args.frame is not None or args.test_limit is not None:
+            p.error('--relocate-output verifies and rebases saved paths; use --output and optionally --plan-only')
+        from gardens.relocation import relocate_output
+        report=relocate_output(args.output,dry_run=args.plan_only)
+        print(json.dumps(report,indent=2),flush=True)
+        return 0
     if args.named_output is not None and not (args.update or args.export_named):
         p.error('--named-output requires --update or --export-named')
     if args.export_named and (args.render or args.index_only):
