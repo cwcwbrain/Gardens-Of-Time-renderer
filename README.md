@@ -241,12 +241,24 @@ interrupted update. Offline mode requires verified cached naming resources.
 3. On the desktop, install Python and put the latest program files into the copied
    project, keeping its output folder. Reinstall requirements there rather than
    reusing a laptop virtual environment. A short folder on a drive with plenty of
-   space, such as `D:\Gardens`, also helps Windows filename limits.
-4. Open Command Prompt in that project folder and run:
+   space, such as `D:\Gardens`, also helps Windows filename limits. Use a fully
+   local folder outside OneDrive or other synchronized folders. If the copy is
+   currently in OneDrive, select **Always keep on this device** and wait until
+   all files finish downloading before copying the project to the local folder.
+4. Open Command Prompt in that project folder. Enter each command separately;
+   wait for it to finish successfully before entering the next one:
 
 ```cmd
 py -m pip install -r requirements.txt
+```
+
+```cmd
 py gardens_renderer.py --relocate-output --output output
+```
+
+Only when relocation reports `relocated` or `unchanged`, resume:
+
+```cmd
 py gardens_renderer.py --update --include-pending --output output
 ```
 
@@ -272,6 +284,23 @@ SQLite backup are under `output/batch`. Historical absolute strings inside
 hash-protected JSON artifacts are retained; refreshed reports/exports use the
 rebased ledger. External named-export folders must be copied separately or
 regenerated. Allow additional desktop space for named image copies.
+
+If SQLite reports **disk I/O error**, stop before updating. Check available disk
+space and that every copied file is fully local and writable. Keep the original
+copy and the entire `output/batch` directory, including any SQLite WAL/SHM files;
+do not delete the checkpoint or create a fresh run. Try relocation from the
+fully local project folder outside OneDrive. If it still fails, stop and retain
+both copies for inspection. Any new transfer from the stopped original run should
+go into a new empty local project folder, preserving the failed desktop copy.
+The message alone cannot distinguish an incomplete transfer, synchronization,
+permissions, or storage problems.
+
+Updates, selective retries, and named exports check the existing database and
+saved output roots before downloading any catalogues. A checkpoint that still
+points to the old computer must be relocated successfully first. Updates and
+retries also probe SQLite write access without changing any scene/job records.
+These checks do not repair a damaged or inaccessible database, and storage can
+still fail later during a run.
 
 To process a few pending scenes per invocation, including every matched version
 of each selected scene:

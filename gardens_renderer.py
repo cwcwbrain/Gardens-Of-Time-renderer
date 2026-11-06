@@ -106,12 +106,16 @@ def main(argv=None):
     if args.retry_incomplete:
         if args.retry_failed or args.refresh_catalogues or args.remote_config or args.property:
             p.error('--retry-incomplete uses the saved roster; do not combine it with --retry-failed or catalogue overrides')
+        from gardens.checkpoint import require_checkpoint
+        require_checkpoint(args.output)
         from gardens.batch import retry_incomplete
         return retry_incomplete(args)
     if args.update or args.export_named:
         if args.retry_failed:p.error('--update preserves previous failed results; do not combine it with --retry-failed')
         if not (args.output.resolve()/'batch/tests.sqlite3').is_file():
             p.error('--update/--export-named requires the same --output folder and batch/tests.sqlite3 from the previous run')
+        from gardens.checkpoint import require_checkpoint
+        require_checkpoint(args.output,writable=args.update)
     properties = {}
     for item in args.property:
         key, sep, value = item.partition('=')

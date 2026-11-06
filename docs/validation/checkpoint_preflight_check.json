@@ -1,0 +1,13 @@
+{
+  "checkpoint_jobs": 4695,
+  "checkpoint_scenes": 4487,
+  "image_files": 12,
+  "rows_preserved": true,
+  "image_sha256_and_mtime_preserved": true,
+  "preflight_status": "passed",
+  "network_calls": 0,
+  "scene_workers": 0,
+  "limitations": [
+    "Checks the previously migrated local validation run, not the user desktop or OneDrive storage."
+  ]
+}

@@ -14,6 +14,7 @@ from dataclasses import asdict
 from pathlib import Path
 
 from .download import atomic_json,read_json,sha256
+from .checkpoint import checkpoint_error,require_checkpoint
 from .scenes import variant_id
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -51,14 +52,19 @@ def reusable(result):
 class Ledger:
     def __init__(self,path):
         path=Path(path);path.parent.mkdir(parents=True,exist_ok=True)
-        self.db=sqlite3.connect(path)
-        self.db.row_factory=sqlite3.Row
-        self.db.execute('PRAGMA journal_mode=WAL')
-        self.db.execute('CREATE TABLE IF NOT EXISTS scenes (id TEXT PRIMARY KEY, ordinal INTEGER, match_status TEXT, issues TEXT, active INTEGER)')
-        self.db.execute('CREATE TABLE IF NOT EXISTS jobs (scene_id TEXT, variant_id TEXT, ordinal INTEGER, fingerprint TEXT, status TEXT, definition TEXT, result TEXT, active INTEGER, PRIMARY KEY(scene_id,variant_id))')
-        self.db.execute('CREATE INDEX IF NOT EXISTS active_job_status ON jobs(active,status,ordinal,variant_id)')
-        self.db.execute('CREATE INDEX IF NOT EXISTS active_scene_status ON jobs(active,scene_id,status)')
-        self.db.commit()
+        self.db=None
+        try:
+            self.db=sqlite3.connect(path)
+            self.db.row_factory=sqlite3.Row
+            self.db.execute('PRAGMA journal_mode=WAL')
+            self.db.execute('CREATE TABLE IF NOT EXISTS scenes (id TEXT PRIMARY KEY, ordinal INTEGER, match_status TEXT, issues TEXT, active INTEGER)')
+            self.db.execute('CREATE TABLE IF NOT EXISTS jobs (scene_id TEXT, variant_id TEXT, ordinal INTEGER, fingerprint TEXT, status TEXT, definition TEXT, result TEXT, active INTEGER, PRIMARY KEY(scene_id,variant_id))')
+            self.db.execute('CREATE INDEX IF NOT EXISTS active_job_status ON jobs(active,status,ordinal,variant_id)')
+            self.db.execute('CREATE INDEX IF NOT EXISTS active_scene_status ON jobs(active,scene_id,status)')
+            self.db.commit()
+        except sqlite3.Error as exc:
+            if self.db is not None:self.db.close()
+            raise checkpoint_error(path,exc) from exc
 
     def close(self):self.db.close()
 
@@ -190,6 +196,7 @@ def retry_incomplete(args,runner=None,update_metadata=None):
     out=Path(args.output).resolve();work=out/'batch';checkpoint=work/'tests.sqlite3'
     if not checkpoint.is_file():
         raise ValueError(f'No existing test checkpoint at {checkpoint}. Use the same --output folder as the finished run; no scenes were changed.')
+    require_checkpoint(out)
     ledger=Ledger(checkpoint);runner=runner or execute_job;run_id=uuid.uuid4().hex
     try:
         rows=list(ledger.db.execute('SELECT * FROM jobs WHERE active=1 ORDER BY ordinal,variant_id'))

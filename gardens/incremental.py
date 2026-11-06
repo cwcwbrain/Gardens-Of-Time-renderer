@@ -5,6 +5,7 @@ from dataclasses import asdict
 from pathlib import Path
 
 from .batch import Ledger,fingerprint
+from .checkpoint import require_checkpoint
 from .scenes import variant_id
 
 VERSION_NAMESPACE='_new_versions'
@@ -23,6 +24,7 @@ def enroll_updates(out,scenes,matches,*,complete):
     stats={'added_scenes':0,'added_variants':0,'discovery_complete':bool(complete),
            'ignored_inactive':0,'discovered_blocked':0,'retired_placeholders':0,'blocked_update_variants':0}
     if not complete:return stats
+    require_checkpoint(out)
     ledger=Ledger(checkpoint)
     try:
         saved_scenes=list(ledger.db.execute('SELECT * FROM scenes'))

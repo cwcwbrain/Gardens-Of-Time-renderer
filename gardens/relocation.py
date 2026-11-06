@@ -3,8 +3,9 @@ import json
 import re
 import sqlite3
 import uuid
-from pathlib import Path,PurePosixPath,PureWindowsPath
+from pathlib import Path,PureWindowsPath
 
+from .checkpoint import checkpoint_error,stored_path as _stored_path
 from .download import atomic_json,sha256
 
 ROLES={'scene_empty.png','scene_complete.png','scene_solution.png'}
@@ -16,19 +17,6 @@ def _plain(path):
         if part.is_symlink() or (hasattr(part,'is_junction') and part.is_junction()):
             raise ValueError(f'Symlink or junction is not allowed during relocation: {part}')
     return path.resolve()
-
-
-def _stored_path(value,flavor=None):
-    if not isinstance(value,str) or not value or '\0' in value:
-        raise ValueError('Checkpoint contains an invalid local path')
-    windows=bool(re.match(r'^[A-Za-z]:',value) or value.startswith(('\\\\','//')) or '\\' in value)
-    kind=PureWindowsPath if windows else PurePosixPath
-    if flavor is not None and kind is not flavor:
-        raise ValueError(f'Checkpoint contains mixed local path styles: {value}')
-    path=kind(value)
-    if not path.is_absolute() or '..' in path.parts:
-        raise ValueError(f'Checkpoint path is relative or contains a parent escape: {value}')
-    return path
 
 
 def _object(raw,field):
@@ -195,6 +183,6 @@ def relocate_output(output,dry_run=False):
         atomic_json(report_path,report)
         return report
     except sqlite3.Error as exc:
-        raise ValueError(f'Cannot relocate copied checkpoint: {exc}') from exc
+        raise checkpoint_error(checkpoint,exc,'relocate copied checkpoint') from exc
     finally:
         if db is not None:db.close()
