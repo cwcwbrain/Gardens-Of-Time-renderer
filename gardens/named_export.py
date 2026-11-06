@@ -23,7 +23,8 @@ ROLES={'scene_empty.png':('empty','Empty'),'scene_complete.png':('complete','Com
        'scene_solution.png':('solution','Solution')}
 MANIFEST='named_export_manifest.json'
 INDEX='named_scene_index.csv'
-SCHEMA=1
+SCHEMA=2
+LAYOUT='chapters_100_10_1'
 
 
 def _units(text):return len(text.encode('utf-16-le'))//2
@@ -123,11 +124,18 @@ def _chapter_title(mapping):
     return f'Chapter {number:03d}'+(' - '+title if title else '')
 
 
+def _chapter_groups(number):
+    hundred_start=((number-1)//100)*100+1
+    ten_start=((number-1)//10)*10+1
+    return (f'Chapters {hundred_start:03d}-{hundred_start+99:03d}',
+            f'Chapters {ten_start:03d}-{ten_start+9:03d}')
+
+
 def _previous(root):
     path=_plain(root/MANIFEST)
     if not path.exists():return {'files':[],'owned_files':{}}
     value=json.loads(path.read_text(encoding='utf-8'))
-    if not isinstance(value,dict) or value.get('schema')!=SCHEMA or not isinstance(value.get('owned_files'),dict) or not isinstance(value.get('files'),list):
+    if not isinstance(value,dict) or value.get('schema') not in (1,SCHEMA) or not isinstance(value.get('owned_files'),dict) or not isinstance(value.get('files'),list):
         raise ValueError('Existing named export manifest is not a recognized ownership manifest')
     return value
 
@@ -161,10 +169,17 @@ def export_named(out,mappings,provenance=None,destination=None):
         rows=list(db.execute("SELECT * FROM jobs WHERE active=1 AND status='passed' ORDER BY ordinal,scene_id,variant_id"))
     previous=_previous(root);ownership=dict(previous['owned_files'])
     tracked={entry['relative_path']:entry for entry in previous['files'] if isinstance(entry,dict) and isinstance(entry.get('relative_path'),str)}
-    summary={'passed_variants':len(rows),'exported_variants':0,'reused_variants':0,'skipped_variants':0,'written_pngs':0}
+    summary={'passed_variants':len(rows),'exported_variants':0,'reused_variants':0,'skipped_variants':0,'written_pngs':0,'moved_pngs':0}
     report={'schema':SCHEMA,'status':'completed','source_output':str(out),'destination':str(root),
-            'provenance':provenance,'summary':summary,'exports':[],'issues':[],
+            'layout':LAYOUT,'provenance':provenance,'summary':summary,'exports':[],'issues':[],
             'manifest_path':str(root/MANIFEST),'index_path':str(root/INDEX)}
+    from .named_migration import LegacyMigration
+    migration=LegacyMigration(root,previous,_plain,_atomic_bytes)
+    try:migration.check_index()
+    except ValueError as exc:
+        report.update(status='partial',issues=[{'issues':[str(exc)]}])
+        summary['skipped_variants']=len(rows)
+        return report
     plans=[]
     for row in rows:
         entry={'scene_id':row['scene_id'],'variant_id':row['variant_id'],'source_proof_fingerprint':row['fingerprint'],'issues':[],'files':[]}
@@ -176,22 +191,30 @@ def export_named(out,mappings,provenance=None,destination=None):
             # Reserve the complete variant ID and most space for the named PNG.
             # Deep Windows download folders use order-only scene folders rather
             # than repeating a long title twice and exceeding MAX_PATH.
-            room=249-_units(str(root))-_units(variant)-4
-            if room<66:raise ValueError('Named destination is too long; choose a shorter export directory')
+            hundred,ten=_chapter_groups(mapping['chapter_number'])
+            prefix=root/hundred/ten
+            room=249-_units(str(prefix))-_units(variant)-4
+            chapter_number=f"{mapping['chapter_number']:03d}"
+            scene_order=f"{mapping['order']:06d}"
+            if room<_units(chapter_number)+_units(scene_order)+12+len(' - Complete.png'):
+                raise ValueError('Named destination is too long; choose a shorter export directory')
             compact=room<130
-            chapter_limit=22 if compact else min(65,max(26,room//4))
-            scene_limit=17 if compact else min(75,max(26,room//4))
+            minimal=room<66
+            chapter_limit=_units(chapter_number) if minimal else (22 if compact else min(65,max(26,room//4)))
+            scene_limit=_units(scene_order) if minimal else (17 if compact else min(75,max(26,room//4)))
             chapter_name=_chapter_title(mapping)
-            if compact:
+            if minimal:chapter_name=chapter_number
+            elif compact:
                 prefix=f"Chapter {mapping['chapter_number']:03d}"
                 subtitle=chapter_name[len(prefix):].removeprefix(' - ')
-                chapter_name=f"{mapping['chapter_number']:03d}"+(' - '+safe_component(subtitle,chapter_limit-6) if subtitle else '')
+                subtitle_limit=chapter_limit-_units(chapter_number)-3
+                chapter_name=chapter_number+(' - '+safe_component(subtitle,subtitle_limit) if subtitle and subtitle_limit>=12 else '')
             chapter=safe_component(chapter_name,chapter_limit)
-            scene=safe_component(f"{mapping['order']:06d}" if compact else f"{mapping['order']:06d} - {mapping['title']}",scene_limit)
+            scene=safe_component(scene_order if compact else f"{scene_order} - {mapping['title']}",scene_limit)
             entry.update(official_title=mapping['title'],official_chapter_title=mapping['chapter_title'],
                          chapter_number=mapping['chapter_number'],order=mapping['order'],
                          mission_order=mapping.get('mission_order'),scene_title=mapping.get('scene_title'))
-            plans.append({'row':row,'entry':entry,'mapping':mapping,'chapter':chapter,'scene':scene,'variant':variant,'chapter_limit':chapter_limit,'scene_limit':scene_limit,'room':room})
+            plans.append({'row':row,'entry':entry,'mapping':mapping,'hundred':hundred,'ten':ten,'chapter':chapter,'scene':scene,'variant':variant,'chapter_limit':chapter_limit,'scene_limit':scene_limit,'room':room})
         except (ValueError,TypeError,KeyError) as exc:entry['issues'].append(str(exc))
     # Sanitizing names can merge different official strings. Disambiguate using
     # stable source identities rather than filesystem enumeration order.
@@ -207,12 +230,12 @@ def export_named(out,mappings,provenance=None,destination=None):
             plan['chapter']=safe_component(plan['chapter']+'~'+_digest(m['chapter_title']),plan['chapter_limit'])
         key=(original_chapter.casefold(),plan['scene'].casefold())
         if len(scenes.get(key,()))>1:plan['scene']=safe_component(plan['scene']+'~'+_digest(row['scene_id']),plan['scene_limit'])
-        directory=root/plan['chapter']/plan['scene']/plan['variant']
+        directory=root/plan['hundred']/plan['ten']/plan['chapter']/plan['scene']/plan['variant']
         target_key=str(directory).casefold()
         if target_key in targets and targets[target_key]!=(row['scene_id'],row['variant_id']):
             entry['issues'].append('Named folder collision between different saved variants')
         targets[target_key]=(row['scene_id'],row['variant_id'])
-        entry['grouping']={'chapter':plan['chapter'],'scene':plan['scene'],'variant':plan['variant']}
+        entry['grouping']={'hundred':plan['hundred'],'ten':plan['ten'],'chapter':plan['chapter'],'scene':plan['scene'],'variant':plan['variant']}
         try:
             if entry['issues']:continue
             images=_source_images(out,row);actions=[]
@@ -229,12 +252,24 @@ def export_named(out,mappings,provenance=None,destination=None):
                         'role':role,'alias':m['title']+' - '+label+'.png','source':str(source),'destination':str(target),
                         'relative_path':relative,'source_sha256':digest,'destination_sha256':digest,
                         'source_proof_fingerprint':row['fingerprint'],'grouping':entry['grouping']}
-                actions.append((source,target,digest,state,record))
+                move=migration.plan(record,source,target,state)
+                actions.append((source,target,digest,state,record,move))
             # All three hashes and destination ownership checks finish first.
-            for source,target,digest,state,record in actions:
-                if state=='write':_copy(source,target,digest);summary['written_pngs']+=1
+            plan['actions']=actions
+        except (ValueError,TypeError,KeyError,OSError,SyntaxError) as exc:entry['issues'].append(str(exc))
+    migration.prepare([action[5] for plan in plans for action in plan.get('actions',[]) if action[5] is not None])
+    for plan in plans:
+        entry=plan['entry'];actions=plan.get('actions')
+        if entry['issues'] or actions is None:continue
+        try:
+            for source,target,digest,state,record,move in actions:
+                if move is not None:
+                    old_relative=migration.apply(move)
+                    if move.get('moved'):summary['moved_pngs']+=1
+                    ownership.pop(old_relative,None);tracked.pop(old_relative,None)
+                elif state=='write':_copy(source,target,digest);summary['written_pngs']+=1
                 ownership[record['relative_path']]=digest;tracked[record['relative_path']]=record;entry['files'].append(record)
-            entry['status']='reused' if all(action[3]=='reuse' for action in actions) else 'exported'
+            entry['status']='reused' if all(action[3]=='reuse' and action[5] is None for action in actions) else 'exported'
             summary['exported_variants']+=1
             if entry['status']=='reused':summary['reused_variants']+=1
         except (ValueError,TypeError,KeyError,OSError,SyntaxError) as exc:entry['issues'].append(str(exc))
@@ -246,12 +281,17 @@ def export_named(out,mappings,provenance=None,destination=None):
     stream=io.StringIO(newline='');fields=['scene_id','variant_id','official_title','official_chapter_title','chapter_number','order','role','relative_path','source','source_sha256','destination','destination_sha256','source_proof_fingerprint']
     writer=csv.DictWriter(stream,fieldnames=fields,extrasaction='ignore');writer.writeheader();writer.writerows(report['files'])
     index_data=stream.getvalue().encode('utf-8-sig');index=_plain(root/INDEX)
-    if index.exists() and (not index.is_file() or (sha256(index)!=hashlib.sha256(index_data).hexdigest() and sha256(index)!=previous.get('index_sha256'))):
+    index_digest=hashlib.sha256(index_data).hexdigest()
+    index_published=False
+    if index.exists() and (not index.is_file() or (sha256(index)!=index_digest and not migration.index_matches(sha256(index)))):
         report['issues'].append({'issues':['Named CSV index conflicts with an untracked or edited file']})
         report['index_sha256']=previous.get('index_sha256')
     else:
-        if not index.exists() or sha256(index)!=hashlib.sha256(index_data).hexdigest():_atomic_bytes(index,index_data)
-        report['index_sha256']=hashlib.sha256(index_data).hexdigest()
+        migration.publishing(index_digest)
+        if not index.exists() or sha256(index)!=index_digest:_atomic_bytes(index,index_data)
+        report['index_sha256']=index_digest
+        index_published=True
     if report['issues']:report['status']='partial'
     _atomic_bytes(root/MANIFEST,(json.dumps(report,indent=2,ensure_ascii=True)+'\n').encode('utf-8'))
+    if index_published:migration.finish(ownership)
     return report

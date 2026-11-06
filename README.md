@@ -204,9 +204,41 @@ Giza Riverfront - Solution.png
 The named files are independent copies. Original PNG paths, validation reports
 and SQLite checkpoint rows stay intact, so future updates can still reuse them.
 Chapter/scene order and stable version folders distinguish repeated titles and
-multiple bundle matches. Windows-invalid characters are escaped; deep paths can
+multiple bundle matches. Named images are grouped by **100 chapters**, then
+**10 chapters**, then the individual chapter. For example:
+
+```text
+named_scenes/
+  Chapters 401-500/
+    Chapters 461-470/
+      Chapter 463 - <official chapter title>/
+        <scene order> - <official scene title>/
+          variant_<version ID>/
+            <official scene title> - Empty.png
+            <official scene title> - Complete.png
+            <official scene title> - Solution.png
+```
+
+The ranges are fixed: chapter 100 belongs to `001-100` / `091-100`, and
+chapter 101 belongs to `101-200` / `101-110`. Later chapters automatically use
+the same hierarchy. Corrected scene order and every matched version are retained.
+
+Existing unchanged named PNGs tracked by the export manifest are moved into the
+new groups without creating another PNG copy. Their bytes and modification times
+stay intact. Edited/untracked copies and old aliases for different official names
+are preserved. A small migration journal lets an interrupted reorganization resume.
+Only empty former chapter/scene/version folders are removed after publication;
+folders containing notes or other files are retained.
+The original render tree and checkpoint are never reorganized by named export.
+The new manifest uses schema 2 and can read schema 1 exports; older code refuses
+the new manifest rather than recreating the former folder layout.
+
+Windows-invalid characters are escaped; deep paths can
 shorten folder labels or long filenames while the exact official title remains
-in the index. A shorter `--named-output` location keeps more folder text visible.
+in the index. Very deep roots can use chapter numbers and scene order numbers
+for those two folder levels. A shorter `--named-output` location keeps more
+folder text visible. Grouping changes folder organization, not total image size
+or OneDrive's requirement to finish downloading the files before a transfer.
 
 To name already passing images without reconstructing or indexing scene bundles:
 

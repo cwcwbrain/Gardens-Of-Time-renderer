@@ -1,0 +1,44 @@
+{
+  "scope": "Offline named-export CLI on previously relocated real scenes; no render workers or network downloads.",
+  "checkpoint_jobs": 4695,
+  "legacy_schema": 1,
+  "new_schema": 2,
+  "layout": "chapters_100_10_1",
+  "first_export_summary": {
+    "passed_variants": 4,
+    "exported_variants": 4,
+    "reused_variants": 0,
+    "skipped_variants": 0,
+    "written_pngs": 0,
+    "moved_pngs": 12
+  },
+  "second_export_summary": {
+    "passed_variants": 4,
+    "exported_variants": 4,
+    "reused_variants": 4,
+    "skipped_variants": 0,
+    "written_pngs": 0,
+    "moved_pngs": 0
+  },
+  "checkpoint_rows_preserved": true,
+  "raw_scene_files_preserved": 24,
+  "named_png_sha256_mtime_inode_preserved": 12,
+  "extra_png_copies": 0,
+  "relative_paths": [
+    "Chapters 001-100/Chapters 001-010/001 - Troub~6e70f8125c/000001/variant_6cd4e8b4138ae155/Giza Riverfront - Complete.png",
+    "Chapters 001-100/Chapters 001-010/001 - Troub~6e70f8125c/000001/variant_6cd4e8b4138ae155/Giza Riverfront - Empty.png",
+    "Chapters 001-100/Chapters 001-010/001 - Troub~6e70f8125c/000001/variant_6cd4e8b4138ae155/Giza Riverfront - Solution.png",
+    "Chapters 701-800/Chapters 741-750/748 - Hometown Heroes/004482/variant_335e8193323527ab/Veterans Breakfast Diner - Complete.png",
+    "Chapters 701-800/Chapters 741-750/748 - Hometown Heroes/004482/variant_335e8193323527ab/Veterans Breakfast Diner - Empty.png",
+    "Chapters 701-800/Chapters 741-750/748 - Hometown Heroes/004482/variant_335e8193323527ab/Veterans Breakfast Diner - Solution.png",
+    "Chapters 701-800/Chapters 741-750/748 - Hometown Heroes/004485/variant_66112f82bebbd0f0/Veterans Classic Car Drive - Complete.png",
+    "Chapters 701-800/Chapters 741-750/748 - Hometown Heroes/004485/variant_66112f82bebbd0f0/Veterans Classic Car Drive - Empty.png",
+    "Chapters 701-800/Chapters 741-750/748 - Hometown Heroes/004485/variant_66112f82bebbd0f0/Veterans Classic Car Drive - Solution.png",
+    "Chapters 701-800/Chapters 741-750/748 - Hometown Heroes/004487/variant_0927d0acb929fbbd/Main Street Salute - Complete.png",
+    "Chapters 701-800/Chapters 741-750/748 - Hometown Heroes/004487/variant_0927d0acb929fbbd/Main Street Salute - Empty.png",
+    "Chapters 701-800/Chapters 741-750/748 - Hometown Heroes/004487/variant_0927d0acb929fbbd/Main Street Salute - Solution.png"
+  ],
+  "limitations": [
+    "Four previously validated ordinary scenes (chapters 1 and 748); not a reconstruction test of all scenes or the user computers."
+  ]
+}
