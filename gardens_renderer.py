@@ -26,20 +26,66 @@ def write_csv(path, rows, fields):
             writer.writerow({key: json.dumps(row[key], ensure_ascii=False) if isinstance(row.get(key), (list, dict)) else row.get(key, '') for key in fields})
 
 
-def name_scene_exports(args,client,discovery,scenes):
-    """Export readable copies without changing original paths or checkpoints."""
+def match_scene_names(args,client,discovery,scenes):
+    """Report official names for the complete roster, regardless of render status."""
     from gardens.names import load_official_names
-    from gardens.named_export import export_named
     out=args.output.resolve();checkpoint=out/'batch/tests.sqlite3'
     merged={scene.scene_id.casefold():scene for scene in scenes}
-    with sqlite3.connect(checkpoint.as_uri()+'?mode=ro',uri=True) as db:
-        db.row_factory=sqlite3.Row
-        for row in db.execute('SELECT * FROM jobs WHERE active=1 ORDER BY ordinal,variant_id'):
-            data=json.loads(row['definition'])['scene']
-            merged[row['scene_id'].casefold()]=Scene(row['ordinal'],row['scene_id'],data.get('thumbnail_url',''),
-                                                    data.get('item_manager_url',''),data.get('original_row',[]))
-    names=load_official_names(out,client,discovery.get('config_path'),sorted(merged.values(),key=lambda s:s.order),args.offline)
+    if checkpoint.is_file():
+        try:
+            with sqlite3.connect(checkpoint.as_uri()+'?mode=ro',uri=True) as db:
+                db.row_factory=sqlite3.Row
+                for row in db.execute('SELECT * FROM jobs WHERE active=1 ORDER BY ordinal,variant_id'):
+                    data=json.loads(row['definition'])['scene']
+                    merged[row['scene_id'].casefold()]=Scene(row['ordinal'],row['scene_id'],data.get('thumbnail_url',''),
+                                                            data.get('item_manager_url',''),data.get('original_row',[]))
+        except sqlite3.Error as exc:
+            from gardens.checkpoint import checkpoint_error
+            raise checkpoint_error(checkpoint,exc,'read saved scene identities') from exc
+    roster=sorted(merged.values(),key=lambda s:s.order)
+    names=load_official_names(out,client,discovery.get('config_path'),roster,args.offline)
+    mappings=names.get('mappings',{})
+    problems={entry['scene_id']:entry.get('issues',[]) for entry in names.get('issues',[]) if isinstance(entry,dict) and 'scene_id' in entry}
+    rows=[]
+    for scene in roster:
+        mapping=mappings.get(scene.scene_id)
+        matched=(isinstance(mapping,dict) and
+                 all(isinstance(mapping.get(key),str) and mapping[key].strip() for key in ('title','scene_title','chapter_title')) and
+                 isinstance(mapping.get('chapter_number'),int) and not isinstance(mapping.get('chapter_number'),bool) and mapping['chapter_number']>0)
+        value=mapping if matched else {}
+        keys=value.get('localization_keys',{})
+        rows.append({'order':scene.order,'scene_id':scene.scene_id,'match_status':'matched' if matched else 'unmatched',
+                     'in_game_name':value.get('title',''),'scene_title':value.get('scene_title',''),
+                     'chapter_number':value.get('chapter_number',''),'chapter_title':value.get('chapter_title',''),
+                     'mission_order':value.get('mission_order',''),'mission_id':value.get('mission_id',''),
+                     'story_key':value.get('story_key',''),'localization_scene_key':keys.get('scene',''),
+                     'localization_mission_key':keys.get('mission',''),'localization_story_key':keys.get('story',''),
+                     'replay_aliases':value.get('primary_appearances',[])[1:],
+                     'issues':[] if matched else (problems.get(scene.scene_id) or names.get('source_issues') or ['No verified official name match'])})
+    matched=sum(row['match_status']=='matched' for row in rows)
+    if matched!=len(rows) and names.get('status')=='available':names={**names,'status':'partial'}
     atomic_json(out/'scene_names.json',names)
+    target=out/'scene_name_matches.csv';temporary=target.with_name(target.name+'.tmp')
+    fields=['order','scene_id','match_status','in_game_name','scene_title','chapter_number','chapter_title',
+            'mission_order','mission_id','story_key','localization_scene_key','localization_mission_key',
+            'localization_story_key','replay_aliases','issues']
+    write_csv(temporary,rows,fields)
+    try:temporary.replace(target)
+    except PermissionError as exc:
+        raise ValueError(f'Close {target} in Excel and retry; the new lookup is saved at {temporary}. Saved scene results were not changed.') from exc
+    summary={'requested_scenes':len(rows),'matched_scenes':matched,'unmatched_scenes':len(rows)-matched}
+    report={'schema':1,'status':names.get('status','unavailable'),'csv_path':str(target),
+            'summary':summary,'source_issues':names.get('source_issues',[]),'provenance':names.get('provenance',{})}
+    atomic_json(out/'scene_name_match_report.json',report)
+    print('Official scene-name matches: '+json.dumps({'status':report['status'],**summary}),flush=True)
+    return names
+
+
+def name_scene_exports(args,client,discovery,scenes):
+    """Export readable copies without changing original paths or checkpoints."""
+    from gardens.named_export import export_named
+    out=args.output.resolve()
+    names=match_scene_names(args,client,discovery,scenes)
     exported=export_named(out,names.get('mappings',{}),provenance=names.get('provenance',{}),destination=args.named_output)
     report={'names_status':names['status'],'mapping_summary':names.get('summary',{}),
             'source_issues':names.get('source_issues',[]),'export':exported}
@@ -59,6 +105,7 @@ def main(argv=None):
     select.add_argument('--retry-incomplete', action='store_true', help='Retry only incomplete versions from the existing output checkpoint; preserve all other results')
     select.add_argument('--update', action='store_true', help='Discover new chapters/versions and retry incomplete ones while preserving prior passing outputs')
     select.add_argument('--export-named', action='store_true', help='Export passing images with official chapter-list names, without rendering scenes')
+    select.add_argument('--match-names', action='store_true', help='Match every roster scene to official in-game titles; write a CSV without rendering or copying images')
     select.add_argument('--relocate-output', action='store_true', help='Rebase a copied output checkpoint to this folder after moving computers; verify existing artifacts first')
     select.add_argument('--scene', action='append', help='Exact scene ID; may be repeated')
     p.add_argument('--output', type=Path, default=ROOT / 'output')
@@ -90,6 +137,8 @@ def main(argv=None):
         p.error('--named-output requires --update or --export-named')
     if args.export_named and (args.render or args.index_only):
         p.error('--export-named copies validated images; do not combine it with --render or --index-only')
+    if args.match_names and (args.render or args.index_only or args.retry_failed):
+        p.error('--match-names reads official names only; do not combine it with render, index or retry options')
     if args.test_all or args.retry_incomplete or args.update: args.render=True
     batch_mode=args.test_all or args.retry_incomplete or args.update or (args.all and args.render)
     if args.render and args.index_only: p.error('--render/--test-all cannot use --index-only')
@@ -116,6 +165,9 @@ def main(argv=None):
             p.error('--update/--export-named requires the same --output folder and batch/tests.sqlite3 from the previous run')
         from gardens.checkpoint import require_checkpoint
         require_checkpoint(args.output,writable=args.update)
+    if args.match_names and (args.output.resolve()/'batch/tests.sqlite3').exists():
+        from gardens.checkpoint import require_checkpoint
+        require_checkpoint(args.output,writable=False)
     properties = {}
     for item in args.property:
         key, sep, value = item.partition('=')
@@ -140,6 +192,9 @@ def main(argv=None):
     print('Catalogue source: '+discovery['source'],flush=True)
     if args.export_named:
         return name_scene_exports(args,client,discovery,scenes)
+    if args.match_names:
+        names=match_scene_names(args,client,discovery,scenes)
+        return 0 if names.get('status')=='available' else 1
     urls = discovery['catalogues']
     if not isinstance(urls, list) or not urls or not all(isinstance(u, str) and urlsplit(u).scheme == 'https' and urlsplit(u).netloc for u in urls):
         p.error('catalogues.json must contain a nonempty catalogues list of explicit HTTPS URLs')

@@ -1,5 +1,20 @@
 # Official scene-name exports
 
+To inspect the name match for every roster scene independently of image recovery:
+
+```cmd
+py gardens_renderer.py --match-names --output output
+```
+
+`scene_name_matches.csv` keeps corrected order and has one row per scene ID,
+including incomplete/pending scenes. Its `in_game_name` and `scene_title` columns
+retain the two official captions described below. Unmatched IDs have blank names
+and explicit issues; the command returns nonzero on incomplete coverage. It does
+not copy PNGs or start rendering and needs no existing checkpoint. If a checkpoint
+is present, it reads its active scene identities and saved order as well, covering
+newly discovered chapters without creating replay duplicates. Detailed source
+hashes remain in `scene_names.json` and `scene_name_match_report.json`.
+
 The naming pass follows reconstruction and validation. It is now included at
 the end of `--update`, and is available separately:
 

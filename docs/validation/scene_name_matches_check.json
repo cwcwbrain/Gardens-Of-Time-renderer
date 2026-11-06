@@ -1,0 +1,37 @@
+{
+  "scope": "Offline real official-metadata name-only CLI; no scene rendering or PNG export.",
+  "exit_code": 0,
+  "corrected_csv_scenes": 4481,
+  "csv_rows": 4487,
+  "matched_rows": 4487,
+  "unmatched_rows": 0,
+  "different_chapter_list_and_full_titles_in_corrected_csv": 107,
+  "corrected_order_preserved": true,
+  "later_chapter_scene_rows": 6,
+  "checkpoint_jobs_preserved": 4695,
+  "raw_and_named_files_and_batch_reports_preserved": 42,
+  "csv_bytes": 1065454,
+  "examples": {
+    "AncientGizaRiverfront": {
+      "in_game_name": "Giza Riverfront",
+      "scene_title": "Ancient Giza - Riverfront",
+      "chapter_number": "1",
+      "chapter_title": "Chapter 1 - Trouble at Time Manor"
+    },
+    "VictorianExteriorRedux1": {
+      "in_game_name": "Time Manor",
+      "scene_title": "Victorian Manor Exterior",
+      "chapter_number": "1",
+      "chapter_title": "Chapter 1 - Trouble at Time Manor"
+    },
+    "VictorianSceneRedone": {
+      "in_game_name": "Hourglass Study",
+      "scene_title": "Victorian Scene",
+      "chapter_number": "1",
+      "chapter_title": "Chapter 1 - Trouble at Time Manor"
+    }
+  },
+  "limitations": [
+    "Verified against cached authoritative metadata snapshots; this is not a reconstruction pass or a fresh live-CDN audit."
+  ]
+}

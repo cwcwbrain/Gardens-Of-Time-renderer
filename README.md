@@ -191,6 +191,30 @@ coverage makes no new enrollments, while saved incomplete variants can still be
 retried. The update reads MainProject's chapter metadata only, rather than
 rebuilding the playable game.
 
+**Match every scene ID to its actual in-game name without rendering images:**
+
+```cmd
+py gardens_renderer.py --match-names --output output
+```
+
+This writes `output/scene_name_matches.csv`, one row per scene in corrected
+order, including scenes whose reconstruction is incomplete or has not started.
+`in_game_name` is the official name in the game's chapter list; `scene_title`
+retains the separate full scene caption. The CSV also records the chapter,
+localization keys, replay aliases, match status and unresolved issues. Names are
+joined through the official game metadata and localization, never inferred from
+asset filenames. Missing or ambiguous names stay unmatched and give a nonzero
+command exit status.
+
+The matching command does not copy/export PNGs, run scene workers or index HO
+scene bundles. It downloads only the metadata needed for naming. It works before
+a first reconstruction run; if a checkpoint exists, it reads active saved scene
+IDs too, including discovered later chapters, without changing the saved results.
+`scene_names.json` retains the detailed mappings and source proof, and
+`scene_name_match_report.json` summarizes coverage. The same CSV is written
+automatically during named exports and at the end of `--update`. Run one command
+at a time against an output folder.
+
 **Official filenames are included in `--update`.** After retrying incomplete
 scenes and adding new ones, it exports every active passed version into
 `output/named_scenes` using the official English chapter-list title. For example:
