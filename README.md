@@ -515,3 +515,10 @@ by cause. It is not a claim that the full catalogue has passed.
 The [live Chapter 748 update check](docs/incremental-updates.md) records discovery,
 three ordinary-scene reconstructions, and preservation of passing outputs on a
 repeated update.
+
+
+The GAF decoder also supports the official uncompressed `FAG\0` signature as
+well as compressed `CAG\0`. This fixes the reported 5.9 signature rejection;
+length, compression, tag and scene-validation checks remain active. Keep a
+running batch on its original code and use the updated `--update` command after
+it finishes to retry those incomplete scenes from verified cached bundles.

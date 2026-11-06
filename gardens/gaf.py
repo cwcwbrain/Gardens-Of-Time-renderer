@@ -1,4 +1,4 @@
-"""Bounded GAF tag/timeline decoder (tested with the supplied CAG 5.9 assets).
+"""Bounded GAF tag/timeline decoder for compressed CAG and raw FAG assets.
 
 Format reference: Cocos2d GAF GAFTags/GAFDataReader, not placement byte scanning.
 Unsupported tags/effects are retained as limitations, never silently rendered.
@@ -188,7 +188,10 @@ def read_tags(r, movie, timeline=None):
 def decode(data):
     r = Reader(data)
     signature = r.take(4); version = (r.u8(), r.u8()); length = r.u32()
-    if signature not in (b'CAG\0', b'GAF\0') or version[0] not in (4,5):
+    # Official little-endian uint signatures: 0x00474146 (raw FAG) and
+    # 0x00474143 (zlib CAG). Keep the previously accepted GAF spelling as a
+    # compatibility alias, with exactly the same raw-body validation.
+    if signature not in (b'CAG\0', b'FAG\0', b'GAF\0') or version[0] not in (4,5):
         raise GAFError(f'Unsupported GAF signature/version {signature!r} {version}')
     body = r.take(len(data)-r.pos)
     if signature == b'CAG\0':

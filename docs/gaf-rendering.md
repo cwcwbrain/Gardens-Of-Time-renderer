@@ -8,8 +8,13 @@ references consulted (Cocos2d's public GAF reader/runtime):
 - https://github.com/cocos2d/cocos2d-html5/blob/develop/external/gaf/Library/GAFDataReader.js
 - https://github.com/cocos2d/cocos2d-html5/blob/develop/external/gaf/Library/GAFAssetPreload.js
 
-The supplied Unity GAF is CAG version 5.9. Its declared length counts the inflated
-body; the parser also accepts a standalone length including the ten-byte header.
+The decoder supports the official little-endian signatures `CAG\0` (zlib
+compressed, integer `0x00474143`) and `FAG\0` (uncompressed, integer `0x00474146`).
+The previously accepted `GAF\0` spelling remains a raw compatibility alias. The
+body layout is unchanged between compressed and uncompressed version 5.9 assets.
+A real compressed Yucatan payload and its inflated FAG wrapper decode to the
+same complete Movie in regression tests; malformed wrappers remain rejected.
+Declared lengths must match the body or include the ten-byte header.
 All fields and tag payloads are bounded and consumed exactly. The decoder handles
 stage, timeline, atlas, sprite/mask definitions, named parts, sequences, frame
 deltas, color transforms and actions. Unsupported tag IDs are retained as issues.
@@ -107,3 +112,16 @@ is retained in incomplete previews and no label is invented. Objects outside the
 encoded stage are reported with their unclipped affine bounds. They are not moved
 inside the viewport. Starting a rerender invalidates old final image filenames,
 even if the new input fails before rendering.
+
+
+The FAG correction addresses the reported `Unsupported GAF signature/version
+b'FAG\x00' (5, 9)` error. It does not transform cached bundles or skip any scene
+validation. Leave an active run on its original code; after it finishes, the
+updated `--update` command retries affected incomplete jobs from verified caches.
+
+The user reported this across scenes after Chapter 462. The two exact versions
+available for the boundary probe (one ordinary scene each from Chapters 462 and
+463, p9 catalogue) both use CAG and decode successfully. That probe does not
+establish a universal encoding transition at the stated chapter. Exact affected
+bundle identification remains useful for checking additional reconstruction
+limitations after the header fix.
