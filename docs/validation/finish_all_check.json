@@ -1,0 +1,48 @@
+{
+  "scope": "Actual offline --finish-all CLI, limited to one unfinished scene (all versions), followed by naming/export and actual obsolete-preview cleanup.",
+  "exit_code": 1,
+  "finish_status": "partial",
+  "stage_statuses": [
+    {
+      "name": "update",
+      "status": "partial",
+      "exit_code": 1
+    },
+    {
+      "name": "cleanup",
+      "status": "completed",
+      "exit_code": 0
+    }
+  ],
+  "previous_passed_versions_preserved": 4,
+  "original_input_image_and_metadata_artifacts_preserved": 32,
+  "previous_named_pngs_preserved": 12,
+  "seeded_obsolete_previews_deleted": 3,
+  "attempted_scene_versions": [
+    {
+      "scene_id": "VictorianExteriorRedux1",
+      "variant_id": "8249e17279e07891",
+      "status": "passed"
+    },
+    {
+      "scene_id": "VictorianExteriorRedux1",
+      "variant_id": "c8bf2b6de04fdf71",
+      "status": "passed"
+    }
+  ],
+  "name_match_csv_written": true,
+  "cleanup_summary": {
+    "passed_variants": 6,
+    "eligible_variants": 1,
+    "candidate_files": 3,
+    "candidate_bytes": 3839084,
+    "deleted_files": 3,
+    "deleted_bytes": 3839084,
+    "skipped_variants": 0,
+    "retained_files": 0
+  },
+  "limitations": [
+    "Offline cached/supplied real Unity bundles; worker scene limit intentionally leaves pending jobs so aggregate status stays partial.",
+    "Windows keep-awake behaviour is tested using a mocked native API; the cloud smoke test runs on Linux."
+  ]
+}

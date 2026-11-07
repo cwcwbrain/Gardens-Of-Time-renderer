@@ -95,6 +95,7 @@ def name_scene_exports(args,client,discovery,scenes):
 
 
 def main(argv=None):
+    arguments=list(sys.argv[1:] if argv is None else argv)
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--catalogues', type=Path, default=ROOT / 'catalogues.json')
     p.add_argument('--remote-config', help='Override the game loading-config URL for production HO catalogue discovery')
@@ -104,6 +105,7 @@ def main(argv=None):
     select.add_argument('--test-all', action='store_true', help='Test every scene/version with isolated workers and resumable reports')
     select.add_argument('--retry-incomplete', action='store_true', help='Retry only incomplete versions from the existing output checkpoint; preserve all other results')
     select.add_argument('--update', action='store_true', help='Discover new chapters/versions and retry incomplete ones while preserving prior passing outputs')
+    select.add_argument('--finish-all', action='store_true', help='Update/resume, match official names, organize exports and delete verified obsolete previews; keep Windows awake during the run')
     select.add_argument('--export-named', action='store_true', help='Export passing images with official chapter-list names, without rendering scenes')
     select.add_argument('--match-names', action='store_true', help='Match every roster scene to official in-game titles; write a CSV without rendering or copying images')
     select.add_argument('--relocate-output', action='store_true', help='Rebase a copied output checkpoint to this folder after moving computers; verify existing artifacts first')
@@ -123,7 +125,10 @@ def main(argv=None):
     p.add_argument('--timeout', type=float, default=30)
     p.add_argument('--retries', type=int, default=2)
     p.add_argument('--property', action='append', default=[], metavar='NAME=VALUE', help='Verified Unity runtime property; never guessed')
-    args = p.parse_args(argv)
+    args = p.parse_args(arguments)
+    if args.finish_all:
+        args.update=True
+        args.include_pending=True
     if args.include_pending and not args.update:
         p.error('--include-pending requires --update')
     if args.relocate_output:
@@ -175,6 +180,11 @@ def main(argv=None):
             p.error('--property requires NAME=VALUE')
         properties[key] = value
     out = args.output.resolve()
+    if args.finish_all:
+        from gardens.finish import finish_all
+        forwarded=['--update' if value=='--finish-all' else value for value in arguments]
+        if '--include-pending' not in forwarded:forwarded.append('--include-pending')
+        return finish_all(out,lambda:main(forwarded),plan_only=args.plan_only)
     out.mkdir(parents=True, exist_ok=True)
     scenes, duplicates = read_scenes(args.scenes)
     if args.scene:

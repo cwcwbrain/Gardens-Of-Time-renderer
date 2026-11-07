@@ -159,6 +159,32 @@ invalidates old passing checkpoints when the renderer changes.
 py gardens_renderer.py --update --output output
 ```
 
+**One unattended command for the complete existing-run workflow:**
+
+```cmd
+py gardens_renderer.py --finish-all --output output
+```
+
+This refreshes catalogue discovery, retries incomplete versions, resumes saved
+pending/running work, discovers new chapters/versions, writes official name
+matches, organizes named exports by 100/10/individual chapters, then deletes only
+verified obsolete incomplete previews. Passed renders and failed/blocked saved
+results are preserved. Use the latest program files beside the existing output
+folder; relocation must already have succeeded after a move.
+
+On Windows it temporarily requests that the system stay awake while the command
+runs, and restores the previous thread sleep state when finished. The display
+may turn off. Keep the computer powered on and online; explicit sleep, shutdown
+or a laptop lid sleep policy can still stop processing. No permanent power
+settings are changed.
+
+Known incomplete results return exit code 1 but still allow naming and safe
+cleanup. Fatal errors and interruptions skip cleanup. `finish_all_report.json`
+records both stages and their exit codes; the ordinary scene/name/cleanup reports
+remain available. `--plan-only` never deletes previews. Repeat the same command
+after an interruption to resume saved unfinished jobs. This workflow attempts
+all supported work; unresolved or unsupported scenes remain explicitly incomplete.
+
 After the current run finishes and you install the updated code, this command
 refreshes the official remote configuration and production HO catalogues. It
 also reads the production `Group00_VO_SO` static-data asset, using its explicit
