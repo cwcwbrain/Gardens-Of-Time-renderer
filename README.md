@@ -676,25 +676,25 @@ Item Manager animation descriptors accept case variants and the observed
 still require exact encoded key bindings; the displayed Item Manager label can
 differ from the encoded name (for example, `lemon` is labelled "Orange Slice"
 in Hourglass Study). Unknown named visuals remain in the previews and in
-`unresolved_named_objects`; they block certification. Visible unknowns receive
-orange outlines and pointers labelled with their raw encoded name followed by
-`[unverified]`. Both verified clues and unverified named objects are omitted
-from the empty image and retained in the complete and solution images. Unknowns
-are not counted as verified hidden objects and never receive guessed official
-labels. Invisible or off-stage unknowns do not receive invented pointers. Failed rerenders remove
+`unresolved_named_objects`; they block certification. Both verified clues and
+unverified named objects are omitted from the empty image and retained in the
+complete and solution images. Unverified objects keep their original art in the
+solution, without orange outlines, pointers or labels. Only verified Item Manager
+clues are highlighted and labelled. Unknowns are not counted as verified hidden
+objects and never receive guessed official labels. Failed rerenders remove
 stale final image filenames, keeping previews under `incomplete/`.
 
-Reports distinguish `named_pointers` (verified Item Manager clues),
-`unverified_named_pointers`, and `total_named_pointers`. The solution metadata
-also records each marker's `label_source`, `label_verified`, and `callout_color`;
-unverified entries have no `manager_key`. Additional unverified markers do not
-renumber the verified clues. The [real Hourglass Study check](docs/validation/unverified_marker_check.json)
-records 61 verified and two unverified pointers in each of its two bundles.
+`solution_objects.json` contains verified clue callouts only. Reports retain
+`unverified_named_pointers` for compatibility; new renders set it to zero, and
+`named_pointers`/`total_named_pointers` both count the verified callouts.
+`visible_unverified_object_ids` and `objects.json` retain visibility metadata for
+unverified objects without labelling them. Their roles remain unconfirmed;
+keeping their art does not certify them as findable clues or as decoration.
 The empty-image exclusion policy and object IDs are recorded in
 `empty_policy` and `empty_excluded_object_ids` in each validation report.
-The [empty-image regression check](docs/validation/unverified_empty_check.json)
-verifies this in both Hourglass Study bundles and Suzhou Gardens while keeping
-their complete and solution PNGs byte-identical to the marker-only build.
+The [unmarked-object regression check](docs/validation/unmarked_object_check.json)
+verifies this in both Hourglass Study bundles and Suzhou Gardens: empty and
+complete images are preserved while the unverified solution markers are removed.
 
 Wait until an active Windows run finishes before replacing its code. After
 updating, use `py gardens_renderer.py --retry-incomplete --output output` to

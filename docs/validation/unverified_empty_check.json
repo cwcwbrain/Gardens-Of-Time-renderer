@@ -338,5 +338,6 @@
     "full_suite_status": "passed",
     "real_bundle_comparisons": 3,
     "giza_missing_label_regression": "The unverified-banana empty image matches the fully labelled empty baseline pixel-for-pixel; complete art and validation blockers are preserved."
-  }
+  },
+  "historical_scope_note": "Historical empty-image fix while unverified solution markers were still drawn. The later unmarked_object_check.json preserves this empty policy and removes those markers."
 }

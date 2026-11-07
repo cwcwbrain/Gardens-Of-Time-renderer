@@ -1,0 +1,131 @@
+{
+  "checked_on": "2026-11-07",
+  "policy": "Omit unverified named objects from the empty image; retain their original art in complete and solution images without highlights, labels or pointers. Only verified Item Manager clues receive solution callouts. Unconfirmed bindings remain validation blockers.",
+  "scope": "Three real cached bundles and verified cached managers; compare empty/complete PNG hashes with the empty-image-fix build and compare both Hourglass Study solutions with the original verified-only solution images.",
+  "results": [
+    {
+      "scene_id": "VictorianSceneRedone",
+      "in_game_name": "Hourglass Study",
+      "variant_id": "6234e0da83eee691",
+      "bundle_url": "https://prod-cdn-assets.gardensoftime-cloud.net/ho/victoriansceneredone_assets_all_1d07d6342811b813b5869ce3ff3154c0.bundle",
+      "bundle_sha256": "94478236229ce61bf7a35ac5550dca905425b0c2de07540836673472df6e470b",
+      "item_manager_sha256": "863216bdc5beb6778d67d82572a6e55810b0c307e81e95812e4a58a11f45d509",
+      "status": "incomplete",
+      "remaining_issues": [
+        "Unclassified named object 142: maracas; no Item Manager label",
+        "Unclassified named object 95: lightbulb; no Item Manager label"
+      ],
+      "verified_named_pointers": 61,
+      "unverified_named_pointers": 0,
+      "total_named_pointers": 61,
+      "visible_unverified_object_ids": [
+        95,
+        142
+      ],
+      "unverified_objects_have_no_callouts": true,
+      "verified_labels_bindings_and_numbers_unchanged": true,
+      "preview_png_hashes": {
+        "empty": {
+          "before_sha256": "ab26ec39913f5096b057c5897cf36d8d757fade651934e8e9cf5814c178dfc1a",
+          "after_sha256": "ab26ec39913f5096b057c5897cf36d8d757fade651934e8e9cf5814c178dfc1a",
+          "unchanged": true
+        },
+        "complete": {
+          "before_sha256": "f26041fed8915e1f619ed24a854a5bd9b26a9d194a6ac42f0ffaae726abc6e01",
+          "after_sha256": "f26041fed8915e1f619ed24a854a5bd9b26a9d194a6ac42f0ffaae726abc6e01",
+          "unchanged": true
+        },
+        "solution": {
+          "before_sha256": "03a913eb5621b65cb2eab5f91998e4c51052576060dbfef3224a3180914c1072",
+          "after_sha256": "7454c5c8e801e313f7c93d8d6993ab59922cdff41d0c03333b89e0ae5f1031df",
+          "unchanged": false,
+          "matches_original_verified_only_solution": true
+        }
+      }
+    },
+    {
+      "scene_id": "VictorianSceneRedone",
+      "in_game_name": "Hourglass Study",
+      "variant_id": "7a1420d58dd6d1f0",
+      "bundle_url": "https://prod-cdn-assets.gardensoftime-cloud.net/ho/victoriansceneredone_assets_all_a6fc6323fbfe37a2056caf453aaad1dd.bundle",
+      "bundle_sha256": "c6388738aeb7469101e4b49c1780d7e5fc110114b9754fe47c8b2b5f810edc90",
+      "item_manager_sha256": "863216bdc5beb6778d67d82572a6e55810b0c307e81e95812e4a58a11f45d509",
+      "status": "incomplete",
+      "remaining_issues": [
+        "Unclassified named object 142: maracas; no Item Manager label",
+        "Unclassified named object 95: lightbulb; no Item Manager label"
+      ],
+      "verified_named_pointers": 61,
+      "unverified_named_pointers": 0,
+      "total_named_pointers": 61,
+      "visible_unverified_object_ids": [
+        95,
+        142
+      ],
+      "unverified_objects_have_no_callouts": true,
+      "verified_labels_bindings_and_numbers_unchanged": true,
+      "preview_png_hashes": {
+        "empty": {
+          "before_sha256": "ab26ec39913f5096b057c5897cf36d8d757fade651934e8e9cf5814c178dfc1a",
+          "after_sha256": "ab26ec39913f5096b057c5897cf36d8d757fade651934e8e9cf5814c178dfc1a",
+          "unchanged": true
+        },
+        "complete": {
+          "before_sha256": "f26041fed8915e1f619ed24a854a5bd9b26a9d194a6ac42f0ffaae726abc6e01",
+          "after_sha256": "f26041fed8915e1f619ed24a854a5bd9b26a9d194a6ac42f0ffaae726abc6e01",
+          "unchanged": true
+        },
+        "solution": {
+          "before_sha256": "03a913eb5621b65cb2eab5f91998e4c51052576060dbfef3224a3180914c1072",
+          "after_sha256": "7454c5c8e801e313f7c93d8d6993ab59922cdff41d0c03333b89e0ae5f1031df",
+          "unchanged": false,
+          "matches_original_verified_only_solution": true
+        }
+      }
+    },
+    {
+      "scene_id": "ChinaGardenRedux1",
+      "in_game_name": "Suzhou Gardens",
+      "variant_id": "2ea3fe135b389b3b",
+      "bundle_url": "https://prod-cdn-assets.gardensoftime-cloud.net/ho/chinagardenredux1_assets_all_3e4aee79cb03b6f98d37c897e05d62d1.bundle",
+      "bundle_sha256": "7e897e45b7ad2c4f8ce17be78db91f33c067cc7106ca7b278ed2c59f58b9984a",
+      "item_manager_sha256": "9661543f5506bb5a47a741eca07cd70f48674e16d9195fbfeebe0815dac33043",
+      "status": "incomplete",
+      "remaining_issues": [
+        "Unclassified named object 113: sharkfin; no Item Manager label"
+      ],
+      "verified_named_pointers": 70,
+      "unverified_named_pointers": 0,
+      "total_named_pointers": 70,
+      "visible_unverified_object_ids": [
+        113
+      ],
+      "unverified_objects_have_no_callouts": true,
+      "verified_labels_bindings_and_numbers_unchanged": true,
+      "preview_png_hashes": {
+        "empty": {
+          "before_sha256": "9a4effdb3329761e5f2b525c646df173c4012c55c39c933699827d7b7fcbc17f",
+          "after_sha256": "9a4effdb3329761e5f2b525c646df173c4012c55c39c933699827d7b7fcbc17f",
+          "unchanged": true
+        },
+        "complete": {
+          "before_sha256": "28a1164d323a4e28331861057441ccafd7e4856350e3afc8013b5b4006e7711b",
+          "after_sha256": "28a1164d323a4e28331861057441ccafd7e4856350e3afc8013b5b4006e7711b",
+          "unchanged": true
+        },
+        "solution": {
+          "before_sha256": "4a8e588bda7760c29ea20fe2209b212fa372a2488644dc51f9468868adb93f27",
+          "after_sha256": "f155ee0b4ec15b9825beb0290f41dab3f9e8d852f410d9f394e67b5185e8007e",
+          "unchanged": false
+        }
+      }
+    }
+  ],
+  "regression_checks": {
+    "full_suite_tests": 303,
+    "full_suite_status": "passed",
+    "real_bundle_comparisons": 3,
+    "giza_missing_label_regression": "Unknown banana stays out of the empty image, remains as complete/solution art, has no callout, and retains its visibility audit and incomplete binding issue.",
+    "offstage_regression": "Offstage unknown remains unresolved but has neither a pointer nor a visible-unverified audit entry."
+  }
+}

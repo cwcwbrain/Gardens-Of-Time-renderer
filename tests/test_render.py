@@ -188,24 +188,12 @@ class AnnotationTests(unittest.TestCase):
         self.assertTrue(all(len(m['label_lines'])>1 for m in markers))
         self.assertTrue(all(m['label']=='A Very Long Item Manager Label '*4 for m in markers))
 
-    def test_unverified_callouts_are_distinct_without_renumbering_verified_clues(self):
-        verified=[{'object_id':i,'label':label,'anchor':[4+i,4],
-                   'anchor_alpha':255,'bbox':[3,3,8,6]}
-                  for i,label in enumerate(('Banana','Zebra'),1)]
-        annotate_solution(Image.new('RGBA',(16,16),'white'),verified)
-        numbers={m['object_id']:m['number'] for m in verified}
+    def test_unverified_objects_cannot_receive_solution_callouts(self):
         unknown={'object_id':3,'label':'aardvark [unverified]','label_verified':False,
                  'anchor':[6,4],'anchor_alpha':255,'bbox':[3,3,8,6]}
-        markers=verified+[unknown]
-        image,box=annotate_solution(Image.new('RGBA',(16,16),'white'),markers)
-        self.assertEqual(validate_callouts(markers,image.size,box),[])
-        self.assertEqual({m['object_id']:m['number'] for m in verified},numbers)
-        self.assertEqual(unknown['number'],3)
-        self.assertEqual(unknown['callout_color'],[255,165,70,255])
-        self.assertTrue(all(m['callout_color']==[79,225,255,255] for m in verified))
-        self.assertEqual(image.getpixel(tuple(unknown['callout_box'][:2])),(19,25,33,255))
-        x,y,_,_=unknown['callout_box']
-        self.assertEqual(image.getpixel((x+8,y)),tuple(unknown['callout_color']))
+        with self.assertRaisesRegex(ValueError,'verified clue labels'):
+            annotate_solution(Image.new('RGBA',(16,16),'white'),[unknown])
+        self.assertNotIn('callout_box',unknown)
 
 
 class RealRenderTests(unittest.TestCase):
@@ -305,28 +293,21 @@ class RealRenderTests(unittest.TestCase):
         self.assertEqual(r['identified_hidden_objects'],67)
         self.assertEqual(r['named_pointers'],67)
         self.assertEqual(r['solution_markers'],67)
-        self.assertEqual(r['unverified_named_pointers'],1)
-        self.assertEqual(r['total_named_pointers'],68)
+        self.assertEqual(r['unverified_named_pointers'],0)
+        self.assertEqual(r['total_named_pointers'],67)
+        self.assertEqual(r['visible_unverified_object_ids'],[143])
         self.assertIn(143,r['empty_excluded_object_ids'])
         markers=json.loads((out/'solution_objects.json').read_text())
-        self.assertEqual(len(markers),68)
-        banana=next(m for m in markers if m['object_id']==143)
-        self.assertEqual(banana['label'],'banana [unverified]')
-        self.assertEqual(banana['encoded_name'],'banana')
-        self.assertEqual(banana['label_source'],'encoded_name')
-        self.assertIs(banana['label_verified'],False)
-        self.assertIsNone(banana['manager_key'])
-        self.assertEqual(banana['labels'],{})
-        self.assertEqual(banana['callout_color'],[255,165,70,255])
-        self.assertGreaterEqual(banana['anchor_alpha'],16)
+        self.assertEqual(len(markers),67)
+        self.assertNotIn(143,{m['object_id'] for m in markers})
         self.assertEqual(validate_callouts(markers,r['solution_dimensions'],r['solution_scene_box']),[])
         for marker in markers:
-            if marker['object_id']==143:continue
             self.assertIs(marker['label_verified'],True)
             self.assertEqual(marker['label_source'],'item_manager')
             self.assertEqual(marker['label'],data[marker['manager_key']]['beginner'])
         rows=json.loads((out/'objects.json').read_text())
-        self.assertEqual(next(row for row in rows if row['object_id']==143)['kind'],'unverified_named_object')
+        banana=next(row for row in rows if row['object_id']==143)
+        self.assertEqual(banana['kind'],'unverified_named_object')
         # Losing the Item Manager label must not put the banana back into the
         # empty image. Its art remains in the complete and annotated solution.
         for role in ('empty','complete'):
@@ -335,7 +316,7 @@ class RealRenderTests(unittest.TestCase):
                 self.assertIsNone(ImageChops.difference(preview,verified).getbbox(alpha_only=False),role)
         with Image.open(out/'incomplete/scene_empty.png') as empty, \
              Image.open(out/'incomplete/scene_complete.png') as complete:
-            self.assertIsNotNone(ImageChops.difference(empty,complete).crop(banana['bbox']).getbbox(alpha_only=False))
+            self.assertIsNotNone(ImageChops.difference(empty,complete).crop(banana['visible_bbox']).getbbox(alpha_only=False))
 
     def test_offstage_unverified_object_does_not_get_an_invented_pointer(self):
         from unittest.mock import patch
@@ -356,6 +337,7 @@ class RealRenderTests(unittest.TestCase):
         self.assertIn(143,r['unresolved_named_objects'])
         self.assertEqual(r['unverified_named_pointers'],0)
         self.assertEqual(r['total_named_pointers'],67)
+        self.assertNotIn(143,r['visible_unverified_object_ids'])
         markers=json.loads((out/'solution_objects.json').read_text())
         self.assertNotIn(143,{m['object_id'] for m in markers})
 

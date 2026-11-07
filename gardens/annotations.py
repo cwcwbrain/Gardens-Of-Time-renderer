@@ -37,15 +37,15 @@ def annotate_solution(scene,markers):
 
     Arrow/box coordinates are recorded in solution-canvas pixels; `anchor` stays
     in original scene coordinates. The full label is retained even when its
-    display text wraps. Unverified encoded-name labels are marked separately.
+    display text wraps. Only verified clue labels receive callouts.
     """
+    if any(marker.get('label_verified',True) is False for marker in markers):
+        raise ValueError('Solution callouts require verified clue labels')
     font=ImageFont.load_default(size=16)
     padding,gap,rail,gutter=16,4,240,20
     row_line=21
     sides={'left':[],'right':[]}
-    # Keep verified clue numbers stable when extra unverified visual markers
-    # are appended. Their raw names are not official Item Manager labels.
-    numbered=sorted(markers,key=lambda m:(m.get('label_verified',True) is False,m['label'].casefold(),m['object_id']))
+    numbered=sorted(markers,key=lambda m:(m['label'].casefold(),m['object_id']))
     for number,marker in enumerate(numbered,1):
         marker['number']=number
         marker['label_lines']=wrap_label(f'{number}. {marker["label"]}',font,rail-20)
@@ -71,7 +71,7 @@ def annotate_solution(scene,markers):
             tops[i]=min(tops[i],maximum-rows[i]['callout_height'])
             maximum=tops[i]-gap
         for marker,top in zip(rows,tops):
-            color=(255,165,70,255) if marker.get('label_verified',True) is False else cyan
+            color=cyan
             h=marker['callout_height']
             left=padding if side=='left' else width-padding-rail
             box=[left,top,left+rail,top+h]
