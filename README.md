@@ -715,6 +715,16 @@ and conflicting assignments still fail; other spelling errors are never guessed.
 Applied exceptions appear in `item_binding_overrides` and the object's metadata;
 the original Item Manager label is used unchanged in the solution.
 
+The [Corner Office investigation](docs/validation/corner_office_fashion_backstage.json)
+adds a seventh reviewed match: `tableclock_cor_off_ini` identifies the animated
+clock `anim_clock01` (object 152). Its exact source snapshot now renders all 70
+clues, removes the clock from the empty image and labels it Table Clock in the
+solution. FashionShowBackstage still has two clues entirely outside the encoded
+1280×758 stage: Flip Flop (105) and Feather Boa (148). Its sole root frame and
+serialized Unity transforms agree on those positions. All 70 clues match the
+Item Manager, but only 68 are visible, so that version remains incomplete until
+verified visible placements are available.
+
 
 The next-build ordinary-scene fixes also decode GAF atlas v3 (tag 15), including
 rotated sprites and separate horizontal/vertical scales, and intersect chained

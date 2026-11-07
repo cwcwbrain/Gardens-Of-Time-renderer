@@ -33,6 +33,14 @@ reviewed binding only for its exact bundle and canonical manager hashes.
 Source URLs, hashes, sprite inspection and real reconstruction checks are in
 docs/validation/reviewed_item_aliases.json. No texture pixels are included.
 
+CornerOffice_items.json preserves its current Item Manager fetched on 2026-11-07:
+https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_CornerOffice.json
+CornerOffice_names.json contains the real bundle's root GAF names. The Manager's
+Table Clock entry corresponds to object 152, an animated clock named
+`anim_clock01`. Tests restrict this reviewed match to the exact source hashes.
+Timeline references, rendered clock inspection and real reconstruction checks
+are recorded in docs/validation/corner_office_fashion_backstage.json.
+
 
 chapter747_748.json contains the actual production chapter/mission/scene records
 for chapters 747 and 748 from the MainProject Group00_VO_SO asset, read on

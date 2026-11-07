@@ -81,4 +81,51 @@ class ReviewedItemAliasTests(unittest.TestCase):
                 self.assertTrue(any('Multiple Item Manager keys' in issue for issue in issues))
 
 
+class CornerOfficeReviewedAliasTests(unittest.TestCase):
+    BUNDLE='0acf41ce678313b93651e0a137a284ae568e05ee72d2b3b157bec83ec60430ea'
+    MANAGER='626652c82aa85bb9a62c4cb825c71be36827a69c05bc6b10631051e5f643bfc0'
+    KEY='tableclock_cor_off_ini'
+
+    def setUp(self):
+        self.manager=json.loads((FIXTURES/'CornerOffice_items.json').read_text())
+        self.names={int(k):v for k,v in json.loads((FIXTURES/'CornerOffice_names.json').read_text()).items()}
+        self.bindings=reviewed_item_bindings(self.BUNDLE,self.MANAGER)
+
+    def test_actual_manager_binds_the_animated_clock_and_all_70_findable_entries(self):
+        self.assertEqual(hashlib.sha256(json.dumps(self.manager,sort_keys=True).encode()).hexdigest(),self.MANAGER)
+        items,animations,issues=parse_items(self.manager,self.names,self.bindings)
+        self.assertEqual(issues,[])
+        self.assertEqual(len(items),70)
+        self.assertEqual(animations,['anim_lights_cor_off_ini'])
+        self.assertEqual(items[152]['manager_key'],self.KEY)
+        self.assertEqual(items[152]['label'],'Table Clock')
+        self.assertEqual(items[152]['binding_override']['encoded_name'],'anim_clock01')
+
+    def test_clock_alias_requires_both_exact_source_hashes(self):
+        for bundle,manager in (('0'*64,self.MANAGER),(self.BUNDLE,'0'*64)):
+            with self.subTest(bundle=bundle,manager=manager):
+                bindings=reviewed_item_bindings(bundle,manager)
+                items,_,issues=parse_items(self.manager,self.names,bindings)
+                self.assertEqual(bindings,{})
+                self.assertNotIn(152,items)
+                self.assertTrue(any(self.KEY in issue for issue in issues))
+
+    def test_clock_alias_cannot_choose_a_changed_or_duplicated_target(self):
+        for names in ({**self.names,152:'anim_clock02'},
+                      {**{k:v for k,v in self.names.items() if k!=152},999:'anim_clock01'},
+                      {**self.names,999:'anim_clock01'}):
+            with self.subTest(names=names):
+                items,_,issues=parse_items(self.manager,names,self.bindings)
+                self.assertNotIn(152,items)
+                self.assertNotIn(999,items)
+                self.assertTrue(any(self.KEY in issue for issue in issues))
+
+    def test_clock_alias_does_not_generalize_to_other_manager_keys(self):
+        for key in ('tableclock_other_scene','clock_cor_off_ini'):
+            with self.subTest(key=key):
+                items,_,issues=parse_items({key:{'beginner':'Clock'}},{152:'anim_clock01'},self.bindings)
+                self.assertEqual(items,{})
+                self.assertTrue(issues)
+
+
 if __name__=='__main__':unittest.main()

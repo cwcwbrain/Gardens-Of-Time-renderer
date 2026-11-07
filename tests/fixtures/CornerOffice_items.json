@@ -1,0 +1,286 @@
+{
+  "Broach_cor_off_ini": {
+    "gold": "",
+    "beginner": "Brooch"
+  },
+  "Letteropener_cor_off_ini": {
+    "gold": "",
+    "beginner": "Letter Opener"
+  },
+  "Yorkiepuppy_cor_off_ini": {
+    "gold": "Yorkie",
+    "beginner": "Puppy"
+  },
+  "anim_lights_cor_off_ini": {
+    "gold": "",
+    "beginner": "Lights"
+  },
+  "belt_cor_off_ini": {
+    "gold": "",
+    "beginner": "Belt"
+  },
+  "bottle_cor_off_ini": {
+    "beginner": "Bottle",
+    "gold": ""
+  },
+  "bottlecap_cor_off_ini": {
+    "gold": "",
+    "beginner": "Bottle Cap"
+  },
+  "bracelet_cor_off_ini": {
+    "gold": "",
+    "beginner": "Bracelet"
+  },
+  "broomstick_cor_off_ini": {
+    "gold": "",
+    "beginner": "Broom"
+  },
+  "burger_cor_off_ini": {
+    "beginner": "Burger",
+    "gold": ""
+  },
+  "calendar_cor_off_ini": {
+    "gold": "",
+    "beginner": "Calendar"
+  },
+  "camera_cor_off_ini": {
+    "gold": "Video Surveillance",
+    "beginner": "Security Camera"
+  },
+  "camerafilm_cor_off_ini": {
+    "gold": "",
+    "beginner": "Camera Film"
+  },
+  "candy_cor_off_ini": {
+    "beginner": "Candy",
+    "gold": ""
+  },
+  "cane_cor_off_ini": {
+    "beginner": "Cane",
+    "gold": ""
+  },
+  "choclate_cor_off_ini": {
+    "beginner": "Chocolate",
+    "gold": ""
+  },
+  "clothespin_cor_off_ini": {
+    "beginner": "Clothespin",
+    "gold": ""
+  },
+  "clothpiece_cor_off_ini": {
+    "beginner": "Fabric Swatch",
+    "gold": ""
+  },
+  "coat_cor_off_ini": {
+    "beginner": "Jacket",
+    "gold": "Sport Coat"
+  },
+  "coatrack_cor_off_ini": {
+    "gold": "",
+    "beginner": "Coat Rack"
+  },
+  "coinpurse_cor_off_ini": {
+    "beginner": "Coin Purse",
+    "gold": ""
+  },
+  "compactmirror_cor_off_ini": {
+    "beginner": "Compact Mirror",
+    "gold": ""
+  },
+  "dustbin_cor_off_ini": {
+    "beginner": "Recycle Bin",
+    "gold": ""
+  },
+  "exit_cor_off_ini": {
+    "gold": "",
+    "beginner": "Exit Sign"
+  },
+  "fan_cor_off_ini": {
+    "gold": "",
+    "beginner": "Fan"
+  },
+  "gorilla_cor_off_ini": {
+    "beginner": "Gorilla",
+    "gold": ""
+  },
+  "hat_cor_off_ini": {
+    "gold": "",
+    "beginner": "Hat"
+  },
+  "heels_cor_off_ini": {
+    "beginner": "Heels",
+    "gold": "Pumps"
+  },
+  "hooks_cor_off_ini": {
+    "beginner": "Hooks",
+    "gold": ""
+  },
+  "jobopenings_cor_off_ini": {
+    "beginner": "Job Openings",
+    "gold": ""
+  },
+  "kerchief_cor_off_ini": {
+    "beginner": "Kerchief",
+    "gold": ""
+  },
+  "ladder_cor_off_ini": {
+    "beginner": "Ladder",
+    "gold": ""
+  },
+  "lattera_cor_off_ini": {
+    "beginner": "Letter A",
+    "gold": ""
+  },
+  "lipstick_cor_off_ini": {
+    "beginner": "Lipstick",
+    "gold": ""
+  },
+  "magazines_cor_off_ini": {
+    "beginner": "Magazines",
+    "gold": ""
+  },
+  "masque_cor_off_ini": {
+    "beginner": "Mask",
+    "gold": ""
+  },
+  "measuringtape_cor_off_ini": {
+    "gold": "",
+    "beginner": "Measuring Tape"
+  },
+  "musicnote_cor_off_ini": {
+    "gold": "",
+    "beginner": "Music Note"
+  },
+  "necklace_cor_off_ini": {
+    "beginner": "Necklace",
+    "gold": ""
+  },
+  "number9_cor_off_ini": {
+    "gold": "4 + 5 = ?",
+    "beginner": "Nine"
+  },
+  "painting_cor_off_ini": {
+    "gold": "",
+    "beginner": "Painting"
+  },
+  "pencil_cor_off_ini": {
+    "beginner": "Pencil",
+    "gold": ""
+  },
+  "pens_cor_off_ini": {
+    "beginner": "Pens",
+    "gold": ""
+  },
+  "pigeon_cor_off_ini": {
+    "beginner": "Dove",
+    "gold": ""
+  },
+  "postalstamp_cor_off_ini": {
+    "beginner": "Postage Stamp",
+    "gold": ""
+  },
+  "pottedflower_cor_off_ini": {
+    "beginner": "Potted Flower",
+    "gold": ""
+  },
+  "poweroutlet_cor_off_ini": {
+    "beginner": "Power Outlet",
+    "gold": ""
+  },
+  "purse_cor_off_ini": {
+    "gold": "",
+    "beginner": "Purse"
+  },
+  "radio_cor_off_ini": {
+    "beginner": "Radio",
+    "gold": ""
+  },
+  "ribbon_cor_off_ini": {
+    "beginner": "Ribbon",
+    "gold": ""
+  },
+  "ring_cor_off_ini": {
+    "beginner": "Ring",
+    "gold": ""
+  },
+  "scarf_cor_off_ini": {
+    "beginner": "Scarf",
+    "gold": ""
+  },
+  "scissor_cor_off_ini": {
+    "beginner": "Scissors",
+    "gold": ""
+  },
+  "sewingpins_cor_off_ini": {
+    "beginner": "Sewing Pins",
+    "gold": ""
+  },
+  "shirt_cor_off_ini": {
+    "gold": "",
+    "beginner": "Shirt"
+  },
+  "skirt_cor_off_ini": {
+    "gold": "",
+    "beginner": "Skirt"
+  },
+  "stamp_cor_off_ini": {
+    "beginner": "Ink Stamp",
+    "gold": ""
+  },
+  "stapler_cor_off_ini": {
+    "gold": "",
+    "beginner": "Stapler"
+  },
+  "sticknote_cor_off_ini": {
+    "beginner": "Sticky Notes",
+    "gold": ""
+  },
+  "stool_cor_off_ini": {
+    "beginner": "Stool",
+    "gold": ""
+  },
+  "sunglasses_cor_off_ini": {
+    "beginner": "Sunglasses",
+    "gold": ""
+  },
+  "tableclock_cor_off_ini": {
+    "beginner": "Table Clock",
+    "gold": ""
+  },
+  "tapedispenser_cor_off_ini": {
+    "beginner": "Tape Dispenser",
+    "gold": ""
+  },
+  "tassel_cor_off_ini": {
+    "gold": "",
+    "beginner": "Tassel"
+  },
+  "teacup_cor_off_ini": {
+    "beginner": "Teacup",
+    "gold": ""
+  },
+  "telephone_cor_off_ini": {
+    "beginner": "Telephone",
+    "gold": ""
+  },
+  "threadspindle_cor_off_ini": {
+    "beginner": "Thread Spool",
+    "gold": ""
+  },
+  "tie_cor_off_ini": {
+    "beginner": "Tie",
+    "gold": ""
+  },
+  "trophy_cor_off_ini": {
+    "beginner": "Trophy",
+    "gold": "Award"
+  },
+  "umbrella_cor_off_ini": {
+    "beginner": "Umbrella",
+    "gold": ""
+  },
+  "woodenmannequin_cor_off_ini": {
+    "beginner": "Wooden Mannequin",
+    "gold": ""
+  }
+}

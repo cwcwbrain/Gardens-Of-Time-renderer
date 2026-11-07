@@ -1,0 +1,246 @@
+{
+  "checked_on": "2026-11-07",
+  "scope": "Exact reported production bundles with freshly fetched current Item Managers, source GAF/Unity inspection, real before/after reconstructions and verified cached 13-catalogue coverage. Game GPU pixel parity is not independently verified.",
+  "renderer_identity": {
+    "schema": 1,
+    "code": "e0eaf4e0c6731093e96459ed728d1f9bee0e47b3154b7ac3a69fe1f12e3a564b",
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "platform": "Linux",
+    "packages": {
+      "UnityPy": "1.25.4",
+      "Pillow": "13.0.0"
+    }
+  },
+  "CornerOffice": {
+    "scene_id": "CornerOffice",
+    "variant_id": "d068b755fdf55430",
+    "bundle_url": "https://prod-cdn-assets.gardensoftime-cloud.net/ho/corneroffice_assets_all_3c2715f96e4b3ab3282c489702ace9bb.bundle",
+    "bundle_sha256": "0acf41ce678313b93651e0a137a284ae568e05ee72d2b3b157bec83ec60430ea",
+    "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_CornerOffice.json",
+    "item_manager_file_sha256": "05c63b2bf0b43eec6f0232fc51e782c04a7eeb3c850ca4cb3a1087f108ae1c25",
+    "item_manager_sha256": "626652c82aa85bb9a62c4cb825c71be36827a69c05bc6b10631051e5f643bfc0",
+    "item_manager_fetched_live_on": "2026-11-07",
+    "before_status": "incomplete",
+    "before_matched_clues": 69,
+    "after_status": "passed",
+    "after_render_status": "validated_snapshot",
+    "item_manager_complete": true,
+    "findable_clues": 70,
+    "visible_verified_clues": 70,
+    "issues": [],
+    "reviewed_binding": {
+      "manager_key": "tableclock_cor_off_ini",
+      "label": "Table Clock",
+      "object_id": 152,
+      "encoded_name": "anim_clock01",
+      "root_timeline": 0,
+      "child_timeline": 218,
+      "nested_clock_timeline": 217,
+      "visible_bbox": [
+        806,
+        477,
+        923,
+        550
+      ],
+      "visible_pixels": 5187,
+      "annotation_number": 61,
+      "anchor": [
+        864,
+        513
+      ]
+    },
+    "manual_art_review": "Decoded nested artwork is a brown wooden tabletop/mantel clock, the unique clock in this source. Root object 152 owns timeline 218; its child anim_clock owns timeline 217. Item Manager calls the findable clue Table Clock.",
+    "source_guard": "Exact bundle and canonical Item Manager hashes, complete key, unique object ID/name; no general mapping of animated objects to clues.",
+    "complete_image_unchanged": true,
+    "empty_image_changed_only_in_clock_bbox": [
+      806,
+      477,
+      923,
+      550
+    ],
+    "solution_clock_is_highlighted_and_labelled": true,
+    "png_sha256": {
+      "scene_empty.png": "27a52e6ee59b0f66cd1bce05ee53acc0dcfb919f57eaa2f6ba1ec4e74b94708e",
+      "scene_complete.png": "3c2f54c47474f6da86291a3bcb377785cac78bb55527dbf99930082aad2e7733",
+      "scene_solution.png": "32c664b34981a33bc12fe7fb29544596da3f23305ca0e5d970b4351f270deed4"
+    }
+  },
+  "FashionShowBackstage": {
+    "scene_id": "FashionShowBackstage",
+    "variant_id": "ed903199d5c66d3a",
+    "bundle_url": "https://prod-cdn-assets.gardensoftime-cloud.net/ho/fashionshowbackstage_assets_all_8642516afb6344cbb93a247ef89d4bb0.bundle",
+    "bundle_sha256": "e771c2ee83f8bb53bffd071a555aae41430edf7d9f39fda9fcb4693ed65e2442",
+    "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_FashionShowBackstage.json",
+    "item_manager_file_sha256": "56d95c42f0eefaa692f142a22e3bcdadce8800f5ce7ac510fce96274a5e6cf40",
+    "item_manager_sha256": "41a1acca44cbec1d96b8b5774f7cf8faa7aaab17ac7c03de4eb84b7d5e05feac",
+    "item_manager_fetched_live_on": "2026-11-07",
+    "status": "incomplete",
+    "item_manager_complete": false,
+    "matched_findable_clues": 70,
+    "visible_verified_clues": 68,
+    "stage_dimensions": [
+      1280,
+      758
+    ],
+    "root_timeline": 0,
+    "root_frame_count": 1,
+    "snapshot_frame": 1,
+    "no_alternate_root_frame": true,
+    "offstage_clues": [
+      {
+        "object_id": 105,
+        "encoded_name": "flipflop",
+        "manager_key": "flipflop_fas_sho_ini",
+        "label": "Flip Flop",
+        "gaf_matrix": [
+          1,
+          0,
+          0,
+          1,
+          1340.949951171875,
+          703.0
+        ],
+        "encoded_bounds": [
+          1340.949951171875,
+          703.0,
+          1449.949951171875,
+          778.0
+        ],
+        "unity_transform_local_position": {
+          "x": 1340.949951171875,
+          "y": -703.0,
+          "z": 84.0
+        }
+      },
+      {
+        "object_id": 148,
+        "encoded_name": "featherboa",
+        "manager_key": "featherboa_fas_sho_ini",
+        "label": "Feather Boa",
+        "gaf_matrix": [
+          1,
+          0,
+          0,
+          1,
+          -120.94999694824219,
+          174.0
+        ],
+        "encoded_bounds": [
+          -120.94999694824219,
+          174.0,
+          -28.949996948242188,
+          235.0
+        ],
+        "unity_transform_local_position": {
+          "x": -120.94999694824219,
+          "y": -174.0,
+          "z": 41.0
+        }
+      }
+    ],
+    "unity_checks": "Both objects have identity additional local matrices, zero sprite offsets, unit mesh multipliers and no custom atlas rectangle; serialized Unity positions agree with decoded GAF coordinates after the normal Y-axis conversion.",
+    "primary_scene_metadata": {
+      "sid": "13321",
+      "name": "FashionShowBackstage",
+      "gameplay_mode": "1"
+    },
+    "finding": "No verified on-stage placement found in the checked source data. The exact scene has one candidate in the checked catalogue snapshots. Root bounds are broader export bounds, not a verified replacement viewport or background.",
+    "issues": [
+      "Hidden object 105 lies outside encoded stage: [1340.949951171875, 703.0, 1449.949951171875, 778.0]",
+      "Hidden object 148 lies outside encoded stage: [-120.94999694824219, 174.0, -28.949996948242188, 235.0]",
+      "Solution marker count differs from identified hidden objects"
+    ],
+    "no_passing_pngs_written": true,
+    "placement_policy": "Preserve encoded coordinates and report incomplete; do not move or drop required clues or widen the background by invention."
+  },
+  "catalogue_checks": {
+    "catalogues_checked": 13,
+    "catalogue_snapshots": [
+      {
+        "url": "https://prod-cdn-assets.gardensoftime-cloud.net/ho/catalog_p_1_2021.07.15.11.29.48.json",
+        "sha256": "0f20292c4f5441520af399d94f449eaff0738f84a2df05d2a8f59c447ced14c2"
+      },
+      {
+        "url": "https://prod-cdn-assets.gardensoftime-cloud.net/ho/catalog_p_2.json",
+        "sha256": "df0ffcd25f72448459baba8824a32bde6c094f5837bf806f49973cefb957632a"
+      },
+      {
+        "url": "https://prod-cdn-assets.gardensoftime-cloud.net/ho/catalog_p_3.json",
+        "sha256": "9d2f880a5dd01946f4f41321c7947fbcd14e42847e6bbf83318f4154c0f3116e"
+      },
+      {
+        "url": "https://prod-cdn-assets.gardensoftime-cloud.net/ho/catalog_p_4_2021.04.02.08.47.37.json",
+        "sha256": "a4bf2f3c807773ed4168c459bab8f75b0c4d72541200cabb9dae988370a61795"
+      },
+      {
+        "url": "https://prod-cdn-assets.gardensoftime-cloud.net/ho/catalog_p_5_2021.05.05.09.14.54.json",
+        "sha256": "cf181d818670c06e147f1d1544a9513cc75b3e54384ffeb2c5a88252feddf00e"
+      },
+      {
+        "url": "https://prod-cdn-assets.gardensoftime-cloud.net/ho/catalog_p_6.json",
+        "sha256": "d6c982ba8fc1c7a1490035837f47d4b3ca8eef07783e9463b0df46223223f43a"
+      },
+      {
+        "url": "https://prod-cdn-assets.gardensoftime-cloud.net/ho/catalog_p_7.json",
+        "sha256": "9b0f7a277cb738145e2ac7c4a606bb01d01e4785d217620cae8ea79691f227ab"
+      },
+      {
+        "url": "https://prod-cdn-assets.gardensoftime-cloud.net/ho/catalog_p_8.json",
+        "sha256": "6feda493febce50f3c1cb241f67852244e57d894e7d99a1ec38de304ee1a9f54"
+      },
+      {
+        "url": "https://prod-cdn-assets.gardensoftime-cloud.net/ho/catalog_p_9_2021.12.06.12.52.19.json",
+        "sha256": "1f7443f5ddd6cf36749c723649dd3be9c26625c193c6562738254711b194561c"
+      },
+      {
+        "url": "https://prod-cdn-assets.gardensoftime-cloud.net/ho/catalog_p_10_2021.03.16.13.11.00.json",
+        "sha256": "2b40a8cbeb4fa69e6221ca43f0aead4c75a72879d13ce6159f199b1c25858d09"
+      },
+      {
+        "url": "https://prod-cdn-assets.gardensoftime-cloud.net/ho/catalog_p_11_2021.03.29.11.26.58.json",
+        "sha256": "2c7fa60ebc44d44acd002d2351c455913464bfa6e29089d1bdda3f6317dfe135"
+      },
+      {
+        "url": "https://prod-cdn-assets.gardensoftime-cloud.net/ho/catalog_p_12_2023.07.31.09.26.09.json",
+        "sha256": "3bfe245a499887ba6cff917fbc1c645e63e5c59f9c1cff164774d3df12211ef1"
+      },
+      {
+        "url": "https://prod-cdn-assets.gardensoftime-cloud.net/ho/catalog_13_p_2026.11.02.10.44.21.json",
+        "sha256": "2a1cce1dfbedba6b6c97ec156574fbcbefe31015d18c03d91a2633e54838b0fa"
+      }
+    ],
+    "scene_matches": [
+      {
+        "scene_id": "CornerOffice",
+        "status": "matched",
+        "variants": [
+          {
+            "variant_id": "d068b755fdf55430",
+            "bundle_urls": [
+              "https://prod-cdn-assets.gardensoftime-cloud.net/ho/corneroffice_assets_all_3c2715f96e4b3ab3282c489702ace9bb.bundle"
+            ],
+            "issues": []
+          }
+        ]
+      },
+      {
+        "scene_id": "FashionShowBackstage",
+        "status": "matched",
+        "variants": [
+          {
+            "variant_id": "ed903199d5c66d3a",
+            "bundle_urls": [
+              "https://prod-cdn-assets.gardensoftime-cloud.net/ho/fashionshowbackstage_assets_all_8642516afb6344cbb93a247ef89d4bb0.bundle"
+            ],
+            "issues": []
+          }
+        ]
+      }
+    ]
+  },
+  "regression_checks": {
+    "tests": 399,
+    "status": "passed",
+    "elapsed_seconds": 63.942
+  }
+}

@@ -6,6 +6,15 @@ Changing either source invalidates the exception and restores ordinary checks.
 
 REVIEWED_ITEM_BINDINGS = (
     {
+        'scene_id': 'CornerOffice',
+        'bundle_sha256': '0acf41ce678313b93651e0a137a284ae568e05ee72d2b3b157bec83ec60430ea',
+        'item_manager_sha256': '626652c82aa85bb9a62c4cb825c71be36827a69c05bc6b10631051e5f643bfc0',
+        'manager_key': 'tableclock_cor_off_ini',
+        'encoded_name': 'anim_clock01',
+        'object_id': 152,
+        'evidence': 'docs/validation/corner_office_fashion_backstage.json',
+    },
+    {
         'scene_id': 'ch502ADifferenceofSpendingLeisureTimeMuttrahSouq',
         'bundle_sha256': 'c8fc650ed5f5e33d3f7b168aafc77ca71c2c5a13ec51a5a9b8238ea9c9f9ebbe',
         'item_manager_sha256': '63fe5448ef7157c4c96d038a50de88f3883a2c84f67e9a7a9c9d2841cf82546f',
