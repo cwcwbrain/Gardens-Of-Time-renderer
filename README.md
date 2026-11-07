@@ -232,6 +232,30 @@ coverage makes no new enrollments, while saved incomplete variants can still be
 retried. The update reads MainProject's chapter metadata only, rather than
 rebuilding the playable game.
 
+**Find one scene by its in-game name:**
+
+```cmd
+py gardens_renderer.py --find-scene "Suzhou Gardens" --open --output output
+```
+
+The finder opens a verified existing copy when available. Otherwise it recovers
+the selected scene into `output/misc`, reusing verified cached bundles and Item
+Managers. Missing scene assets and refreshed catalogue metadata are saved there.
+It does not change the main
+scene folders, checkpoint or batch reports. All catalogue versions are attempted
+when recovering a missing scene; ambiguous names are listed for you to choose by
+internal scene ID.
+
+For a prompt that lets you enter several names, omit the name:
+
+```cmd
+py gardens_renderer.py --find-scene --open --output output
+```
+
+Type `q` to quit. `--open` opens the image folder; it is optional. Exact internal
+IDs, official captions and replay titles also work. See
+[finding scenes on demand](docs/scene-finder.md) for cache, index and preview details.
+
 **Match every scene ID to its actual in-game name without rendering images:**
 
 ```cmd

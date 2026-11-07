@@ -9,6 +9,8 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
+from PIL import Image
+
 import gardens_renderer
 from gardens.download import atomic_json,cache_name,sha256
 from gardens.scenes import read_scenes
@@ -39,6 +41,15 @@ class VariantTests(unittest.TestCase):
             code=gardens_renderer.main(self.args+(['--render'] if render else []))
         return code,json.loads((self.out/'scene_matches.json').read_text())[0],json.loads((self.out/'summary.json').read_text())
 
+    def declared_render(self,destination):
+        """An explicit synthetic renderer result for orchestration-only tests."""
+        destination.mkdir(parents=True,exist_ok=True);files=[]
+        for role in ('empty','complete','solution'):
+            path=destination/('scene_'+role+'.png');Image.new('RGBA',(2,2),'cyan').save(path);files.append(str(path))
+        report={'status':'validated_snapshot','issues':[],'files':files}
+        atomic_json(destination/'validation_report.json',report)
+        return report
+
     def test_all_variants_render_separately_and_ids_survive_manifest_order(self):
         code,row,summary=self.run_cli(render=True)
         self.assertEqual(code,0)
@@ -53,6 +64,11 @@ class VariantTests(unittest.TestCase):
             for name in ('scene_empty.png','scene_complete.png','scene_solution.png'):
                 self.assertTrue((Path(variant['output'])/name).exists())
             self.assertEqual(json.loads((Path(variant['output'])/'validation_report.json').read_text())['named_pointers'],68)
+            receipt=json.loads((Path(variant['output'])/'scene_images_receipt.json').read_text())
+            self.assertEqual(receipt['scene_id'],'AncientGizaRiverfront');self.assertEqual(receipt['variant_id'],variant['variant_id'])
+            self.assertEqual(len(receipt['images']),3)
+        from gardens.scene_lookup import existing_scene_images
+        self.assertEqual(len(existing_scene_images(self.out,'AncientGizaRiverfront')),2)
         self.manifest.write_text(json.dumps({'catalogues':list(reversed(self.sources))}))
         code,reordered,_=self.run_cli()
         self.assertEqual(code,0)
@@ -69,7 +85,7 @@ class VariantTests(unittest.TestCase):
         bad['m_ExtraDataString']=base64.b64encode(b'\x07\x01A\x01C'+struct.pack('<i',len(opts))+opts).decode()
         self.seed(self.out/'catalogues'/cache_name(self.sources[0],'.json'),self.sources[0],json.dumps(bad).encode())
         self.seed(self.out/'catalogues'/cache_name(self.sources[1],'.json'),self.sources[1],good)
-        with patch('gardens.render.render_bundle',return_value={'status':'validated_snapshot','issues':[],'files':[]}) as renderer:
+        with patch('gardens.render.render_bundle',side_effect=lambda bundle,manager,destination,frame:self.declared_render(destination)) as renderer:
             code,row,summary=self.run_cli(render=True)
         self.assertEqual(code,1)
         self.assertEqual(renderer.call_count,1)
@@ -81,7 +97,7 @@ class VariantTests(unittest.TestCase):
         def render(bundle,manager,destination,frame):
             if bundle.name==cache_name(self.urls[0],'.bundle'):
                 return {'status':'incomplete','issues':['Unsupported test feature'],'files':[]}
-            return {'status':'validated_snapshot','issues':[],'files':[]}
+            return self.declared_render(destination)
         with patch('gardens.render.render_bundle',side_effect=render) as renderer:
             code,row,summary=self.run_cli(render=True)
         self.assertEqual(renderer.call_count,2)

@@ -110,7 +110,9 @@ def main(argv=None):
     select.add_argument('--match-names', action='store_true', help='Match every roster scene to official in-game titles; write a CSV without rendering or copying images')
     select.add_argument('--relocate-output', action='store_true', help='Rebase a copied output checkpoint to this folder after moving computers; verify existing artifacts first')
     select.add_argument('--scene', action='append', help='Exact scene ID; may be repeated')
+    select.add_argument('--find-scene', nargs='?', const='', metavar='NAME', help='Find an in-game name or scene ID; reuse saved images or recover missing images into output/misc. Omit NAME for a prompt')
     p.add_argument('--output', type=Path, default=ROOT / 'output')
+    p.add_argument('--open', dest='open_folder', action='store_true', help='With --find-scene, open the folder containing verified images')
     p.add_argument('--named-output', type=Path, help='Destination for official-name copies (default: output/named_scenes); used by --update or --export-named')
     p.add_argument('--render', action='store_true', help='Render selected ordinary scenes; --all uses the resumable isolated test runner')
     p.add_argument('--test-timeout', type=float, default=300, help='Maximum seconds per variant test worker (default 300)')
@@ -127,6 +129,16 @@ def main(argv=None):
     p.add_argument('--retries', type=int, default=2)
     p.add_argument('--property', action='append', default=[], metavar='NAME=VALUE', help='Verified Unity runtime property; never guessed')
     args = p.parse_args(arguments)
+    if args.find_scene is not None:
+        if (args.render or args.index_only or args.plan_only or args.retry_failed or args.include_pending or
+                args.refresh_solutions or args.named_output is not None or args.test_limit is not None):
+            p.error('--find-scene handles only the requested name; do not combine it with batch, render or export options')
+        if args.timeout<=0 or args.retries<0 or args.test_timeout<=0 or (args.frame is not None and args.frame<1):
+            p.error('Scene lookup timeout/frame must be positive and retries non-negative')
+        if args.offline and args.refresh_catalogues:p.error('--offline cannot refresh catalogues')
+        from gardens.scene_finder import run_finder
+        return run_finder(args)
+    if args.open_folder:p.error('--open requires --find-scene')
     if args.finish_all:
         args.update=True
         args.include_pending=True
@@ -349,6 +361,11 @@ def main(argv=None):
                     manager=load_item_manager(scene,out,client,args.offline)
                     report=render_bundle(Path(downloads[bundle_urls[0]]['path']),manager,destination,args.frame)
                     variant.update(render_status=report['status'],render_issues=report['issues'],files=report['files'])
+                    if report['status']=='validated_snapshot':
+                        atomic_json(destination/'scene_images_receipt.json',
+                                    {'schema':1,'scene_id':row['scene_id'],'variant_id':variant_id,'status':'passed',
+                                     'images':{Path(file).name:sha256(file) for file in report['files']},
+                                     'validation_report_sha256':sha256(destination/'validation_report.json')})
                 except (ValueError,OSError,DownloadError) as exc:
                     variant.update(render_status='incomplete',render_issues=[str(exc)])
             print(f"{row['scene_id']} variant {variant_id}: download={variant['download_status']}, render={variant['render_status']}",flush=True)

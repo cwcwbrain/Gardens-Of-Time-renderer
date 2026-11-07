@@ -16,6 +16,16 @@ def test_job(job):
     scene=Scene(**job['scene']);candidate=job['candidate'];out=Path(job['output'])
     client=Downloader(job['timeout'],job['retries'])
     result={'status':'failed','issues':[],'files':[],'artifacts':{},'stage':'download','bundle_count':0}
+    def cached_root(folder,url,extension):
+        # Finder jobs may borrow verified main-cache inputs without copying or
+        # modifying them. Ordinary batch jobs keep their original cache policy.
+        for raw in job.get('read_cache_roots',[]):
+            root=Path(raw).resolve();path=root/folder/cache_name(url,extension)
+            receipt=read_json(str(path)+'.verified.json')
+            try:
+                if path.is_file() and receipt.get('url')==url and receipt.get('sha256')==sha256(path):return root
+            except OSError:continue
+        return None
     def keep(path):
         path=Path(path).resolve();result['artifacts'][str(path)]=sha256(path)
     try:
@@ -24,7 +34,11 @@ def test_job(job):
             url=bundle['url']
             if not url:raise DownloadError('Unresolved bundle URL')
             dest=out/'bundles'/cache_name(url,'.bundle')
-            if job['offline']:
+            borrowed=cached_root('bundles',url,'.bundle')
+            if borrowed is not None:
+                dest=borrowed/'bundles'/cache_name(url,'.bundle')
+                validate_bundle(dest)
+            elif job['offline']:
                 receipt=read_json(str(dest)+'.verified.json')
                 if not dest.exists() or receipt.get('url')!=url or receipt.get('sha256')!=sha256(dest):
                     raise DownloadError('No verified cached bundle: '+url)
@@ -34,10 +48,12 @@ def test_job(job):
             validate_bundle(dest,int(size) if size else None)
             keep(dest);paths[url]=dest
         result['bundle_count']=len(paths);result['stage']='item_manager'
-        manager=load_item_manager(scene,out,client,job['offline'])
-        manager_path=out/'item_managers'/cache_name(scene.item_manager_url,'.json');keep(manager_path)
+        manager_root=cached_root('item_managers',scene.item_manager_url,'.json')
+        manager=load_item_manager(scene,manager_root or out,client,job['offline'] or manager_root is not None)
+        manager_path=(manager_root or out)/'item_managers'/cache_name(scene.item_manager_url,'.json');keep(manager_path)
         result['stage']='render'
         kind=scene_kind(scene.scene_id)
+        if kind=='ordinary' and str(job.get('primary_default_mode'))=='8':kind='STD'
         if kind!='ordinary':
             result.update(status='incomplete',issues=[f'{kind} rendering is not implemented; assets and Item Manager checked'])
         elif len(paths)!=1:

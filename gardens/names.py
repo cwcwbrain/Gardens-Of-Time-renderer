@@ -11,6 +11,7 @@ from urllib.parse import urljoin
 
 from .chapters import ASSET_KEY, ASSET_PATH, _fetch, _manager_convention, load_metadata_asset
 from .download import DownloadError, cache_name, sha256
+from .scenes import Scene
 
 
 CATALOG_ASSETS_KEY = 'Prod/catalogAssets_en_us'
@@ -46,6 +47,93 @@ def _records(tree, field, key, issues):
         else:
             records[identity] = value
     return records
+
+
+def primary_roster(base_scenes, tree):
+    """Extend a read-only naming roster with all verified primary scene IDs.
+
+    This is for one-off lookup, not incremental chapter enrollment: chapter
+    numbers and mission orders need not be contiguous. No Item Manager URL is
+    inferred or fetched for appended metadata-only rows.
+    """
+    source_issues = []
+    scene_rows = _records(tree, 'sceneVOs', 'sid', source_issues)
+    missions = _records(tree, 'missionVOs', 'mid', source_issues)
+    stories = _records(tree, 'storyVOs', 'stid', source_issues)
+    name_counts = defaultdict(int)
+    for source in scene_rows.values():
+        name = source.get('name')
+        if isinstance(name, str):
+            name_counts[name.casefold()] += 1
+    report = {'status': 'available', 'base_scene_count': len(base_scenes),
+              'added_scene_count': 0, 'added_scene_ids': [], 'primary_scene_count': 0,
+              'skipped_replays': [], 'issues': [], 'source_issues': source_issues}
+    by_display_order = defaultdict(list)
+    for story in stories.values():
+        if str(story.get('disposition')) != '1':
+            continue
+        raw_order = str(story.get('display_order', ''))
+        if re.fullmatch(r'[1-9]\d*', raw_order) is None:
+            report['issues'].append({'story_id': story['stid'], 'issue': 'Invalid primary chapter display order'})
+            continue
+        by_display_order[int(raw_order)].append(story)
+    extended = list(base_scenes)
+    seen = {s.scene_id.casefold() for s in base_scenes}
+    production_seen = set()
+    next_order = max((s.order for s in base_scenes), default=0)
+    for display_order in sorted(by_display_order):
+        group = by_display_order[display_order]
+        if len(group) != 1:
+            report['issues'].append({'display_order': display_order, 'issue': 'Ambiguous primary chapter display order'})
+            continue
+        story = group[0]
+        membership = story.get('mission_ids')
+        ids = membership.split(',') if isinstance(membership, str) and membership else []
+        if not ids or len(set(ids)) != len(ids) or any(not mid or mid.strip() != mid for mid in ids):
+            report['issues'].append({'story_id': story['stid'], 'issue': 'Invalid primary mission membership'})
+            continue
+        ordered = []
+        problems = []
+        for mid in ids:
+            mission = missions.get(mid)
+            if mission is None or mission.get('parent_stid') != story['stid']:
+                problems.append(f'Missing or mismatched primary mission {mid}')
+                continue
+            raw_order = str(mission.get('sort_order', ''))
+            if re.fullmatch(r'[1-9]\d*', raw_order) is None:
+                problems.append(f'Invalid sort_order for primary mission {mid}')
+                continue
+            source_id = mission.get('scene_id')
+            source = scene_rows.get(source_id) if isinstance(source_id, str) else None
+            name = source.get('name') if source else None
+            if not isinstance(name, str) or re.fullmatch(r'[A-Za-z0-9_-]+', name) is None:
+                problems.append(f'Missing or unsafe scene reference for primary mission {mid}')
+                continue
+            if name_counts[name.casefold()] != 1:
+                problems.append(f'Ambiguous scene metadata name {name}')
+                continue
+            ordered.append((int(raw_order), name))
+        if len({value[0] for value in ordered}) != len(ordered):
+            problems.append('Ambiguous primary mission sort_order values')
+        if problems:
+            report['issues'].append({'story_id': story['stid'], 'issues': sorted(set(problems))})
+            continue
+        for mission_order, name in sorted(ordered):
+            folded = name.casefold()
+            if folded in production_seen:
+                report['skipped_replays'].append({'scene_id': name, 'story_id': story['stid'], 'mission_order': mission_order})
+                continue
+            production_seen.add(folded)
+            if folded in seen:
+                continue
+            next_order += 1
+            extended.append(Scene(next_order, name, '', '', [name, '', '']))
+            seen.add(folded)
+            report['added_scene_ids'].append(name)
+    report.update(added_scene_count=len(extended)-len(base_scenes), primary_scene_count=len(production_seen))
+    if report['issues'] or source_issues:
+        report['status'] = 'partial'
+    return extended, report
 
 
 def build_name_map(scenes, tree, scene_text, mission_text, story_text):
@@ -113,6 +201,8 @@ def build_name_map(scenes, tree, scene_text, mission_text, story_text):
                 'mission_order': int(mission_order), 'mission_key': mission.get('name'),
                 'mission_id': mid, 'story_key': story.get('name'), 'story_id': story['stid'],
                 'title': _title(mission_text, mission.get('name')),
+                'primary_default_mode': mission.get('default_mode'),
+                'scene_gameplay_mode': source.get('gameplay_mode'),
             })
     mappings = {}
     issues = []
@@ -144,6 +234,8 @@ def build_name_map(scenes, tree, scene_text, mission_text, story_text):
             'chapter_title': first['chapter_title'], 'chapter_display_order': first['chapter_display_order'],
             'mission_order': first['mission_order'], 'mission_key': first['mission_key'],
             'story_key': first['story_key'], 'mission_id': first['mission_id'],
+            'primary_default_mode': first['primary_default_mode'],
+            'scene_gameplay_mode': first['scene_gameplay_mode'],
             'source_scene_id': first['source_scene_id'], 'primary_appearances': appearance,
             'localization_keys': {'scene': sid, 'mission': first['mission_key'], 'story': first['story_key']},
         }
@@ -165,12 +257,15 @@ def _validate_localization(path):
         raise ValueError('Official localization contains no verified titles')
 
 
-def load_official_names(out, client, config_path, scenes, offline=False):
+def load_official_names(out, client, config_path, scenes, offline=False, include_all_primary=False):
     """Load verified production naming resources; never rename or render files."""
     provenance = {}
+    roster_summary = None
     try:
         tree, source = load_metadata_asset(out, client, config_path, ASSET_KEY, ASSET_PATH, offline)
         provenance['chapter_metadata'] = source
+        if include_all_primary:
+            scenes, roster_summary = primary_roster(scenes, tree)
         assets, source = load_metadata_asset(out, client, config_path, CATALOG_ASSETS_KEY,
                                              CATALOG_ASSETS_PATH, offline, refresh_catalogue=False)
         provenance['catalog_assets'] = source
@@ -199,8 +294,15 @@ def load_official_names(out, client, config_path, scenes, offline=False):
                 'source': 'verified_cache' if offline else 'live_localization'}
         report = build_name_map(scenes, tree, localizations['scenes'], localizations['missions'], localizations['stories'])
         report['provenance'] = provenance
+        if roster_summary is not None:
+            report['roster_summary'] = roster_summary
+            if roster_summary['status'] != 'available':
+                report['status'] = 'partial'
         return report
     except (ValueError, OSError, DownloadError) as exc:
-        return {'status': 'unavailable', 'mappings': {}, 'issues': [], 'source_issues': [str(exc)],
-                'summary': {'requested_scenes': len(scenes), 'mapped_scenes': 0, 'unmapped_scenes': len(scenes)},
-                'provenance': provenance}
+        report = {'status': 'unavailable', 'mappings': {}, 'issues': [], 'source_issues': [str(exc)],
+                  'summary': {'requested_scenes': len(scenes), 'mapped_scenes': 0, 'unmapped_scenes': len(scenes)},
+                  'provenance': provenance}
+        if roster_summary is not None:
+            report['roster_summary'] = roster_summary
+        return report

@@ -1,0 +1,113 @@
+{
+  "checked_on": "2026-11-07",
+  "regression_checks": {
+    "tests": 395,
+    "status": "passed"
+  },
+  "scope": "Verified existing real project outputs, real cached scene bundles and Item Managers, one real missing-asset download and a fresh live 13-catalogue recovery. No claim that every scene mode is supported.",
+  "real_recoveries": [
+    {
+      "scene_id": "ChinaGardenRedux1",
+      "in_game_name": "Suzhou Gardens",
+      "variant_id": "2ea3fe135b389b3b",
+      "status": "passed",
+      "verified_clues": 70,
+      "item_manager_complete": true,
+      "files": {
+        "scene_empty.png": "9a4effdb3329761e5f2b525c646df173c4012c55c39c933699827d7b7fcbc17f",
+        "scene_complete.png": "28a1164d323a4e28331861057441ccafd7e4856350e3afc8013b5b4006e7711b",
+        "scene_solution.png": "632ed01c0bcf85a59b8e15a87c159f277fb0898dbfed690131a7cb1e3168a49d"
+      },
+      "source_bundle_sha256": "7e897e45b7ad2c4f8ce17be78db91f33c067cc7106ca7b278ed2c59f58b9984a",
+      "item_manager_sha256": "17ff83b9cb462d1a0dfe557e0909e77bc1bbdf5089244c2ef5a2e8e4ae5ecdad"
+    },
+    {
+      "scene_id": "AncientGizaRiverfront",
+      "in_game_name": "Giza Riverfront",
+      "variant_id": "6cd4e8b4138ae155",
+      "status": "passed",
+      "verified_clues": 68,
+      "item_manager_complete": true,
+      "files": {
+        "scene_empty.png": "882a5a1d2b9ded923e1ee9fd000ad889f3cb6178bbf79fa30e0d10aa33061585",
+        "scene_complete.png": "a82b6784e55a79b9863934477816957c79606ed5a61ec7494f9b93c80ca52050",
+        "scene_solution.png": "eb4816246a980d9858450381f7a241a1b02dfa653b42d97caf870e911db3771c"
+      },
+      "source_bundle_sha256": "4e6b6fe0305b562858b6c6db674c72989df3594be8a98c091f0c763a51659a9a",
+      "item_manager_sha256": "9e4b5e8c77eb5a0080f64d63b3337f35acdae550006f19d5e9e2269f7f931ed7"
+    },
+    {
+      "scene_id": "VictorianSceneRedone",
+      "in_game_name": "Hourglass Study",
+      "variant_id": "6234e0da83eee691",
+      "status": "passed",
+      "verified_clues": 61,
+      "item_manager_complete": true,
+      "files": {
+        "scene_empty.png": "ab26ec39913f5096b057c5897cf36d8d757fade651934e8e9cf5814c178dfc1a",
+        "scene_complete.png": "f26041fed8915e1f619ed24a854a5bd9b26a9d194a6ac42f0ffaae726abc6e01",
+        "scene_solution.png": "00181f03a78a95da19704853883519497e8a041953498574127fb583e7403159"
+      },
+      "source_bundle_sha256": "94478236229ce61bf7a35ac5550dca905425b0c2de07540836673472df6e470b",
+      "item_manager_sha256": "e231c336fb6d548c0afdb7eb58968fd43e2163e982450be7e959226c4cc77f1f"
+    },
+    {
+      "scene_id": "VictorianSceneRedone",
+      "in_game_name": "Hourglass Study",
+      "variant_id": "7a1420d58dd6d1f0",
+      "status": "passed",
+      "verified_clues": 61,
+      "item_manager_complete": true,
+      "files": {
+        "scene_empty.png": "ab26ec39913f5096b057c5897cf36d8d757fade651934e8e9cf5814c178dfc1a",
+        "scene_complete.png": "f26041fed8915e1f619ed24a854a5bd9b26a9d194a6ac42f0ffaae726abc6e01",
+        "scene_solution.png": "00181f03a78a95da19704853883519497e8a041953498574127fb583e7403159"
+      },
+      "source_bundle_sha256": "c6388738aeb7469101e4b49c1780d7e5fc110114b9754fe47c8b2b5f810edc90",
+      "item_manager_sha256": "e231c336fb6d548c0afdb7eb58968fd43e2163e982450be7e959226c4cc77f1f"
+    },
+    {
+      "scene_id": "ch509EasterRingHuntEasterFestiveMall",
+      "in_game_name": "Easter Festive Mall",
+      "variant_id": "ffd29aeb8a4ce38d",
+      "status": "passed",
+      "verified_clues": 59,
+      "item_manager_complete": true,
+      "files": {
+        "scene_empty.png": "2387b8823ceffd08cb5bcffb90a2641a4f477a45dc751c80a96145db503f75f4",
+        "scene_complete.png": "3d75dae95773916a265edfdf8cb69a75fb52d98c691b0340fc71d94f327b5ac5",
+        "scene_solution.png": "eba807bf475e108263839c8db2cc0ae55679644d27789371e9affac4c7058cea"
+      },
+      "source_bundle_sha256": "1ff326c9906b657ba4e5aaa6a29ae5536b62a4eb79e799ee8eda2260018e926d",
+      "item_manager_sha256": "435145a7522e2426e686c9b619ea06f26bc069b831b4f5c5bc41a9a00fa6f5a4"
+    }
+  ],
+  "existing_name_lookup": {
+    "query": "Time Manor",
+    "scene_id": "VictorianExteriorRedux1",
+    "locations": 4,
+    "elapsed_seconds": 0.166,
+    "downloads": 0
+  },
+  "interactive_name_prompt_and_quit": "passed",
+  "duplicate_title_check": {
+    "query": "Lantern Festival",
+    "status": "ambiguous",
+    "candidate_scene_ids": [
+      "LanternFestival",
+      "ch647TangledinTimeLanternFestival"
+    ],
+    "misc_index_unchanged": true
+  },
+  "preservation": {
+    "main_files_checked": 62,
+    "main_file_set_hashes_and_mtimes_unchanged": true,
+    "main_checkpoint_unchanged": true,
+    "cached_suzhou_inputs_borrowed_without_copying": true,
+    "new_images_and_caches_only_in_misc": true
+  },
+  "live_downloads": {
+    "Giza Riverfront": "Missing scene bundle and Item Manager recovered from the real CDN into misc cache.",
+    "Easter Festive Mall": "Current production remote config and all 13 catalogues refreshed before the selected bundle and Item Manager were recovered."
+  }
+}
