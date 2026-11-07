@@ -1,0 +1,259 @@
+{
+  "checked_on": "2026-11-07",
+  "scene_id": "VictorianSceneRedone",
+  "in_game_name": "Hourglass Study",
+  "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_VictorianSceneRedone.json",
+  "item_manager_sha256": "863216bdc5beb6778d67d82572a6e55810b0c307e81e95812e4a58a11f45d509",
+  "item_manager_entries": 66,
+  "findable_manager_entries": 61,
+  "animation_descriptor_entries": 5,
+  "unused_manager_entries": [],
+  "scope": "Both real scene bundles, the live manager fetched for this check, encoded bindings, snapshot visibility, and PNG byte comparisons; no claim about other game resources or GPU pixel parity.",
+  "results": [
+    {
+      "variant_id": "6234e0da83eee691",
+      "bundle_url": "https://prod-cdn-assets.gardensoftime-cloud.net/ho/victoriansceneredone_assets_all_1d07d6342811b813b5869ce3ff3154c0.bundle",
+      "bundle_sha256": "94478236229ce61bf7a35ac5550dca905425b0c2de07540836673472df6e470b",
+      "status": "incomplete",
+      "identified_hidden_objects": 61,
+      "verified_named_pointers": 61,
+      "unverified_named_pointers": 2,
+      "total_named_pointers": 63,
+      "unverified_markers": [
+        {
+          "object_id": 95,
+          "encoded_name": "lightbulb",
+          "label": "lightbulb [unverified]",
+          "label_source": "encoded_name",
+          "label_verified": false,
+          "manager_key": null,
+          "number": 62,
+          "anchor": [
+            337,
+            264
+          ],
+          "anchor_alpha": 255,
+          "callout_color": [
+            255,
+            165,
+            70,
+            255
+          ]
+        },
+        {
+          "object_id": 142,
+          "encoded_name": "maracas",
+          "label": "maracas [unverified]",
+          "label_source": "encoded_name",
+          "label_verified": false,
+          "manager_key": null,
+          "number": 63,
+          "anchor": [
+            756,
+            321
+          ],
+          "anchor_alpha": 255,
+          "callout_color": [
+            255,
+            165,
+            70,
+            255
+          ]
+        }
+      ],
+      "remaining_issues": [
+        "Unclassified named object 142: maracas; no Item Manager label",
+        "Unclassified named object 95: lightbulb; no Item Manager label"
+      ],
+      "verified_labels_bindings_and_numbers_unchanged": true,
+      "callouts_valid": true,
+      "root_canonical_pngs_absent": true,
+      "preview_png_hashes": {
+        "empty": {
+          "before_sha256": "16d425619b01c5e96041d969e5cdde74e6c74f6e9bf867b08bdf64482d38d587",
+          "after_sha256": "16d425619b01c5e96041d969e5cdde74e6c74f6e9bf867b08bdf64482d38d587",
+          "unchanged": true
+        },
+        "complete": {
+          "before_sha256": "f26041fed8915e1f619ed24a854a5bd9b26a9d194a6ac42f0ffaae726abc6e01",
+          "after_sha256": "f26041fed8915e1f619ed24a854a5bd9b26a9d194a6ac42f0ffaae726abc6e01",
+          "unchanged": true
+        },
+        "solution": {
+          "before_sha256": "7454c5c8e801e313f7c93d8d6993ab59922cdff41d0c03333b89e0ae5f1031df",
+          "after_sha256": "03a913eb5621b65cb2eab5f91998e4c51052576060dbfef3224a3180914c1072",
+          "unchanged": false
+        }
+      }
+    },
+    {
+      "variant_id": "7a1420d58dd6d1f0",
+      "bundle_url": "https://prod-cdn-assets.gardensoftime-cloud.net/ho/victoriansceneredone_assets_all_a6fc6323fbfe37a2056caf453aaad1dd.bundle",
+      "bundle_sha256": "c6388738aeb7469101e4b49c1780d7e5fc110114b9754fe47c8b2b5f810edc90",
+      "status": "incomplete",
+      "identified_hidden_objects": 61,
+      "verified_named_pointers": 61,
+      "unverified_named_pointers": 2,
+      "total_named_pointers": 63,
+      "unverified_markers": [
+        {
+          "object_id": 95,
+          "encoded_name": "lightbulb",
+          "label": "lightbulb [unverified]",
+          "label_source": "encoded_name",
+          "label_verified": false,
+          "manager_key": null,
+          "number": 62,
+          "anchor": [
+            337,
+            264
+          ],
+          "anchor_alpha": 255,
+          "callout_color": [
+            255,
+            165,
+            70,
+            255
+          ]
+        },
+        {
+          "object_id": 142,
+          "encoded_name": "maracas",
+          "label": "maracas [unverified]",
+          "label_source": "encoded_name",
+          "label_verified": false,
+          "manager_key": null,
+          "number": 63,
+          "anchor": [
+            756,
+            321
+          ],
+          "anchor_alpha": 255,
+          "callout_color": [
+            255,
+            165,
+            70,
+            255
+          ]
+        }
+      ],
+      "remaining_issues": [
+        "Unclassified named object 142: maracas; no Item Manager label",
+        "Unclassified named object 95: lightbulb; no Item Manager label"
+      ],
+      "verified_labels_bindings_and_numbers_unchanged": true,
+      "callouts_valid": true,
+      "root_canonical_pngs_absent": true,
+      "preview_png_hashes": {
+        "empty": {
+          "before_sha256": "16d425619b01c5e96041d969e5cdde74e6c74f6e9bf867b08bdf64482d38d587",
+          "after_sha256": "16d425619b01c5e96041d969e5cdde74e6c74f6e9bf867b08bdf64482d38d587",
+          "unchanged": true
+        },
+        "complete": {
+          "before_sha256": "f26041fed8915e1f619ed24a854a5bd9b26a9d194a6ac42f0ffaae726abc6e01",
+          "after_sha256": "f26041fed8915e1f619ed24a854a5bd9b26a9d194a6ac42f0ffaae726abc6e01",
+          "unchanged": true
+        },
+        "solution": {
+          "before_sha256": "7454c5c8e801e313f7c93d8d6993ab59922cdff41d0c03333b89e0ae5f1031df",
+          "after_sha256": "03a913eb5621b65cb2eab5f91998e4c51052576060dbfef3224a3180914c1072",
+          "unchanged": false
+        }
+      }
+    }
+  ],
+  "binding_audit": {
+    "all_findable_keys_have_one_exact_named_part_match_before_longest_prefix_filter": true,
+    "existing_alternate_labels": [
+      {
+        "encoded_name": "lemon",
+        "object_id": 86,
+        "label": "Orange Slice"
+      },
+      {
+        "encoded_name": "woodenmallet",
+        "object_id": 92,
+        "label": "Gavel"
+      },
+      {
+        "encoded_name": "bag",
+        "object_id": 97,
+        "label": "Purse"
+      },
+      {
+        "encoded_name": "speaker",
+        "object_id": 133,
+        "label": "Bullhorn"
+      },
+      {
+        "encoded_name": "abacus",
+        "object_id": 120,
+        "label": "Ancient Calculator"
+      }
+    ],
+    "unknowns": [
+      {
+        "object_id": 95,
+        "encoded_name": "lightbulb",
+        "atlas_element_id": 13,
+        "atlas_crop": [
+          1776,
+          3,
+          24,
+          44
+        ]
+      },
+      {
+        "object_id": 142,
+        "encoded_name": "maracas",
+        "atlas_element_id": 60,
+        "atlas_crop": [
+          1917,
+          187,
+          32,
+          105
+        ]
+      }
+    ],
+    "unknowns_share_neither_element_nor_physical_atlas_rectangle_with_bound_root_objects": true,
+    "unknown_unity_names_agree_with_gaf_names": true,
+    "unknown_custom_atlas_element_ids": [
+      -1,
+      -1
+    ],
+    "unknown_gaf_element_linkage_strings": [
+      "",
+      ""
+    ],
+    "alternate_item_manager_key_alias_found_in_unity_string_fields": false,
+    "anim_light_is_separate": {
+      "object_id": 152,
+      "child_timeline_id": 215,
+      "atlas_element_id": 79,
+      "atlas_crop": [
+        1287,
+        621,
+        379,
+        315
+      ]
+    },
+    "interpretation": "No alternate binding is supported by the checked live manager and these two bundles. Other game resources could supply a verified link; absence here does not establish that these visuals are decorative."
+  },
+  "regression_checks": {
+    "discovered_tests": 303,
+    "all_discovered_tests_passed_across_runs": true,
+    "initial_full_suite": {
+      "executed_tests": 295,
+      "executed_test_failures": 0,
+      "unexecuted_class": "test_pipeline.LocalServerTests",
+      "setup_error": "Sandbox denied local HTTP socket creation"
+    },
+    "local_http_rerun_with_socket_access": {
+      "test_module": "test_pipeline",
+      "executed_tests": 20,
+      "status": "passed"
+    },
+    "additional_focus": "Real missing-manager visual gets an unverified pointer; off-stage unknown gets none; verified numbering and legacy CSV totals are preserved."
+  }
+}

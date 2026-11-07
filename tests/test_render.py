@@ -188,6 +188,25 @@ class AnnotationTests(unittest.TestCase):
         self.assertTrue(all(len(m['label_lines'])>1 for m in markers))
         self.assertTrue(all(m['label']=='A Very Long Item Manager Label '*4 for m in markers))
 
+    def test_unverified_callouts_are_distinct_without_renumbering_verified_clues(self):
+        verified=[{'object_id':i,'label':label,'anchor':[4+i,4],
+                   'anchor_alpha':255,'bbox':[3,3,8,6]}
+                  for i,label in enumerate(('Banana','Zebra'),1)]
+        annotate_solution(Image.new('RGBA',(16,16),'white'),verified)
+        numbers={m['object_id']:m['number'] for m in verified}
+        unknown={'object_id':3,'label':'aardvark [unverified]','label_verified':False,
+                 'anchor':[6,4],'anchor_alpha':255,'bbox':[3,3,8,6]}
+        markers=verified+[unknown]
+        image,box=annotate_solution(Image.new('RGBA',(16,16),'white'),markers)
+        self.assertEqual(validate_callouts(markers,image.size,box),[])
+        self.assertEqual({m['object_id']:m['number'] for m in verified},numbers)
+        self.assertEqual(unknown['number'],3)
+        self.assertEqual(unknown['callout_color'],[255,165,70,255])
+        self.assertTrue(all(m['callout_color']==[79,225,255,255] for m in verified))
+        self.assertEqual(image.getpixel(tuple(unknown['callout_box'][:2])),(19,25,33,255))
+        x,y,_,_=unknown['callout_box']
+        self.assertEqual(image.getpixel((x+8,y)),tuple(unknown['callout_color']))
+
 
 class RealRenderTests(unittest.TestCase):
     @classmethod
@@ -211,6 +230,8 @@ class RealRenderTests(unittest.TestCase):
         self.assertEqual(r['decoded_frames'],448)
         self.assertEqual(r['identified_hidden_objects'],68)
         self.assertEqual(r['solution_markers'],68)
+        self.assertEqual(r['unverified_named_pointers'],0)
+        self.assertEqual(r['total_named_pointers'],68)
         self.assertEqual(len(r['atlases']),2)
         self.assertEqual(r['duplicate_backgrounds'],0)
         for name in ('scene_empty.png','scene_complete.png','scene_solution.png'):
@@ -281,6 +302,52 @@ class RealRenderTests(unittest.TestCase):
         self.assertTrue(any('banana' in issue and 'Unclassified' in issue for issue in r['issues']))
         self.assertFalse((out/'scene_complete.png').exists())
         self.assertTrue((out/'incomplete/scene_complete.png').exists())
+        self.assertEqual(r['identified_hidden_objects'],67)
+        self.assertEqual(r['named_pointers'],67)
+        self.assertEqual(r['solution_markers'],67)
+        self.assertEqual(r['unverified_named_pointers'],1)
+        self.assertEqual(r['total_named_pointers'],68)
+        markers=json.loads((out/'solution_objects.json').read_text())
+        self.assertEqual(len(markers),68)
+        banana=next(m for m in markers if m['object_id']==143)
+        self.assertEqual(banana['label'],'banana [unverified]')
+        self.assertEqual(banana['encoded_name'],'banana')
+        self.assertEqual(banana['label_source'],'encoded_name')
+        self.assertIs(banana['label_verified'],False)
+        self.assertIsNone(banana['manager_key'])
+        self.assertEqual(banana['labels'],{})
+        self.assertEqual(banana['callout_color'],[255,165,70,255])
+        self.assertGreaterEqual(banana['anchor_alpha'],16)
+        self.assertEqual(validate_callouts(markers,r['solution_dimensions'],r['solution_scene_box']),[])
+        for marker in markers:
+            if marker['object_id']==143:continue
+            self.assertIs(marker['label_verified'],True)
+            self.assertEqual(marker['label_source'],'item_manager')
+            self.assertEqual(marker['label'],data[marker['manager_key']]['beginner'])
+        rows=json.loads((out/'objects.json').read_text())
+        self.assertEqual(next(row for row in rows if row['object_id']==143)['kind'],'unverified_named_object')
+
+    def test_offstage_unverified_object_does_not_get_an_invented_pointer(self):
+        from unittest.mock import patch
+        from gardens.render import load_scene
+        data=dict(self.data);data.pop('banana_anc_giz_riv')
+        scene=load_scene(GIZA,with_context=True)
+        # Retain the real sprite and encoded name, but place it off stage in
+        # every decoded state to exercise the visibility gate for unknowns.
+        for changes in scene[1].frames.values():
+            for change in changes:
+                if change['object_id']==143:
+                    a,b,c,d,_,_=change['matrix']
+                    change['matrix']=(a,b,c,d,-10000,-10000)
+        out=Path(self.temp.name)/'unknown_offstage'
+        with patch('gardens.render.load_scene',return_value=scene):
+            r=render_bundle(GIZA,data,out)
+        self.assertEqual(r['status'],'incomplete')
+        self.assertIn(143,r['unresolved_named_objects'])
+        self.assertEqual(r['unverified_named_pointers'],0)
+        self.assertEqual(r['total_named_pointers'],67)
+        markers=json.loads((out/'solution_objects.json').read_text())
+        self.assertNotIn(143,{m['object_id'] for m in markers})
 
     def test_missing_item_does_not_publish_final_images(self):
         data={**self.data,'nonexistent_object_anc_giz_riv':{'beginner':'Unrecoverable'}}

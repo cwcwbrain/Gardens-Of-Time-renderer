@@ -17,7 +17,7 @@ def visible_anchor(mask):
 
 def wrap_label(text,font,width):
     """Wrap without abbreviating, renaming, or discarding any label words."""
-    if not text: raise ValueError('Missing Item Manager label for callout')
+    if not text: raise ValueError('Missing label for callout')
     lines=[];line=''
     for word in text.split(' '):
         candidate=(line+' '+word) if line else word
@@ -36,14 +36,16 @@ def annotate_solution(scene,markers):
     """Keep scene pixels at native scale; put nonoverlapping labels in side rails.
 
     Arrow/box coordinates are recorded in solution-canvas pixels; `anchor` stays
-    in original scene coordinates. The full, unchanged Item Manager label is
-    retained in every marker, even when its display text wraps onto two lines.
+    in original scene coordinates. The full label is retained even when its
+    display text wraps. Unverified encoded-name labels are marked separately.
     """
     font=ImageFont.load_default(size=16)
     padding,gap,rail,gutter=16,4,240,20
     row_line=21
     sides={'left':[],'right':[]}
-    numbered=sorted(markers,key=lambda m:(m['label'].casefold(),m['object_id']))
+    # Keep verified clue numbers stable when extra unverified visual markers
+    # are appended. Their raw names are not official Item Manager labels.
+    numbered=sorted(markers,key=lambda m:(m.get('label_verified',True) is False,m['label'].casefold(),m['object_id']))
     for number,marker in enumerate(numbered,1):
         marker['number']=number
         marker['label_lines']=wrap_label(f'{number}. {marker["label"]}',font,rail-20)
@@ -69,6 +71,7 @@ def annotate_solution(scene,markers):
             tops[i]=min(tops[i],maximum-rows[i]['callout_height'])
             maximum=tops[i]-gap
         for marker,top in zip(rows,tops):
+            color=(255,165,70,255) if marker.get('label_verified',True) is False else cyan
             h=marker['callout_height']
             left=padding if side=='left' else width-padding-rail
             box=[left,top,left+rail,top+h]
@@ -76,17 +79,17 @@ def annotate_solution(scene,markers):
             tip=[marker['anchor'][0]+offset[0],marker['anchor'][1]+offset[1]]
             # A straight leader has a single unambiguous arrowhead at the object.
             draw.line([tuple(start),tuple(tip)],fill=dark,width=4)
-            draw.line([tuple(start),tuple(tip)],fill=cyan,width=2)
+            draw.line([tuple(start),tuple(tip)],fill=color,width=2)
             dx,dy=tip[0]-start[0],tip[1]-start[1];length=math.hypot(dx,dy)
             if length==0:raise ValueError('Degenerate callout pointer')
             ux,uy=dx/length,dy/length
             arrow=[tuple(tip),(tip[0]-8*ux+4*uy,tip[1]-8*uy-4*ux),
                    (tip[0]-8*ux-4*uy,tip[1]-8*uy+4*ux)]
-            draw.polygon(arrow,fill=cyan,outline=dark)
-            draw.rounded_rectangle(box,radius=4,fill=(27,37,49,255),outline=cyan,width=1)
+            draw.polygon(arrow,fill=color,outline=dark)
+            draw.rounded_rectangle(box,radius=4,fill=(27,37,49,255),outline=color,width=1)
             for i,line in enumerate(marker['label_lines']):
                 draw.text((left+10,top+5+i*row_line),line,font=font,fill=(255,255,255,255))
-            marker.update(callout_box=box,pointer_start=start,pointer_tip=tip,callout_side=side)
+            marker.update(callout_box=box,pointer_start=start,pointer_tip=tip,callout_side=side,callout_color=list(color))
     return result,[*offset,offset[0]+scene.width,offset[1]+scene.height]
 
 
@@ -95,7 +98,7 @@ def validate_callouts(markers,canvas_size,scene_box):
     for marker in markers:
         oid=marker['object_id'];box=marker['callout_box'];anchor=marker['anchor']
         tip=marker['pointer_tip'];bbox=marker['bbox']
-        if not marker.get('label'):issues.append(f'Callout {oid} has no Item Manager label')
+        if not marker.get('label'):issues.append(f'Callout {oid} has no label')
         if not (bbox[0]<=anchor[0]<bbox[2] and bbox[1]<=anchor[1]<bbox[3]) or marker.get('anchor_alpha',0)<16:
             issues.append(f'Callout {oid} does not target a visible object pixel')
         if tip!=[anchor[0]+scene_box[0],anchor[1]+scene_box[1]]:

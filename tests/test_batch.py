@@ -77,6 +77,25 @@ class BatchTests(unittest.TestCase):
         self.assertEqual(len(self.calls),2)
         self.assertEqual(r['variant_results'],{'blocked':1,'incomplete':1,'passed':2})
 
+    def test_report_keeps_unverified_pointers_separate_and_reads_older_results(self):
+        def runner(job,*args):
+            result={'status':'incomplete','issues':['Unclassified named visuals'],'files':[],
+                    'hidden_objects':61,'named_pointers':61}
+            if job['candidate']['roots'][0]=='a':
+                result.update(unverified_named_pointers=2,total_named_pointers=63)
+            return result
+        _,report=self.run_batch(runner)
+        self.assertNotIn('passed',report['variant_results'])
+        with (self.out/'test_report.csv').open(encoding='utf-8-sig',newline='') as f:
+            rows=[row for row in csv.DictReader(f) if row['scene_id']=='SceneA']
+        current=next(row for row in rows if '/a.bundle' in row['bundle_urls'])
+        legacy=next(row for row in rows if '/b.bundle' in row['bundle_urls'])
+        self.assertEqual(current['status'],'incomplete')
+        self.assertEqual((current['hidden_objects'],current['named_pointers'],
+                          current['unverified_named_pointers'],current['total_named_pointers']),('61','61','2','63'))
+        self.assertEqual(legacy['unverified_named_pointers'],'')
+        self.assertEqual(legacy['total_named_pointers'],'61')
+
     def test_plan_only_creates_full_roster_without_workers(self):
         self.args.plan_only=True
         code,r=self.run_batch()

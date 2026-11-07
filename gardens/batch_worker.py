@@ -46,7 +46,9 @@ def test_job(job):
             report=render_bundle(next(iter(paths.values())),manager,Path(job['destination']),job['frame'])
             result.update(status='passed' if report['status']=='validated_snapshot' else 'incomplete',
                           issues=report['issues'],files=report['files'],
-                          hidden_objects=report['identified_hidden_objects'],named_pointers=report['named_pointers'])
+                          hidden_objects=report['identified_hidden_objects'],named_pointers=report['named_pointers'],
+                          unverified_named_pointers=report.get('unverified_named_pointers',0),
+                          total_named_pointers=report.get('total_named_pointers',report['named_pointers']))
             # Pass reuse requires unchanged inputs, images, and validation/label metadata.
             if result['status']=='passed':
                 for file in report['files']:keep(file)

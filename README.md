@@ -469,9 +469,9 @@ cells are not combined. Five time capsules are excluded. Both background art
 and foreground occlusion pieces are retained; a second background-named piece
 is not blindly discarded as a duplicate. Solution outlines use each object's
 visible pixels after masking and occlusion. Arrow tips also land on visible
-object pixels; label boxes are checked for overlap and bounds. All labels come
-from Item Manager. `solution_objects.json` records names, visible-pixel anchors,
-pointer endpoints and label boxes.
+object pixels; label boxes are checked for overlap and bounds. Verified clue
+labels come from Item Manager. `solution_objects.json` records names,
+visible-pixel anchors, pointer endpoints, label boxes and label provenance.
 
 `--frame 1` selects an exact one-based snapshot instead. `--offline` reuses
 hash-verified bundles, catalogues and Item Manager JSON after an online run.
@@ -673,9 +673,22 @@ resource template; the validation report records this in `scope_source`.
 
 Item Manager animation descriptors accept case variants and the observed
 `animprojectorbeam` form when its base matches a named animation. Findable labels
-still require exact names. Unknown named visuals remain in the previews and in
-`unresolved_named_objects`; they block certification. Failed rerenders remove
+still require exact encoded key bindings; the displayed Item Manager label can
+differ from the encoded name (for example, `lemon` is labelled "Orange Slice"
+in Hourglass Study). Unknown named visuals remain in the previews and in
+`unresolved_named_objects`; they block certification. Visible unknowns receive
+orange outlines and pointers labelled with their raw encoded name followed by
+`[unverified]`. They are not counted as verified hidden objects, are retained in
+the empty preview, and never receive guessed official labels. Invisible or
+off-stage unknowns do not receive invented pointers. Failed rerenders remove
 stale final image filenames, keeping previews under `incomplete/`.
+
+Reports distinguish `named_pointers` (verified Item Manager clues),
+`unverified_named_pointers`, and `total_named_pointers`. The solution metadata
+also records each marker's `label_source`, `label_verified`, and `callout_color`;
+unverified entries have no `manager_key`. Additional unverified markers do not
+renumber the verified clues. The [real Hourglass Study check](docs/validation/unverified_marker_check.json)
+records 61 verified and two unverified pointers in each of its two bundles.
 
 Wait until an active Windows run finishes before replacing its code. After
 updating, use `py gardens_renderer.py --retry-incomplete --output output` to
