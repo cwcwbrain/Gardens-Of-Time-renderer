@@ -1,0 +1,242 @@
+{
+  "checked_on": "2026-11-07",
+  "scene_id": "LochNess",
+  "variant_id": "f1424816c536d137",
+  "bundle_url": "https://prod-cdn-assets.gardensoftime-cloud.net/ho/lochness_assets_all_87eec791859c8a3cfc3b02dc06884cad.bundle",
+  "bundle_sha256": "44115f84edc343bb3b1ef29ae589945fba943ce511d5933206f9cd9555c29fcf",
+  "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_LochNess.json",
+  "item_manager_sha256": "246f44273935b4ebab3fe51b26ee7c1087a1adeb88a63b5727ae6979faf4a131",
+  "stage": [
+    1280,
+    758
+  ],
+  "snapshot_frame": 29,
+  "layer_investigation": {
+    "gradient_objects": [
+      113,
+      122
+    ],
+    "active_wave_cell_objects": [
+      187,
+      188
+    ],
+    "gradient_element": 5,
+    "gradient_atlas": "LochNess_2",
+    "gradient_crop": [
+      2,
+      2,
+      2044,
+      395
+    ],
+    "encoded_masks": [],
+    "effects_or_color_transforms": false,
+    "out_of_bounds_atlas_crop": false,
+    "custom_material_or_external_alpha_texture": false,
+    "shader_blending": "Source alpha / one minus source alpha; RGBA sampling with identity saved color adjustments",
+    "texture_format": "DXT5Crunched (29)",
+    "texture_records": [
+      {
+        "name": "LochNess",
+        "crunched_texture_sha256": "b7bfe59d469a7e33176497c36e1ffe43ff2e5a232ef4dcdb0e24004dfad42d5a",
+        "crunched_bytes": 614578
+      },
+      {
+        "name": "LochNess_2",
+        "crunched_texture_sha256": "8acdc655274b7a9ab450c7db716f0cf157cc724c0c9f56140358dfb47494f7e2",
+        "crunched_bytes": 255001
+      },
+      {
+        "name": "LochNess_3",
+        "crunched_texture_sha256": "e60d3b3caf66c9e2c13d76c8d6c3d18855d3b994b5e85a96d7508c7d58f05ddf",
+        "crunched_bytes": 31562
+      }
+    ],
+    "active_objects": [
+      {
+        "object_id": 113,
+        "name": "5_113",
+        "element_id": 5,
+        "depth": 4,
+        "matrix": [
+          -0.2574310302734375,
+          0.0,
+          0.0,
+          0.0686492919921875,
+          975.34326171875,
+          309.2578430175781
+        ],
+        "texture": "LochNess_2",
+        "crop": [
+          2,
+          2,
+          2044,
+          395
+        ],
+        "pivot": [
+          -0.0,
+          93.522216796875
+        ],
+        "element_scale": 0.8992521166801453,
+        "encoded_bounds": [
+          390.20254743109456,
+          302.1183169052043,
+          975.34326171875,
+          332.27278619577714
+        ]
+      },
+      {
+        "object_id": 122,
+        "name": "5_122",
+        "element_id": 5,
+        "depth": 13,
+        "matrix": [
+          1.0,
+          0.0,
+          0.0,
+          1.0,
+          -178.9499969482422,
+          409.20001220703125
+        ],
+        "texture": "LochNess_2",
+        "crop": [
+          2,
+          2,
+          2044,
+          395
+        ],
+        "pivot": [
+          -0.0,
+          93.522216796875
+        ],
+        "element_scale": 0.8992521166801453,
+        "encoded_bounds": [
+          -178.9499969482422,
+          305.20001591884915,
+          2094.0499349796687,
+          744.4539166583427
+        ]
+      },
+      {
+        "object_id": 187,
+        "name": "73_187",
+        "element_id": 73,
+        "depth": 3,
+        "matrix": [
+          -0.2574310302734375,
+          0.0,
+          0.0,
+          0.0686492919921875,
+          929.2630615234375,
+          306.5118713378906
+        ],
+        "texture": "LochNess_2",
+        "crop": [
+          870,
+          1419,
+          886,
+          373
+        ],
+        "pivot": [
+          5.75,
+          -3.25
+        ],
+        "element_scale": 1.0,
+        "encoded_bounds": [
+          702.6593971252441,
+          306.73498153686523,
+          930.7432899475098,
+          332.3411674499512
+        ]
+      },
+      {
+        "object_id": 188,
+        "name": "73_188",
+        "element_id": 73,
+        "depth": 12,
+        "matrix": [
+          1.0,
+          0.0,
+          0.0,
+          1.0,
+          0.05000000074505806,
+          369.20001220703125
+        ],
+        "texture": "LochNess_2",
+        "crop": [
+          870,
+          1419,
+          886,
+          373
+        ],
+        "pivot": [
+          5.75,
+          -3.25
+        ],
+        "element_scale": 1.0,
+        "encoded_bounds": [
+          -5.699999999254942,
+          372.45001220703125,
+          880.3000000007451,
+          745.4500122070312
+        ]
+      }
+    ]
+  },
+  "independent_decoder_check": {
+    "reference_repository": "https://github.com/Unity-Technologies/crunch",
+    "reference_branch": "unity",
+    "reference_commit": "8708900eca8ec609d279270e72936258f81ddfb7",
+    "implementation": "Pristine crn_decomp.h compiled into a standalone reference probe",
+    "all_three_dxt5_textures_match_texture2ddecoder_byte_for_byte": true,
+    "LochNess_2_dxt5_sha256": "b82fb4d900138b7ac23904eae0a03873f96cd341ab374ae11ed708ca7e07a9a8",
+    "separate_bc3_alpha_check": "Independent Python DXT5 alpha decoding matches UnityPy/Pillow across the entire 2048x2048 alpha channel, with maximum difference 0.",
+    "texture_comparisons": [
+      {
+        "texture": "LochNess",
+        "decompressed_bytes": 4194304,
+        "sha256": "586e44bd4d4687bb0f05609ea6d3caa5178938bda978146e6385163774796798",
+        "reference_matches": true
+      },
+      {
+        "texture": "LochNess_2",
+        "decompressed_bytes": 4194304,
+        "sha256": "b82fb4d900138b7ac23904eae0a03873f96cd341ab374ae11ed708ca7e07a9a8",
+        "reference_matches": true
+      },
+      {
+        "texture": "LochNess_3",
+        "decompressed_bytes": 1048576,
+        "sha256": "124f42bcb0c9808b1971bc26dbbce3314573bcf8224e10136dd7851a26d5b157",
+        "reference_matches": true
+      }
+    ]
+  },
+  "finding": "The extracted water-gradient alpha and ordinary source blending reproduce the bands. No missing mask/material rule was established in the checked bundle. Independent decoders agree. Whether the game corrects these layers at runtime has not been independently verified.",
+  "before_static_adjustment_validation": {
+    "status": "validated_snapshot",
+    "findable_clues": 56,
+    "matched_clues": 56,
+    "visible_markers": 56,
+    "item_manager_complete": true,
+    "issues": [],
+    "visual_review": "Failed: broad pale rectangle and vertical bands visible in all three PNGs, matching the user report. Structural checks alone did not detect this appearance problem."
+  },
+  "diagnostic_preview": {
+    "status": "incomplete",
+    "method": "A separate diagnostic preview omitted four active decorative water-animation layers. It preserved 56 clue bindings but did not reconstruct the intended animation.",
+    "png_sha256": {
+      "scene_empty.png": "7aa6db9147a96dbb77411d1ae5d5c49624fe91fb9a73eccee9d330d7353c4213",
+      "scene_complete.png": "089d62dd0ae424fa8ee3dbaab8d65dcb89d62f76246ff1afff23f7fbe80b783c",
+      "scene_solution.png": "51868e8a8b6c672866560b33a86986254a7f48975f2291a50f3990b02de5686d"
+    },
+    "included_in_release": false
+  },
+  "current_status": "Unresolved water-layer appearance. Following the user requirement for general rendering fixes, the unreleased source-specific omission implementation was removed. No automatic rule discards unnamed or pale artwork.",
+  "release_state": "General nested-pose selection does not resolve this flat-root water-layer issue.",
+  "general_selector_control": {
+    "unchanged_images": true,
+    "no_nested_pose_selection_applicable": true,
+    "water_issue_remains_unresolved": true,
+    "no_animation_artwork_omitted": true
+  }
+}

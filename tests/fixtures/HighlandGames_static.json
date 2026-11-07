@@ -1,0 +1,367 @@
+{
+  "bundle_sha256": "9b9bcb048836b0593b06b6193c345751606ff37de71076b99bd786c067e10897",
+  "root_metadata": {
+    "115": {
+      "m_Name": "anim_bagpipe",
+      "m_Clip": {
+        "m_FileID": 0,
+        "m_PathID": 2576786846694916099
+      },
+      "m_Manager": {
+        "m_FileID": 0,
+        "m_PathID": 8438819848659621918
+      },
+      "m_ID": 115,
+      "m_AtlasCustomElementID": -1,
+      "m_AtlasInitialElementID": 97,
+      "m_ObjectType": 2,
+      "m_BehaviourType": 0,
+      "m_IsVisible": 1,
+      "m_Offset": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "m_MeshSizeMultiplier": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "m_Material": {
+        "m_FileID": 0,
+        "m_PathID": 0
+      },
+      "m_UseCustomAtlasTextureRect": 0,
+      "m_AtlasTextureRect": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": -1.0,
+        "height": -1.0
+      }
+    }
+  },
+  "child_metadata": {
+    "193": {
+      "m_Name": "84_193",
+      "m_Clip": {
+        "m_FileID": 0,
+        "m_PathID": 2411990961084367081
+      },
+      "m_Manager": {
+        "m_FileID": 0,
+        "m_PathID": 4319506766014335369
+      },
+      "m_ID": 193,
+      "m_AtlasCustomElementID": -1,
+      "m_AtlasInitialElementID": 84,
+      "m_ObjectType": 0,
+      "m_BehaviourType": 0,
+      "m_IsVisible": 1,
+      "m_Offset": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "m_MeshSizeMultiplier": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "m_Material": {
+        "m_FileID": 0,
+        "m_PathID": 0
+      },
+      "m_UseCustomAtlasTextureRect": 0,
+      "m_AtlasTextureRect": {
+        "x": 1929.0,
+        "y": 807.0,
+        "width": 28.0,
+        "height": 26.0
+      }
+    },
+    "192": {
+      "m_Name": "83_192",
+      "m_Clip": {
+        "m_FileID": 0,
+        "m_PathID": 2411990961084367081
+      },
+      "m_Manager": {
+        "m_FileID": 0,
+        "m_PathID": 4319506766014335369
+      },
+      "m_ID": 192,
+      "m_AtlasCustomElementID": -1,
+      "m_AtlasInitialElementID": 83,
+      "m_ObjectType": 0,
+      "m_BehaviourType": 0,
+      "m_IsVisible": 1,
+      "m_Offset": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "m_MeshSizeMultiplier": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "m_Material": {
+        "m_FileID": 0,
+        "m_PathID": 0
+      },
+      "m_UseCustomAtlasTextureRect": 0,
+      "m_AtlasTextureRect": {
+        "x": 1877.0,
+        "y": 785.0,
+        "width": 48.0,
+        "height": 58.0
+      }
+    },
+    "190": {
+      "m_Name": "81_190",
+      "m_Clip": {
+        "m_FileID": 0,
+        "m_PathID": 2411990961084367081
+      },
+      "m_Manager": {
+        "m_FileID": 0,
+        "m_PathID": 4319506766014335369
+      },
+      "m_ID": 190,
+      "m_AtlasCustomElementID": -1,
+      "m_AtlasInitialElementID": 81,
+      "m_ObjectType": 0,
+      "m_BehaviourType": 0,
+      "m_IsVisible": 1,
+      "m_Offset": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "m_MeshSizeMultiplier": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "m_Material": {
+        "m_FileID": 0,
+        "m_PathID": 0
+      },
+      "m_UseCustomAtlasTextureRect": 0,
+      "m_AtlasTextureRect": {
+        "x": 1287.0,
+        "y": 276.0,
+        "width": 369.0,
+        "height": 758.0
+      }
+    },
+    "188": {
+      "m_Name": "79_188",
+      "m_Clip": {
+        "m_FileID": 0,
+        "m_PathID": 2411990961084367081
+      },
+      "m_Manager": {
+        "m_FileID": 0,
+        "m_PathID": 4319506766014335369
+      },
+      "m_ID": 188,
+      "m_AtlasCustomElementID": -1,
+      "m_AtlasInitialElementID": 79,
+      "m_ObjectType": 0,
+      "m_BehaviourType": 0,
+      "m_IsVisible": 1,
+      "m_Offset": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "m_MeshSizeMultiplier": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "m_Material": {
+        "m_FileID": 0,
+        "m_PathID": 0
+      },
+      "m_UseCustomAtlasTextureRect": 0,
+      "m_AtlasTextureRect": {
+        "x": 1660.0,
+        "y": 374.0,
+        "width": 125.0,
+        "height": 241.0
+      }
+    },
+    "194": {
+      "m_Name": "85_194",
+      "m_Clip": {
+        "m_FileID": 0,
+        "m_PathID": 2411990961084367081
+      },
+      "m_Manager": {
+        "m_FileID": 0,
+        "m_PathID": 4319506766014335369
+      },
+      "m_ID": 194,
+      "m_AtlasCustomElementID": -1,
+      "m_AtlasInitialElementID": 85,
+      "m_ObjectType": 0,
+      "m_BehaviourType": 0,
+      "m_IsVisible": 1,
+      "m_Offset": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "m_MeshSizeMultiplier": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "m_Material": {
+        "m_FileID": 0,
+        "m_PathID": 0
+      },
+      "m_UseCustomAtlasTextureRect": 0,
+      "m_AtlasTextureRect": {
+        "x": 1944.0,
+        "y": 232.0,
+        "width": 22.0,
+        "height": 28.0
+      }
+    },
+    "196": {
+      "m_Name": "87_196",
+      "m_Clip": {
+        "m_FileID": 0,
+        "m_PathID": 2411990961084367081
+      },
+      "m_Manager": {
+        "m_FileID": 0,
+        "m_PathID": 4319506766014335369
+      },
+      "m_ID": 196,
+      "m_AtlasCustomElementID": -1,
+      "m_AtlasInitialElementID": 87,
+      "m_ObjectType": 0,
+      "m_BehaviourType": 0,
+      "m_IsVisible": 1,
+      "m_Offset": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "m_MeshSizeMultiplier": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "m_Material": {
+        "m_FileID": 0,
+        "m_PathID": 0
+      },
+      "m_UseCustomAtlasTextureRect": 0,
+      "m_AtlasTextureRect": {
+        "x": 1891.0,
+        "y": 949.0,
+        "width": 29.0,
+        "height": 64.0
+      }
+    },
+    "195": {
+      "m_Name": "86_195",
+      "m_Clip": {
+        "m_FileID": 0,
+        "m_PathID": 2411990961084367081
+      },
+      "m_Manager": {
+        "m_FileID": 0,
+        "m_PathID": 4319506766014335369
+      },
+      "m_ID": 195,
+      "m_AtlasCustomElementID": -1,
+      "m_AtlasInitialElementID": 86,
+      "m_ObjectType": 0,
+      "m_BehaviourType": 0,
+      "m_IsVisible": 1,
+      "m_Offset": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "m_MeshSizeMultiplier": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "m_Material": {
+        "m_FileID": 0,
+        "m_PathID": 0
+      },
+      "m_UseCustomAtlasTextureRect": 0,
+      "m_AtlasTextureRect": {
+        "x": 1660.0,
+        "y": 959.0,
+        "width": 29.0,
+        "height": 64.0
+      }
+    },
+    "191": {
+      "m_Name": "82_191",
+      "m_Clip": {
+        "m_FileID": 0,
+        "m_PathID": 2411990961084367081
+      },
+      "m_Manager": {
+        "m_FileID": 0,
+        "m_PathID": 4319506766014335369
+      },
+      "m_ID": 191,
+      "m_AtlasCustomElementID": -1,
+      "m_AtlasInitialElementID": 82,
+      "m_ObjectType": 0,
+      "m_BehaviourType": 0,
+      "m_IsVisible": 1,
+      "m_Offset": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "m_MeshSizeMultiplier": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "m_Material": {
+        "m_FileID": 0,
+        "m_PathID": 0
+      },
+      "m_UseCustomAtlasTextureRect": 0,
+      "m_AtlasTextureRect": {
+        "x": 2021.0,
+        "y": 209.0,
+        "width": 20.0,
+        "height": 18.0
+      }
+    },
+    "189": {
+      "m_Name": "80_189",
+      "m_Clip": {
+        "m_FileID": 0,
+        "m_PathID": 2411990961084367081
+      },
+      "m_Manager": {
+        "m_FileID": 0,
+        "m_PathID": 4319506766014335369
+      },
+      "m_ID": 189,
+      "m_AtlasCustomElementID": -1,
+      "m_AtlasInitialElementID": 80,
+      "m_ObjectType": 0,
+      "m_BehaviourType": 0,
+      "m_IsVisible": 1,
+      "m_Offset": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "m_MeshSizeMultiplier": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "m_Material": {
+        "m_FileID": 0,
+        "m_PathID": 0
+      },
+      "m_UseCustomAtlasTextureRect": 0,
+      "m_AtlasTextureRect": {
+        "x": 1858.0,
+        "y": 949.0,
+        "width": 29.0,
+        "height": 64.0
+      }
+    }
+  }
+}

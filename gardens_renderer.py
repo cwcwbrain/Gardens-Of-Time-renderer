@@ -120,6 +120,7 @@ def main(argv=None):
     p.add_argument('--retry-failed', action='store_true', help='Retry non-passing checkpoints in test mode')
     p.add_argument('--include-pending', action='store_true', help='With --update, also resume saved pending/running jobs after an interrupted run or move')
     p.add_argument('--refresh-solutions', action='store_true', help='With --update or --finish-all, upgrade saved passing solutions to the current pointer layout while preserving empty and complete images')
+    p.add_argument('--refresh-poses', action='store_true', help='With --update, review saved passing nested animations and replace only images changed by the general pose selector; included in --finish-all')
     p.add_argument('--plan-only', action='store_true', help='Export the test or retry plan without starting workers')
     p.add_argument('--frame', type=int, help='One-based snapshot frame for --render')
     p.add_argument('--index-only', action='store_true', help='Download and index catalogues; do not download bundles')
@@ -131,7 +132,7 @@ def main(argv=None):
     args = p.parse_args(arguments)
     if args.find_scene is not None:
         if (args.render or args.index_only or args.plan_only or args.retry_failed or args.include_pending or
-                args.refresh_solutions or args.named_output is not None or args.test_limit is not None):
+                args.refresh_solutions or args.refresh_poses or args.named_output is not None or args.test_limit is not None):
             p.error('--find-scene handles only the requested name; do not combine it with batch, render or export options')
         if args.timeout<=0 or args.retries<0 or args.test_timeout<=0 or (args.frame is not None and args.frame<1):
             p.error('Scene lookup timeout/frame must be positive and retries non-negative')
@@ -142,10 +143,13 @@ def main(argv=None):
     if args.finish_all:
         args.update=True
         args.include_pending=True
+        args.refresh_poses=True
     if args.include_pending and not args.update:
         p.error('--include-pending requires --update')
     if args.refresh_solutions and not args.update:
         p.error('--refresh-solutions requires --update or --finish-all')
+    if args.refresh_poses and not args.update:
+        p.error('--refresh-poses requires --update or --finish-all')
     if args.relocate_output:
         if args.render or args.index_only or args.retry_failed or args.named_output or args.frame is not None or args.test_limit is not None:
             p.error('--relocate-output verifies and rebases saved paths; use --output and optionally --plan-only')
@@ -199,6 +203,7 @@ def main(argv=None):
         from gardens.finish import finish_all
         forwarded=['--update' if value=='--finish-all' else value for value in arguments]
         if '--include-pending' not in forwarded:forwarded.append('--include-pending')
+        if '--refresh-poses' not in forwarded:forwarded.append('--refresh-poses')
         return finish_all(out,lambda:main(forwarded),plan_only=args.plan_only)
     out.mkdir(parents=True, exist_ok=True)
     scenes, duplicates = read_scenes(args.scenes)
@@ -279,6 +284,12 @@ def main(argv=None):
         update={**enrollment,'chapter_discovery':chapter_report,'catalogue_source':discovery['source']}
         atomic_json(out/'update_discovery.json',update)
         code=retry_incomplete(args,update_metadata=update)
+        if args.refresh_poses and code not in (2,130):
+            from gardens.pose_refresh import refresh_poses
+            refreshed=refresh_poses(out,timeout=args.test_timeout,plan_only=args.plan_only)
+            if not args.plan_only:
+                if refreshed['status']=='interrupted':code=130
+                elif refreshed['status']!='completed':code=code or 1
         if not args.plan_only and code not in (2,130) and args.refresh_solutions:
             from gardens.solution_refresh import refresh_solutions
             refreshed=refresh_solutions(out,timeout=args.test_timeout)

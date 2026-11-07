@@ -535,6 +535,7 @@ def render_bundle(bundle, item_manager, output, frame=None):
     files=[]
     for name,image in [('scene_empty.png',empty),('scene_complete.png',complete),('scene_solution.png',solution)]:
         path=destination/name;tmp=path.with_suffix('.tmp');image.save(tmp,format='PNG');tmp.replace(path);files.append(str(path))
+    from .nested_pose import POSE_SELECTION_VERSION
     report={'status':'validated_snapshot' if valid else 'incomplete','scene_dimensions':list(size),
             'solution_dimensions':list(solution.size),'solution_scene_box':solution_scene_box,'named_pointers':len(markers),'nested_snapshot_instances':nested.audit,
             'unverified_named_pointers':0,'total_named_pointers':len(markers),
@@ -542,10 +543,11 @@ def render_bundle(bundle, item_manager, output, frame=None):
             'solution_layout':SOLUTION_LAYOUT,'annotation_issues':annotation_issues,
             'anchor_policy':'Actual visible pixels after occlusion; neighbouring clue targets use distinct visible pixels at least 10 pixels apart',
             'solution_policy':'Highlight verified clues with nonintersecting short numbered pointers and a side index; retain unverified objects as unmarked original art',
-            'nested_policy':'Encoded first frame per child; no elapsed-time playback simulation',
+            'nested_policy':'One coherent encoded pose per child; supported cutout animations minimize uncovered alpha, other children retain their initial pose. No elapsed-time playback simulation.',
+            'pose_selection_version':POSE_SELECTION_VERSION,'nested_pose_selections':nested.pose_audit,
             'filter_backend':'CPU Unity-style 32-tap separable box blur/outer glow; colour matrix before tint; GPU pixel parity not independently verified',
             'gaf_version':list(movie.version),'root_timeline':tl.id,'decoded_frames':len(tl.frames),'timeline_frame_count':tl.frame_count,
-            'snapshot_frame':frame,'snapshot_policy':('Encoded initial frame throughout the nested tree' if has_nested else
+            'snapshot_frame':frame,'snapshot_policy':('Encoded root frame 1 with coherent child poses recorded in nested_pose_selections' if has_nested else
                 'one decoded frame maximizing hidden/named object visibility and encoded opacity; no union of animation cells'),
             'bundle_sha256':bundle_digest,'item_manager_sha256':manager_digest,
             'item_binding_overrides':[item['binding_override'] for item in items.values() if 'binding_override' in item],

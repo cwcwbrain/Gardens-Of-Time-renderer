@@ -20,7 +20,7 @@ def cascade_color(parent,child):
 class NestedPainter:
     def __init__(self,movie,resolve_scope,size):
         self.movie,self.resolve_scope,self.size=movie,resolve_scope,size
-        self.audit=[];self.scopes={}
+        self.audit=[];self.scopes={};self.pose_choices={};self.pose_audit=[]
 
     def paint(self,tid,matrix=(1,0,0,1,0,0),alpha=1,masks=(),path=(),stack=(),color=None,effects=()):
         from .render import RenderError, check_snapshot_actions, sprite_for, warp_sprite
@@ -28,11 +28,21 @@ class NestedPainter:
         if tid in stack or len(stack)>=16:raise RenderError('Nested timeline cycle/depth limit')
         if tid not in self.movie.timelines:raise RenderError(f'Missing timeline {tid}')
         if tid not in self.scopes:self.scopes[tid]=self.resolve_scope(tid)
-        scope=self.scopes[tid];timeline=scope['timeline'];state=timeline.state_at(1)
-        check_snapshot_actions(timeline,1)
+        scope=self.scopes[tid];timeline=scope['timeline']
+        if masks or effects or alpha!=1 or color not in (None,(0,1,0,1,0,1,0)):
+            choice={'frame':1,'reason':'inherited compositing requires the initial pose'}
+        else:
+            if tid not in self.pose_choices:
+                from .nested_pose import select_pose
+                self.pose_choices[tid]=select_pose(self.movie,tid,self.resolve_scope)
+            choice=self.pose_choices[tid]
+        frame=choice['frame']
+        state=timeline.state_at(frame)
+        check_snapshot_actions(timeline,frame)
         key=list(path)
         if not any(x['instance_path']==key for x in self.audit):
-            self.audit.append({'instance_path':key,'timeline_id':tid,'frame':1,'active_objects':len(state),
+            self.pose_audit.append({'instance_path':key,'timeline_id':tid,**choice})
+            self.audit.append({'instance_path':key,'timeline_id':tid,'frame':frame,'active_objects':len(state),
                                'matrix':list(matrix),'alpha':alpha,'atlas_ids':sorted(scope['textures']),
                                'scope_source':scope.get('scope_source','serialized_unity'),
                                'equivalent_clip_instances':scope.get('equivalent_clip_instances',1),

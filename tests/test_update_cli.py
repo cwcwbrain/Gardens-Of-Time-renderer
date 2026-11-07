@@ -93,7 +93,7 @@ class UpdateCLITests(unittest.TestCase):
         self.worker_calls.append(job)
         return {'status':'passed','issues':[],**self.images(Path(job['destination']),'blue')}
 
-    def invoke(self,*,client=None,report=None,enrollment=None,real_batch=False,extra=(),retry_return=0,naming_return=0):
+    def invoke(self,*,client=None,report=None,enrollment=None,real_batch=False,extra=(),retry_return=0,naming_return=0,pose_status='completed'):
         client=client or CatalogueClient();report=self.chapter_report if report is None else report
         discovery={'source':'live_remote_config','catalogues':self.urls,'config_path':str(self.root/'verified-config.json')}
         chapter_module=types.ModuleType('gardens.chapters')
@@ -108,6 +108,7 @@ class UpdateCLITests(unittest.TestCase):
             stack.enter_context(patch('gardens_renderer.Index',return_value=SimpleNamespace(locations={})))
             matching=stack.enter_context(patch('gardens_renderer.match_scenes',return_value=matches))
             naming=stack.enter_context(patch('gardens_renderer.name_scene_exports',return_value=naming_return,create=True))
+            poses=stack.enter_context(patch('gardens.pose_refresh.refresh_poses',return_value={'status':pose_status}))
             prepare=stack.enter_context(patch.object(batch.Ledger,'prepare',side_effect=AssertionError('must not reset the saved roster')))
             if real_batch:
                 enroll=stack.enter_context(patch('gardens.incremental.enroll_updates',wraps=incremental.enroll_updates))
@@ -118,10 +119,38 @@ class UpdateCLITests(unittest.TestCase):
                 enrolled={'added_scenes':1,'added_variants':2,'discovery_complete':True} if enrollment is None else enrollment
                 enroll=stack.enter_context(patch('gardens.incremental.enroll_updates',return_value=enrolled))
                 retry=stack.enter_context(patch('gardens.batch.retry_incomplete',return_value=retry_return))
+            ordered=Mock()
+            ordered.attach_mock(retry,'retry');ordered.attach_mock(poses,'poses');ordered.attach_mock(naming,'naming')
             with contextlib.redirect_stdout(io.StringIO()):
                 code=gardens_renderer.main(['--update','--output',str(self.out),'--catalogues',str(self.manifest),*extra])
         return code,SimpleNamespace(client=client,source=source,chapters=chapter_module.discover_chapters,
-                                    matching=matching,enroll=enroll,retry=retry,naming=naming,prepare=prepare,matches=matches)
+                                    matching=matching,enroll=enroll,retry=retry,naming=naming,prepare=prepare,matches=matches,
+                                    poses=poses,ordered_calls=ordered.mock_calls)
+
+    def test_general_pose_refresh_runs_after_retry_before_named_export(self):
+        code,used=self.invoke(extra=['--refresh-poses'],retry_return=1)
+        self.assertEqual(code,1)
+        used.poses.assert_called_once_with(self.out.resolve(),timeout=300,plan_only=False)
+        self.assertEqual([call[0] for call in used.ordered_calls],['retry','poses','naming'])
+
+    def test_pose_refresh_is_explicit_for_update_and_propagates_failures(self):
+        _,used=self.invoke();used.poses.assert_not_called()
+        for status,expected in (('partial',1),('interrupted',130)):
+            with self.subTest(status=status):
+                code,used=self.invoke(extra=['--refresh-poses'],pose_status=status)
+                self.assertEqual(code,expected)
+                if status=='interrupted':used.naming.assert_not_called()
+        for retry_return in (2,130):
+            with self.subTest(retry=retry_return):
+                _,used=self.invoke(extra=['--refresh-poses'],retry_return=retry_return)
+                used.poses.assert_not_called()
+
+    def test_pose_refresh_plan_stages_nothing_and_selector_requires_update(self):
+        code,used=self.invoke(extra=['--refresh-poses','--plan-only'])
+        self.assertEqual(code,0)
+        used.poses.assert_called_once_with(self.out.resolve(),timeout=300,plan_only=True)
+        with contextlib.redirect_stderr(io.StringIO()),self.assertRaises(SystemExit):
+            gardens_renderer.main(['--retry-incomplete','--refresh-poses','--output',str(self.out)])
 
     def test_missing_checkpoint_fails_before_discovery_and_creates_no_output(self):
         target=self.root/'missing-run'

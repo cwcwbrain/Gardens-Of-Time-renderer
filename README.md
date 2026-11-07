@@ -169,9 +169,12 @@ py gardens_renderer.py --finish-all --output output
 
 This refreshes catalogue discovery, retries incomplete versions, resumes saved
 pending/running work, discovers new chapters/versions, writes official name
-matches, organizes named exports by 100/10/individual chapters, then deletes only
-verified obsolete incomplete previews. Passed renders and failed/blocked saved
-results are preserved. Use the latest program files beside the existing output
+matches, reviews passing nested snapshots with the general pose selector,
+organizes named exports by 100/10/individual chapters, then deletes only verified
+obsolete incomplete previews. The pose review replaces only images whose pixels
+change; unchanged passing scenes and failed/blocked saved results are preserved.
+`pose_refresh_report.json` lists the actual changed scene IDs. Repeated reviews
+reuse cached analysis for unchanged sources. Use the latest program files beside the existing output
 folder; relocation must already have succeeded after a move.
 
 To also upgrade older passing solutions to the numbered-pointer layout:
@@ -180,12 +183,15 @@ To also upgrade older passing solutions to the numbered-pointer layout:
 py gardens_renderer.py --finish-all --refresh-solutions --output output
 ```
 
-This keeps existing empty and complete images unchanged. It rebuilds older
+The solution-layout step keeps empty and complete images unchanged. It rebuilds older
 solution annotations from their verified cached assets, checks the native image
 hashes, and publishes only the solution and its annotation metadata. Progress is
 saved per version; repeating the command reuses solutions already upgraded.
 Named copies and their index are refreshed afterward. See
 [solution layout updates](docs/solution-layout-updates.md) for reports and recovery.
+The preceding general pose review may correct native images when an improved
+encoded animation pose changes their pixels. To run that review with the update
+workflow separately, use `--update --refresh-poses --output output`.
 
 On Windows it temporarily requests that the system stay awake while the command
 runs, and restores the previous thread sleep state when finished. The display
@@ -538,15 +544,20 @@ from earlier runs may still exist.
 
 The renderer currently supports ordinary, single-bundle root timelines with
 sprite transforms, pivots, element scale, color transforms, transparency,
-alpha masks and **nested initial poses**. Nested scenes use encoded frame 1
-throughout the tree, composing parent transforms, opacity, masks and child depth.
+alpha masks and **coherent nested poses**. Nested scenes use encoded root frame 1,
+composing parent transforms, opacity, masks and child depth. A general selector
+can choose one complete encoded child pose that better fills enclosed cutouts in
+stationary artwork. It does not resize, paint or omit parts. Unsupported animation
+features keep the initial pose, with the reason recorded in the validation report.
 A stop action with no target/arguments at the initial frame is accepted because
 it does not change that pose. GAF parent colour transforms and sprite colour-matrix
 filters, box blur and outer glow are supported. Elapsed-time playback, other
 actions, drop shadows, inner/knockout glow, custom Unity
 geometry or unresolved labels remain incomplete. Serialized Unity colour overrides remain unsupported.
 Victorian now passes the snapshot checks with 69 named objects and eight nested
-instances across its nine timelines. This is an initial pose, not full playback. FTD/STD/FTO rendering remains unimplemented.
+instances across its nine timelines. Its existing child poses remain unchanged
+under the general selector. FTD/STD/FTO rendering remains unimplemented. See
+[nested pose selection](docs/nested-pose-selection.md) for scope and validation.
 
 ## Outputs and status
 

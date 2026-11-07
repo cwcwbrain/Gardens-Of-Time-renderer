@@ -41,6 +41,15 @@ Table Clock entry corresponds to object 152, an animated clock named
 Timeline references, rendered clock inspection and real reconstruction checks
 are recorded in docs/validation/corner_office_fashion_backstage.json.
 
+HighlandGames.gaf preserves the unchanged embedded GAF from the reported real
+Highland Games bundle. HighlandGames_static.json contains the original serialized
+root/child object metadata. HighlandGames_pose_alpha.png contains only the nine
+bagpipe-animation sprites' alpha channels at their original atlas positions;
+unused pixels are zero. These fixtures test the general cutout-coverage selector
+without network access or a full color atlas. The production algorithm contains
+no Highland Games IDs, source hashes or fixed frame number. Source validation is
+recorded in docs/validation/highland_games_cheek.json.
+
 
 chapter747_748.json contains the actual production chapter/mission/scene records
 for chapters 747 and 748 from the MainProject Group00_VO_SO asset, read on

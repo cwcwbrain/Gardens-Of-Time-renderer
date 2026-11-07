@@ -43,7 +43,7 @@ the scene root. Local asset/GameObject references, component membership and an
 explicit parentless Transform are required; missing or ambiguous evidence fails.
 Library timelines remain in the decoded movie. The selected matching
 Unity clip provides scale/CSF and its object metadata. The initial implementation
-accepts scale=CSF=pixels-per-unit=1 with no root flip/pivot override. Nested initial poses are now rendered recursively with composed parent matrices,
+accepts scale=CSF=pixels-per-unit=1 with no root flip/pivot override. Nested static poses are rendered recursively with composed parent matrices,
 opacity, masks and child depth. Empty atlas tables are allowed for timeline-only
 containers. Serialized child clips must start at frame 1 with unmodified geometry
 and color settings. Nested scenes require root frame 1; elapsed playback is not
@@ -67,7 +67,12 @@ For non-nested automatic snapshots, maximize identified-object coverage, named-o
 visibility, then the number of objects at their own maximum encoded opacity.
 Choose the earliest frame with the best score. This supports intentionally
 translucent art without inventing visibility. Giza selects frame 80. `--frame`
-requests an exact one-based frame instead. Nested snapshots instead use the encoded initial frame throughout the tree.
+requests an exact one-based frame instead. Nested snapshots retain root frame 1.
+Supported leaf animations may select one complete encoded child frame using the
+general enclosed-cutout coverage rule; other children retain frame 1. The
+selector does not combine animation cells from different frames or modify
+source pixels. `nested_pose_selections` records every choice and decline reason.
+See [nested pose selection](nested-pose-selection.md).
 The decoder always reads the entire file, independently of the chosen snapshot.
 
 Background occlusion pieces are retained in depth order. Identical background

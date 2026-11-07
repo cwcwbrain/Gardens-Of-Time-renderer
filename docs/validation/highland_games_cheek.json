@@ -1,0 +1,136 @@
+{
+  "scope": "General enclosed-cutout pose selector tested against the reported Highland Games source. Scene identifiers below are provenance and regression data, not production selection rules.",
+  "scene_id": "HighlandGames",
+  "in_game_name": "Highland Games",
+  "bundle_url": "https://prod-cdn-assets.gardensoftime-cloud.net/ho/highlandgames_assets_all_05bda94344b08ffffb83ddfd10ddd259.bundle",
+  "bundle_sha256": "9b9bcb048836b0593b06b6193c345751606ff37de71076b99bd786c067e10897",
+  "item_manager_url": "https://prod-cdn-assets.gardensoftime-cloud.net/catalog/xml/en_us/text_manager_items_HighlandGames.json",
+  "item_manager_sha256": "a359a35afd8fc98ce96b953a9acf4a32bda85133c2c4f23b91af0b8c5fb137f3",
+  "diagnosis": {
+    "body_object_id": 190,
+    "cheek_object_id": 192,
+    "child_timeline": 97,
+    "encoded_child_frames": 160,
+    "initial_cheek_scale": 0.8947382569313049,
+    "initial_pose": "The separate cheek patch underlaps the antialiased rim of an enclosed hole in the main body sprite.",
+    "sampler_check": "Bilinear and bicubic sampling, with straight or premultiplied interpolation, retain the rim at frame 1. A filter change alone was not a verified repair."
+  },
+  "general_selection": {
+    "instance_path": [
+      115
+    ],
+    "timeline_id": 97,
+    "version": "cutout_coverage_v1",
+    "frame": 20,
+    "reason": "Minimum enclosed-cutout alpha deficit in one whole encoded pose",
+    "applied": true,
+    "coordinate_space": "stationary sprite source pixels",
+    "resource_usage": {
+      "state_entries": 1120,
+      "sprite_pixels": 319883,
+      "scanned_host_pixels": 309827,
+      "roi_pixels": 49085,
+      "regions": 12,
+      "score_pixel_work": 56795200,
+      "unique_roi_warps": 312,
+      "cached_warp_pixels": 5396023
+    },
+    "initial_deficit": 6915,
+    "best_deficit": 22,
+    "relative_improvement": 0.9968185104844541,
+    "encoded_frames_checked": 160,
+    "eligible_candidate_frames": 160,
+    "regions": [
+      {
+        "stationary_object_id": 190,
+        "source_box": [
+          195,
+          263,
+          238,
+          315
+        ],
+        "pixels": 1773,
+        "maximum_moving_fill": 0.9999159505877929
+      }
+    ]
+  },
+  "render_validation": {
+    "status": "validated_snapshot",
+    "issues": [],
+    "root_snapshot_frame": 1,
+    "verified_clues": 59,
+    "all_verified_bindings_unchanged": true,
+    "source_artwork_omitted": false,
+    "whole_encoded_pose": true,
+    "coherent_finger_cell_change": "The selected authored pose also switches an animated finger cell; it is not a cheek-only pixel edit.",
+    "png_sha256": {
+      "scene_empty.png": "8114fdb6a2513b3037cd3df1e31d5c76718b780d0981d9f2688317854b81256b",
+      "scene_complete.png": "d449c14f37b97699d0e0c1093727542c641fd96114362dfa08b31ae00ed75ec5",
+      "scene_solution.png": "8ba06681cd5709c405753b0a36d2c6cc242bbb186b7369941206d93d41e9d18f"
+    },
+    "encoded_transforms_or_pixels_altered": false
+  },
+  "production_rule_scope": "No scene-name, object-ID, source-hash or fixed-frame exceptions. Stable enclosed cutouts, actual moving alpha coverage and whole encoded pose scores determine the result. Unsupported features or analysis budgets retain the initial pose with an audit reason.",
+  "other_samples": "The real Giza and Victorian sample timelines retain their initial poses in the selector regressions.",
+  "generic_saved_output_review": {
+    "status": "passed",
+    "changed_scene_ids": [
+      "HighlandGames"
+    ],
+    "preserved_scene_ids": [
+      "CornerOffice",
+      "AncientGizaRiverfront"
+    ],
+    "preserved_files": 18,
+    "preserved_hashes_and_mtimes": true,
+    "preserved_other_job_rows": true,
+    "preserved_scene_order": true,
+    "refresh_summary": {
+      "passed_variants": 3,
+      "processed_variants": 3,
+      "nested_variants": 2,
+      "refreshed_variants": 1,
+      "unchanged_variants": 1,
+      "reused_variants": 0,
+      "non_nested_variants": 1,
+      "skipped_variants": 0,
+      "planned_variants": 0
+    },
+    "named_export_summary": {
+      "passed_variants": 3,
+      "exported_variants": 3,
+      "reused_variants": 2,
+      "skipped_variants": 0,
+      "written_pngs": 3,
+      "moved_pngs": 0
+    },
+    "repeat_summary": {
+      "passed_variants": 3,
+      "processed_variants": 3,
+      "nested_variants": 2,
+      "refreshed_variants": 0,
+      "unchanged_variants": 0,
+      "reused_variants": 2,
+      "non_nested_variants": 1,
+      "skipped_variants": 0,
+      "planned_variants": 0
+    },
+    "no_scene_specific_rules": true,
+    "all_59_clue_bindings_retained": true
+  },
+  "fixture_hashes": {
+    "HighlandGames_pose_alpha.png": "297644a20943db0e437e1b2151afc4b9710a930c47931440feaeb1acf723d0b5",
+    "HighlandGames_static.json": "42a882a7f6ecaa9c17460b418e32c7334f3255951550b6a9ff24300b36926159",
+    "HighlandGames.gaf": "01495025865b28b0cfc2f8ef97288f7bd800084f01944fee236a2f5aa52628e8"
+  },
+  "limitations": [
+    "This is a general static pose-quality policy, not elapsed-time playback or independent game GPU pixel parity.",
+    "The flat-root Loch Ness water-layer issue remains unresolved; the unreleased scene-specific omission exception was removed."
+  ],
+  "release_state": "Prepared locally; push held until the user confirms the current Windows run has finished.",
+  "regression_checks": {
+    "tests": 434,
+    "status": "passed",
+    "elapsed_seconds": 67.992
+  }
+}

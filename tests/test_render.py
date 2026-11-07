@@ -153,6 +153,27 @@ class NestedTests(unittest.TestCase):
         state['mask']=3
         with self.assertRaisesRegex(RenderError,'cycle'):painter.paint(10)
 
+    def test_pose_selection_is_cached_and_paints_one_complete_frame(self):
+        from unittest.mock import patch
+        painter,a,b=self.make_painter();b.frame_count=2
+        b.frames[2]=[{**b.frames[1][0],'matrix':(1,0,0,1,1,0)}]
+        a.frames[1][-1]['alpha']=1
+        def choose(movie,tid,resolve):return {'frame':2 if tid==20 else 1,'reason':'test encoded pose'}
+        with patch('gardens.nested_pose.select_pose',side_effect=choose) as selector:
+            image=painter.paint(10);painter.paint(10)
+        self.assertEqual([call.args[1] for call in selector.call_args_list],[10,20])
+        self.assertEqual(image.getpixel((3,0))[3],0)
+        self.assertEqual(image.getpixel((4,0)),(0,0,255,255))
+        self.assertEqual(next(r['frame'] for r in painter.audit if r['instance_path']==[4]),2)
+
+    def test_inherited_compositing_keeps_initial_pose_without_selection(self):
+        from unittest.mock import patch
+        painter,a,b=self.make_painter()
+        with patch('gardens.nested_pose.select_pose',side_effect=AssertionError('unsupported inherited state must not be optimized')):
+            image=painter.paint(20,alpha=.5)
+        self.assertEqual(image.getpixel((0,0)),(0,0,255,128))
+        self.assertEqual(painter.pose_audit[0]['frame'],1)
+
     def test_cycles_and_unsupported_actions_fail(self):
         painter,a,b=self.make_painter()
         b.objects[5]={'element':10,'type':2}

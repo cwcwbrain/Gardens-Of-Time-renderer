@@ -87,6 +87,7 @@ class FinishAllTests(unittest.TestCase):
         forwarded=update.call_args.args[0]
         self.assertNotIn('--finish-all',forwarded);self.assertNotIn('--test-all',forwarded)
         self.assertEqual(forwarded.count('--update'),1);self.assertEqual(forwarded.count('--include-pending'),1)
+        self.assertEqual(forwarded.count('--refresh-poses'),1)
         self.assertIn('--offline',forwarded);self.assertEqual(forwarded[forwarded.index('--timeout')+1],'11')
 
     def test_cli_plan_only_forwards_preview_and_skips_cleanup(self):
