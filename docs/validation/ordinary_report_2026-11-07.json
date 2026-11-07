@@ -1,0 +1,4098 @@
+{
+  "date": "2026-11-07",
+  "source": {
+    "file": "test_report.csv",
+    "sha256": "30186bba635505fdd59bb9fb541a272d59a41b675855a74aeaff15fc55c83db5"
+  },
+  "all_report_rows": 4701,
+  "all_scene_ids": 4487,
+  "all_status_counts": {
+    "passed": 2248,
+    "incomplete": 1763,
+    "failed": 690
+  },
+  "no_pending_running_or_blocked": true,
+  "ordinary_after_primary_mission_mode_audit": {
+    "versions": 2410,
+    "scene_ids": 2294,
+    "statuses": {
+      "passed": 2248,
+      "incomplete": 162
+    },
+    "fully_passed_scene_ids": 2142,
+    "partial_scene_ids": 3,
+    "fully_incomplete_scene_ids": 149
+  },
+  "excluded_misclassified_std": {
+    "scene_id": "ch452TourofTromsoADealInProgressLoop",
+    "mission_id": "5976",
+    "primary_mission_default_mode": "8",
+    "source_metadata": {
+      "url": "https://prod-cdn-assets.gardensoftime-cloud.net/unity6/webgl/ServerData/prod/WebGL/6000.4.1f1/mainproject_2/data/staticdata/staticdata_prod_assets_all_32372eea4a67d034f691b7cfb7320ab3.bundle",
+      "sha256": "b5610d2540431637057ddc7043ad37430185a96119c00eec6ae0413de86539d6",
+      "asset_path": "Assets/Data/GameData/StaticData/Prod/Group00_VO_SO.asset"
+    }
+  },
+  "ordinary_incomplete_versions": 162,
+  "ordinary_incomplete_scene_ids": 152,
+  "groups_overlap": true,
+  "failure_groups": {
+    "unclassified_named_objects": {
+      "versions": 129,
+      "scene_ids": 123
+    },
+    "missing_embedded_gaf": {
+      "versions": 4,
+      "scene_ids": 4
+    },
+    "off_stage_targets": {
+      "versions": 2,
+      "scene_ids": 2
+    },
+    "item_manager_binding": {
+      "versions": 41,
+      "scene_ids": 40
+    },
+    "invisible_targets": {
+      "versions": 9,
+      "scene_ids": 7
+    },
+    "background_identification": {
+      "versions": 1,
+      "scene_ids": 1
+    },
+    "atlas_crop": {
+      "versions": 1,
+      "scene_ids": 1
+    },
+    "root_timeline_selection": {
+      "versions": 1,
+      "scene_ids": 1
+    }
+  },
+  "previous_97_verified_variants_still_reported_passed": true,
+  "new_build": {
+    "identity": {
+      "schema": 1,
+      "code": "af7f13cf466139f161c019c62c8617d372884f7bd5888c0117849cd8f85103c8",
+      "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+      "platform": "Linux",
+      "packages": {
+        "UnityPy": "1.25.4",
+        "Pillow": "13.0.0"
+      }
+    },
+    "real_versions_retested": 22,
+    "newly_validated_versions": 21,
+    "still_incomplete_retested_versions": 1,
+    "results": [
+      {
+        "scene_id": "DanishBakery",
+        "variant_id": "342dbde956364d99",
+        "status": "validated_snapshot",
+        "issues": [],
+        "rule": "numeric_background_repeat",
+        "hidden_objects": 59,
+        "named_pointers": 59,
+        "bundle_urls": [
+          "https://prod-cdn-assets.gardensoftime-cloud.net/ho/danishbakery_assets_all_b1f283fe03b8d7b8fe1749cdc9a331cf.bundle"
+        ],
+        "bundle_sha256": "2783d312fceda4fdee1a1f50575c39b9120d20c07ec812dd4d60dc1362fcc86a",
+        "in_game_name": "Danish Bakery"
+      },
+      {
+        "scene_id": "ch280NavyDayCommanderinChief",
+        "variant_id": "a225c6fd380c9ebe",
+        "status": "incomplete",
+        "issues": [
+          "Item greencurtain_280_com_chi_ini: expected an unambiguous named-part prefix, found 0",
+          "Not all Item Manager hidden objects were resolved",
+          "Unclassified named object 76: bluecurtain; no Item Manager label"
+        ],
+        "rule": "longest_exact_named_prefix",
+        "hidden_objects": 58,
+        "named_pointers": 58,
+        "bundle_urls": [
+          "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch280navydaycommanderinchief_assets_all_f1b14dd72aec308bddd5e545087a2771.bundle"
+        ],
+        "bundle_sha256": "b53a774538105f851a498421fcf6e2e0555a6df44601e1463c207e99e64cba29",
+        "manager_sha256": "5f27f88be731586492bb7b7685a8ba1eb8f36e78e5cda7979bdbfdec19e51824",
+        "previous_item_issues": [
+          "Item bluecurtain_1_280_com_chi_ini: expected an unambiguous named-part prefix, found 2",
+          "Item greencurtain_280_com_chi_ini: expected an unambiguous named-part prefix, found 0"
+        ],
+        "current_item_issues": [
+          "Item greencurtain_280_com_chi_ini: expected an unambiguous named-part prefix, found 0"
+        ],
+        "in_game_name": "Commander in Chief"
+      },
+      {
+        "scene_id": "ch376KingdomoftheWoodsPlaceofPower",
+        "variant_id": "016db6f41fa36273",
+        "status": "validated_snapshot",
+        "issues": [],
+        "rule": "longest_exact_named_prefix",
+        "hidden_objects": 61,
+        "named_pointers": 61,
+        "bundle_urls": [
+          "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch376kingdomofthewoodsplaceofpower_assets_all_5e003e4b28a4ce143ecd5a6a15b60dcb.bundle"
+        ],
+        "bundle_sha256": "77fc4655cb077114f2ee6b68b3ff920c5cd01cdc13462477ea81ffe99d53d96e",
+        "manager_sha256": "c7635c2a8fc91f6822dd37035ac2a57f266c4ab842bf25768fbcc7fbd9bb1139",
+        "previous_item_issues": [
+          "Item parrot_1_376_pla_pow_ini: expected an unambiguous named-part prefix, found 2"
+        ],
+        "current_item_issues": [],
+        "in_game_name": "Place of Power"
+      },
+      {
+        "scene_id": "ch436LatinAmericanCultureForebearsAltar",
+        "variant_id": "4cf91b34c08391c8",
+        "status": "validated_snapshot",
+        "issues": [],
+        "rule": "longest_exact_named_prefix",
+        "hidden_objects": 58,
+        "named_pointers": 58,
+        "bundle_urls": [
+          "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch436latinamericancultureforebearsaltar_assets_all_8341b5c03d150d8881e4173f54b11b1f.bundle"
+        ],
+        "bundle_sha256": "63eb4b6ce33b6950ebc15011299f7fef3e78e6e1eca8d515809df87a955346e0",
+        "manager_sha256": "ff663fd730b4dde8d27a32f78653cd1836cbdfa22dc5ad3da9f50a9a9b1a9a36",
+        "previous_item_issues": [
+          "Item boat_1_436_for_alt_ini: expected an unambiguous named-part prefix, found 2"
+        ],
+        "current_item_issues": [],
+        "in_game_name": "Ancestors Altar"
+      },
+      {
+        "scene_id": "ch437VeteransDayTraditionsVeteransDayCeremony",
+        "variant_id": "f182d2b2cfb1c4f8",
+        "status": "validated_snapshot",
+        "issues": [],
+        "rule": "serialized_texture_clamp",
+        "hidden_objects": 60,
+        "named_pointers": 60,
+        "bundle_urls": [
+          "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch437veteransdaytraditionsveteransdayceremony_assets_all_c685d0b2babf8f5c25f8776f26bb7336.bundle"
+        ],
+        "bundle_sha256": "670975f1e15afed857239943c1b54e0b8c71e741f27234fb9a9cc63d30aea822",
+        "in_game_name": "Veterans Day Ceremony"
+      },
+      {
+        "scene_id": "ch499TessasTroublingTimesCozyTeaTime",
+        "variant_id": "3abd745681acb615",
+        "status": "validated_snapshot",
+        "issues": [],
+        "rule": "longest_exact_named_prefix",
+        "hidden_objects": 60,
+        "named_pointers": 60,
+        "bundle_urls": [
+          "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch499tessastroublingtimescozyteatime_assets_all_c13ea340e9eff49b9874d9841e7df613.bundle"
+        ],
+        "bundle_sha256": "aa64f7896899a3d136c2032b88c929d82031939674b9711526cecc18287d4789",
+        "manager_sha256": "c8369a41a3fbd7c5932c79161a28e0b15da8491f51f5f184105585ff9e362e99",
+        "previous_item_issues": [
+          "Item bluebottle_1_499_coz_tim_ini: expected an unambiguous named-part prefix, found 2"
+        ],
+        "current_item_issues": [],
+        "in_game_name": "Cozy Tea Time"
+      },
+      {
+        "scene_id": "ch556CarefulWhoYouMakeDealsWithWhaleWatching",
+        "variant_id": "48d626e806c702e5",
+        "status": "validated_snapshot",
+        "issues": [],
+        "rule": "longest_exact_named_prefix",
+        "hidden_objects": 61,
+        "named_pointers": 61,
+        "bundle_urls": [
+          "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch556carefulwhoyoumakedealswithwhalewatching_assets_all_be32a4329630bafc9c015e841f4e3187.bundle"
+        ],
+        "bundle_sha256": "7c7096f0d090ae3017ef48ea5ab07d77435bc58a8dbbb49b62f4037dd580f9d9",
+        "manager_sha256": "960a74fcf2567cd723e8d5291c63137f6a3af598f34880de3fd295cc53de742c",
+        "previous_item_issues": [
+          "Item pelican_1_556_wha_wat_ini: expected an unambiguous named-part prefix, found 2",
+          "Item redflag_1_556_wha_wat_ini: expected an unambiguous named-part prefix, found 2"
+        ],
+        "current_item_issues": [],
+        "in_game_name": "Whale Watching"
+      },
+      {
+        "scene_id": "ch573AFourthofJulySpectacleIndependenceDayFireworks",
+        "variant_id": "0c99e2eeaa394b15",
+        "status": "validated_snapshot",
+        "issues": [],
+        "rule": "longest_exact_named_prefix",
+        "hidden_objects": 60,
+        "named_pointers": 60,
+        "bundle_urls": [
+          "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch573afourthofjulyspectacleindependencedayfireworks_assets_all_6e3a1d1aa06b3476e58c49a7aef2ecdf.bundle"
+        ],
+        "bundle_sha256": "79e088ecc055c7b8764c1d515932dd0c9a78ec0f8b1dcdca135dd1cbc68ac3fe",
+        "manager_sha256": "279d4743e255b3a33587c93204f9a310b555965b9d71c07b9eca950eb9bbc4cf",
+        "previous_item_issues": [
+          "Item camera_1_573_ind_fir_ini: expected an unambiguous named-part prefix, found 2"
+        ],
+        "current_item_issues": [],
+        "in_game_name": "Independence Day Fireworks"
+      },
+      {
+        "scene_id": "ch575SagaoftheNorthInsidetheLonghouse",
+        "variant_id": "5145984ccde4ffd3",
+        "status": "validated_snapshot",
+        "issues": [],
+        "rule": "longest_exact_named_prefix",
+        "hidden_objects": 61,
+        "named_pointers": 61,
+        "bundle_urls": [
+          "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch575sagaofthenorthinsidethelonghouse_assets_all_87a064f33ec4488e2e11360e37e2401b.bundle"
+        ],
+        "bundle_sha256": "f24dce01b903a2d6e604e2296f1615ae5191bef53953e6bb9475c939fcc1f091",
+        "manager_sha256": "b57b9af9c90cbc990ed05790092e86ba4565be5b99b94a7d9e89e08e8da8f0a5",
+        "previous_item_issues": [
+          "Item lantern_1_575_ins_lon_ini: expected an unambiguous named-part prefix, found 2"
+        ],
+        "current_item_issues": [],
+        "in_game_name": "Inside the Longhouse"
+      },
+      {
+        "scene_id": "ch598ChristmasPresentHuntTheHeartOfTheHolidays",
+        "variant_id": "36059e6c98dd08bc",
+        "status": "validated_snapshot",
+        "issues": [],
+        "rule": "active_prefab_root",
+        "hidden_objects": 60,
+        "named_pointers": 60,
+        "bundle_urls": [
+          "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch598christmaspresenthunttheheartoftheholidays_assets_all_80c57f5e39fdebc5fe9cc51ec879401d.bundle"
+        ],
+        "bundle_sha256": "ab376d1ec6ce087ae6a0cf4de8fc2a82f55f3ee2a45b3b5ad9d19fa93f3c3701",
+        "in_game_name": "The Heart of the Holidays"
+      },
+      {
+        "scene_id": "ch664NotPastNorFuturePetaltotheFestival",
+        "variant_id": "4d60e57532c0277d",
+        "status": "validated_snapshot",
+        "issues": [],
+        "rule": "longest_exact_named_prefix",
+        "hidden_objects": 61,
+        "named_pointers": 61,
+        "bundle_urls": [
+          "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch664notpastnorfuturepetaltothefestival_assets_all_456d11d519f9419b2fa6ca51b23494cf.bundle"
+        ],
+        "bundle_sha256": "6c77b530e9908b8614ff9defeddf37a07f6956a449c27ff0f27868dfb11e7b29",
+        "manager_sha256": "2eb02a6a624892a84e0e5b77129627412df6c9574b6d87f0823e04d1eac88341",
+        "previous_item_issues": [
+          "Item napkin_1_664_pet_fes_ini: expected an unambiguous named-part prefix, found 2"
+        ],
+        "current_item_issues": [],
+        "in_game_name": "Petal to the Festival"
+      },
+      {
+        "scene_id": "ch673TheFirstFractureTrialsoftheGods",
+        "variant_id": "217d027b73b9e2fd",
+        "status": "validated_snapshot",
+        "issues": [],
+        "rule": "longest_exact_named_prefix",
+        "hidden_objects": 61,
+        "named_pointers": 61,
+        "bundle_urls": [
+          "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch673thefirstfracturetrialsofthegods_assets_all_a46c8658246bace87a7e013de8359073.bundle"
+        ],
+        "bundle_sha256": "6041bae48b87cfda09b025123f2917b8047d7da3305d5d8e43721fd366372d31",
+        "manager_sha256": "b907df907d5ca12097524b66994a28379eaf922eed0911111315da2d387d8465",
+        "previous_item_issues": [
+          "Item sack_1_673_tri_god_ini: expected an unambiguous named-part prefix, found 2"
+        ],
+        "current_item_issues": [],
+        "in_game_name": "Trials of the Gods"
+      },
+      {
+        "scene_id": "ch674HistoryWakesSleepingCatsGarden",
+        "variant_id": "3bf1bd401a2cdfe9",
+        "status": "validated_snapshot",
+        "issues": [],
+        "rule": "longest_exact_named_prefix",
+        "hidden_objects": 62,
+        "named_pointers": 62,
+        "bundle_urls": [
+          "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch674historywakessleepingcatsgarden_assets_all_3b8027c71b0c8eea282df3541b07fb7e.bundle"
+        ],
+        "bundle_sha256": "896980a458971721d84e7a3b12c2ac95f6cbe7969b1df4eb4c8f15faf6377985",
+        "manager_sha256": "0214bce2a2cfd28331d98da0d295acbc1bfcae65b8ff9600d64589532b969633",
+        "previous_item_issues": [
+          "Item pigeon_1_674_sle_gar_ini: expected an unambiguous named-part prefix, found 2"
+        ],
+        "current_item_issues": [],
+        "in_game_name": "Sleeping Cats Garden"
+      },
+      {
+        "scene_id": "ch674HistoryWakesNineLivesofLiterature",
+        "variant_id": "011405b33b211a51",
+        "status": "validated_snapshot",
+        "issues": [],
+        "rule": "longest_exact_named_prefix",
+        "hidden_objects": 60,
+        "named_pointers": 60,
+        "bundle_urls": [
+          "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch674historywakesninelivesofliterature_assets_all_15e6ba287cd7ac690c08eb04a73d350b.bundle"
+        ],
+        "bundle_sha256": "91d8655c5b82ab7899e1a2845fc02c687ca28ef35df8f6a95facfa20716f455a",
+        "manager_sha256": "db1d96837243cb0636f51b2b24b2b0adfc4afd6f3a20f6e18626158c25ea1039",
+        "previous_item_issues": [
+          "Item tablelamp_1_674_nin_lit_ini: expected an unambiguous named-part prefix, found 2"
+        ],
+        "current_item_issues": [],
+        "in_game_name": "Nine Lives of Literature"
+      },
+      {
+        "scene_id": "ch685VeneerofHistoryPortofSummer",
+        "variant_id": "fb81ed6f2c94832d",
+        "status": "validated_snapshot",
+        "issues": [],
+        "rule": "longest_exact_named_prefix",
+        "hidden_objects": 60,
+        "named_pointers": 60,
+        "bundle_urls": [
+          "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch685veneerofhistoryportofsummer_assets_all_9a093765f3399578e7285b14a2128533.bundle"
+        ],
+        "bundle_sha256": "038d3aeeec06f9fa81bd7ec4407cd8e07f60f1fa62d7de337bc1dc44eaa4db95",
+        "manager_sha256": "d93ce989d2bb5c8bda7fdd6173a53d0cd81a3d82ac406f2cf9eeb9e49dee3b90",
+        "previous_item_issues": [
+          "Item bluetowel_1_685_por_sum_ini: expected an unambiguous named-part prefix, found 2"
+        ],
+        "current_item_issues": [],
+        "in_game_name": "Port of Summer"
+      },
+      {
+        "scene_id": "ch691TheSummoningGlassAmberLightCouncil",
+        "variant_id": "1bf79947721b9057",
+        "status": "validated_snapshot",
+        "issues": [],
+        "rule": "longest_exact_named_prefix",
+        "hidden_objects": 60,
+        "named_pointers": 60,
+        "bundle_urls": [
+          "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch691thesummoningglassamberlightcouncil_assets_all_cf1835f1aea6790076bff886763320a7.bundle"
+        ],
+        "bundle_sha256": "1287ea1fb9d1750543f34edb935291b9c62299717681bfdec692aacca81b7fbd",
+        "manager_sha256": "d86f2b983d8ba2e3e4a57d7b3eb575dbbf048f10b15da7368b6443cbdf0c7f22",
+        "previous_item_issues": [
+          "Item yellowflowertree_1_691_amb_cou_ini: expected an unambiguous named-part prefix, found 2"
+        ],
+        "current_item_issues": [],
+        "in_game_name": "Amber Light Council"
+      },
+      {
+        "scene_id": "ch692ChoiceoftheAgesTwilightHoovesCrossing",
+        "variant_id": "9dfd85f718baf4fa",
+        "status": "validated_snapshot",
+        "issues": [],
+        "rule": "longest_exact_named_prefix",
+        "hidden_objects": 60,
+        "named_pointers": 60,
+        "bundle_urls": [
+          "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch692choiceoftheagestwilighthoovescrossing_assets_all_58d1afcd5d3f4ea4536724c577743671.bundle"
+        ],
+        "bundle_sha256": "8ed6c06f2560eea7b4df1c47506d1cce36cdb91160bedbfe9f1c6ab0ae00ead0",
+        "manager_sha256": "9a302c2fb203bbee50567f939a834f2bdf9c848d1cabd739fce798923a3af61a",
+        "previous_item_issues": [
+          "Item lupinflower_1_692_twi_cro_ini: expected an unambiguous named-part prefix, found 2"
+        ],
+        "current_item_issues": [],
+        "in_game_name": "Twilight Hooves Crossing"
+      },
+      {
+        "scene_id": "ch697TheMerryMarksmenEmbersofSherwood",
+        "variant_id": "695bef590bd1cac9",
+        "status": "validated_snapshot",
+        "issues": [],
+        "rule": "longest_exact_named_prefix",
+        "hidden_objects": 59,
+        "named_pointers": 59,
+        "bundle_urls": [
+          "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch697themerrymarksmenembersofsherwood_assets_all_6befc85e8f250a96cbd06fd86520f257.bundle"
+        ],
+        "bundle_sha256": "3d55427ccc840e0e4ce635b4ed0123db9a85d42b8122b1271472d729a5dc2a45",
+        "manager_sha256": "f13be0b9ea9c653e3d0b7bd73a0a85f0be29c5a3c56408c4aeb8a40ff021b30e",
+        "previous_item_issues": [
+          "Item treasurechest_1_697_emb_she_ini: expected an unambiguous named-part prefix, found 2"
+        ],
+        "current_item_issues": [],
+        "in_game_name": "Embers of Sherwood"
+      },
+      {
+        "scene_id": "ch702ChristmasCrisisGroveofGrowingGifts",
+        "variant_id": "e581d11f8d5b05ef",
+        "status": "validated_snapshot",
+        "issues": [],
+        "rule": "longest_exact_named_prefix",
+        "hidden_objects": 60,
+        "named_pointers": 60,
+        "bundle_urls": [
+          "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch702christmascrisisgroveofgrowinggifts_assets_all_380030e349da6b3247deb35b43705909.bundle"
+        ],
+        "bundle_sha256": "a87d03c9a99bdbc3eb2bd1ddf193ce33d64e099f7bc64ea9d36b5094e6489265",
+        "manager_sha256": "51575ccc57090587ef9a383bf5cb598d507177183113a481a478710bb8ca6c8e",
+        "previous_item_issues": [
+          "Item umbrella_1_702_gro_gif_ini: expected an unambiguous named-part prefix, found 2"
+        ],
+        "current_item_issues": [],
+        "in_game_name": "Grove of Growing Gifts"
+      },
+      {
+        "scene_id": "ch706MomentsBetweenChaosBarnofSleepingSpots",
+        "variant_id": "df44a0b451b0ac79",
+        "status": "validated_snapshot",
+        "issues": [],
+        "rule": "longest_exact_named_prefix",
+        "hidden_objects": 60,
+        "named_pointers": 60,
+        "bundle_urls": [
+          "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch706momentsbetweenchaosbarnofsleepingspots_assets_all_ba7169e1e4ef9618a276afa01d4b2442.bundle"
+        ],
+        "bundle_sha256": "d65015542386a8d2692229eca66b71e6640df42f728fda88479d55d898f6a0cf",
+        "manager_sha256": "8a1a994b4283e508b067b5ca3cb0ca5a1b3e2c38749749d19fc2b14daf001d18",
+        "previous_item_issues": [
+          "Item birdhouse_1_706_bar_sle_ini: expected an unambiguous named-part prefix, found 2",
+          "Item hammer_1_706_bar_sle_ini: expected an unambiguous named-part prefix, found 2"
+        ],
+        "current_item_issues": [],
+        "in_game_name": "Barn of Sleeping Spots"
+      },
+      {
+        "scene_id": "ch734NoLongeranIdeaVikingGroveofTraditions",
+        "variant_id": "f1cdb9bc8697fbb0",
+        "status": "validated_snapshot",
+        "issues": [],
+        "rule": "longest_exact_named_prefix",
+        "hidden_objects": 60,
+        "named_pointers": 60,
+        "bundle_urls": [
+          "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch734nolongeranideavikinggroveoftraditions_assets_all_f838da9469b5eb9c3aaebabc5b69212e.bundle"
+        ],
+        "bundle_sha256": "01dc42e825744a201fc61fa855e57860bcad2a651dd406de202a91fb242bf802",
+        "manager_sha256": "58e9aae1e2837e01b137e868a84247a9a9b406b0113705dfbb5099788155873b",
+        "previous_item_issues": [
+          "Item woodenbucket_1_734_vik_tra_ini: expected an unambiguous named-part prefix, found 2"
+        ],
+        "current_item_issues": [],
+        "in_game_name": "Viking Grove of Traditions"
+      },
+      {
+        "scene_id": "ch742EchoesoftheCelebrationProstinMoselleValley",
+        "variant_id": "bd8c1c6de2400437",
+        "status": "validated_snapshot",
+        "issues": [],
+        "rule": "longest_exact_named_prefix",
+        "hidden_objects": 60,
+        "named_pointers": 60,
+        "bundle_urls": [
+          "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch742echoesofthecelebrationprostinmosellevalley_assets_all_5eb901f47ba1e4d078e30a6aa20c1fdb.bundle"
+        ],
+        "bundle_sha256": "294050c6efaf2a0ca5825f21d6b45ee864cf0d2f6623a8ee5a669e57dbeb489a",
+        "manager_sha256": "9bffa022a3a1071fe1a7f4ee7a74ce3e84f74048e963f27403c588477344588e",
+        "previous_item_issues": [
+          "Item clubshape_1_742_pro_val_ini: expected an unambiguous named-part prefix, found 2"
+        ],
+        "current_item_issues": [],
+        "in_game_name": "Prost in Moselle Valley"
+      }
+    ],
+    "regression_tests_passed": 289
+  },
+  "remaining_not_yet_certified_versions": 141,
+  "details": [
+    {
+      "order": 5,
+      "scene_id": "VictorianSceneRedone",
+      "variant_id": "6234e0da83eee691",
+      "in_game_name": "Hourglass Study",
+      "chapter_number": 1,
+      "chapter_title": "Chapter 1 - Trouble at Time Manor",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 142: maracas; no Item Manager label",
+        "Unclassified named object 95: lightbulb; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/victoriansceneredone_assets_all_1d07d6342811b813b5869ce3ff3154c0.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 5,
+      "scene_id": "VictorianSceneRedone",
+      "variant_id": "7a1420d58dd6d1f0",
+      "in_game_name": "Hourglass Study",
+      "chapter_number": 1,
+      "chapter_title": "Chapter 1 - Trouble at Time Manor",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 142: maracas; no Item Manager label",
+        "Unclassified named object 95: lightbulb; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/victoriansceneredone_assets_all_a6fc6323fbfe37a2056caf453aaad1dd.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 13,
+      "scene_id": "ChinaGardenRedux1",
+      "variant_id": "2ea3fe135b389b3b",
+      "in_game_name": "Suzhou Gardens",
+      "chapter_number": 3,
+      "chapter_title": "Chapter 3 - Big Trouble in Ancient China",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 113: sharkfin; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/chinagardenredux1_assets_all_3e4aee79cb03b6f98d37c897e05d62d1.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 21,
+      "scene_id": "HangingGardensofBabylon",
+      "variant_id": "bc59135aad0fec52",
+      "in_game_name": "Hanging Gardens of Babylon",
+      "chapter_number": 4,
+      "chapter_title": "Chapter 4 - Great Caesar's Ghost?",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 101: mallet; no Item Manager label",
+        "Unclassified named object 104: apostrophe; no Item Manager label",
+        "Unclassified named object 105: daisy; no Item Manager label",
+        "Unclassified named object 106: sunflower; no Item Manager label",
+        "Unclassified named object 111: bowlingpin; no Item Manager label",
+        "Unclassified named object 113: rose; no Item Manager label",
+        "Unclassified named object 119: rainbow; no Item Manager label",
+        "Unclassified named object 120: spade; no Item Manager label",
+        "Unclassified named object 122: lazyspring; no Item Manager label",
+        "Unclassified named object 123: handprint; no Item Manager label",
+        "Unclassified named object 126: raspberry; no Item Manager label",
+        "Unclassified named object 134: scissors; no Item Manager label",
+        "Unclassified named object 144: hat; no Item Manager label",
+        "Unclassified named object 145: fish; no Item Manager label",
+        "Unclassified named object 97: apple; no Item Manager label",
+        "Unclassified named object 99: watermelon; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/hanginggardensofbabylon_assets_all_a9f13dee608d1d5210e493616b395c84.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 24,
+      "scene_id": "TowerOfBabel",
+      "variant_id": "f04b8230296b3eeb",
+      "in_game_name": "Etemenanki",
+      "chapter_number": 4,
+      "chapter_title": "Chapter 4 - Great Caesar's Ghost?",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 112: antler; no Item Manager label",
+        "Unclassified named object 160: cyclist; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/towerofbabel_assets_all_fd489adad96a90899d146e45f8ccab40.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 26,
+      "scene_id": "ItalyWoodenCarriageInterior",
+      "variant_id": "082fe53373e0cf05",
+      "in_game_name": "Italian Carriage",
+      "chapter_number": 5,
+      "chapter_title": "Chapter 5 - A Tale of Two Timelines",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 140: fuzzydice; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/italywoodencarriageinterior_assets_all_4f99076bd36570cce9ddbf7c750751ec.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 28,
+      "scene_id": "AncientGreekTemple",
+      "variant_id": "e9063e2adb394b83",
+      "in_game_name": "Greek Temple",
+      "chapter_number": 5,
+      "chapter_title": "Chapter 5 - A Tale of Two Timelines",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 164: firebowl; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ancientgreektemple_assets_all_c6dc1b5f07c98cfed16b2c602238b9df.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 30,
+      "scene_id": "GardenOfHesperides",
+      "variant_id": "ba4973f773e1766d",
+      "in_game_name": "Garden Of Hesperides",
+      "chapter_number": 5,
+      "chapter_title": "Chapter 5 - A Tale of Two Timelines",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 82: rabbit; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/gardenofhesperides_assets_all_2d326c26a29722c011949d9c01302912.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 31,
+      "scene_id": "victoriantraveltrunk",
+      "variant_id": "153ce234ecbe155d",
+      "in_game_name": "Relic Trunk",
+      "chapter_number": 6,
+      "chapter_title": "Chapter 6 - Return to the Nile",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 74: fountainpen; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/victoriantraveltrunk_assets_all_c5de38fd8e7b8eb901f2aadfdbf193bd.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 36,
+      "scene_id": "AlAzharUniversity",
+      "variant_id": "017650e4c9d10890",
+      "in_game_name": "Al-Azhar University",
+      "chapter_number": 6,
+      "chapter_title": "Chapter 6 - Return to the Nile",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 119: camera; no Item Manager label",
+        "Unclassified named object 127: cane; no Item Manager label",
+        "Unclassified named object 79: basket; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/alazharuniversity_assets_all_8a24f5e6b7b6846c882312c7d9a383e5.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 43,
+      "scene_id": "BattlefrontFrance1812",
+      "variant_id": "f1ea968a2df02f4d",
+      "in_game_name": "French Battlefield",
+      "chapter_number": 8,
+      "chapter_title": "Chapter 8 - A Renaissance Flair",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 116: wheel; no Item Manager label",
+        "Unclassified named object 160: dominoes; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/battlefrontfrance1812_assets_all_e4c3983ea61bd588f20727605a45c60d.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 47,
+      "scene_id": "DaVinciStudioRedux1",
+      "variant_id": "09330039963fbd4c",
+      "in_game_name": "DaVinci Studio",
+      "chapter_number": 8,
+      "chapter_title": "Chapter 8 - A Renaissance Flair",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 137: tablelamp; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/davincistudioredux1_assets_all_70d53ff96e7f380e9c9326b8f86a4274.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 47,
+      "scene_id": "DaVinciStudioRedux1",
+      "variant_id": "0bfa07cd81365ec7",
+      "in_game_name": "DaVinci Studio",
+      "chapter_number": 8,
+      "chapter_title": "Chapter 8 - A Renaissance Flair",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "missing_embedded_gaf"
+      ],
+      "reported_issues": [
+        "RenderError: Expected one GAF asset, found 0"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/davincistudioredux1_assets_all_aeb56b1e5353ede2b7b3cf90aa670604.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 47,
+      "scene_id": "DaVinciStudioRedux1",
+      "variant_id": "98e9db7c3aeda027",
+      "in_game_name": "DaVinci Studio",
+      "chapter_number": 8,
+      "chapter_title": "Chapter 8 - A Renaissance Flair",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 132: tablelamp; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/davincistudioredux1_assets_all_18843bf3376ebfb51e3e965508e48056.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 54,
+      "scene_id": "ChinaRoyalPalaceRedux1",
+      "variant_id": "bc33cddda236b41e",
+      "in_game_name": "Palace of Heavenly Purity",
+      "chapter_number": 9,
+      "chapter_title": "Chapter 9 - A Wok in the Park",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 151: umberlla; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/chinaroyalpalaceredux1_assets_all_6e4c03cb480f531931fc2351552ea278.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 58,
+      "scene_id": "AuroraBorealis",
+      "variant_id": "afb5a2783ca8df2f",
+      "in_game_name": "Aurora Borealis",
+      "chapter_number": 10,
+      "chapter_title": "Chapter 10 - Ambitions of Caesar",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 105: eagle; no Item Manager label",
+        "Unclassified named object 99: squirrel; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/auroraborealis_assets_all_75e7ddaf2b345bbe45bcb342a173e7c2.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 59,
+      "scene_id": "ColosseumEmperorsBox",
+      "variant_id": "0b22bdacff61f9a1",
+      "in_game_name": "Roman Imperial Throne",
+      "chapter_number": 10,
+      "chapter_title": "Chapter 10 - Ambitions of Caesar",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 100: club; no Item Manager label",
+        "Unclassified named object 114: flyingdisc; no Item Manager label",
+        "Unclassified named object 147: teabag; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/colosseumemperorsbox_assets_all_1589606e5fcfb522fb21ed6551e730d8.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 61,
+      "scene_id": "WildWestTown",
+      "variant_id": "d5969f55e920bdf0",
+      "in_game_name": "Wild West Town",
+      "chapter_number": 11,
+      "chapter_title": "Chapter 11 - Cowboys and India",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 130: rope; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/wildwesttown_assets_all_b10a9ebaf13eb30df075f357f8784216.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 63,
+      "scene_id": "Varanasi",
+      "variant_id": "79a8f598e42306d1",
+      "in_game_name": "Varanasi",
+      "chapter_number": 11,
+      "chapter_title": "Chapter 11 - Cowboys and India",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 145: lotusleaf; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/varanasi_assets_all_3db9c112d30110e47a10a24cc2a2c230.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 65,
+      "scene_id": "TajMahal",
+      "variant_id": "78a6ed6eb9d6a1ae",
+      "in_game_name": "Taj Mahal",
+      "chapter_number": 11,
+      "chapter_title": "Chapter 11 - Cowboys and India",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 125: hat; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/tajmahal_assets_all_d992654ba15eaffeb9dd26c61ddca90b.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 69,
+      "scene_id": "GreatTrainRobbery",
+      "variant_id": "69f61747078e64c2",
+      "in_game_name": "The Great Train Robbery",
+      "chapter_number": 12,
+      "chapter_title": "Chapter 12 - The End of the Beginning",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 67: staticsky; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/greattrainrobbery_assets_all_8b004916eac04d2ff38a554673460361.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 70,
+      "scene_id": "SheriffsOffice",
+      "variant_id": "457b446dcb9dedf8",
+      "in_game_name": "Sheriff's Office",
+      "chapter_number": 12,
+      "chapter_title": "Chapter 12 - The End of the Beginning",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 82: tie; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/sheriffsoffice_assets_all_94c4a3714f7483e8b2fef9caa65fbbe8.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 72,
+      "scene_id": "GoldMine",
+      "variant_id": "ca5049caf89b6d31",
+      "in_game_name": "Whistler's Mine",
+      "chapter_number": 12,
+      "chapter_title": "Chapter 12 - The End of the Beginning",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 143: animpart; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/goldmine_assets_all_efc2c452b92e010e0542bf60e4c2080a.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 73,
+      "scene_id": "SydneyHarbor",
+      "variant_id": "2455510c732b37c6",
+      "in_game_name": "Sydney Harbor",
+      "chapter_number": 13,
+      "chapter_title": "Chapter 13 - A Rift in Time",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 103: roundtable; no Item Manager label",
+        "Unclassified named object 83: umbrella; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/sydneyharbor_assets_all_8c348418443c3c3241d1ec4959782cf5.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 73,
+      "scene_id": "SydneyHarbor",
+      "variant_id": "fdce2d7c2443a31d",
+      "in_game_name": "Sydney Harbor",
+      "chapter_number": 13,
+      "chapter_title": "Chapter 13 - A Rift in Time",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 103: roundtable; no Item Manager label",
+        "Unclassified named object 83: umbrella; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/sydneyharbor_assets_all_141c00fa5c9c3405a3e6cf49605c8125.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 77,
+      "scene_id": "Uluru",
+      "variant_id": "04f6aa8ee9cc149d",
+      "in_game_name": "Uluru",
+      "chapter_number": 13,
+      "chapter_title": "Chapter 13 - A Rift in Time",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 44: echidnas; no Item Manager label",
+        "Unclassified named object 58: chameleon; no Item Manager label",
+        "Unclassified named object 64: turkey; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/uluru_assets_all_6bcd8bd72c6228816ae86908c0c17761.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 85,
+      "scene_id": "GwensBalcony",
+      "variant_id": "9e3c5e3dc1ed0bb8",
+      "in_game_name": "Guinevere's Balcony",
+      "chapter_number": 15,
+      "chapter_title": "Chapter 15 - To Russia With Love",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 109: thoughtbubbleclouds; no Item Manager label",
+        "Unclassified named object 110: mountaingoat; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/gwensbalcony_assets_all_5ac814b66b646c0f94118cc91c52c7b7.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 89,
+      "scene_id": "AbandonedItalianScene",
+      "variant_id": "7bb002d70d80058b",
+      "in_game_name": "Ruins of Florence",
+      "chapter_number": 15,
+      "chapter_title": "Chapter 15 - To Russia With Love",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 128: balloon; no Item Manager label",
+        "Unclassified named object 147: icecreamcone; no Item Manager label",
+        "Unclassified named object 152: hotairballon; no Item Manager label",
+        "Unclassified named object 154: partyhat; no Item Manager label",
+        "Unclassified named object 155: pinwheel; no Item Manager label",
+        "Unclassified named object 156: camera; no Item Manager label",
+        "Unclassified named object 157: crescentmoon; no Item Manager label",
+        "Unclassified named object 158: lioness; no Item Manager label",
+        "Unclassified named object 159: bunny; no Item Manager label",
+        "Unclassified named object 160: sunflower; no Item Manager label",
+        "Unclassified named object 161: whitetrillium; no Item Manager label",
+        "Unclassified named object 162: irises; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/abandoneditalianscene_assets_all_75f3d0bce4d797516906790afb79bd56.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 90,
+      "scene_id": "WinterPalace",
+      "variant_id": "9bd0ae2a706a1150",
+      "in_game_name": "Winter Palace",
+      "chapter_number": 15,
+      "chapter_title": "Chapter 15 - To Russia With Love",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 103: swing; no Item Manager label",
+        "Unclassified named object 105: mannequin; no Item Manager label",
+        "Unclassified named object 106: stool; no Item Manager label",
+        "Unclassified named object 107: bullwhip; no Item Manager label",
+        "Unclassified named object 110: sickle; no Item Manager label",
+        "Unclassified named object 113: hare; no Item Manager label",
+        "Unclassified named object 116: curtain; no Item Manager label",
+        "Unclassified named object 120: dogscollar; no Item Manager label",
+        "Unclassified named object 121: helicopter; no Item Manager label",
+        "Unclassified named object 125: weddinggown; no Item Manager label",
+        "Unclassified named object 126: doghouse; no Item Manager label",
+        "Unclassified named object 128: directions; no Item Manager label",
+        "Unclassified named object 130: seashell; no Item Manager label",
+        "Unclassified named object 134: spectacles; no Item Manager label",
+        "Unclassified named object 135: antlers; no Item Manager label",
+        "Unclassified named object 138: corkscrew; no Item Manager label",
+        "Unclassified named object 139: mouth; no Item Manager label",
+        "Unclassified named object 140: eyes; no Item Manager label",
+        "Unclassified named object 79: nestingdolls; no Item Manager label",
+        "Unclassified named object 98: magicianhat; no Item Manager label",
+        "Unclassified named object 99: broccoli; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/winterpalace_assets_all_19d253e6302e48457be6f745671c9a01.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 91,
+      "scene_id": "PirateTavern",
+      "variant_id": "7fa1791f70f14ded",
+      "in_game_name": "Tortuga Tavern",
+      "chapter_number": 16,
+      "chapter_title": "Chapter 16 - A Journey Through Maritime",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects",
+        "off_stage_targets"
+      ],
+      "reported_issues": [
+        "Hidden object 118 lies outside encoded stage: [1422.3499755859375, 391.0, 1518.3499755859375, 479.0]",
+        "Solution marker count differs from identified hidden objects",
+        "Unclassified named object 137: kiwi; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/piratetavern_assets_all_3f84f1837a345ac5d8b65ef735070fdc.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 94,
+      "scene_id": "KremlinWall",
+      "variant_id": "280942b6e8af6907",
+      "in_game_name": "Kremlin Wall",
+      "chapter_number": 16,
+      "chapter_title": "Chapter 16 - A Journey Through Maritime",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 112: binoculars; no Item Manager label",
+        "Unclassified named object 113: licenceplate; no Item Manager label",
+        "Unclassified named object 116: pillow; no Item Manager label",
+        "Unclassified named object 118: leatherbag; no Item Manager label",
+        "Unclassified named object 130: starfish; no Item Manager label",
+        "Unclassified named object 84: flashlight; no Item Manager label",
+        "Unclassified named object 89: grapes; no Item Manager label",
+        "Unclassified named object 90: seahorse; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/kremlinwall_assets_all_13e3b2559a8ecc49ec7daa12ef6b14b4.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 96,
+      "scene_id": "PirateCave",
+      "variant_id": "52b9cc07e4ce3bff",
+      "in_game_name": "Treasure Cove",
+      "chapter_number": 16,
+      "chapter_title": "Chapter 16 - A Journey Through Maritime",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 165: shell; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/piratecave_assets_all_d093cc9ca8d25714b778d8695e81a654.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 97,
+      "scene_id": "CornerOffice",
+      "variant_id": "d068b755fdf55430",
+      "in_game_name": "Manhattan Office",
+      "chapter_number": 17,
+      "chapter_title": "Chapter 17 - Fashionably on Time",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "item_manager_binding"
+      ],
+      "reported_issues": [
+        "Item tableclock_cor_off_ini: expected an unambiguous named-part prefix, found 0",
+        "Not all Item Manager hidden objects were resolved"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/corneroffice_assets_all_3c2715f96e4b3ab3282c489702ace9bb.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 101,
+      "scene_id": "FashionShowBackstage",
+      "variant_id": "ed903199d5c66d3a",
+      "in_game_name": "Fashion Show Backstage",
+      "chapter_number": 17,
+      "chapter_title": "Chapter 17 - Fashionably on Time",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "off_stage_targets"
+      ],
+      "reported_issues": [
+        "Hidden object 105 lies outside encoded stage: [1340.949951171875, 703.0, 1449.949951171875, 778.0]",
+        "Hidden object 148 lies outside encoded stage: [-120.94999694824219, 174.0, -28.949996948242188, 235.0]",
+        "Solution marker count differs from identified hidden objects"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/fashionshowbackstage_assets_all_8642516afb6344cbb93a247ef89d4bb0.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 104,
+      "scene_id": "NewYorkCityStreet",
+      "variant_id": "4c2afb3c72caa256",
+      "in_game_name": "New York City Street",
+      "chapter_number": 18,
+      "chapter_title": "Chapter 18 - Memoirs of a Time Traveler",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 173: checkerboard; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/newyorkcitystreet_assets_all_fd632f647a13549419cac2ce7b7d627a.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 111,
+      "scene_id": "Neuschwanstein",
+      "variant_id": "118eda08f4b4c026",
+      "in_game_name": "Neuschwanstein Castle",
+      "chapter_number": 19,
+      "chapter_title": "Chapter 19 - Richard's Grim Tale",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 160: bunnyrabbitlegs; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/neuschwanstein_assets_all_0497c35de7ffd6cc83e9d1eaeb1bd2a8.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 120,
+      "scene_id": "TubbatahaReef",
+      "variant_id": "d076743e135ac96f",
+      "in_game_name": "Tubbataha Reef",
+      "chapter_number": 20,
+      "chapter_title": "Chapter 20 - Pinoy Noir",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "invisible_targets"
+      ],
+      "reported_issues": [
+        "Hidden object 169 has no visible pixels",
+        "Solution marker count differs from identified hidden objects"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/tubbatahareef_assets_all_67ccc7bb797ebde3318a5016162e07c2.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 120,
+      "scene_id": "TubbatahaReef",
+      "variant_id": "de36d2ba2d7dfc71",
+      "in_game_name": "Tubbataha Reef",
+      "chapter_number": 20,
+      "chapter_title": "Chapter 20 - Pinoy Noir",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "invisible_targets"
+      ],
+      "reported_issues": [
+        "Hidden object 169 has no visible pixels",
+        "Solution marker count differs from identified hidden objects"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/tubbatahareef_assets_all_83aec41bd1bdefdeff24ef8ce60ebfc4.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 150,
+      "scene_id": "MaidMariansTower",
+      "variant_id": "95a1bb304fb5a47e",
+      "in_game_name": "Maid Marian's Chamber",
+      "chapter_number": 25,
+      "chapter_title": "Chapter 25 - Green Eggs and Nottingham",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 164: broach; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/maidmarianstower_assets_all_68b3cad025bbedc95b3d9bc2b4d03b9b.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 160,
+      "scene_id": "DanishBakery",
+      "variant_id": "342dbde956364d99",
+      "in_game_name": "Danish Bakery",
+      "chapter_number": 27,
+      "chapter_title": "Chapter 27 - Time Out of Joint",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 97: bg02_1; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/danishbakery_assets_all_b1f283fe03b8d7b8fe1749cdc9a331cf.bundle"
+      ],
+      "new_build_retest_status": "validated_snapshot",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 188,
+      "scene_id": "PrehistoricCave",
+      "variant_id": "5ceade1a9792163a",
+      "in_game_name": "Prehistoric Cave",
+      "chapter_number": 32,
+      "chapter_title": "Chapter 32 - The Lyin' King",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 104: feather; no Item Manager label",
+        "Unclassified named object 112: heart; no Item Manager label",
+        "Unclassified named object 114: grapes; no Item Manager label",
+        "Unclassified named object 121: brush; no Item Manager label",
+        "Unclassified named object 135: broom; no Item Manager label",
+        "Unclassified named object 136: bottle; no Item Manager label",
+        "Unclassified named object 138: bagel; no Item Manager label",
+        "Unclassified named object 139: giraffe; no Item Manager label",
+        "Unclassified named object 143: candle; no Item Manager label",
+        "Unclassified named object 85: snakecaveart; no Item Manager label",
+        "Unclassified named object 92: bowhunter; no Item Manager label",
+        "Unclassified named object 93: deer; no Item Manager label",
+        "Unclassified named object 94: spearhunter; no Item Manager label",
+        "Unclassified named object 99: pipe; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/prehistoriccave_assets_all_51a11315a6617fdf4bd89848262db37a.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 204,
+      "scene_id": "SagradaFamilia",
+      "variant_id": "56e99370b9152ae3",
+      "in_game_name": "Sagrada Familia",
+      "chapter_number": 34,
+      "chapter_title": "Chapter 34 - The Spanish Gardeners",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 109: footprint; no Item Manager label",
+        "Unclassified named object 132: tortoise; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/sagradafamilia_assets_all_20844c5e50bcb08eb9aae8a29e6d48a0.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 209,
+      "scene_id": "VanityTable",
+      "variant_id": "9cff36a4290b8e0f",
+      "in_game_name": "Luxury Ship Cabin",
+      "chapter_number": 35,
+      "chapter_title": "Chapter 35 - A Mystery of Titanic Proportions",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 157: earring; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/vanitytable_assets_all_96e5b3af990c3915d8ba2216938a16cc.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 225,
+      "scene_id": "BenFranklin",
+      "variant_id": "75a06a024ce90e5a",
+      "in_game_name": "Electricity Experiment",
+      "chapter_number": 38,
+      "chapter_title": "Chapter 38 - Desperate Times Call for Desperados",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 95: monkeywrench; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/benfranklin_assets_all_ba8bc685f6800469511444e97ac8e1f4.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 231,
+      "scene_id": "TravelingCircus",
+      "variant_id": "2f31528044c2d1be",
+      "in_game_name": "Traveling Circus",
+      "chapter_number": 39,
+      "chapter_title": "Chapter 39 - Turkish Delights",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 143: kite; no Item Manager label",
+        "Unclassified named object 155: animalcircusring; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/travelingcircus_assets_all_2692b353ffa1b21958ae89270fb4f0ec.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 231,
+      "scene_id": "TravelingCircus",
+      "variant_id": "81a9dec75c7c5c25",
+      "in_game_name": "Traveling Circus",
+      "chapter_number": 39,
+      "chapter_title": "Chapter 39 - Turkish Delights",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 143: kite; no Item Manager label",
+        "Unclassified named object 155: animalcircusring; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/travelingcircus_assets_all_834c38c7fd5081e5f7d25b3db8779427.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 288,
+      "scene_id": "PaintedLadies",
+      "variant_id": "ae02ff746db83be8",
+      "in_game_name": "Painted Ladies",
+      "chapter_number": 48,
+      "chapter_title": "Chapter 48 - The Last Days of Frisco",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 159: footprint; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/paintedladies_assets_all_d6ef801ec2df4ae994f412a23b70e960.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 310,
+      "scene_id": "PotolaPalace",
+      "variant_id": "3a58e9d63143d143",
+      "in_game_name": "Potola Palace",
+      "chapter_number": 52,
+      "chapter_title": "Chapter 52 - Tibetter Luck Tomorrow",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 166: antiquecrownfromrelics; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/potolapalace_assets_all_648dcb600641b64e2cb0e41a8de14239.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 317,
+      "scene_id": "SkiLodgeInterior",
+      "variant_id": "2eb0256f007efcf8",
+      "in_game_name": "Maple Leaf Lodge",
+      "chapter_number": 53,
+      "chapter_title": "Chapter 53 - Go Tell It on the Mountie",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 174: artplate; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/skilodgeinterior_assets_all_aa185196098e5161fc3e3f3fc0c42ece.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 362,
+      "scene_id": "CharlesBridge",
+      "variant_id": "90e7196379208537",
+      "in_game_name": "Charles Bridge",
+      "chapter_number": 61,
+      "chapter_title": "Chapter 61 - Czechs and Balances",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 269: smock01; no Item Manager label",
+        "Unclassified named object 270: smock01; no Item Manager label",
+        "Unclassified named object 271: smock01; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/charlesbridge_assets_all_469aa0d52c4029b90c7a5920229e45e0.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 424,
+      "scene_id": "Fondue",
+      "variant_id": "d7f23d64ab4758a0",
+      "in_game_name": "Chalet Fondue Dinner",
+      "chapter_number": 71,
+      "chapter_title": "Chapter 71 - Sealed with a Swiss",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 119: carrot; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/fondue_assets_all_a50cf0f8f96bbc60b0bc197b727bf948.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 469,
+      "scene_id": "ReversibleDestinyLoft",
+      "variant_id": "0b4b6bcec8b5f6e5",
+      "in_game_name": "Destiny Lofts",
+      "chapter_number": 79,
+      "chapter_title": "Chapter 79 - The Past & the Curious: Tokyo Rift",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 140: inchworm; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/reversibledestinyloft_assets_all_64eb2187da7f977ef7034876e4189484.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 474,
+      "scene_id": "HarajukuStreet",
+      "variant_id": "fd99fbda9ca148e1",
+      "in_game_name": "Takeshita Street",
+      "chapter_number": 79,
+      "chapter_title": "Chapter 79 - The Past & the Curious: Tokyo Rift",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 171: heartshape; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/harajukustreet_assets_all_c4bda67847b1810d7950f50b8bae62a1.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 487,
+      "scene_id": "AliBaba40Thieves",
+      "variant_id": "156c235d71acaa97",
+      "in_game_name": "Thieves' Entrance",
+      "chapter_number": 82,
+      "chapter_title": "Chapter 82 - One Thousand and One Lies",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 118: Quiver; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/alibaba40thieves_assets_all_db928755cbfc48a6fe0073b4b33d554a.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 562,
+      "scene_id": "TomteTradition",
+      "variant_id": "a93cd48d268d06dc",
+      "in_game_name": "Tomte Tradition",
+      "chapter_number": 94,
+      "chapter_title": "Chapter 94 - Merry Swedish Christmas",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 159: wineglass; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/tomtetradition_assets_all_f60bbcbe0b1bbaf6eb69854a28f71ffd.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 562,
+      "scene_id": "TomteTradition",
+      "variant_id": "cdd9029aab1b1efe",
+      "in_game_name": "Tomte Tradition",
+      "chapter_number": 94,
+      "chapter_title": "Chapter 94 - Merry Swedish Christmas",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 159: wineglass; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/tomtetradition_assets_all_bf33b7e50f8284a971bb6e23e23f85c7.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 582,
+      "scene_id": "LunchKingLouis",
+      "variant_id": "f8653821ab1b3b03",
+      "in_game_name": "Royal Luncheon",
+      "chapter_number": 97,
+      "chapter_title": "Chapter 97 - Royal Pain",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 164: heartshape; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/lunchkinglouis_assets_all_d8502b7639fa3cfe8a7fe0a5e74b2dd4.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 652,
+      "scene_id": "Ixchal",
+      "variant_id": "a19d5a4f3e2db6e2",
+      "in_game_name": "Temple of Ixchel",
+      "chapter_number": 109,
+      "chapter_title": "Chapter 109 - Mayans and Tigers and Bears",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 191: tigerpelt; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ixchal_assets_all_bc96cbd4bc8f60400f243d1339b45ff2.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 828,
+      "scene_id": "AmsterdamHotelRoom",
+      "variant_id": "90a69ff9ef175056",
+      "in_game_name": "Amsterdam Hotel Room",
+      "chapter_number": 139,
+      "chapter_title": "Chapter 139 - The Fault In Our Hearts",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 103: heartsymbol; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/amsterdamhotelroom_assets_all_019d59c9119dc35ee2d9f68c3770f161.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 893,
+      "scene_id": "GardenInvestigation",
+      "variant_id": "fb369aaeeffc7b04",
+      "in_game_name": "Arboretum Crime Scene",
+      "chapter_number": 149,
+      "chapter_title": "Chapter 149 - Time and Punishment",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 167: yellowleaf; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/gardeninvestigation_assets_all_6d8eafdf209c1d7c46539a8c149bb0fa.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 933,
+      "scene_id": "ArtandCraftsDay",
+      "variant_id": "55e21043f564df1b",
+      "in_game_name": "Art and Crafts Day",
+      "chapter_number": 156,
+      "chapter_title": "Chapter 156 - All the Time in the Camp",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "item_manager_binding"
+      ],
+      "reported_issues": [
+        "Item backpack_art_cra_ini: expected an unambiguous named-part prefix, found 0",
+        "Not all Item Manager hidden objects were resolved"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/artandcraftsday_assets_all_982325538f751275313dc81ebbeebdc6.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 972,
+      "scene_id": "CruiseBegins",
+      "variant_id": "49214b787240039b",
+      "in_game_name": "Cruise Begins",
+      "chapter_number": 163,
+      "chapter_title": "Chapter 163 - Agents of the Caribbean",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "item_manager_binding"
+      ],
+      "reported_issues": [
+        "Item noose_cru_beg_ini: expected an unambiguous named-part prefix, found 0",
+        "Not all Item Manager hidden objects were resolved"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/cruisebegins_assets_all_0702e8bfc92b3d9f8ba5601ba3d643ec.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 978,
+      "scene_id": "IslandSafari",
+      "variant_id": "2ccfd44214742ab8",
+      "in_game_name": "Island Safari",
+      "chapter_number": 164,
+      "chapter_title": "Chapter 164 - What Lies Beneath",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "item_manager_binding"
+      ],
+      "reported_issues": [
+        "Item beehive_isl_saf_ini: expected an unambiguous named-part prefix, found 0",
+        "Not all Item Manager hidden objects were resolved"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/islandsafari_assets_all_ab4157c80f97f7f111a5ddb780e6db35.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 984,
+      "scene_id": "PikePlaceMarket",
+      "variant_id": "ebd81d4260a55a35",
+      "in_game_name": "Pike Place Market",
+      "chapter_number": 165,
+      "chapter_title": "Chapter 165 - Fearless in Seattle",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "item_manager_binding"
+      ],
+      "reported_issues": [
+        "Item fruitneonsign_pik_pla_ini: expected an unambiguous named-part prefix, found 0",
+        "Not all Item Manager hidden objects were resolved"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/pikeplacemarket_assets_all_cf941516858ab0382e823f3fc22a5a14.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 989,
+      "scene_id": "SkagitValleyTulips",
+      "variant_id": "cbaa378f0b32f35b",
+      "in_game_name": "Skagit Valley Tulips",
+      "chapter_number": 165,
+      "chapter_title": "Chapter 165 - Fearless in Seattle",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "item_manager_binding"
+      ],
+      "reported_issues": [
+        "Item reindeer_ska_val_ini: expected an unambiguous named-part prefix, found 0",
+        "Item snowarch_ska_val_ini: expected an unambiguous named-part prefix, found 0",
+        "Not all Item Manager hidden objects were resolved"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/skagitvalleytulips_assets_all_4da7d585dd76961164eb06e9f22782c6.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 990,
+      "scene_id": "MachuPicchuLlamas",
+      "variant_id": "365170f2e292cc87",
+      "in_game_name": "Machu Picchu Llamas",
+      "chapter_number": 166,
+      "chapter_title": "Chapter 166 - Ticket to the Beyond",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "item_manager_binding"
+      ],
+      "reported_issues": [
+        "Item sack_mac_pic_ini: expected an unambiguous named-part prefix, found 0",
+        "Not all Item Manager hidden objects were resolved"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/machupicchullamas_assets_all_933a7c3807bbbefcfe65f619216c1e8f.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 1002,
+      "scene_id": "MarrakechMedina",
+      "variant_id": "c9b5c8d31ee8bae3",
+      "in_game_name": "Marrakech Medina",
+      "chapter_number": 168,
+      "chapter_title": "Chapter 168 - Morocco And More",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 112: carvingchisel; no Item Manager label",
+        "Unclassified named object 81: yarntapestry; no Item Manager label",
+        "Unclassified named object 89: windchimes; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/marrakechmedina_assets_all_412d2bf22b46721f30e56f76cbd17840.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 1005,
+      "scene_id": "DesertCamp",
+      "variant_id": "90e9e558859759a8",
+      "in_game_name": "Desert Camp",
+      "chapter_number": 168,
+      "chapter_title": "Chapter 168 - Morocco And More",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 126: quadbike; no Item Manager label",
+        "Unclassified named object 95: telescope; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/desertcamp_assets_all_877b07520bddb76585cb04dc37f5b79b.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 1007,
+      "scene_id": "ChefchaouenCity",
+      "variant_id": "4d63f784f41b2a4c",
+      "in_game_name": "Chefchaouen City",
+      "chapter_number": 168,
+      "chapter_title": "Chapter 168 - Morocco And More",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 118: rosevines; no Item Manager label",
+        "Unclassified named object 127: housenameplate; no Item Manager label",
+        "Unclassified named object 86: doorplant; no Item Manager label",
+        "Unclassified named object 87: scroll; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/chefchaouencity_assets_all_467e3ef362531075a7c3c74bc3517f6c.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 1008,
+      "scene_id": "BratislavaTrams",
+      "variant_id": "5edf39eebde9f884",
+      "in_game_name": "Bratislava Trams",
+      "chapter_number": 169,
+      "chapter_title": "Chapter 169 - Castles And Dragons",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 106: facade; no Item Manager label",
+        "Unclassified named object 114: cyclefreesign; no Item Manager label",
+        "Unclassified named object 91: dove; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/bratislavatrams_assets_all_5c62db3f9c222b252faaeb67fcd10a7e.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 1026,
+      "scene_id": "StanleyParkJoggers",
+      "variant_id": "4a5de5a705cd6795",
+      "in_game_name": "Stanley Park Joggers",
+      "chapter_number": 172,
+      "chapter_title": "Chapter 172 - The Fall",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 102: rabbit; no Item Manager label",
+        "Unclassified named object 98: lamppost; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/stanleyparkjoggers_assets_all_2f6dad73b04aedd10c6e68af005aa88b.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 1041,
+      "scene_id": "PlaygroundFun",
+      "variant_id": "cc6bee74c1a8aca8",
+      "in_game_name": "Playground Fun",
+      "chapter_number": 174,
+      "chapter_title": "Chapter 174 - School for Time Agents",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 115: redbag; no Item Manager label",
+        "Unclassified named object 95: pigeon; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/playgroundfun_assets_all_1544e621f0f5a2ec6c6963307e015f24.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 1121,
+      "scene_id": "CamelDance",
+      "variant_id": "3ea9e3f886c26150",
+      "in_game_name": "Camel Dance",
+      "chapter_number": 187,
+      "chapter_title": "Chapter 187 - Who is Jack Harrison?",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "invisible_targets"
+      ],
+      "reported_issues": [
+        "Hidden object 114 has no visible pixels",
+        "Solution marker count differs from identified hidden objects"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/cameldance_assets_all_b5b7ef1ffa42abd2178e500ebed71426.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 1163,
+      "scene_id": "TheLeadActress",
+      "variant_id": "952da8b0abda6370",
+      "in_game_name": "The Lead Actress",
+      "chapter_number": 194,
+      "chapter_title": "Chapter 194 - Lost in Hollywood",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "item_manager_binding"
+      ],
+      "reported_issues": [
+        "Item pearlwatch_the_lea_ini: expected an unambiguous named-part prefix, found 0",
+        "Not all Item Manager hidden objects were resolved"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/theleadactress_assets_all_8b1ceca6141badf33c38cb35f7c5714b.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 1163,
+      "scene_id": "TheLeadActress",
+      "variant_id": "db2a4cc7db2eeb94",
+      "in_game_name": "The Lead Actress",
+      "chapter_number": 194,
+      "chapter_title": "Chapter 194 - Lost in Hollywood",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "item_manager_binding"
+      ],
+      "reported_issues": [
+        "Item pearlwatch_the_lea_ini: expected an unambiguous named-part prefix, found 0",
+        "Not all Item Manager hidden objects were resolved"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/theleadactress_assets_all_d8b3c49a90db6e1e5ca34ea2688b562f.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 1182,
+      "scene_id": "EggHunt",
+      "variant_id": "c8ce3e8162c962bb",
+      "in_game_name": "Egg Hunt",
+      "chapter_number": 198,
+      "chapter_title": "Chapter 198 - Easter Promises",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 112: heart; no Item Manager label",
+        "Unclassified named object 126: oakleaf; no Item Manager label",
+        "Unclassified named object 67: lilypad; no Item Manager label",
+        "Unclassified named object 84: stainedglass; no Item Manager label",
+        "Unclassified named object 93: squirrel; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/egghunt_assets_all_ea7f24b744de7b1aac3abb1282e1df5b.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 1215,
+      "scene_id": "FoodandFriends",
+      "variant_id": "4a26d589bb253b08",
+      "in_game_name": "Food and Friends",
+      "chapter_number": 203,
+      "chapter_title": "Chapter 203 - Search for Quincy",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "item_manager_binding"
+      ],
+      "reported_issues": [
+        "Item clubsymbol_foo_fri_ini: expected an unambiguous named-part prefix, found 0",
+        "Item fleurdelis_foo_fri_ini: expected an unambiguous named-part prefix, found 0",
+        "Not all Item Manager hidden objects were resolved"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/foodandfriends_assets_all_be22200923182bc0047934a0da2ffa78.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 1302,
+      "scene_id": "LoadingtheWagon",
+      "variant_id": "fe61afa84729a492",
+      "in_game_name": "Loading the Wagon",
+      "chapter_number": 218,
+      "chapter_title": "Chapter 218 - Pick Up the Trail",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 65: buffalo; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/loadingthewagon_assets_all_ebe23fe7c7fc71e74f53a9fb48a905f7.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 1326,
+      "scene_id": "TeddyToyStore",
+      "variant_id": "37fdc8bc4aa0ce68",
+      "in_game_name": "Teddy Toy Store",
+      "chapter_number": 222,
+      "chapter_title": "Chapter 222 - Plushville",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 119: flowervase; no Item Manager label",
+        "Unclassified named object 120: flockofbirds; no Item Manager label",
+        "Unclassified named object 121: owlcarving; no Item Manager label",
+        "Unclassified named object 122: lionhead; no Item Manager label",
+        "Unclassified named object 123: roundwindow; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/teddytoystore_assets_all_2e51e90353ec9665b1b9e1bca1e484f1.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 1326,
+      "scene_id": "TeddyToyStore",
+      "variant_id": "814b03775764b538",
+      "in_game_name": "Teddy Toy Store",
+      "chapter_number": 222,
+      "chapter_title": "Chapter 222 - Plushville",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 119: flowervase; no Item Manager label",
+        "Unclassified named object 120: flockofbirds; no Item Manager label",
+        "Unclassified named object 121: owlcarving; no Item Manager label",
+        "Unclassified named object 122: lionhead; no Item Manager label",
+        "Unclassified named object 123: roundwindow; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/teddytoystore_assets_all_44e2f1c8d4c29881e58f6e6e3b3cb8f6.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 1338,
+      "scene_id": "VermanesGarden",
+      "variant_id": "5a31008e27c4e6bb",
+      "in_game_name": "Vermanes Garden",
+      "chapter_number": 224,
+      "chapter_title": "Chapter 224 - Doubt and Despair!",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "invisible_targets"
+      ],
+      "reported_issues": [
+        "Hidden object 73 has no visible pixels",
+        "Solution marker count differs from identified hidden objects"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/vermanesgarden_assets_all_18f8b0e10af1baa2c4f87cb1075508a7.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 1455,
+      "scene_id": "RoyalDinner",
+      "variant_id": "031eae19e50d7d5e",
+      "in_game_name": "Royal Dinner",
+      "chapter_number": 243,
+      "chapter_title": "Chapter 243 - Divided",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "item_manager_binding"
+      ],
+      "reported_issues": [
+        "Item pipe_243_roy_din_ini: expected an unambiguous named-part prefix, found 0",
+        "Not all Item Manager hidden objects were resolved"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/royaldinner_assets_all_75822e36b420694538101a87d92d121b.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 1463,
+      "scene_id": "HotelArrival",
+      "variant_id": "596e057862f3d837",
+      "in_game_name": "Hotel Arrival",
+      "chapter_number": 244,
+      "chapter_title": "Chapter 244 - Will you be my Valentine?",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "invisible_targets"
+      ],
+      "reported_issues": [
+        "Hidden object 68 has no visible pixels",
+        "Solution marker count differs from identified hidden objects"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/hotelarrival_assets_all_a1078efc2fa92b1d592dc628940790a2.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 1659,
+      "scene_id": "ch277MysoreMysorePalaceGrounds",
+      "variant_id": "57819c8b3944c7f7",
+      "in_game_name": "Mysore Palace Grounds",
+      "chapter_number": 277,
+      "chapter_title": "Chapter 277 - Mysore Mysteries",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "item_manager_binding"
+      ],
+      "reported_issues": [
+        "Item redrose_277_mys_pal_ini: expected an unambiguous named-part prefix, found 0",
+        "Not all Item Manager hidden objects were resolved"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch277mysoremysorepalacegrounds_assets_all_edf5576f0ed74c631d8681154f57d55b.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 1673,
+      "scene_id": "ch279FairyRealmRevisitedRealmRings",
+      "variant_id": "62e9629b9d43d904",
+      "in_game_name": "Realm Rings",
+      "chapter_number": 279,
+      "chapter_title": "Chapter 279 - Times Infinity",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 127: earring; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch279fairyrealmrevisitedrealmrings_assets_all_dae68e921f3da2ab4fc03d5431dd4bab.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 1677,
+      "scene_id": "ch280NavyDayCommanderinChief",
+      "variant_id": "a225c6fd380c9ebe",
+      "in_game_name": "Commander in Chief",
+      "chapter_number": 280,
+      "chapter_title": "Chapter 280 - Timeline Assassin",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects",
+        "item_manager_binding"
+      ],
+      "reported_issues": [
+        "Item bluecurtain_1_280_com_chi_ini: expected an unambiguous named-part prefix, found 2",
+        "Item greencurtain_280_com_chi_ini: expected an unambiguous named-part prefix, found 0",
+        "Not all Item Manager hidden objects were resolved",
+        "Unclassified named object 75: bluecurtain_1; no Item Manager label",
+        "Unclassified named object 76: bluecurtain; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch280navydaycommanderinchief_assets_all_f1b14dd72aec308bddd5e545087a2771.bundle"
+      ],
+      "new_build_retest_status": "incomplete",
+      "new_build_retest_issues": [
+        "Item greencurtain_280_com_chi_ini: expected an unambiguous named-part prefix, found 0",
+        "Not all Item Manager hidden objects were resolved",
+        "Unclassified named object 76: bluecurtain; no Item Manager label"
+      ]
+    },
+    {
+      "order": 1745,
+      "scene_id": "ch291PatagoniaWhaleWatching",
+      "variant_id": "afce244bc2b0da15",
+      "in_game_name": "Whale Watching",
+      "chapter_number": 291,
+      "chapter_title": "Chapter 291 - Border Land",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 127: chain; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch291patagoniawhalewatching_assets_all_7ed67404484cfb025c256b2201a09e28.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 1767,
+      "scene_id": "ch295MardiGras2018MardiGrasFloats",
+      "variant_id": "8c8d7ecd36005906",
+      "in_game_name": "Mardi Gras Floats",
+      "chapter_number": 295,
+      "chapter_title": "Chapter 295 - Get a Bead on the Enemy",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "item_manager_binding"
+      ],
+      "reported_issues": [
+        "Item pinkcap_295_mar_gra_ini: expected an unambiguous named-part prefix, found 0",
+        "Not all Item Manager hidden objects were resolved"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch295mardigras2018mardigrasfloats_assets_all_fb00ece4c715861042edd545788c976a.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 1782,
+      "scene_id": "ch298CarnivalDayBumperCars",
+      "variant_id": "90fc31a043accebf",
+      "in_game_name": "Bumper Cars",
+      "chapter_number": 298,
+      "chapter_title": "Chapter 298 - Carnival Rides",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "item_manager_binding"
+      ],
+      "reported_issues": [
+        "Item armbracelet_298_bum_car_ini: expected an unambiguous named-part prefix, found 0",
+        "Not all Item Manager hidden objects were resolved"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch298carnivaldaybumpercars_assets_all_516fbae8d2fcbcae0e82dfa5a0af0407.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 1911,
+      "scene_id": "ch319HollywoodTheWalkofFame",
+      "variant_id": "95b8e8d6fe3305dc",
+      "in_game_name": "The Walk of Fame",
+      "chapter_number": 319,
+      "chapter_title": "Chapter 319 - Fame and Glory",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "invisible_targets"
+      ],
+      "reported_issues": [
+        "Hidden object 86 has no visible pixels",
+        "Solution marker count differs from identified hidden objects"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch319hollywoodthewalkoffame_assets_all_28ff5f7aecd8b6ca5d147f500ecc8931.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 2049,
+      "scene_id": "ch342WinterVillagesGetawayCabin",
+      "variant_id": "b3ea4aee60cf3bf5",
+      "in_game_name": "Getaway Cabin",
+      "chapter_number": 342,
+      "chapter_title": "Chapter 342 - Time Patrol",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 84: eyeglass; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch342wintervillagesgetawaycabin_assets_all_1820e3b9f18e7ca6c8d33b1bff2ffb2f.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 2077,
+      "scene_id": "ch347BeMyValentineWalkingonaRainbow",
+      "variant_id": "9ed188ef662c3f45",
+      "in_game_name": "Walking on a Rainbow",
+      "chapter_number": 347,
+      "chapter_title": "Chapter 347 - Love the Way You Lie",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 115: fidgetspinner; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch347bemyvalentinewalkingonarainbow_assets_all_032f813e9adac3cf8f59af05a911f9ea.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 2108,
+      "scene_id": "ch352VeniceofHollandWineandCheese",
+      "variant_id": "cd6e2500db0664a0",
+      "in_game_name": "Wine and Cheese",
+      "chapter_number": 352,
+      "chapter_title": "Chapter 352 - Town with no Streets",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "background_identification"
+      ],
+      "reported_issues": [
+        "No named background placement was found"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch352veniceofhollandwineandcheese_assets_all_9b5504d0a9e56582cb96c5d293e6a8c3.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 2176,
+      "scene_id": "ch363WildWestTheAmbush",
+      "variant_id": "7ee6f151b1f6ac70",
+      "in_game_name": "The Ambush",
+      "chapter_number": 363,
+      "chapter_title": "Chapter 363 - The Stubborn West",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 124: gun; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch363wildwesttheambush_assets_all_bd50e18a5bf10bc0f422f100a9ef7260.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 2177,
+      "scene_id": "ch363WildWestBeautifulCountryside",
+      "variant_id": "05e78ea987c329b3",
+      "in_game_name": "Beautiful Countryside",
+      "chapter_number": 363,
+      "chapter_title": "Chapter 363 - The Stubborn West",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 65: castle; no Item Manager label",
+        "Unclassified named object 77: gun; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch363wildwestbeautifulcountryside_assets_all_32ee1bdc386c956b6b0f371eb5c96c9c.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 2194,
+      "scene_id": "ch366CalmaftertheStormGreatPyramidsofGiza",
+      "variant_id": "05304684375763cc",
+      "in_game_name": "Great Pyramids of Giza",
+      "chapter_number": 366,
+      "chapter_title": "Chapter 366 - Timeline Collapse",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 85: elephant; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch366calmafterthestormgreatpyramidsofgiza_assets_all_40e7b931f37e1861d76a17c2e9930dbd.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 2235,
+      "scene_id": "ch373HistoricalInventionsRunninganErrand",
+      "variant_id": "442c8c025fb17b83",
+      "in_game_name": "Running an Errand",
+      "chapter_number": 373,
+      "chapter_title": "Chapter 373 - Historical Patents",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 103: windchime; no Item Manager label",
+        "Unclassified named object 106: sack; no Item Manager label",
+        "Unclassified named object 109: bottle; no Item Manager label",
+        "Unclassified named object 110: celticknot; no Item Manager label",
+        "Unclassified named object 112: waterpuddle; no Item Manager label",
+        "Unclassified named object 113: puppy; no Item Manager label",
+        "Unclassified named object 114: dog; no Item Manager label",
+        "Unclassified named object 116: waterjug; no Item Manager label",
+        "Unclassified named object 120: flyingbirds; no Item Manager label",
+        "Unclassified named object 122: greencap; no Item Manager label",
+        "Unclassified named object 123: clubshape; no Item Manager label",
+        "Unclassified named object 125: pigeons; no Item Manager label",
+        "Unclassified named object 127: keyhole; no Item Manager label",
+        "Unclassified named object 66: deadtree; no Item Manager label",
+        "Unclassified named object 67: postbox; no Item Manager label",
+        "Unclassified named object 68: awning; no Item Manager label",
+        "Unclassified named object 69: blueumbrella; no Item Manager label",
+        "Unclassified named object 70: chimney; no Item Manager label",
+        "Unclassified named object 71: statue; no Item Manager label",
+        "Unclassified named object 76: car; no Item Manager label",
+        "Unclassified named object 77: highbicycle; no Item Manager label",
+        "Unclassified named object 79: fleurdelis; no Item Manager label",
+        "Unclassified named object 82: menuboard; no Item Manager label",
+        "Unclassified named object 85: yellowflag; no Item Manager label",
+        "Unclassified named object 86: blueflag; no Item Manager label",
+        "Unclassified named object 92: woodenbarrel; no Item Manager label",
+        "Unclassified named object 93: rope; no Item Manager label",
+        "Unclassified named object 97: pot; no Item Manager label",
+        "Unclassified named object 98: woodenpail; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch373historicalinventionsrunninganerrand_assets_all_8348b282898a474675b43a63dc9ac5cb.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 2252,
+      "scene_id": "ch376KingdomoftheWoodsPlaceofPower",
+      "variant_id": "016db6f41fa36273",
+      "in_game_name": "Place of Power",
+      "chapter_number": 376,
+      "chapter_title": "Chapter 376 - Another Doppelganger",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects",
+        "item_manager_binding"
+      ],
+      "reported_issues": [
+        "Item parrot_1_376_pla_pow_ini: expected an unambiguous named-part prefix, found 2",
+        "Not all Item Manager hidden objects were resolved",
+        "Unclassified named object 89: parrot_1; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch376kingdomofthewoodsplaceofpower_assets_all_5e003e4b28a4ce143ecd5a6a15b60dcb.bundle"
+      ],
+      "new_build_retest_status": "validated_snapshot",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 2510,
+      "scene_id": "ch419CreaturesMythicalGarden",
+      "variant_id": "4a802e4806ea74f2",
+      "in_game_name": "Mythical Garden",
+      "chapter_number": 419,
+      "chapter_title": "Chapter 419 - Island of Dragons",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 83: firepot; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch419creaturesmythicalgarden_assets_all_35f622fbc1dd3be02ad0054fbc0fbd40.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 2615,
+      "scene_id": "ch436LatinAmericanCultureForebearsAltar",
+      "variant_id": "4cf91b34c08391c8",
+      "in_game_name": "Ancestors Altar",
+      "chapter_number": 436,
+      "chapter_title": "Chapter 436 - Day of the Dead",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects",
+        "item_manager_binding"
+      ],
+      "reported_issues": [
+        "Item boat_1_436_for_alt_ini: expected an unambiguous named-part prefix, found 2",
+        "Not all Item Manager hidden objects were resolved",
+        "Unclassified named object 94: boat_1; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch436latinamericancultureforebearsaltar_assets_all_8341b5c03d150d8881e4173f54b11b1f.bundle"
+      ],
+      "new_build_retest_status": "validated_snapshot",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 2619,
+      "scene_id": "ch437VeteransDayTraditionsVeteransDayCeremony",
+      "variant_id": "f182d2b2cfb1c4f8",
+      "in_game_name": "Veterans Day Ceremony",
+      "chapter_number": 437,
+      "chapter_title": "Chapter 437 - Veterans Day Honor",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "atlas_crop"
+      ],
+      "reported_issues": [
+        "Object 106: Atlas crop outside texture"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch437veteransdaytraditionsveteransdayceremony_assets_all_c685d0b2babf8f5c25f8776f26bb7336.bundle"
+      ],
+      "new_build_retest_status": "validated_snapshot",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 2643,
+      "scene_id": "ch441SkiingintheMountainsICECastlePark",
+      "variant_id": "d19c92beaf981612",
+      "in_game_name": "ICE Castle Park",
+      "chapter_number": 441,
+      "chapter_title": "Chapter 441 - Family's Day Out",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "invisible_targets"
+      ],
+      "reported_issues": [
+        "Hidden object 101 has no visible pixels",
+        "Solution marker count differs from identified hidden objects"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch441skiinginthemountainsicecastlepark_assets_all_5621bb2f62f9a9b75572e4b115555106.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 2643,
+      "scene_id": "ch441SkiingintheMountainsICECastlePark",
+      "variant_id": "f8a77ea08e83d1e9",
+      "in_game_name": "ICE Castle Park",
+      "chapter_number": 441,
+      "chapter_title": "Chapter 441 - Family's Day Out",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "invisible_targets"
+      ],
+      "reported_issues": [
+        "Hidden object 101 has no visible pixels",
+        "Solution marker count differs from identified hidden objects"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch441skiinginthemountainsicecastlepark_assets_all_ccc63a758d4e15783294e2a659c38794.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 2696,
+      "scene_id": "ch450WinterAnimalFortressGriffinArena",
+      "variant_id": "a07826d5fceac2aa",
+      "in_game_name": "Griffin Arena",
+      "chapter_number": 450,
+      "chapter_title": "Chapter 450 - Mystic Winterville",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 100: redanthurium; no Item Manager label",
+        "Unclassified named object 101: cat; no Item Manager label",
+        "Unclassified named object 104: bunny; no Item Manager label",
+        "Unclassified named object 105: handprint; no Item Manager label",
+        "Unclassified named object 108: bluefeather; no Item Manager label",
+        "Unclassified named object 109: warriorhelmet; no Item Manager label",
+        "Unclassified named object 110: patch; no Item Manager label",
+        "Unclassified named object 113: pinkhangingplant; no Item Manager label",
+        "Unclassified named object 118: fleurdelis; no Item Manager label",
+        "Unclassified named object 120: drum; no Item Manager label",
+        "Unclassified named object 121: drumbeater; no Item Manager label",
+        "Unclassified named object 122: orangelilies; no Item Manager label",
+        "Unclassified named object 123: dice; no Item Manager label",
+        "Unclassified named object 66: shamrocksymbol; no Item Manager label",
+        "Unclassified named object 67: conch; no Item Manager label",
+        "Unclassified named object 69: windowplanterbox; no Item Manager label",
+        "Unclassified named object 70: bust; no Item Manager label",
+        "Unclassified named object 71: bluehangingplant; no Item Manager label",
+        "Unclassified named object 72: trident; no Item Manager label",
+        "Unclassified named object 73: pond; no Item Manager label",
+        "Unclassified named object 74: fountain; no Item Manager label",
+        "Unclassified named object 78: bluebutterfly; no Item Manager label",
+        "Unclassified named object 79: knotsymbol; no Item Manager label",
+        "Unclassified named object 80: doorknocker; no Item Manager label",
+        "Unclassified named object 84: pinktassel; no Item Manager label",
+        "Unclassified named object 88: birdofparadise; no Item Manager label",
+        "Unclassified named object 89: knight; no Item Manager label",
+        "Unclassified named object 91: hanginglantern; no Item Manager label",
+        "Unclassified named object 93: whiteanthuriumplant; no Item Manager label",
+        "Unclassified named object 94: lavenderflower; no Item Manager label",
+        "Unclassified named object 97: chain; no Item Manager label",
+        "Unclassified named object 99: whiteroses; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch450winteranimalfortressgriffinarena_assets_all_7a6aed1af71813040ad8fdd8f8a9dbf7.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 2709,
+      "scene_id": "ch452TourofTromsoPolarLights",
+      "variant_id": "90b0e9571526aa61",
+      "in_game_name": "Polar Lights",
+      "chapter_number": 452,
+      "chapter_title": "Chapter 452 - Tromso",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 65: waterbottle; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch452touroftromsopolarlights_assets_all_d81125088361b9765f31ec28c2554990.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 2737,
+      "scene_id": "ch457MeridaArchitectureDzibilchaltun",
+      "variant_id": "79b2a1c4e2f15a4b",
+      "in_game_name": "Dzibilchaltun",
+      "chapter_number": 457,
+      "chapter_title": "Chapter 457 - Merida",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 74: redbag; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch457meridaarchitecturedzibilchaltun_assets_all_f6b2c7b3458fee09dfa69db2f5b824ab.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 2809,
+      "scene_id": "ch469MagicalForestinTroubleBedazzlingGlow",
+      "variant_id": "f3f942a8420a5356",
+      "in_game_name": "Bedazzling Glow",
+      "chapter_number": 469,
+      "chapter_title": "Chapter 469 - Through The Luminous Woods",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 101: horse; no Item Manager label",
+        "Unclassified named object 102: toucan; no Item Manager label",
+        "Unclassified named object 106: carolinaredlily; no Item Manager label",
+        "Unclassified named object 107: colocasia; no Item Manager label",
+        "Unclassified named object 110: quetzalbird; no Item Manager label",
+        "Unclassified named object 111: bunchofbutterflies; no Item Manager label",
+        "Unclassified named object 113: hedgehog; no Item Manager label",
+        "Unclassified named object 114: macaw; no Item Manager label",
+        "Unclassified named object 117: iris; no Item Manager label",
+        "Unclassified named object 122: redbutterfly; no Item Manager label",
+        "Unclassified named object 124: treefungus; no Item Manager label",
+        "Unclassified named object 65: firepinkflower; no Item Manager label",
+        "Unclassified named object 66: birdofparadise; no Item Manager label",
+        "Unclassified named object 69: cactus; no Item Manager label",
+        "Unclassified named object 70: whitepeacock; no Item Manager label",
+        "Unclassified named object 74: monsteraplant; no Item Manager label",
+        "Unclassified named object 75: kingfisher; no Item Manager label",
+        "Unclassified named object 76: bluegreenpeacock; no Item Manager label",
+        "Unclassified named object 77: caterpillar; no Item Manager label",
+        "Unclassified named object 78: hippeastrum; no Item Manager label",
+        "Unclassified named object 80: redanthurium; no Item Manager label",
+        "Unclassified named object 84: whiteferret; no Item Manager label",
+        "Unclassified named object 85: bluemushroom; no Item Manager label",
+        "Unclassified named object 86: redmushroom; no Item Manager label",
+        "Unclassified named object 87: clovers; no Item Manager label",
+        "Unclassified named object 89: yellowflowersivy; no Item Manager label",
+        "Unclassified named object 92: heliconiaplant; no Item Manager label",
+        "Unclassified named object 93: yellowdandelions; no Item Manager label",
+        "Unclassified named object 95: redbromeliad; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch469magicalforestintroublebedazzlingglow_assets_all_3e6fa7cc796691504bd2ab8cc8f637f6.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 2825,
+      "scene_id": "ch471FindingNataliesUncleintheCityofGoldMinistryQuarters",
+      "variant_id": "a8f1cd6781113cab",
+      "in_game_name": "Ministry Quarters",
+      "chapter_number": 471,
+      "chapter_title": "Chapter 471 - Mythical City In Gold",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "invisible_targets"
+      ],
+      "reported_issues": [
+        "Hidden object 72 has no visible pixels",
+        "Solution marker count differs from identified hidden objects"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch471findingnataliesuncleinthecityofgoldministryquarters_assets_all_96e810215fb95a1d53f079edb7d3db69.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 2855,
+      "scene_id": "ch476WeatherTroubleattheVIllageofHarmonyTravelerCabin",
+      "variant_id": "ab1c4db329635c25",
+      "in_game_name": "Traveler Cabin",
+      "chapter_number": 476,
+      "chapter_title": "Chapter 476 - Village Of Harmony",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 85: macramehanging; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch476weathertroubleatthevillageofharmonytravelercabin_assets_all_fd8759cd51a6bd336735c1f20096b152.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 2906,
+      "scene_id": "ch485TheHeadlessHorsemansVisitEerieSurroundings",
+      "variant_id": "063c81cb09eb7583",
+      "in_game_name": "Eerie Surroundings",
+      "chapter_number": 485,
+      "chapter_title": "Chapter 485 - Creepy County",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "item_manager_binding"
+      ],
+      "reported_issues": [
+        "Item rope_485_eer_sur_ini: expected an unambiguous named-part prefix, found 0",
+        "Not all Item Manager hidden objects were resolved"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch485theheadlesshorsemansvisiteeriesurroundings_assets_all_49b9fb637ac9815d066b275bdc101b73.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 2923,
+      "scene_id": "ch488ThanksgivingDinnerwithOldFriendsEarlyMorningWalk",
+      "variant_id": "e7dd164d03551c37",
+      "in_game_name": "Early Morning Walk",
+      "chapter_number": 488,
+      "chapter_title": "Chapter 488 - Good Old Thanksgiving Times",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 114: hat; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch488thanksgivingdinnerwitholdfriendsearlymorningwalk_assets_all_1db37592c6b2e007b13a9cd9222e16b1.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 2940,
+      "scene_id": "ch491AvalancheRescueTheGornergratRailway",
+      "variant_id": "e8a48bc833e6be99",
+      "in_game_name": "The Gornergrat Railway",
+      "chapter_number": 491,
+      "chapter_title": "Chapter 491 - Zermatt",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 82: purplefanbunting; no Item Manager label",
+        "Unclassified named object 83: bluefanbunting; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch491avalancherescuethegornergratrailway_assets_all_cc67056abe007f22198469d2e0430496.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 2976,
+      "scene_id": "ch497ACyclingAdventureGroeningeMuseum",
+      "variant_id": "f32e5dffbeb55ae8",
+      "in_game_name": "Groeninge Museum",
+      "chapter_number": 497,
+      "chapter_title": "Chapter 497 - Visit To Bruges",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 99: envelope; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch497acyclingadventuregroeningemuseum_assets_all_6d969d3a9f66edcd0921bae44aad9bdf.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 2989,
+      "scene_id": "ch499TessasTroublingTimesASpecialVisit",
+      "variant_id": "bfdfa26e62688700",
+      "in_game_name": "A Special Visit",
+      "chapter_number": 499,
+      "chapter_title": "Chapter 499 - Conflict of Feelings",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "item_manager_binding"
+      ],
+      "reported_issues": [
+        "Item rabbit_499_spe_vis_ini: expected an unambiguous named-part prefix, found 0",
+        "Not all Item Manager hidden objects were resolved"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch499tessastroublingtimesaspecialvisit_assets_all_88729e5608be228e5d8e8ebf97cadfc9.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 2993,
+      "scene_id": "ch499TessasTroublingTimesCozyTeaTime",
+      "variant_id": "3abd745681acb615",
+      "in_game_name": "Cozy Tea Time",
+      "chapter_number": 499,
+      "chapter_title": "Chapter 499 - Conflict of Feelings",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects",
+        "item_manager_binding"
+      ],
+      "reported_issues": [
+        "Item bluebottle_1_499_coz_tim_ini: expected an unambiguous named-part prefix, found 2",
+        "Not all Item Manager hidden objects were resolved",
+        "Unclassified named object 75: bluebottle_1; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch499tessastroublingtimescozyteatime_assets_all_c13ea340e9eff49b9874d9841e7df613.bundle"
+      ],
+      "new_build_retest_status": "validated_snapshot",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 2994,
+      "scene_id": "ch500FairyTaleUpgradeALovelyGardenView",
+      "variant_id": "c37e9ab31513dbed",
+      "in_game_name": "A Lovely Garden View",
+      "chapter_number": 500,
+      "chapter_title": "Chapter 500 - Match Made at Eleven",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 87: wovenbasket; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch500fairytaleupgradealovelygardenview_assets_all_23d3be3248c7d72b4c4f44a0fe26f745.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 3009,
+      "scene_id": "ch502ADifferenceofSpendingLeisureTimeMuttrahSouq",
+      "variant_id": "dfb656e1405a7100",
+      "in_game_name": "Muttrah Souq",
+      "chapter_number": 502,
+      "chapter_title": "Chapter 502 - Off To Oman",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects",
+        "item_manager_binding"
+      ],
+      "reported_issues": [
+        "Item hanginglamp_502_mut_sou_ini: expected an unambiguous named-part prefix, found 0",
+        "Not all Item Manager hidden objects were resolved",
+        "Unclassified named object 98: hanginglampcopy; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch502adifferenceofspendingleisuretimemuttrahsouq_assets_all_a8634af294daf0c26f262175a975a86c.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 3011,
+      "scene_id": "ch502ADifferenceofSpendingLeisureTimeWahibaSandsCamp",
+      "variant_id": "3f4f376a75b31af5",
+      "in_game_name": "Wahiba Sands Camp",
+      "chapter_number": 502,
+      "chapter_title": "Chapter 502 - Off To Oman",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 91: bangles; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch502adifferenceofspendingleisuretimewahibasandscamp_assets_all_a239dee87aca851118934c329381fa99.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 3051,
+      "scene_id": "ch509EasterRingHuntEasterFestiveMall",
+      "variant_id": "ffd29aeb8a4ce38d",
+      "in_game_name": "Easter Festive Mall",
+      "chapter_number": 509,
+      "chapter_title": "Chapter 509 - Easter Eggstravaganza",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects",
+        "item_manager_binding"
+      ],
+      "reported_issues": [
+        "Item colourfulball_509_eas_mal_ini: expected an unambiguous named-part prefix, found 0",
+        "Not all Item Manager hidden objects were resolved",
+        "Unclassified named object 96: colourfullball; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch509easterringhunteasterfestivemall_assets_all_4e4765f0d9b72b8c379fc5f5ed0397eb.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 3083,
+      "scene_id": "ch514ChaunceysTourRivalWalkInCheekwoodGardens",
+      "variant_id": "3930b49b59ee4f17",
+      "in_game_name": "Walk In Cheekwood Gardens",
+      "chapter_number": 514,
+      "chapter_title": "Chapter 514 - Visiting Nashville",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 74: lavender_1; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch514chaunceystourrivalwalkincheekwoodgardens_assets_all_d7d28d4702930b0449061ef23e241379.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 3135,
+      "scene_id": "ch523FloatingPortCityWaterwayTraversal",
+      "variant_id": "11e9c57736746d8e",
+      "in_game_name": "Waterway Traversal",
+      "chapter_number": 523,
+      "chapter_title": "Chapter 523 - Water Kingdom",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 97: headscarfhat; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch523floatingportcitywaterwaytraversal_assets_all_74040e203fccbe42ee095a475d494f06.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 3189,
+      "scene_id": "ch532LookingforaFriendNightwalkatGastown",
+      "variant_id": "faf794f54cec3d13",
+      "in_game_name": "Nightwalk at Gastown",
+      "chapter_number": 532,
+      "chapter_title": "Chapter 532 - Vancouver Visit",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 117: guitarbag; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch532lookingforafriendnightwalkatgastown_assets_all_c9a5d62676f214fa6247efa3831de553.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 3233,
+      "scene_id": "ch539ATourGuideTrapNYCVeteransParade",
+      "variant_id": "ccb650112357554b",
+      "in_game_name": "NYC Veterans Parade",
+      "chapter_number": 539,
+      "chapter_title": "Chapter 539 - Bravery and Honor",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects",
+        "item_manager_binding"
+      ],
+      "reported_issues": [
+        "Item questands_539_nyc_par_ini: expected an unambiguous named-part prefix, found 0",
+        "Not all Item Manager hidden objects were resolved",
+        "Unclassified named object 122: questand; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch539atourguidetrapnycveteransparade_assets_all_85b3de90c096d1d8899266fa7647dee9.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 3256,
+      "scene_id": "ch543AFestiveArgumentWreathCrafting",
+      "variant_id": "92872b0fe4377f2c",
+      "in_game_name": "Wreath Crafting",
+      "chapter_number": 543,
+      "chapter_title": "Chapter 543 - Preparations Before Christmas",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 79: fire; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch543afestiveargumentwreathcrafting_assets_all_77599821d5e8220acac056887ba406b7.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 3300,
+      "scene_id": "ch551NegotiatingwithaVillainMagicalBlooms",
+      "variant_id": "e863e35dbaff436a",
+      "in_game_name": "Magical Blooms",
+      "chapter_number": 551,
+      "chapter_title": "Chapter 551 - Shaking Off the Fairy Dust",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 109: colocasia; no Item Manager label",
+        "Unclassified named object 75: colocasia_1; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch551negotiatingwithavillainmagicalblooms_assets_all_290d9f9a9f5f5f0a76b6ccffb899651c.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 3318,
+      "scene_id": "ch554MardiGrasDisruptionHolidayRevelers",
+      "variant_id": "9e9a2913d1f4cbbe",
+      "in_game_name": "Holiday Revelers",
+      "chapter_number": 554,
+      "chapter_title": "Chapter 554 - Life of the Mardi",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 66: mardigrasfabricflag; no Item Manager label",
+        "Unclassified named object 67: balloonsbunch; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch554mardigrasdisruptionholidayrevelers_assets_all_1ac31a731d0d46cdf285990bb5257d14.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 3335,
+      "scene_id": "ch556CarefulWhoYouMakeDealsWithWhaleWatching",
+      "variant_id": "48d626e806c702e5",
+      "in_game_name": "Whale Watching",
+      "chapter_number": 556,
+      "chapter_title": "Chapter 556 - A Wild Hunch",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects",
+        "item_manager_binding"
+      ],
+      "reported_issues": [
+        "Item pelican_1_556_wha_wat_ini: expected an unambiguous named-part prefix, found 2",
+        "Item redflag_1_556_wha_wat_ini: expected an unambiguous named-part prefix, found 2",
+        "Not all Item Manager hidden objects were resolved",
+        "Unclassified named object 78: redflag_1; no Item Manager label",
+        "Unclassified named object 87: pelican_1; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch556carefulwhoyoumakedealswithwhalewatching_assets_all_be32a4329630bafc9c015e841f4e3187.bundle"
+      ],
+      "new_build_retest_status": "validated_snapshot",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 3357,
+      "scene_id": "ch560MissingOldFriendsADaysWork",
+      "variant_id": "43ba1f7f291e5fb9",
+      "in_game_name": "A Days Work",
+      "chapter_number": 560,
+      "chapter_title": "Chapter 560 - Another Year, Another Anniversary",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects",
+        "item_manager_binding"
+      ],
+      "reported_issues": [
+        "Item mask_560_day_wor_ini: expected an unambiguous named-part prefix, found 0",
+        "Not all Item Manager hidden objects were resolved",
+        "Unclassified named object 104: facemask; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch560missingoldfriendsadayswork_assets_all_adc08b7a57c5b47a8ffdc13cc601de26.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 3396,
+      "scene_id": "ch567TheGatheringStormSovereignoftheHeavens",
+      "variant_id": "8f9558591bbf529d",
+      "in_game_name": "Sovereign of the Heavens",
+      "chapter_number": 567,
+      "chapter_title": "Chapter 567 - The Olympian Gods",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 84: caduceus; no Item Manager label",
+        "Unclassified named object 97: scepterofhermes; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch567thegatheringstormsovereignoftheheavens_assets_all_e9104eda5b1276277a3fcda86bd5e95f.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 3435,
+      "scene_id": "ch573AFourthofJulySpectacleIndependenceDayFireworks",
+      "variant_id": "0c99e2eeaa394b15",
+      "in_game_name": "Independence Day Fireworks",
+      "chapter_number": 573,
+      "chapter_title": "Chapter 573 - Parade of Stars and Stripes",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects",
+        "item_manager_binding"
+      ],
+      "reported_issues": [
+        "Item camera_1_573_ind_fir_ini: expected an unambiguous named-part prefix, found 2",
+        "Not all Item Manager hidden objects were resolved",
+        "Unclassified named object 110: camera_1; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch573afourthofjulyspectacleindependencedayfireworks_assets_all_6e3a1d1aa06b3476e58c49a7aef2ecdf.bundle"
+      ],
+      "new_build_retest_status": "validated_snapshot",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 3449,
+      "scene_id": "ch575SagaoftheNorthInsidetheLonghouse",
+      "variant_id": "5145984ccde4ffd3",
+      "in_game_name": "Inside the Longhouse",
+      "chapter_number": 575,
+      "chapter_title": "Chapter 575 - Shieldmaidens and Sea Storms",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects",
+        "item_manager_binding"
+      ],
+      "reported_issues": [
+        "Item lantern_1_575_ins_lon_ini: expected an unambiguous named-part prefix, found 2",
+        "Not all Item Manager hidden objects were resolved",
+        "Unclassified named object 82: lantern_1; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch575sagaofthenorthinsidethelonghouse_assets_all_87a064f33ec4488e2e11360e37e2401b.bundle"
+      ],
+      "new_build_retest_status": "validated_snapshot",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 3533,
+      "scene_id": "ch589TheGameofAllegiancesSpindlyShadows",
+      "variant_id": "794f491f24f41d5c",
+      "in_game_name": "Spindly Shadows",
+      "chapter_number": 589,
+      "chapter_title": "Chapter 589 - Tales Beyond Twilight",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 91: animaltrap; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch589thegameofallegiancesspindlyshadows_assets_all_9494940b15178e42f6a1f3a4b360e615.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 3536,
+      "scene_id": "ch590OfSkeletonsandMonstersDreadfulRun",
+      "variant_id": "0e5337d4a2ebdd98",
+      "in_game_name": "Dreadful Run",
+      "chapter_number": 590,
+      "chapter_title": "Chapter 590 - The Haunting of Time Society",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 99: animalskull; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch590ofskeletonsandmonstersdreadfulrun_assets_all_cc7c315049b7f0c7cc969ec0a1f5ba1a.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 3587,
+      "scene_id": "ch598ChristmasPresentHuntTheHeartOfTheHolidays",
+      "variant_id": "36059e6c98dd08bc",
+      "in_game_name": "The Heart of the Holidays",
+      "chapter_number": 598,
+      "chapter_title": "Chapter 598 - Tales of Yuletide Joy",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "root_timeline_selection"
+      ],
+      "reported_issues": [
+        "RenderError: No unique unreferenced GAF root timeline"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch598christmaspresenthunttheheartoftheholidays_assets_all_80c57f5e39fdebc5fe9cc51ec879401d.bundle"
+      ],
+      "new_build_retest_status": "validated_snapshot",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 3663,
+      "scene_id": "ch611BloomingAnomaliesTeaUnderTheTrees",
+      "variant_id": "eff84df4c37bdcd4",
+      "in_game_name": "Tea Under The Trees",
+      "chapter_number": 611,
+      "chapter_title": "Chapter 611 - Flash Forward to Cherry Blossoms",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 101: spoon; no Item Manager label",
+        "Unclassified named object 103: key; no Item Manager label",
+        "Unclassified named object 104: wristwatch; no Item Manager label",
+        "Unclassified named object 108: signboard; no Item Manager label",
+        "Unclassified named object 109: fork; no Item Manager label",
+        "Unclassified named object 110: hairband; no Item Manager label",
+        "Unclassified named object 111: grape; no Item Manager label",
+        "Unclassified named object 112: greenapple; no Item Manager label",
+        "Unclassified named object 113: peaches; no Item Manager label",
+        "Unclassified named object 114: redapple; no Item Manager label",
+        "Unclassified named object 118: takoyaki; no Item Manager label",
+        "Unclassified named object 121: tissuepaperholder; no Item Manager label",
+        "Unclassified named object 125: hairbrooch; no Item Manager label",
+        "Unclassified named object 127: saltpeppershaker; no Item Manager label",
+        "Unclassified named object 67: handycam; no Item Manager label",
+        "Unclassified named object 70: dahliaflower; no Item Manager label",
+        "Unclassified named object 74: chineselantern; no Item Manager label",
+        "Unclassified named object 76: whitelilies; no Item Manager label",
+        "Unclassified named object 78: rabbitdustbin; no Item Manager label",
+        "Unclassified named object 79: greensaucebottle; no Item Manager label",
+        "Unclassified named object 80: redsaucebottle; no Item Manager label",
+        "Unclassified named object 81: necklace; no Item Manager label",
+        "Unclassified named object 83: ivy; no Item Manager label",
+        "Unclassified named object 84: menustand; no Item Manager label",
+        "Unclassified named object 86: purplehandbag; no Item Manager label",
+        "Unclassified named object 89: omurice; no Item Manager label",
+        "Unclassified named object 90: earring; no Item Manager label",
+        "Unclassified named object 91: sunglass; no Item Manager label",
+        "Unclassified named object 93: slingbag; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch611bloominganomaliesteaunderthetrees_assets_all_3eb14aa769ac04ba736a68a7daadfb64.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 3681,
+      "scene_id": "ch614SearchforInformationDeductionintheDrawingRoom",
+      "variant_id": "5d6c9f207ee3edbb",
+      "in_game_name": "Deduction in the Drawing Room",
+      "chapter_number": 614,
+      "chapter_title": "Chapter 614 - Elementary, My Dear Borgsworth",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects",
+        "item_manager_binding"
+      ],
+      "reported_issues": [
+        "Item candelabra_614_ded_roo_ini: expected an unambiguous named-part prefix, found 0",
+        "Not all Item Manager hidden objects were resolved",
+        "Unclassified named object 74: candlelabra; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch614searchforinformationdeductioninthedrawingroom_assets_all_3ed908d3d702a243f98cf0ccb4b9cea9.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 3693,
+      "scene_id": "ch616SettingOutSummerSplashBash",
+      "variant_id": "c915d7b8617b99b7",
+      "in_game_name": "Summer Splash Bash",
+      "chapter_number": 616,
+      "chapter_title": "Chapter 616 - Fun in the Sun",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 112: coconutdrink ; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch616settingoutsummersplashbash_assets_all_4370e442838f2641513cfd01ddbdb222.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 3713,
+      "scene_id": "ch619GhostsofthePastHyackAnvilBattery",
+      "variant_id": "423f21c5a10316c3",
+      "in_game_name": "Hyack Anvil Battery",
+      "chapter_number": 619,
+      "chapter_title": "Chapter 619 - A Canadian Tradition",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 112: firepit ; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch619ghostsofthepasthyackanvilbattery_assets_all_6d5585ed8ba7ddc1d93cd82fe9377a82.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 3759,
+      "scene_id": "ch627EchoesofTraditionSpiritsInTheFlames",
+      "variant_id": "387e1a8c8fe2615a",
+      "in_game_name": "Spirits In The Flames",
+      "chapter_number": 627,
+      "chapter_title": "Chapter 627 - Wisdom of the Native Tribes",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 104: redfeather; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch627echoesoftraditionspiritsintheflames_assets_all_d94dc88f3052ec8a55c3733c96ff775b.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 3857,
+      "scene_id": "ch643TheGraveyardGambitAfterTheHalloweenFog",
+      "variant_id": "efccefaa400602b5",
+      "in_game_name": "After The Halloween Fog",
+      "chapter_number": 643,
+      "chapter_title": "Chapter 643 - Masque of the Moonlit Dead",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 66: animalskull; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch643thegraveyardgambitafterthehalloweenfog_assets_all_c720417d7a453df25f9bb5367bb6526f.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 3983,
+      "scene_id": "ch664NotPastNorFuturePetaltotheFestival",
+      "variant_id": "4d60e57532c0277d",
+      "in_game_name": "Petal to the Festival",
+      "chapter_number": 664,
+      "chapter_title": "Chapter 664 - A Breath of Fresh Spring",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects",
+        "item_manager_binding"
+      ],
+      "reported_issues": [
+        "Item napkin_1_664_pet_fes_ini: expected an unambiguous named-part prefix, found 2",
+        "Not all Item Manager hidden objects were resolved",
+        "Unclassified named object 71: napkin_1; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch664notpastnorfuturepetaltothefestival_assets_all_456d11d519f9419b2fa6ca51b23494cf.bundle"
+      ],
+      "new_build_retest_status": "validated_snapshot",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 3996,
+      "scene_id": "ch667CastinShadowEggchantingMeadow",
+      "variant_id": "248eb19b37d0b78c",
+      "in_game_name": "Eggchanting Meadow",
+      "chapter_number": 667,
+      "chapter_title": "Chapter 667 - Eggs Marks the Spot",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 101: bromeliadplant; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch667castinshadoweggchantingmeadow_assets_all_5a9cdc0c668efb30683476486e107913.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 4007,
+      "scene_id": "ch668TheDisposablesofDestinyOrchidMirage",
+      "variant_id": "557cf19377750def",
+      "in_game_name": "Orchid Mirage",
+      "chapter_number": 668,
+      "chapter_title": "Chapter 668 - Tales of the Tropical Wild",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 119: bromeliadplant; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch668thedisposablesofdestinyorchidmirage_assets_all_f714b916dd2ba7552e3dcd9d864fca9a.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 4013,
+      "scene_id": "ch669TheLastFixedPointTheLuminousDepths",
+      "variant_id": "3ce06fef8a979915",
+      "in_game_name": "The Luminous Depths",
+      "chapter_number": 669,
+      "chapter_title": "Chapter 669 - Heart of the Pacific",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 83: sunsymbol; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch669thelastfixedpointtheluminousdepths_assets_all_030350821d75d4ae9dc5b9b6d9b0381c.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 4032,
+      "scene_id": "ch673TheFirstFractureTrialsoftheGods",
+      "variant_id": "217d027b73b9e2fd",
+      "in_game_name": "Trials of the Gods",
+      "chapter_number": 673,
+      "chapter_title": "Chapter 673 - Odyssey of Hercules",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects",
+        "item_manager_binding"
+      ],
+      "reported_issues": [
+        "Item sack_1_673_tri_god_ini: expected an unambiguous named-part prefix, found 2",
+        "Not all Item Manager hidden objects were resolved",
+        "Unclassified named object 109: sack_1; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch673thefirstfracturetrialsofthegods_assets_all_a46c8658246bace87a7e013de8359073.bundle"
+      ],
+      "new_build_retest_status": "validated_snapshot",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 4038,
+      "scene_id": "ch674HistoryWakesSleepingCatsGarden",
+      "variant_id": "3bf1bd401a2cdfe9",
+      "in_game_name": "Sleeping Cats Garden",
+      "chapter_number": 674,
+      "chapter_title": "Chapter 674 - Whiskers Across Worlds",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects",
+        "item_manager_binding"
+      ],
+      "reported_issues": [
+        "Item pigeon_1_674_sle_gar_ini: expected an unambiguous named-part prefix, found 2",
+        "Not all Item Manager hidden objects were resolved",
+        "Unclassified named object 105: pigeon_1; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch674historywakessleepingcatsgarden_assets_all_3b8027c71b0c8eea282df3541b07fb7e.bundle"
+      ],
+      "new_build_retest_status": "validated_snapshot",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 4041,
+      "scene_id": "ch674HistoryWakesNineLivesofLiterature",
+      "variant_id": "011405b33b211a51",
+      "in_game_name": "Nine Lives of Literature",
+      "chapter_number": 674,
+      "chapter_title": "Chapter 674 - Whiskers Across Worlds",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects",
+        "item_manager_binding"
+      ],
+      "reported_issues": [
+        "Item tablelamp_1_674_nin_lit_ini: expected an unambiguous named-part prefix, found 2",
+        "Not all Item Manager hidden objects were resolved",
+        "Unclassified named object 82: tablelamp_1; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch674historywakesninelivesofliterature_assets_all_15e6ba287cd7ac690c08eb04a73d350b.bundle"
+      ],
+      "new_build_retest_status": "validated_snapshot",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 4062,
+      "scene_id": "ch678ConfessionsinGlassHometownGlory",
+      "variant_id": "9db9b46f8b194dc8",
+      "in_game_name": "Hometown Glory",
+      "chapter_number": 678,
+      "chapter_title": "Chapter 678 - A Day of Stars and Smiles",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects",
+        "item_manager_binding"
+      ],
+      "reported_issues": [
+        "Item burgar_678_hom_glo_ini: expected an unambiguous named-part prefix, found 0",
+        "Not all Item Manager hidden objects were resolved",
+        "Unclassified named object 96: bargar; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch678confessionsinglasshometownglory_assets_all_3fc5114edc20f63de9ac2b493dfb66af.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 4101,
+      "scene_id": "ch684HeroicFlairandForbiddenTimelinesRootedinDiscovery",
+      "variant_id": "4caa152bc15a0f41",
+      "in_game_name": "Rooted in Discovery",
+      "chapter_number": 684,
+      "chapter_title": "Chapter 684 - A Sunny Amazon Expedition",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 88: bromeliadplant; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch684heroicflairandforbiddentimelinesrootedindiscovery_assets_all_5fbafc5050d688959bb7125dc10d28c7.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 4107,
+      "scene_id": "ch685VeneerofHistoryPortofSummer",
+      "variant_id": "fb81ed6f2c94832d",
+      "in_game_name": "Port of Summer",
+      "chapter_number": 685,
+      "chapter_title": "Chapter 685 - Nice and Easy",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects",
+        "item_manager_binding"
+      ],
+      "reported_issues": [
+        "Item bluetowel_1_685_por_sum_ini: expected an unambiguous named-part prefix, found 2",
+        "Not all Item Manager hidden objects were resolved",
+        "Unclassified named object 71: bluetowel_1; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch685veneerofhistoryportofsummer_assets_all_9a093765f3399578e7285b14a2128533.bundle"
+      ],
+      "new_build_retest_status": "validated_snapshot",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 4137,
+      "scene_id": "ch690AutumnMasqueradeBaroftheSettingSun",
+      "variant_id": "4c86c849b6b22aeb",
+      "in_game_name": "Barn of the Setting Sun",
+      "chapter_number": 690,
+      "chapter_title": "Chapter 690 - Dawn of the Harvest",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 104: duck; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch690autumnmasqueradebarofthesettingsun_assets_all_325698870c2ec6ecd7b42ec3ffd52e8f.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 4145,
+      "scene_id": "ch691TheSummoningGlassAmberLightCouncil",
+      "variant_id": "1bf79947721b9057",
+      "in_game_name": "Amber Light Council",
+      "chapter_number": 691,
+      "chapter_title": "Chapter 691 - Elves of the Golden Vale",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects",
+        "item_manager_binding"
+      ],
+      "reported_issues": [
+        "Item yellowflowertree_1_691_amb_cou_ini: expected an unambiguous named-part prefix, found 2",
+        "Not all Item Manager hidden objects were resolved",
+        "Unclassified named object 77: yellowflowertree_1; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch691thesummoningglassamberlightcouncil_assets_all_cf1835f1aea6790076bff886763320a7.bundle"
+      ],
+      "new_build_retest_status": "validated_snapshot",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 4146,
+      "scene_id": "ch692ChoiceoftheAgesTwilightHoovesCrossing",
+      "variant_id": "9dfd85f718baf4fa",
+      "in_game_name": "Twilight Hooves Crossing",
+      "chapter_number": 692,
+      "chapter_title": "Chapter 692 - Hooves of the Falling Leaves",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects",
+        "item_manager_binding"
+      ],
+      "reported_issues": [
+        "Item lupinflower_1_692_twi_cro_ini: expected an unambiguous named-part prefix, found 2",
+        "Not all Item Manager hidden objects were resolved",
+        "Unclassified named object 73: lupinflower_1; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch692choiceoftheagestwilighthoovescrossing_assets_all_58d1afcd5d3f4ea4536724c577743671.bundle"
+      ],
+      "new_build_retest_status": "validated_snapshot",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 4179,
+      "scene_id": "ch697TheMerryMarksmenEmbersofSherwood",
+      "variant_id": "695bef590bd1cac9",
+      "in_game_name": "Embers of Sherwood",
+      "chapter_number": 697,
+      "chapter_title": "Chapter 697 - Sherwood Shenanigans",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects",
+        "item_manager_binding"
+      ],
+      "reported_issues": [
+        "Item treasurechest_1_697_emb_she_ini: expected an unambiguous named-part prefix, found 2",
+        "Not all Item Manager hidden objects were resolved",
+        "Unclassified named object 76: treasurechest_1; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch697themerrymarksmenembersofsherwood_assets_all_6befc85e8f250a96cbd06fd86520f257.bundle"
+      ],
+      "new_build_retest_status": "validated_snapshot",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 4209,
+      "scene_id": "ch702ChristmasCrisisGroveofGrowingGifts",
+      "variant_id": "e581d11f8d5b05ef",
+      "in_game_name": "Grove of Growing Gifts",
+      "chapter_number": 702,
+      "chapter_title": "Chapter 702 - Elf Trails and Tinsel Tales",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects",
+        "item_manager_binding"
+      ],
+      "reported_issues": [
+        "Item umbrella_1_702_gro_gif_ini: expected an unambiguous named-part prefix, found 2",
+        "Not all Item Manager hidden objects were resolved",
+        "Unclassified named object 97: umbrella_1; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch702christmascrisisgroveofgrowinggifts_assets_all_380030e349da6b3247deb35b43705909.bundle"
+      ],
+      "new_build_retest_status": "validated_snapshot",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 4235,
+      "scene_id": "ch706MomentsBetweenChaosBarnofSleepingSpots",
+      "variant_id": "df44a0b451b0ac79",
+      "in_game_name": "Barn of Sleeping Spots",
+      "chapter_number": 706,
+      "chapter_title": "Chapter 706 - The Great Dalmatian Dash",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects",
+        "item_manager_binding"
+      ],
+      "reported_issues": [
+        "Item birdhouse_1_706_bar_sle_ini: expected an unambiguous named-part prefix, found 2",
+        "Item hammer_1_706_bar_sle_ini: expected an unambiguous named-part prefix, found 2",
+        "Not all Item Manager hidden objects were resolved",
+        "Unclassified named object 117: birdhouse_1; no Item Manager label",
+        "Unclassified named object 71: hammer_1; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch706momentsbetweenchaosbarnofsleepingspots_assets_all_ba7169e1e4ef9618a276afa01d4b2442.bundle"
+      ],
+      "new_build_retest_status": "validated_snapshot",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 4305,
+      "scene_id": "ch718JudgmentofIntentSaintsofSilentStudy",
+      "variant_id": "85aedfc81f3e68ec",
+      "in_game_name": "Saints of Silent Study",
+      "chapter_number": 718,
+      "chapter_title": "Chapter 718 - The Great Library Expedition",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects"
+      ],
+      "reported_issues": [
+        "Unclassified named object 80: metalbear; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch718judgmentofintentsaintsofsilentstudy_assets_all_147db969d5a94bc5da4b5a97c9b74afc.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 4398,
+      "scene_id": "ch734NoLongeranIdeaVikingGroveofTraditions",
+      "variant_id": "f1cdb9bc8697fbb0",
+      "in_game_name": "Viking Grove of Traditions",
+      "chapter_number": 734,
+      "chapter_title": "Chapter 734 - Life Among the Norse",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects",
+        "item_manager_binding"
+      ],
+      "reported_issues": [
+        "Item woodenbucket_1_734_vik_tra_ini: expected an unambiguous named-part prefix, found 2",
+        "Not all Item Manager hidden objects were resolved",
+        "Unclassified named object 96: woodenbucket_1; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch734nolongeranideavikinggroveoftraditions_assets_all_f838da9469b5eb9c3aaebabc5b69212e.bundle"
+      ],
+      "new_build_retest_status": "validated_snapshot",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 4451,
+      "scene_id": "ch742EchoesoftheCelebrationProstinMoselleValley",
+      "variant_id": "bd8c1c6de2400437",
+      "in_game_name": "Prost in Moselle Valley",
+      "chapter_number": 742,
+      "chapter_title": "Chapter 742 - Oktoberfest Extravaganza",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "unclassified_named_objects",
+        "item_manager_binding"
+      ],
+      "reported_issues": [
+        "Item clubshape_1_742_pro_val_ini: expected an unambiguous named-part prefix, found 2",
+        "Not all Item Manager hidden objects were resolved",
+        "Unclassified named object 95: clubshape_1; no Item Manager label"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch742echoesofthecelebrationprostinmosellevalley_assets_all_5eb901f47ba1e4d078e30a6aa20c1fdb.bundle"
+      ],
+      "new_build_retest_status": "validated_snapshot",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 4470,
+      "scene_id": "ch746SecretsBehindtheCurtainMidnightWerewolfFunfair",
+      "variant_id": "acceb12e9aa1f283",
+      "in_game_name": "Midnight Werewolf Funfair",
+      "chapter_number": 746,
+      "chapter_title": "Chapter 746 - Circus of Curious Creatures",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "missing_embedded_gaf"
+      ],
+      "reported_issues": [
+        "RenderError: Expected one GAF asset, found 0"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch746secretsbehindthecurtainmidnightwerewolffunfair_assets_all_ab69dc45bdd48a086e24cdde5f94117f.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 4473,
+      "scene_id": "ch746SecretsBehindtheCurtainPhantomPuppetTheater",
+      "variant_id": "191321ae2ca1a17b",
+      "in_game_name": "Phantom Puppet Theater",
+      "chapter_number": 746,
+      "chapter_title": "Chapter 746 - Circus of Curious Creatures",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "missing_embedded_gaf"
+      ],
+      "reported_issues": [
+        "RenderError: Expected one GAF asset, found 0"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch746secretsbehindthecurtainphantompuppettheater_assets_all_bf92354ef7b3280a4deb2a432067db9a.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    },
+    {
+      "order": 4475,
+      "scene_id": "ch746SecretsBehindtheCurtainVampireAcrobatPavilion",
+      "variant_id": "9e5b8e1ee55c1e34",
+      "in_game_name": "Vampire Acrobat Pavilion",
+      "chapter_number": 746,
+      "chapter_title": "Chapter 746 - Circus of Curious Creatures",
+      "reported_status": "incomplete",
+      "cause_groups": [
+        "missing_embedded_gaf"
+      ],
+      "reported_issues": [
+        "RenderError: Expected one GAF asset, found 0"
+      ],
+      "bundle_urls": [
+        "https://prod-cdn-assets.gardensoftime-cloud.net/ho/ch746secretsbehindthecurtainvampireacrobatpavilion_assets_all_f8a489cacd119bd0eb40c5b31884d35a.bundle"
+      ],
+      "new_build_retest_status": "not_retested",
+      "new_build_retest_issues": []
+    }
+  ],
+  "limitations": [
+    "Uploaded status values are the user report, not a new full-corpus reconstruction.",
+    "Only the 22 listed ordinary versions were reconstructed in this follow-up.",
+    "STD/FTD/FTO are excluded; the authoritative mode correction is used for analysis and does not change the current runtime classifier.",
+    "Unclassified visuals, absent Item Manager labels and off-stage targets remain incomplete; no labels or positions were invented.",
+    "Validation checks structural, metadata, coverage and pointer consistency; independent GPU pixel parity remains unverified."
+  ]
+}

@@ -682,3 +682,11 @@ well as compressed `CAG\0`. This fixes the reported 5.9 signature rejection;
 length, compression, tag and scene-validation checks remain active. Keep a
 running batch on its original code and use the updated `--update` command after
 it finishes to retry those incomplete scenes from verified cached bundles.
+
+The [7 November report analysis](docs/validation/ordinary_report_2026-11-07.md)
+lists every remaining ordinary-scene version with its official name and cause.
+Real-bundle follow-up tests verified 21 additional passes: 18 numbered-object
+prefix links, one active-prefab root selection, one explicitly clamped atlas edge,
+and one numeric background-copy name. Missing labels and positions remain
+validation blockers. Use `--update --output output` after installing this build
+to retry incomplete versions while preserving previously passed renders.

@@ -29,7 +29,19 @@ then transforms that geometry into stage coordinates. Alpha masks are transforme
 in the same coordinate system. Stage clear color comes from the stage tag.
 No atlas-content score or black-region heuristic is used.
 
-A timeline not referenced by any type-2 timeline instance is the root. Its matching
+Atlas rectangles outside a texture are accepted only when the overflowing axes
+explicitly use serialized Unity `Clamp` wrap mode. Actual border texels are
+sampled before packed-sprite rotation, without changing coordinates, pivots or
+the native texture dimensions. Unknown, Repeat or Mirror wrapping remains
+unsupported for such rectangles. Sampling is recorded as
+`atlas_sampling=serialized_clamp_edge` in the object report.
+
+A single timeline not referenced by any type-2 timeline instance is the root.
+When unused library timelines leave several graph roots, a unique active,
+enabled, parentless Unity clip on the actual prefab container root may establish
+the scene root. Local asset/GameObject references, component membership and an
+explicit parentless Transform are required; missing or ambiguous evidence fails.
+Library timelines remain in the decoded movie. The selected matching
 Unity clip provides scale/CSF and its object metadata. The initial implementation
 accepts scale=CSF=pixels-per-unit=1 with no root flip/pivot override. Nested initial poses are now rendered recursively with composed parent matrices,
 opacity, masks and child depth. Empty atlas tables are allowed for timeline-only
@@ -43,7 +55,9 @@ cannot produce a validated result.
 Non-animation Item Manager keys match encoded names exactly after case-folding,
 or via an underscore-delimited scene suffix. Identical encoded names on several
 instances receive the same verified label; distinct case-colliding names remain
-ambiguous. Background names recognize bg, bg01 and the bg_ prefix. Ambiguous/unmatched keys and unclassified
+ambiguous. Where both `umbrella` and `umbrella_1` exist, the longest exact named
+prefix owns `umbrella_1_<scene>`; the shorter name is not an alternate alias.
+Background names recognize bg, bg01, numeric repeats such as bg02_1, and the bg_ prefix. Ambiguous/unmatched keys and unclassified
 named scene objects are issues. The real Giza metadata contains 68 findable-object
 keys and five anim_ descriptors. timecap instances are excluded as gameplay art.
 Root masks are not painted as visible sprites. Unnamed decorative cells remain

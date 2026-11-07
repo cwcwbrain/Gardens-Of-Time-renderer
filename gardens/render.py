@@ -34,6 +34,12 @@ def parse_items(data, names):
         if folded.startswith('anim_') or any(folded==base or folded.startswith(base+'_') for base in animation_bases):
             animations.append(key); continue
         matches = [oid for oid, name in names.items() if key.casefold() == name.casefold() or key.casefold().startswith(name.casefold()+'_')]
+        if matches:
+            # A suffix-bearing name such as curtain_1 is more specific than
+            # curtain for curtain_1_<scene>. Keep every identically named
+            # instance, while equal-length case collisions remain ambiguous.
+            longest=max(len(names[oid].casefold()) for oid in matches)
+            matches=[oid for oid in matches if len(names[oid].casefold())==longest]
         if not matches or len({names[oid] for oid in matches})!=1:
             issues.append(f'Item {key}: expected an unambiguous named-part prefix, found {len(matches)}'); continue
         if any(oid in items for oid in matches):
@@ -93,6 +99,35 @@ def sprite_bounds(tile,element,state):
     return [min(p[0] for p in points),min(p[1] for p in points),max(p[0] for p in points),max(p[1] for p in points)]
 
 
+def _select_root_clip(root_timelines,mono,asset_id,gameobjects,transforms,prefab_root_ids):
+    """Resolve library-timeline ambiguity from an active serialized prefab root.
+
+    Only explicit local references establish ownership. Timeline numbers,
+    linkage names and object counts do not choose the scene root.
+    """
+    def local(pointer,path_id):
+        return isinstance(pointer,dict) and pointer.get('m_FileID')==0 and pointer.get('m_PathID')==path_id
+    candidates=[]
+    for pid,clip in mono.items():
+        if (clip.get('m_TimelineID') not in root_timelines or not local(clip.get('m_GAFAsset'),asset_id) or
+                not local(clip.get('m_Parent'),0) or clip.get('m_Enabled')!=1 or clip.get('m_IsActive')!=1):
+            continue
+        go_pointer=clip.get('m_GameObject');go_id=go_pointer.get('m_PathID') if isinstance(go_pointer,dict) else None
+        if go_id not in prefab_root_ids or not local(go_pointer,go_id):continue
+        go=gameobjects.get(go_id)
+        if not isinstance(go,dict) or go.get('m_IsActive')!=1:continue
+        components={entry['component'].get('m_PathID') for entry in go.get('m_Component',[])
+                    if isinstance(entry,dict) and isinstance(entry.get('component'),dict) and entry['component'].get('m_FileID')==0}
+        if pid not in components:continue
+        parents=[(tid,t) for tid,t in transforms.items() if local(t.get('m_GameObject'),go_id)]
+        if len(parents)!=1:continue
+        transform_id,transform=parents[0]
+        if transform_id not in components or not local(transform.get('m_Father'),0):continue
+        candidates.append((pid,clip))
+    if len(candidates)!=1:raise RenderError('Cannot establish a unique active prefab GAF root clip')
+    return candidates[0]
+
+
 def load_scene(bundle, with_context=False):
     import UnityPy
     validate_bundle(bundle)
@@ -101,7 +136,11 @@ def load_scene(bundle, with_context=False):
     for obj in env.objects:
         if obj.type.name == 'Texture2D':
             data = obj.read()
-            textures[obj.path_id] = (data.m_Name, data.image.convert('RGBA'))
+            image=data.image.convert('RGBA')
+            texture_settings=getattr(data,'m_TextureSettings',None)
+            image.info['unity_wrap_modes']=(getattr(texture_settings,'m_WrapU',None),
+                                            getattr(texture_settings,'m_WrapV',None))
+            textures[obj.path_id] = (data.m_Name, image)
         elif obj.type.name == 'MonoBehaviour':
             mono[obj.path_id] = obj.read_typetree()
     assets = [(pid,t) for pid,t in mono.items() if 'm_AssetData' in t]
@@ -111,12 +150,26 @@ def load_scene(bundle, with_context=False):
     referenced = {d['element'] for timeline in movie.timelines.values() for d in timeline.objects.values() if d['type']==2}
     if not referenced.issubset(movie.timelines): raise RenderError('Missing nested GAF timeline')
     root_timelines = set(movie.timelines)-referenced
-    if len(root_timelines)!=1: raise RenderError('No unique unreferenced GAF root timeline')
-    root_timeline = next(iter(root_timelines))
-    roots = [(pid,t) for pid,t in mono.items() if t.get('m_TimelineID')==root_timeline and
-             t.get('m_GAFAsset',{}).get('m_PathID')==asset_id]
-    if len(roots) != 1: raise RenderError('Cannot establish a unique root GAF clip')
-    root_id, root = roots[0]
+    if not root_timelines: raise RenderError('No unique unreferenced GAF root timeline')
+    if len(root_timelines)==1:
+        root_timeline = next(iter(root_timelines))
+        roots = [(pid,t) for pid,t in mono.items() if t.get('m_TimelineID')==root_timeline and
+                 t.get('m_GAFAsset',{}).get('m_PathID')==asset_id]
+        if len(roots) != 1: raise RenderError('Cannot establish a unique root GAF clip')
+        root_id, root = roots[0]
+    else:
+        # A GAF can export unused library timelines alongside the scene. Resolve
+        # only this ambiguity from the prefab's active, parentless clip.
+        gameobjects,transforms,prefab_roots={},{},set()
+        for obj in env.objects:
+            if obj.type.name=='GameObject':gameobjects[obj.path_id]=obj.read_typetree()
+            elif obj.type.name in ('Transform','RectTransform'):transforms[obj.path_id]=obj.read_typetree()
+            elif obj.type.name=='AssetBundle':
+                for name,entry in obj.read_typetree().get('m_Container',[]):
+                    pointer=entry.get('asset',{})
+                    if name.casefold().endswith('.prefab') and pointer.get('m_FileID')==0:
+                        prefab_roots.add(pointer.get('m_PathID'))
+        root_id,root=_select_root_clip(root_timelines,mono,asset_id,gameobjects,transforms,prefab_roots)
     tl = movie.timelines[root['m_TimelineID']]
     # Use the root clip's explicitly serialized scale and content-scale factor.
     settings = root.get('m_Settings', {})
@@ -211,7 +264,7 @@ def load_scene(bundle, with_context=False):
 
 
 def is_background(name):
-    return name.casefold().startswith('bg_') or re.fullmatch(r'bg\d+',name,re.I) is not None or name.casefold() in ('bg','background','backdrop')
+    return name.casefold().startswith('bg_') or re.fullmatch(r'bg\d+(?:_\d+)*',name,re.I) is not None or name.casefold() in ('bg','background','backdrop')
 
 
 def check_snapshot_actions(timeline,frame):
@@ -221,6 +274,44 @@ def check_snapshot_actions(timeline,frame):
             # Stop affects future playback only, not the first displayed pose.
             if not (frame==1 and action=={'type':0,'scope':'','params':[]}):
                 raise RenderError(f'Unsupported action in timeline {timeline.id}, frame {n}: {action}')
+
+
+def atlas_crop(image,rect):
+    """Sample an atlas rectangle using explicit serialized Clamp edge modes.
+
+    GAF rectangles may legitimately extend beyond a Unity texture. UVs outside
+    an axis with TextureWrapMode.Clamp (1) sample the actual border texels. Do
+    not infer that mode when settings are absent or use transparent padding.
+    """
+    x,y,w,h=rect
+    if not all(isinstance(v,int) for v in rect):raise RenderError('Non-integral atlas crop')
+    if min(w,h)<=0:raise RenderError('Atlas crop outside texture')
+    outside_u=x<0 or x+w>image.width;outside_v=y<0 or y+h>image.height
+    if not outside_u and not outside_v:return image.crop((x,y,x+w,y+h))
+    modes=image.info.get('unity_wrap_modes')
+    if not isinstance(modes,(tuple,list)) or len(modes)!=2:modes=(None,None)
+    if (outside_u and modes[0]!=1) or (outside_v and modes[1]!=1):
+        raise RenderError('Atlas crop outside texture')
+    if w>8192 or h>8192 or w*h>8192**2:raise RenderError('Unsafe atlas crop dimensions')
+    def segments(start,length,extent):
+        result=[]
+        if start<0:
+            count=min(length,-start)
+            result.append((0,count,0,1))
+        left=max(0,start);right=min(extent,start+length)
+        if right>left:result.append((left-start,right-left,left,right))
+        if start+length>extent:
+            offset=max(0,extent-start)
+            result.append((offset,length-offset,extent-1,extent))
+        return result
+    tile=Image.new(image.mode,(w,h))
+    for dx,dw,sx,ex in segments(x,w,image.width):
+        for dy,dh,sy,ey in segments(y,h,image.height):
+            piece=image.crop((sx,sy,ex,ey))
+            if piece.size!=(dw,dh):piece=piece.resize((dw,dh),Image.Resampling.NEAREST)
+            tile.paste(piece,(dx,dy))
+    tile.info.update(image.info)
+    return tile
 
 
 def sprite_for(scope,oid):
@@ -239,10 +330,12 @@ def sprite_for(scope,oid):
     x,y=element['origin'];w,h=element['size']
     if any(abs(v-round(v))>1e-5 for v in (x,y,w,h)): raise RenderError('Non-integral atlas crop')
     x,y,w,h=map(round,(x,y,w,h))
-    if min(x,y)<0 or min(w,h)<=0 or x+w>image.width or y+h>image.height: raise RenderError('Atlas crop outside texture')
-    tile=image.crop((x,y,x+w,y+h))
+    tile=atlas_crop(image,(x,y,w,h))
     if element.get('rotated'): tile=tile.transpose(Image.Transpose.ROTATE_90)
-    return tile,element,dict(atlas_id=element['atlas_id'],texture=name,crop=[x,y,w,h],pivot=element['pivot'],element_scale=element['scale'])
+    sampling={}
+    if x<0 or y<0 or x+w>image.width or y+h>image.height:
+        sampling={'atlas_sampling':'serialized_clamp_edge','texture_wrap_modes':list(image.info['unity_wrap_modes'])}
+    return tile,element,dict(atlas_id=element['atlas_id'],texture=name,crop=[x,y,w,h],pivot=element['pivot'],element_scale=element['scale'],**sampling)
 
 
 
