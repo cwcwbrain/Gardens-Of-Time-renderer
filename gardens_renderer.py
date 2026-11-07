@@ -117,6 +117,7 @@ def main(argv=None):
     p.add_argument('--test-limit', type=int, help='Process at most this many selected scenes per test invocation')
     p.add_argument('--retry-failed', action='store_true', help='Retry non-passing checkpoints in test mode')
     p.add_argument('--include-pending', action='store_true', help='With --update, also resume saved pending/running jobs after an interrupted run or move')
+    p.add_argument('--refresh-solutions', action='store_true', help='With --update or --finish-all, upgrade saved passing solutions to the current pointer layout while preserving empty and complete images')
     p.add_argument('--plan-only', action='store_true', help='Export the test or retry plan without starting workers')
     p.add_argument('--frame', type=int, help='One-based snapshot frame for --render')
     p.add_argument('--index-only', action='store_true', help='Download and index catalogues; do not download bundles')
@@ -131,6 +132,8 @@ def main(argv=None):
         args.include_pending=True
     if args.include_pending and not args.update:
         p.error('--include-pending requires --update')
+    if args.refresh_solutions and not args.update:
+        p.error('--refresh-solutions requires --update or --finish-all')
     if args.relocate_output:
         if args.render or args.index_only or args.retry_failed or args.named_output or args.frame is not None or args.test_limit is not None:
             p.error('--relocate-output verifies and rebases saved paths; use --output and optionally --plan-only')
@@ -264,6 +267,11 @@ def main(argv=None):
         update={**enrollment,'chapter_discovery':chapter_report,'catalogue_source':discovery['source']}
         atomic_json(out/'update_discovery.json',update)
         code=retry_incomplete(args,update_metadata=update)
+        if not args.plan_only and code not in (2,130) and args.refresh_solutions:
+            from gardens.solution_refresh import refresh_solutions
+            refreshed=refresh_solutions(out,timeout=args.test_timeout)
+            if refreshed['status']=='interrupted':code=130
+            elif refreshed['status']!='completed':code=code or 1
         if not args.plan_only and code!=130:
             naming_code=name_scene_exports(args,client,discovery,scenes)
             if not code:code=naming_code

@@ -127,5 +127,6 @@
     "real_bundle_comparisons": 3,
     "giza_missing_label_regression": "Unknown banana stays out of the empty image, remains as complete/solution art, has no callout, and retains its visibility audit and incomplete binding issue.",
     "offstage_regression": "Offstage unknown remains unresolved but has neither a pointer nor a visible-unverified audit entry."
-  }
+  },
+  "historical_scope_note": "This check predates the later Item Manager completion rule and numbered-local-pointer layout. Extra objects are now nonblocking warnings; see numbered_solutions.json for current validation."
 }

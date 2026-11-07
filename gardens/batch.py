@@ -119,12 +119,13 @@ class Ledger:
                 message=f'{name} is locked; close it to refresh. SQLite checkpoint and {name}.tmp are current.'
                 report_warnings.append(message);print(message,flush=True)
         with (out/'test_report.csv.tmp').open('w',encoding='utf-8-sig',newline='') as f:
-            fields=['order','scene_id','variant_id','status','stage','issues','hidden_objects','named_pointers','unverified_named_pointers','total_named_pointers','bundle_count','bundle_urls','output','log','elapsed_seconds','validation_fingerprint','selected_for_retry']
+            fields=['order','scene_id','variant_id','status','stage','issues','warnings','item_manager_complete','hidden_objects','named_pointers','unverified_named_pointers','total_named_pointers','bundle_count','bundle_urls','output','log','elapsed_seconds','validation_fingerprint','selected_for_retry']
             writer=csv.DictWriter(f,fieldnames=fields);writer.writeheader()
             for job in self.db.execute('SELECT * FROM jobs WHERE active=1 ORDER BY ordinal,variant_id'):
                 result=json.loads(job['result']);definition=json.loads(job['definition'])
                 writer.writerow({'order':job['ordinal'],'scene_id':job['scene_id'],'variant_id':job['variant_id'],
                                  'status':job['status'],'stage':result.get('stage',''),'issues':json.dumps(result.get('issues',[]),ensure_ascii=False),
+                                 'warnings':json.dumps(result.get('warnings',[]),ensure_ascii=False),'item_manager_complete':result.get('item_manager_complete',''),
                                  'hidden_objects':result.get('hidden_objects',''),'named_pointers':result.get('named_pointers',''),
                                  'unverified_named_pointers':result.get('unverified_named_pointers',''),
                                  'total_named_pointers':result.get('total_named_pointers',result.get('named_pointers','')),

@@ -12,7 +12,7 @@ from pathlib import Path
 
 from PIL import Image, ImageChops, ImageFilter
 
-from .annotations import annotate_solution, validate_callouts, visible_anchor
+from .annotations import SOLUTION_LAYOUT, annotate_solution, validate_callouts, visible_anchor
 from .download import atomic_json, sha256, validate_bundle
 from .gaf import GAFError, decode
 
@@ -363,12 +363,13 @@ def render_bundle(bundle, item_manager, output, frame=None):
     bundle_digest=sha256(bundle)
     manager_digest=hashlib.sha256(json.dumps(item_manager,sort_keys=True).encode()).hexdigest()
     items, animation_keys, issues = parse_items(item_manager, tl.names,reviewed_item_bindings(bundle_digest,manager_digest))
+    item_binding_issues=list(issues)
     if movie.unsupported: issues.append(f'Unsupported GAF tags: {movie.unsupported}')
     if set(tl.objects)!=set(metadata): issues.append('Unity/GAF root object sets differ')
     unresolved_names={oid:name for oid,name in tl.names.items()
                       if oid not in items and not is_background(name) and not name.casefold().startswith('anim_') and name.casefold()!='timecap'}
-    for oid,name in unresolved_names.items():
-        issues.append(f'Unclassified named object {oid}: {name}; no Item Manager label')
+    warnings=[f'Extra named object {oid}: {name}; not listed in Item Manager'
+              for oid,name in unresolved_names.items()]
     if not items: issues.append('No hidden objects identified')
     has_nested=any(d['type']==2 for d in tl.objects.values())
     if frame is None and has_nested: frame=1
@@ -482,7 +483,7 @@ def render_bundle(bundle, item_manager, output, frame=None):
             empty=Image.alpha_composite(empty,layer)
     if not background_signatures: issues.append('No named background placement was found')
     transmittance=Image.new('L',size,255); highlights=Image.new('L',size)
-    markers=[]
+    markers=[];used_anchors=[]
     for entry in reversed(ordered):
         oid=entry[0]
         if rowmap[oid]['status'] not in ('rendered','rendered_nested'):continue
@@ -500,7 +501,8 @@ def render_bundle(bundle, item_manager, output, frame=None):
                 rowmap[oid]['visible_bbox']=list(bbox)
                 rowmap[oid]['visible_pixels']=threshold.histogram()[255]
                 if oid in items:
-                    anchor=visible_anchor(threshold)
+                    anchor=visible_anchor(threshold,avoid=used_anchors)
+                    used_anchors.append(anchor)
                     markers.append({'object_id':oid,**items[oid],'label_source':'item_manager','label_verified':True,
                                     'bbox':list(bbox),'visible_pixels':threshold.histogram()[255],
                                     'anchor':anchor,'anchor_alpha':visible.getpixel(tuple(anchor))})
@@ -512,9 +514,12 @@ def render_bundle(bundle, item_manager, output, frame=None):
     solution=Image.alpha_composite(complete,yellow)
     if len(markers)!=len(items): issues.append('Solution marker count differs from identified hidden objects')
     if len({item['manager_key'] for item in items.values()})+len(animation_keys)!=len(item_manager): issues.append('Not all Item Manager hidden objects were resolved')
+    manager_complete=(bool(items) and not item_binding_issues and len(markers)==len(items)
+                      and len({item['manager_key'] for item in items.values()})+len(animation_keys)==len(item_manager))
     highlights_differ = ImageChops.difference(complete,solution).convert('RGB').getbbox() is not None
     solution,solution_scene_box=annotate_solution(solution,markers)
-    issues.extend(validate_callouts(markers,solution.size,solution_scene_box))
+    annotation_issues=validate_callouts(markers,solution.size,solution_scene_box)
+    issues.extend(annotation_issues)
     coverage={}
     for name,image in [('empty',empty),('complete',complete),('solution',solution)]:
         extrema=image.getchannel('A').getextrema();coverage[name]={'alpha_extrema':list(extrema),'bbox':image.getbbox()}
@@ -534,7 +539,9 @@ def render_bundle(bundle, item_manager, output, frame=None):
             'solution_dimensions':list(solution.size),'solution_scene_box':solution_scene_box,'named_pointers':len(markers),'nested_snapshot_instances':nested.audit,
             'unverified_named_pointers':0,'total_named_pointers':len(markers),
             'visible_unverified_object_ids':sorted(oid for oid in unresolved_names if rowmap.get(oid,{}).get('visible_pixels',0)>0),
-            'solution_policy':'Highlight and label verified Item Manager clues only; retain unverified objects as unmarked original art',
+            'solution_layout':SOLUTION_LAYOUT,'annotation_issues':annotation_issues,
+            'anchor_policy':'Actual visible pixels after occlusion; neighbouring clue targets use distinct visible pixels at least 10 pixels apart',
+            'solution_policy':'Highlight verified clues with nonintersecting short numbered pointers and a side index; retain unverified objects as unmarked original art',
             'nested_policy':'Encoded first frame per child; no elapsed-time playback simulation',
             'filter_backend':'CPU Unity-style 32-tap separable box blur/outer glow; colour matrix before tint; GPU pixel parity not independently verified',
             'gaf_version':list(movie.version),'root_timeline':tl.id,'decoded_frames':len(tl.frames),'timeline_frame_count':tl.frame_count,
@@ -543,9 +550,13 @@ def render_bundle(bundle, item_manager, output, frame=None):
             'bundle_sha256':bundle_digest,'item_manager_sha256':manager_digest,
             'item_binding_overrides':[item['binding_override'] for item in items.values() if 'binding_override' in item],
             'root_objects':len(tl.objects),'identified_hidden_objects':len(items),'solution_markers':len(markers),
+            'item_manager_complete':manager_complete,'warnings':warnings,
+            'findable_item_manager_entries':len(item_manager)-len(animation_keys),
+            'matched_item_manager_entries':len({item['manager_key'] for item in items.values()}),
             'empty_excluded_object_ids':sorted(set(items)|set(unresolved_names)),
             'empty_policy':'Omit verified Item Manager clues and unverified named objects; retain background and other scene decoration',
-            'unresolved_named_objects':unresolved_names,'target_scope':'Item Manager findable entries; unresolved named visuals remain unmarked and remain validation blockers',
+            'unresolved_named_objects':unresolved_names,'extra_named_objects':unresolved_names,
+            'target_scope':'Every findable Item Manager entry must be matched and visible; extra named visuals are unmarked, nonblocking warnings',
             'inactive_at_snapshot':inactive,'excluded_gameplay_objects':excluded,'animation_metadata_keys':animation_keys,
             'atlases':[{'id':i,'texture':n,'dimensions':list(im.size)} for i,(n,im) in textures.items()],
             'duplicate_backgrounds':duplicate_backgrounds,'coverage':coverage,'issues':issues,'files':files,

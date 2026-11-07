@@ -87,6 +87,8 @@ Every variant gets a result:
 
 - `passed`: bundle, Item Manager, reconstruction, visible-object and named-pointer
   checks passed; three current images and their metadata were verified.
+  Extra scene objects without Item Manager entries are recorded as warnings;
+  they do not block a pass when every findable entry is matched and visible.
 - `incomplete`: assets were checked but the renderer lacks a required feature,
   scene type, or reliable object placement/identification.
 - `failed`: download, worker crash, timeout, or another runtime failure.
@@ -171,6 +173,19 @@ matches, organizes named exports by 100/10/individual chapters, then deletes onl
 verified obsolete incomplete previews. Passed renders and failed/blocked saved
 results are preserved. Use the latest program files beside the existing output
 folder; relocation must already have succeeded after a move.
+
+To also upgrade older passing solutions to the numbered-pointer layout:
+
+```cmd
+py gardens_renderer.py --finish-all --refresh-solutions --output output
+```
+
+This keeps existing empty and complete images unchanged. It rebuilds older
+solution annotations from their verified cached assets, checks the native image
+hashes, and publishes only the solution and its annotation metadata. Progress is
+saved per version; repeating the command reuses solutions already upgraded.
+Named copies and their index are refreshed afterward. See
+[solution layout updates](docs/solution-layout-updates.md) for reports and recovery.
 
 On Windows it temporarily requests that the system stay awake while the command
 runs, and restores the previous thread sleep state when finished. The display
@@ -457,9 +472,11 @@ output/scenes/AncientGizaRiverfront/
 ```
 
 The empty and complete scenes are **1280 x 758** with **68 identified/visible hidden objects**.
-The solution adds nonoverlapping side columns with the exact Item Manager names
-and an arrow to each visible object. It keeps the scene at native scale on a wider
-canvas; Giza's annotated solution is **1832 x 1288**. Labels use `beginner`, falling
+The solution adds a short numbered pointer beside each verified object and a
+numbered index on the right with the exact Item Manager names. Pointer strokes,
+arrowheads and number badges are checked for crossings and overlaps. It keeps
+the scene at native scale on a wider canvas; Giza's annotated solution is
+**1828 x 1254**. Labels use `beginner`, falling
 back to `gold` only if the beginner label is empty. The report records both canvas
 dimensions and the native scene rectangle.
 
@@ -687,7 +704,10 @@ Item Manager animation descriptors accept case variants and the observed
 require exact encoded key bindings or the reviewed source aliases above; the displayed Item Manager label can
 differ from the encoded name (for example, `lemon` is labelled "Orange Slice"
 in Hourglass Study). Unknown named visuals remain in the previews and in
-`unresolved_named_objects`; they block certification. Both verified clues and
+`extra_named_objects` (also retained as `unresolved_named_objects` for older
+readers). They produce warnings rather than blocking completion. Every findable
+Item Manager entry must still be matched and visible, and unsupported rendering,
+missing assets and invalid coverage still block a pass. Both verified clues and
 unverified named objects are omitted from the empty image and retained in the
 complete and solution images. Unverified objects keep their original art in the
 solution, without orange outlines, pointers or labels. Only verified Item Manager
@@ -700,12 +720,14 @@ stale final image filenames, keeping previews under `incomplete/`.
 `named_pointers`/`total_named_pointers` both count the verified callouts.
 `visible_unverified_object_ids` and `objects.json` retain visibility metadata for
 unverified objects without labelling them. Their roles remain unconfirmed;
-keeping their art does not certify them as findable clues or as decoration.
+they are not asserted to be findable clues. `item_manager_complete`,
+`findable_item_manager_entries` and `matched_item_manager_entries` report the
+required-clue checks, while `warnings` records extra objects separately.
 The empty-image exclusion policy and object IDs are recorded in
 `empty_policy` and `empty_excluded_object_ids` in each validation report.
-The [unmarked-object regression check](docs/validation/unmarked_object_check.json)
-verifies this in both Hourglass Study bundles and Suzhou Gardens: empty and
-complete images are preserved while the unverified solution markers are removed.
+The [numbered-solution validation](docs/validation/numbered_solutions.json)
+checks the new layout and completion rule in both Hourglass Study bundles and
+Suzhou Gardens, with the extra objects retained as unmarked art.
 
 Wait until an active Windows run finishes before replacing its code. After
 updating, use `py gardens_renderer.py --retry-incomplete --output output` to

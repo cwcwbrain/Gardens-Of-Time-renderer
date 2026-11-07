@@ -48,7 +48,9 @@ def test_job(job):
                           issues=report['issues'],files=report['files'],
                           hidden_objects=report['identified_hidden_objects'],named_pointers=report['named_pointers'],
                           unverified_named_pointers=report.get('unverified_named_pointers',0),
-                          total_named_pointers=report.get('total_named_pointers',report['named_pointers']))
+                          total_named_pointers=report.get('total_named_pointers',report['named_pointers']),
+                          solution_layout=report.get('solution_layout'),annotation_issues=report.get('annotation_issues',[]),
+                          warnings=report.get('warnings',[]),item_manager_complete=report.get('item_manager_complete'))
             # Pass reuse requires unchanged inputs, images, and validation/label metadata.
             if result['status']=='passed':
                 for file in report['files']:keep(file)

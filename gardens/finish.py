@@ -56,6 +56,7 @@ def finish_all(output,update_callable,cleanup_callable=None,plan_only=False):
             'outputs':{'scene_tests':str(out/'all_scene_test_summary.json'),
                        'name_matches':str(out/'scene_name_matches.csv'),
                        'naming':str(out/'naming_report.json'),
+                       'solution_refresh':str(out/'solution_refresh_report.json'),
                        'named_images':str(out/'named_scenes'),
                        'cleanup':str(out/'cleanup_incomplete_report.json')}}
     with keep_awake(not plan_only) as awake:

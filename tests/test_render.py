@@ -180,13 +180,26 @@ class AnnotationTests(unittest.TestCase):
         self.assertEqual(mask.getpixel(tuple(anchor)),255)
         self.assertNotEqual(anchor,[4,4])
 
+    def test_neighbouring_clues_use_distinct_actual_visible_pixels(self):
+        import math
+        mask=Image.new('L',(24,24),255)
+        first=visible_anchor(mask)
+        second=visible_anchor(mask,avoid=[first])
+        self.assertGreaterEqual(math.dist(first,second),10)
+        self.assertEqual(mask.getpixel(tuple(second)),255)
+        singleton=Image.new('L',(8,8));singleton.putpixel((4,4),255)
+        with self.assertRaisesRegex(ValueError,'distinct visible pixel'):
+            visible_anchor(singleton,avoid=[[4,4]])
+
     def test_very_long_labels_wrap_without_renaming_and_do_not_overlap(self):
-        markers=[{'object_id':i,'label':'A Very Long Item Manager Label '*4,'anchor':[4,4],
-                  'anchor_alpha':255,'bbox':[3,3,6,6]} for i in range(6)]
-        image,box=annotate_solution(Image.new('RGBA',(16,16),'white'),markers)
+        markers=[{'object_id':i,'label':'A Very Long Item Manager Label '*4,
+                  'anchor':[40+(i%3)*56,40+(i//3)*88],
+                  'anchor_alpha':255,'bbox':[30+(i%3)*56,30+(i//3)*88,50+(i%3)*56,50+(i//3)*88]} for i in range(6)]
+        image,box=annotate_solution(Image.new('RGBA',(192,192),'white'),markers)
         self.assertEqual(validate_callouts(markers,image.size,box),[])
         self.assertTrue(all(len(m['label_lines'])>1 for m in markers))
         self.assertTrue(all(m['label']=='A Very Long Item Manager Label '*4 for m in markers))
+        self.assertTrue(all(m['callout_side']=='index' and m['number_box'] for m in markers))
 
     def test_unverified_objects_cannot_receive_solution_callouts(self):
         unknown={'object_id':3,'label':'aardvark [unverified]','label_verified':False,
@@ -194,6 +207,19 @@ class AnnotationTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'verified clue labels'):
             annotate_solution(Image.new('RGBA',(16,16),'white'),[unknown])
         self.assertNotIn('callout_box',unknown)
+
+    def test_numbered_side_index_keeps_original_names_and_native_anchor_positions(self):
+        markers=[{'object_id':oid,'label':label,'anchor':[x,y],'anchor_alpha':255,
+                  'bbox':[x-2,y-2,x+3,y+3]} for oid,label,x,y in
+                 [(4,'Zebra',40,40),(8,'Abacus',170,150),(2,'Banana',170,40)]]
+        image,box=annotate_solution(Image.new('RGBA',(224,208),'white'),markers)
+        self.assertEqual(validate_callouts(markers,image.size,box),[])
+        self.assertEqual({m['label']:m['number'] for m in markers},{'Abacus':1,'Banana':2,'Zebra':3})
+        for marker in markers:
+            self.assertGreaterEqual(marker['callout_box'][0],box[2])
+            self.assertEqual(marker['pointer_tip'],[marker['anchor'][0]+box[0],marker['anchor'][1]+box[1]])
+            self.assertEqual(marker['label_lines'],[f'{marker["number"]}. {marker["label"]}'])
+            self.assertTrue(marker['number_box'])
 
 
 class RealRenderTests(unittest.TestCase):
@@ -281,15 +307,17 @@ class RealRenderTests(unittest.TestCase):
         self.assertIn('Unsupported nested effect',r['issues'])
         self.assertFalse((out/'scene_complete.png').exists())
 
-    def test_unknown_named_visual_remains_a_blocker(self):
+    def test_extra_visual_is_a_warning_when_all_item_manager_clues_are_complete(self):
         data=dict(self.data);data.pop('banana_anc_giz_riv')
         out=Path(self.temp.name)/'unknown'
         out.mkdir();(out/'scene_complete.png').write_bytes(b'old output')
         r=render_bundle(GIZA,data,out)
-        self.assertEqual(r['status'],'incomplete')
-        self.assertTrue(any('banana' in issue and 'Unclassified' in issue for issue in r['issues']))
-        self.assertFalse((out/'scene_complete.png').exists())
-        self.assertTrue((out/'incomplete/scene_complete.png').exists())
+        self.assertEqual(r['status'],'validated_snapshot',r['issues'])
+        self.assertEqual(r['issues'],[])
+        self.assertTrue(r['item_manager_complete'])
+        self.assertTrue(any('banana' in warning and 'Extra named object' in warning for warning in r['warnings']))
+        self.assertTrue((out/'scene_complete.png').exists())
+        self.assertFalse((out/'incomplete').exists())
         self.assertEqual(r['identified_hidden_objects'],67)
         self.assertEqual(r['named_pointers'],67)
         self.assertEqual(r['solution_markers'],67)
@@ -311,11 +339,11 @@ class RealRenderTests(unittest.TestCase):
         # Losing the Item Manager label must not put the banana back into the
         # empty image. Its art remains in the complete and annotated solution.
         for role in ('empty','complete'):
-            with Image.open(out/'incomplete'/f'scene_{role}.png') as preview, \
+            with Image.open(out/f'scene_{role}.png') as preview, \
                  Image.open(self.out/f'scene_{role}.png') as verified:
                 self.assertIsNone(ImageChops.difference(preview,verified).getbbox(alpha_only=False),role)
-        with Image.open(out/'incomplete/scene_empty.png') as empty, \
-             Image.open(out/'incomplete/scene_complete.png') as complete:
+        with Image.open(out/'scene_empty.png') as empty, \
+             Image.open(out/'scene_complete.png') as complete:
             self.assertIsNotNone(ImageChops.difference(empty,complete).crop(banana['visible_bbox']).getbbox(alpha_only=False))
 
     def test_offstage_unverified_object_does_not_get_an_invented_pointer(self):
@@ -333,7 +361,8 @@ class RealRenderTests(unittest.TestCase):
         out=Path(self.temp.name)/'unknown_offstage'
         with patch('gardens.render.load_scene',return_value=scene):
             r=render_bundle(GIZA,data,out)
-        self.assertEqual(r['status'],'incomplete')
+        self.assertEqual(r['status'],'validated_snapshot',r['issues'])
+        self.assertTrue(r['item_manager_complete'])
         self.assertIn(143,r['unresolved_named_objects'])
         self.assertEqual(r['unverified_named_pointers'],0)
         self.assertEqual(r['total_named_pointers'],67)
@@ -343,9 +372,12 @@ class RealRenderTests(unittest.TestCase):
 
     def test_missing_item_does_not_publish_final_images(self):
         data={**self.data,'nonexistent_object_anc_giz_riv':{'beginner':'Unrecoverable'}}
+        data.pop('banana_anc_giz_riv')
         destination=Path(self.temp.name)/'incomplete'
         r=render_bundle(GIZA,data,destination)
         self.assertEqual(r['status'],'incomplete')
+        self.assertFalse(r['item_manager_complete'])
+        self.assertTrue(any('banana' in warning for warning in r['warnings']))
         self.assertTrue(r['issues'])
         self.assertFalse((destination/'scene_complete.png').exists())
         self.assertTrue((destination/'incomplete/scene_complete.png').exists())

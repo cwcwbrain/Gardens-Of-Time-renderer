@@ -1,0 +1,280 @@
+{
+  "checked_on": "2026-11-07",
+  "solution_layout": "numbered_local_pointers_v1",
+  "completion_rule": "Every findable Item Manager entry must be matched and visible, and reconstruction/annotation checks must pass. Extra named scene objects without manager entries are nonblocking warnings; they remain unmarked in complete/solution and excluded from empty.",
+  "scope": "Real cached game assets and isolated workers, saved-anchor geometry checks, and existing-run refresh/name export checks. This is not proof that every catalogue scene or GPU output matches.",
+  "real_scene_checks": [
+    {
+      "scene_id": "AncientGizaRiverfront",
+      "in_game_name": "Giza Riverfront",
+      "status": "passed",
+      "verified_clues": 68,
+      "item_manager_complete": true,
+      "annotation_issues": [],
+      "solution_dimensions": [
+        1828,
+        1254
+      ],
+      "solution_layout": "numbered_local_pointers_v1",
+      "solution_png_sha256": "eb4816246a980d9858450381f7a241a1b02dfa653b42d97caf870e911db3771c"
+    },
+    {
+      "scene_id": "VictorianSceneRedone",
+      "in_game_name": "Hourglass Study",
+      "variant_id": "6234e0da83eee691",
+      "status": "passed",
+      "verified_clues": 61,
+      "named_pointers": 61,
+      "item_manager_complete": true,
+      "warnings": [
+        "Extra named object 142: maracas; not listed in Item Manager",
+        "Extra named object 95: lightbulb; not listed in Item Manager"
+      ],
+      "solution_dimensions": [
+        1828,
+        1149
+      ],
+      "solution_layout": "numbered_local_pointers_v1",
+      "annotation_issues": [],
+      "max_pointer_length": 20.0,
+      "source_bundle_sha256": "94478236229ce61bf7a35ac5550dca905425b0c2de07540836673472df6e470b",
+      "empty_and_complete_byte_identical_to_prior_preview": true
+    },
+    {
+      "scene_id": "VictorianSceneRedone",
+      "in_game_name": "Hourglass Study",
+      "variant_id": "7a1420d58dd6d1f0",
+      "status": "passed",
+      "verified_clues": 61,
+      "named_pointers": 61,
+      "item_manager_complete": true,
+      "warnings": [
+        "Extra named object 142: maracas; not listed in Item Manager",
+        "Extra named object 95: lightbulb; not listed in Item Manager"
+      ],
+      "solution_dimensions": [
+        1828,
+        1149
+      ],
+      "solution_layout": "numbered_local_pointers_v1",
+      "annotation_issues": [],
+      "max_pointer_length": 20.0,
+      "source_bundle_sha256": "c6388738aeb7469101e4b49c1780d7e5fc110114b9754fe47c8b2b5f810edc90",
+      "empty_and_complete_byte_identical_to_prior_preview": true
+    },
+    {
+      "scene_id": "ChinaGardenRedux1",
+      "in_game_name": "Suzhou Gardens",
+      "variant_id": "2ea3fe135b389b3b",
+      "status": "passed",
+      "verified_clues": 70,
+      "named_pointers": 70,
+      "item_manager_complete": true,
+      "warnings": [
+        "Extra named object 113: sharkfin; not listed in Item Manager"
+      ],
+      "solution_dimensions": [
+        1828,
+        1289
+      ],
+      "solution_layout": "numbered_local_pointers_v1",
+      "annotation_issues": [],
+      "max_pointer_length": 20.0,
+      "source_bundle_sha256": "7e897e45b7ad2c4f8ce17be78db91f33c067cc7106ca7b278ed2c59f58b9984a",
+      "empty_and_complete_byte_identical_to_prior_preview": true
+    }
+  ],
+  "crowded_real_scene_checks": [
+    {
+      "scene_id": "ItalianSceneRedux1",
+      "bundle_sha256": "3444aa7e13ddad623f20e9009bcede1da3ce52af8ddb6e80e20e98150c841094",
+      "status": "validated_snapshot",
+      "item_manager_complete": true,
+      "verified_clues": 75,
+      "annotation_issues": [],
+      "minimum_anchor_distance": 10.0,
+      "issues": []
+    },
+    {
+      "scene_id": "DragonLake",
+      "bundle_sha256": "ff66259e144bc12345410c65f2e0c9967737a1d18afc8985cd4c2efa447432b0",
+      "status": "validated_snapshot",
+      "item_manager_complete": true,
+      "verified_clues": 65,
+      "annotation_issues": [],
+      "minimum_anchor_distance": 10.816653826391969,
+      "issues": []
+    },
+    {
+      "scene_id": "MountFuji",
+      "bundle_sha256": "bdc2834c0aa5f3f1bfa6b347410da7e541d4df4cfcacf807fcc66441e5c218e5",
+      "status": "validated_snapshot",
+      "item_manager_complete": true,
+      "verified_clues": 60,
+      "annotation_issues": [],
+      "minimum_anchor_distance": 10.0,
+      "issues": []
+    },
+    {
+      "scene_id": "MaidMariansTower",
+      "bundle_sha256": "d1a6392ac658ae73d395fdb65d9239fcd006ce2bb1b5bdf6209812b4ee181856",
+      "status": "validated_snapshot",
+      "item_manager_complete": true,
+      "verified_clues": 68,
+      "annotation_issues": [],
+      "minimum_anchor_distance": 10.0,
+      "issues": []
+    },
+    {
+      "scene_id": "FeatheredSerpentTemple",
+      "bundle_sha256": "3f47cb6be8e3fe005547413336e61f11c8960b769804a5a2a313505bd87b6e73",
+      "status": "validated_snapshot",
+      "item_manager_complete": true,
+      "verified_clues": 62,
+      "annotation_issues": [],
+      "minimum_anchor_distance": 12.165525060596439,
+      "issues": []
+    },
+    {
+      "scene_id": "SandMandala",
+      "bundle_sha256": "51e006d0515577f859777257837606f41e4853999c1e739ea74fa92e4d3c995b",
+      "status": "validated_snapshot",
+      "item_manager_complete": true,
+      "verified_clues": 70,
+      "annotation_issues": [],
+      "minimum_anchor_distance": 10.0,
+      "issues": []
+    },
+    {
+      "scene_id": "EvitaBalcony",
+      "bundle_sha256": "ce10504a46c2dc9492e182b60539f40a4ebdad329ddf09c320efe914a2b2c4cd",
+      "status": "validated_snapshot",
+      "item_manager_complete": true,
+      "verified_clues": 62,
+      "annotation_issues": [],
+      "minimum_anchor_distance": 10.0,
+      "issues": []
+    },
+    {
+      "scene_id": "Nantucket",
+      "bundle_sha256": "09f127a8e311ef93ecf813c47c89272e770c73ae3177de2ea721d2f1f09210d6",
+      "status": "validated_snapshot",
+      "item_manager_complete": true,
+      "verified_clues": 69,
+      "annotation_issues": [],
+      "minimum_anchor_distance": 10.0,
+      "issues": []
+    },
+    {
+      "scene_id": "RoundTable",
+      "bundle_sha256": "7517ddf230aa209453cecef49e10392e21f937e2ff85799224bbbe081459cdf1",
+      "status": "validated_snapshot",
+      "item_manager_complete": true,
+      "verified_clues": 65,
+      "annotation_issues": [],
+      "minimum_anchor_distance": 10.0,
+      "issues": []
+    },
+    {
+      "scene_id": "LaBoca",
+      "bundle_sha256": "a8fa4f544295a5ad396755d203e01fe8624c94cc9cb325e5cedb67bc2adb45f7",
+      "status": "validated_snapshot",
+      "item_manager_complete": true,
+      "verified_clues": 69,
+      "annotation_issues": [],
+      "minimum_anchor_distance": 10.0,
+      "issues": []
+    },
+    {
+      "scene_id": "LaBoca",
+      "bundle_sha256": "e4b0311a6c130b420e81946ce0533cb88c7a18257af57dff948d82e4eb8fb3cd",
+      "status": "validated_snapshot",
+      "item_manager_complete": true,
+      "verified_clues": 69,
+      "annotation_issues": [],
+      "minimum_anchor_distance": 10.0,
+      "issues": []
+    },
+    {
+      "scene_id": "ChinaRoyalPalaceRedux1",
+      "bundle_sha256": "0e76053c20c242d887b9d5e3e0ce99c7bbe7e5f90111b6a70898768dfcaae044",
+      "status": "validated_snapshot",
+      "item_manager_complete": true,
+      "verified_clues": 64,
+      "annotation_issues": [],
+      "minimum_anchor_distance": 10.0,
+      "issues": []
+    },
+    {
+      "scene_id": "SalonBlanco",
+      "bundle_sha256": "d9b5fb9b721cd5de32b605646403a370e181121774d02694f971542fc894af22",
+      "status": "validated_snapshot",
+      "item_manager_complete": true,
+      "verified_clues": 66,
+      "annotation_issues": [],
+      "minimum_anchor_distance": 10.770329614269007,
+      "issues": []
+    }
+  ],
+  "saved_anchor_audit": {
+    "contexts_tested": 187,
+    "direct_layouts_with_no_intersections": 172,
+    "crowded_contexts_rerendered_with_distinct_visible_anchors": 13,
+    "crowded_rerender_annotation_failures": 0,
+    "legacy_metadata_examples_without_anchor_fields": 2,
+    "legacy_samples_checked_with_new_full_renders": [
+      "AncientGizaRiverfront",
+      "VictorianExteriorRedux1"
+    ]
+  },
+  "existing_solution_refresh": {
+    "passed_variants_checked": 6,
+    "native_and_objects_files_retained": 18,
+    "retained_files_hashes_and_mtimes_unchanged": true,
+    "status_order_definition_fingerprint_unchanged": true,
+    "second_run": {
+      "passed_variants": 6,
+      "refreshed_variants": 0,
+      "reused_variants": 6,
+      "skipped_variants": 0,
+      "planned_variants": 0
+    },
+    "named_native_files_retained": 12,
+    "named_solution_pngs_updated": 6
+  },
+  "required_clue_completion_and_named_export": {
+    "scene_ids": [
+      "AncientGizaRiverfront",
+      "ChinaGardenRedux1",
+      "VictorianSceneRedone"
+    ],
+    "pipeline_exit_code": 0,
+    "export_status": "completed",
+    "summary": {
+      "passed_variants": 4,
+      "exported_variants": 4,
+      "reused_variants": 0,
+      "skipped_variants": 0,
+      "written_pngs": 12,
+      "moved_pngs": 0
+    },
+    "exported_names": [
+      "Giza Riverfront",
+      "Hourglass Study",
+      "Suzhou Gardens"
+    ]
+  },
+  "regression_checks": {
+    "tests": 347,
+    "status": "passed",
+    "coverage": [
+      "Nonintersecting strokes, arrowheads and badges",
+      "Index numbering and original labels",
+      "Actual visible anchor selection for close targets",
+      "Extra-object warnings and genuine missing-clue failures",
+      "Native-file preservation and legacy metadata proofs",
+      "Publication interruption recovery and concurrent writes",
+      "CLI phase ordering and idempotent refresh"
+    ]
+  }
+}
