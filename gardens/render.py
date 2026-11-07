@@ -21,7 +21,7 @@ class RenderError(ValueError):
     pass
 
 
-def parse_items(data, names):
+def parse_items(data, names, reviewed_bindings=None):
     if not isinstance(data, dict) or not data:
         raise RenderError('Item Manager must be a nonempty JSON object')
     items, animations, issues = {}, [], []
@@ -34,6 +34,14 @@ def parse_items(data, names):
         if folded.startswith('anim_') or any(folded==base or folded.startswith(base+'_') for base in animation_bases):
             animations.append(key); continue
         matches = [oid for oid, name in names.items() if key.casefold() == name.casefold() or key.casefold().startswith(name.casefold()+'_')]
+        binding_override=None
+        if not matches and reviewed_bindings and key in reviewed_bindings:
+            reviewed=reviewed_bindings[key]
+            targets=[oid for oid,name in names.items() if name==reviewed['encoded_name']]
+            # Never repair an ambiguous ordinary match or bind a similarly
+            # named/duplicated object. The source hashes are checked upstream.
+            if targets==[reviewed['object_id']]:
+                matches=targets;binding_override=reviewed
         if matches:
             # A suffix-bearing name such as curtain_1 is more specific than
             # curtain for curtain_1_<scene>. Keep every identically named
@@ -49,6 +57,8 @@ def parse_items(data, names):
             issues.append(f'Item {key}: no nonempty label'); continue
         for oid in matches:
             items[oid] = {'manager_key': key, 'label': label, 'labels': labels}
+            if binding_override is not None:
+                items[oid]['binding_override']={'method':'reviewed_source_alias',**binding_override}
     return items, animations, issues
 
 
@@ -349,7 +359,10 @@ def render_bundle(bundle, item_manager, output, frame=None):
     if not stage or not 0 < stage['width'] <= 8192 or not 0 < stage['height'] <= 8192:
         raise RenderError('Missing or unsafe GAF stage dimensions')
     size = stage['width'],stage['height']
-    items, animation_keys, issues = parse_items(item_manager, tl.names)
+    from .item_aliases import reviewed_item_bindings
+    bundle_digest=sha256(bundle)
+    manager_digest=hashlib.sha256(json.dumps(item_manager,sort_keys=True).encode()).hexdigest()
+    items, animation_keys, issues = parse_items(item_manager, tl.names,reviewed_item_bindings(bundle_digest,manager_digest))
     if movie.unsupported: issues.append(f'Unsupported GAF tags: {movie.unsupported}')
     if set(tl.objects)!=set(metadata): issues.append('Unity/GAF root object sets differ')
     unresolved_names={oid:name for oid,name in tl.names.items()
@@ -527,7 +540,8 @@ def render_bundle(bundle, item_manager, output, frame=None):
             'gaf_version':list(movie.version),'root_timeline':tl.id,'decoded_frames':len(tl.frames),'timeline_frame_count':tl.frame_count,
             'snapshot_frame':frame,'snapshot_policy':('Encoded initial frame throughout the nested tree' if has_nested else
                 'one decoded frame maximizing hidden/named object visibility and encoded opacity; no union of animation cells'),
-            'bundle_sha256':sha256(bundle),'item_manager_sha256':hashlib.sha256(json.dumps(item_manager,sort_keys=True).encode()).hexdigest(),
+            'bundle_sha256':bundle_digest,'item_manager_sha256':manager_digest,
+            'item_binding_overrides':[item['binding_override'] for item in items.values() if 'binding_override' in item],
             'root_objects':len(tl.objects),'identified_hidden_objects':len(items),'solution_markers':len(markers),
             'empty_excluded_object_ids':sorted(set(items)|set(unresolved_names)),
             'empty_policy':'Omit verified Item Manager clues and unverified named objects; retain background and other scene decoration',

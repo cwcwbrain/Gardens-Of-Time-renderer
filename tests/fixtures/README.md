@@ -25,6 +25,14 @@ It tests atlas-v3/tag-15 decoding against real data: 76 root atlas elements,
 including rotated entries, and separate nested atlas scopes. It contains no
 texture pixels and is used offline.
 
+EasterFestiveMall_items.json and EasterFestiveMall_names.json preserve the live
+Item Manager and exact GAF root names for ch509EasterRingHuntEasterFestiveMall,
+read on 2026-11-07. The manager's `colourfulball_509_eas_mal_ini` key labels a
+"Beach Ball"; the bundle spells object 96 `colourfullball`. Tests exercise the
+reviewed binding only for its exact bundle and canonical manager hashes.
+Source URLs, hashes, sprite inspection and real reconstruction checks are in
+docs/validation/reviewed_item_aliases.json. No texture pixels are included.
+
 
 chapter747_748.json contains the actual production chapter/mission/scene records
 for chapters 747 and 748 from the MainProject Group00_VO_SO asset, read on

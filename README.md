@@ -663,6 +663,17 @@ Background names accept the observed `bg01`, `bg_01`, and `bg_background` conven
 binding is exact after Unicode case-folding plus the existing underscore suffix
 rule; a case collision still fails as ambiguous. Original keys/labels are retained.
 
+Six [reviewed source aliases](docs/validation/reviewed_item_aliases.json) cover
+confirmed naming differences in chapters 502, 509, 539, 560, 614 and 678. For
+example, Easter Festive Mall's manager calls the Beach Ball `colourfulball`,
+while both its GAF and Unity object data spell it `colourfullball`. Each exception
+requires the exact reviewed bundle hash, canonical Item Manager hash, complete
+manager key, object ID and unique encoded name. It is used only when ordinary
+matching finds no candidate. Ambiguous matches, changed sources, missing labels
+and conflicting assignments still fail; other spelling errors are never guessed.
+Applied exceptions appear in `item_binding_overrides` and the object's metadata;
+the original Item Manager label is used unchanged in the solution.
+
 
 The next-build ordinary-scene fixes also decode GAF atlas v3 (tag 15), including
 rotated sprites and separate horizontal/vertical scales, and intersect chained
@@ -673,7 +684,7 @@ resource template; the validation report records this in `scope_source`.
 
 Item Manager animation descriptors accept case variants and the observed
 `animprojectorbeam` form when its base matches a named animation. Findable labels
-still require exact encoded key bindings; the displayed Item Manager label can
+require exact encoded key bindings or the reviewed source aliases above; the displayed Item Manager label can
 differ from the encoded name (for example, `lemon` is labelled "Orange Slice"
 in Hourglass Study). Unknown named visuals remain in the previews and in
 `unresolved_named_objects`; they block certification. Both verified clues and
