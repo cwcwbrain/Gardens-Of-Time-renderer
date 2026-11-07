@@ -255,5 +255,6 @@
       "status": "passed"
     },
     "additional_focus": "Real missing-manager visual gets an unverified pointer; off-stage unknown gets none; verified numbering and legacy CSV totals are preserved."
-  }
+  },
+  "historical_scope_note": "This records the marker-only build. Its unchanged empty PNG checks predate the later fix that removes unverified objects from empty images; see unverified_empty_check.json for that fix."
 }

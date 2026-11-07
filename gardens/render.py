@@ -463,7 +463,10 @@ def render_bundle(bundle, item_manager, output, frame=None):
         except (RenderError,KeyError) as exc:
             issues.append(str(exc));rowmap[entry[0]]['status']='unsupported';continue
         complete=Image.alpha_composite(complete,layer)
-        if entry[0] not in items: empty=Image.alpha_composite(empty,layer)
+        # Both verified clues and explicitly marked unverified named objects
+        # belong in the complete/solution views, not in the empty background.
+        if entry[0] not in items and entry[0] not in unresolved_names:
+            empty=Image.alpha_composite(empty,layer)
     if not background_signatures: issues.append('No named background placement was found')
     transmittance=Image.new('L',size,255); highlights=Image.new('L',size);unverified_highlights=Image.new('L',size)
     markers=[];unverified_markers=[]
@@ -532,6 +535,8 @@ def render_bundle(bundle, item_manager, output, frame=None):
                 'one decoded frame maximizing hidden/named object visibility and encoded opacity; no union of animation cells'),
             'bundle_sha256':sha256(bundle),'item_manager_sha256':hashlib.sha256(json.dumps(item_manager,sort_keys=True).encode()).hexdigest(),
             'root_objects':len(tl.objects),'identified_hidden_objects':len(items),'solution_markers':len(markers),
+            'empty_excluded_object_ids':sorted(set(items)|set(unresolved_names)),
+            'empty_policy':'Omit verified Item Manager clues and unverified named objects; retain background and other scene decoration',
             'unresolved_named_objects':unresolved_names,'target_scope':'Item Manager findable entries; unresolved named visuals receive unverified preview markers and remain validation blockers',
             'inactive_at_snapshot':inactive,'excluded_gameplay_objects':excluded,'animation_metadata_keys':animation_keys,
             'atlases':[{'id':i,'texture':n,'dimensions':list(im.size)} for i,(n,im) in textures.items()],

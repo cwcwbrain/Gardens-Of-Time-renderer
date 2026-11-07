@@ -307,6 +307,7 @@ class RealRenderTests(unittest.TestCase):
         self.assertEqual(r['solution_markers'],67)
         self.assertEqual(r['unverified_named_pointers'],1)
         self.assertEqual(r['total_named_pointers'],68)
+        self.assertIn(143,r['empty_excluded_object_ids'])
         markers=json.loads((out/'solution_objects.json').read_text())
         self.assertEqual(len(markers),68)
         banana=next(m for m in markers if m['object_id']==143)
@@ -326,6 +327,15 @@ class RealRenderTests(unittest.TestCase):
             self.assertEqual(marker['label'],data[marker['manager_key']]['beginner'])
         rows=json.loads((out/'objects.json').read_text())
         self.assertEqual(next(row for row in rows if row['object_id']==143)['kind'],'unverified_named_object')
+        # Losing the Item Manager label must not put the banana back into the
+        # empty image. Its art remains in the complete and annotated solution.
+        for role in ('empty','complete'):
+            with Image.open(out/'incomplete'/f'scene_{role}.png') as preview, \
+                 Image.open(self.out/f'scene_{role}.png') as verified:
+                self.assertIsNone(ImageChops.difference(preview,verified).getbbox(alpha_only=False),role)
+        with Image.open(out/'incomplete/scene_empty.png') as empty, \
+             Image.open(out/'incomplete/scene_complete.png') as complete:
+            self.assertIsNotNone(ImageChops.difference(empty,complete).crop(banana['bbox']).getbbox(alpha_only=False))
 
     def test_offstage_unverified_object_does_not_get_an_invented_pointer(self):
         from unittest.mock import patch
