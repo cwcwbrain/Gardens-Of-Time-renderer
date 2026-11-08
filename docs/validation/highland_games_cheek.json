@@ -127,7 +127,7 @@
     "This is a general static pose-quality policy, not elapsed-time playback or independent game GPU pixel parity.",
     "The flat-root Loch Ness water-layer issue remains unresolved; the unreleased scene-specific omission exception was removed."
   ],
-  "release_state": "Prepared locally; push held until the user confirms the current Windows run has finished.",
+  "release_state": "Release authorized on 2026-11-08 after the user confirmed the previous Windows run had finished.",
   "regression_checks": {
     "tests": 434,
     "status": "passed",

@@ -174,7 +174,8 @@ organizes named exports by 100/10/individual chapters, then deletes only verifie
 obsolete incomplete previews. The pose review replaces only images whose pixels
 change; unchanged passing scenes and failed/blocked saved results are preserved.
 `pose_refresh_report.json` lists the actual changed scene IDs. Repeated reviews
-reuse cached analysis for unchanged sources. Use the latest program files beside the existing output
+reuse cached analysis for unchanged sources. See the [release change list](docs/scene-changes.md).
+Use the latest program files beside the existing output
 folder; relocation must already have succeeded after a move.
 
 To also upgrade older passing solutions to the numbered-pointer layout:
